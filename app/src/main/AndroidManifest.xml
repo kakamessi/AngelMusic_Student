@@ -32,6 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!--视频交互界面-->
+        <activity android:name="com.angelmusic.student.activity.VedioActivity" android:screenOrientation="landscape">
+        </activity>
+
         <!-- 通信服务 -->
         <service android:name=".service.StudentService"/>
 
