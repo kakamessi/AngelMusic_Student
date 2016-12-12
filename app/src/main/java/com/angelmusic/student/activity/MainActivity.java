@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-                Toast.makeText(this, "===========", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "=====测试一下======", Toast.LENGTH_LONG).show();
                 break;
         }
     }
