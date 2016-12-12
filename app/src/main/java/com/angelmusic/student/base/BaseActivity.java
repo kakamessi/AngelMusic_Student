@@ -1,5 +1,6 @@
 package com.angelmusic.student.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActionDispatcher.getInstance().register(TAG, actionHandler);
         LogUtil.setTAG(TAG);//给Log工具设置默认的TAG
     }
+
 
     @Override
     protected void onStart() {

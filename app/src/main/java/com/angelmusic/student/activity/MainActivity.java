@@ -1,5 +1,6 @@
 package com.angelmusic.student.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,8 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.button:
                 Toast.makeText(this, "=====测试一下======", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+                startActivity(intent);
                 break;
         }
     }

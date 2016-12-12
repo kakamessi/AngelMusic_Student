@@ -34,6 +34,9 @@
         </activity>
         <!-- 通信服务 -->
         <service android:name=".service.StudentService"/>
+
+        <activity android:name=".activity.VideoActivity">
+        </activity>
     </application>
 
 </manifest>
