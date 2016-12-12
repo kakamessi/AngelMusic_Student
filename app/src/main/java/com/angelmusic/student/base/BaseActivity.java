@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullScreen();
+        setScreen();
         setContentView(setContentViewId());
         ButterKnife.bind(this);
         setTAG();
@@ -74,11 +74,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 设置全屏，不包括底部导航栏
      */
-    private void setFullScreen() {
+    private void setScreen() {
         // --去掉标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // --去掉状态栏--全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //设置屏幕常亮
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }
 
