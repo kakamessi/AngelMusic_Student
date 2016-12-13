@@ -83,7 +83,8 @@ public class VideoActivity extends BaseActivity {
                 break;
             case R.id.btn_replay:
                 Toast.makeText(this, "====重播===", Toast.LENGTH_LONG).show();
-                replay();
+                //replay();
+                switchVedio();
 
                 break;
             case R.id.btn_stop:
@@ -278,8 +279,12 @@ public class VideoActivity extends BaseActivity {
      * 切换视频
      */
     protected void switchVedio() {
+
         stop();
+
+        isPlaying = false;
         play(0);
+
     }
 
     /**
