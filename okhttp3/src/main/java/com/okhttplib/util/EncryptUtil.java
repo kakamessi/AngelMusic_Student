@@ -13,7 +13,7 @@ public class EncryptUtil {
      * @param originString 加密字符串
      * @param isUpperCase 是否生成大写密文
      */
-    public static String MD5StringTo16Bit(String originString,boolean isUpperCase) throws Exception{
+    public static String MD5StringTo16Bit(String originString, boolean isUpperCase) throws Exception {
         String result = MD5StringTo32Bit(originString,isUpperCase);
         if(result.length() == 32){
             return result.substring(8,24);
@@ -26,7 +26,7 @@ public class EncryptUtil {
      * @param originString 加密字符串
      * @param isUpperCase 是否生成大写密文
      */
-    public static String MD5StringTo32Bit(String originString,boolean isUpperCase) throws Exception{
+    public static String MD5StringTo32Bit(String originString, boolean isUpperCase) throws Exception {
         String result = "";
         if (originString != null) {
             MessageDigest md = MessageDigest.getInstance("MD5");

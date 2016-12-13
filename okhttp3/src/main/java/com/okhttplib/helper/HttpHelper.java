@@ -33,8 +33,9 @@ import okhttp3.Response;
 
 /**
  * Http网络请求业务类
+ *
  */
-class HttpHelper extends BaseHelper{
+class HttpHelper extends BaseHelper {
 
     private String requestTag;//请求标识
     private List<ResultInterceptor> resultInterceptors;//请求结果拦截器
@@ -50,40 +51,40 @@ class HttpHelper extends BaseHelper{
     /**
      * 同步请求
      */
-    HttpInfo doRequestSync(OkHttpHelper helper){
+    HttpInfo doRequestSync(OkHttpHelper helper) {
         Call call = null;
         final HttpInfo info = helper.getHttpInfo();
         Request request = helper.getRequest();
         String url = info.getUrl();
-        if(!checkUrl(url)){
-            return retInfo(info,HttpInfo.CheckURL);
+        if (!checkUrl(url)) {
+            return retInfo(info, HttpInfo.CheckURL);
         }
-        request = request == null ? buildRequest(info,helper.getRequestMethod()) : request;
+        request = request == null ? buildRequest(info, helper.getRequestMethod()) : request;
         helper.setRequest(request);
         OkHttpClient httpClient = helper.getHttpClient();
         try {
             httpClient = httpClient == null ? super.httpClient : httpClient;
             call = httpClient.newCall(request);
-            BaseActivityLifecycleCallbacks.putCall(requestTag,call);
+            BaseActivityLifecycleCallbacks.putCall(requestTag, call);
             Response res = call.execute();
             return dealResponse(helper, res, call);
-        } catch (IllegalArgumentException e){
-            return retInfo(info,HttpInfo.ProtocolException);
-        } catch (SocketTimeoutException e){
-            if(null != e.getMessage()){
-                if(e.getMessage().contains("failed to connect to"))
-                    return retInfo(info,HttpInfo.ConnectionTimeOut);
-                if(e.getMessage().equals("timeout"))
-                    return retInfo(info,HttpInfo.WriteAndReadTimeOut);
+        } catch (IllegalArgumentException e) {
+            return retInfo(info, HttpInfo.ProtocolException);
+        } catch (SocketTimeoutException e) {
+            if (null != e.getMessage()) {
+                if (e.getMessage().contains("failed to connect to"))
+                    return retInfo(info, HttpInfo.ConnectionTimeOut);
+                if (e.getMessage().equals("timeout"))
+                    return retInfo(info, HttpInfo.WriteAndReadTimeOut);
             }
-            return retInfo(info,HttpInfo.WriteAndReadTimeOut);
+            return retInfo(info, HttpInfo.WriteAndReadTimeOut);
         } catch (UnknownHostException e) {
-            return retInfo(info,HttpInfo.CheckNet);
-        } catch(NetworkOnMainThreadException e){
-            return retInfo(info,HttpInfo.NetworkOnMainThreadException);
-        } catch(Exception e) {
-            return retInfo(info,HttpInfo.NoResult);
-        }finally {
+            return retInfo(info, HttpInfo.CheckNet);
+        } catch (NetworkOnMainThreadException e) {
+            return retInfo(info, HttpInfo.NetworkOnMainThreadException);
+        } catch (Exception e) {
+            return retInfo(info, HttpInfo.NoResult);
+        } finally {
             BaseActivityLifecycleCallbacks.cancel(requestTag);
         }
     }
@@ -91,24 +92,24 @@ class HttpHelper extends BaseHelper{
     /**
      * 异步请求
      */
-    void doRequestAsync(final OkHttpHelper helper){
+    void doRequestAsync(final OkHttpHelper helper) {
         final HttpInfo info = helper.getHttpInfo();
         final CallbackOk callback = helper.getCallback();
         Request request = helper.getRequest();
-        if(null == callback)
+        if (null == callback)
             throw new NullPointerException("CallbackOk is null!");
         String url = info.getUrl();
-        if(!checkUrl(url)){
+        if (!checkUrl(url)) {
             //主线程回调
-            Message msg =  new CallbackMessage(OkMainHandler.RESPONSE_CALLBACK,
+            Message msg = new CallbackMessage(OkMainHandler.RESPONSE_CALLBACK,
                     callback,
-                    retInfo(info,HttpInfo.CheckURL))
+                    retInfo(info, HttpInfo.CheckURL))
                     .build();
             OkMainHandler.getInstance().sendMessage(msg);
-            return ;
+            return;
         }
-        Call call = httpClient.newCall(request == null ? buildRequest(info,helper.getRequestMethod()) : request);
-        BaseActivityLifecycleCallbacks.putCall(requestTag,call);
+        Call call = httpClient.newCall(request == null ? buildRequest(info, helper.getRequestMethod()) : request);
+        BaseActivityLifecycleCallbacks.putCall(requestTag, call);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -118,9 +119,9 @@ class HttpHelper extends BaseHelper{
             @Override
             public void onResponse(Call call, Response res) throws IOException {
                 //主线程回调
-                Message msg =  new CallbackMessage(OkMainHandler.RESPONSE_CALLBACK,
+                Message msg = new CallbackMessage(OkMainHandler.RESPONSE_CALLBACK,
                         callback,
-                        dealResponse(helper,res,call))
+                        dealResponse(helper, res, call))
                         .build();
                 OkMainHandler.getInstance().sendMessage(msg);
                 BaseActivityLifecycleCallbacks.cancel(requestTag);
@@ -131,7 +132,7 @@ class HttpHelper extends BaseHelper{
     /**
      * 检查请求URL
      */
-    private boolean checkUrl(String url){
+    private boolean checkUrl(String url) {
         HttpUrl parsed = HttpUrl.parse(url);
         return parsed != null && !TextUtils.isEmpty(url);
     }
@@ -139,13 +140,13 @@ class HttpHelper extends BaseHelper{
     /**
      * 构建Request
      */
-    private Request buildRequest(HttpInfo info, @RequestMethod int method){
+    private Request buildRequest(HttpInfo info, @RequestMethod int method) {
         Request request;
         Request.Builder requestBuilder = new Request.Builder();
         final String url = info.getUrl();
-        if(method == RequestMethod.POST){
+        if (method == RequestMethod.POST) {
             FormBody.Builder builder = new FormBody.Builder();
-            if(null != info.getParams() && !info.getParams().isEmpty()){
+            if (null != info.getParams() && !info.getParams().isEmpty()) {
                 StringBuilder log = new StringBuilder("PostParams: ");
                 String logInfo;
                 String value;
@@ -153,17 +154,17 @@ class HttpHelper extends BaseHelper{
                     value = info.getParams().get(key);
                     value = value == null ? "" : value;
                     builder.add(key, value);
-                    logInfo = key+"="+value+", ";
+                    logInfo = key + "=" + value + ", ";
                     log.append(logInfo);
                 }
                 showLog(log.toString());
             }
             requestBuilder.url(url).post(builder.build());
-        } else if(method == RequestMethod.GET){
+        } else if (method == RequestMethod.GET) {
             StringBuilder params = new StringBuilder();
             params.append(url);
-            if(null != info.getParams() && !info.getParams().isEmpty()){
-                if(!url.contains("?") && !url.endsWith("?"))
+            if (null != info.getParams() && !info.getParams().isEmpty()) {
+                if (!url.contains("?") && !url.endsWith("?"))
                     params.append("?");
                 String logInfo;
                 String value;
@@ -171,23 +172,23 @@ class HttpHelper extends BaseHelper{
                 for (String name : info.getParams().keySet()) {
                     value = info.getParams().get(name);
                     value = value == null ? "" : value;
-                    if(isFirst){
+                    if (isFirst) {
                         logInfo = name + "=" + value;
                         isFirst = false;
-                    }else{
+                    } else {
                         logInfo = "&" + name + "=" + value;
                     }
                     params.append(logInfo);
                 }
             }
             requestBuilder.url(params.toString()).get();
-        } else{
+        } else {
             requestBuilder.url(url).get();
         }
         if (Build.VERSION.SDK_INT > 13) {
             requestBuilder.addHeader("Connection", "close");
         }
-        addHeadsToRequest(info,requestBuilder);
+        addHeadsToRequest(info, requestBuilder);
         request = requestBuilder.build();
         return request;
     }
@@ -196,53 +197,53 @@ class HttpHelper extends BaseHelper{
     /**
      * 处理HTTP响应
      */
-    private HttpInfo dealResponse(OkHttpHelper helper,Response res,Call call){
+    private HttpInfo dealResponse(OkHttpHelper helper, Response res, Call call) {
         final HttpInfo info = helper.getHttpInfo();
         try {
-            if(null != res){
-                if(res.isSuccessful() && null != res.body()){
-                    if(null == helper.getDownloadFileInfo()){
-                        return retInfo(info,HttpInfo.SUCCESS,res.body().string());
-                    }else{ //下载文件
-                        return helper.getDownUpLoadHelper().downloadingFile(helper,res,call);
+            if (null != res) {
+                if (res.isSuccessful() && null != res.body()) {
+                    if (null == helper.getDownloadFileInfo()) {
+                        return retInfo(info, HttpInfo.SUCCESS, res.body().string());
+                    } else { //下载文件
+                        return helper.getDownUpLoadHelper().downloadingFile(helper, res, call);
                     }
-                }else{
-                    showLog("HttpStatus: "+res.code());
-                    if(res.code() == 404)//请求页面路径错误
-                        return retInfo(info,HttpInfo.CheckURL);
-                    if(res.code() == 416)//请求数据流范围错误
-                        return retInfo(info,HttpInfo.Message,"请求Http数据流范围错误\n"+res.body().string());
-                    if(res.code() == 500)//服务器内部错误
-                        return retInfo(info,HttpInfo.NoResult);
-                    if(res.code() == 502)//错误网关
-                        return retInfo(info,HttpInfo.CheckNet);
-                    if(res.code() == 504)//网关超时
-                        return retInfo(info,HttpInfo.CheckNet);
+                } else {
+                    showLog("HttpStatus: " + res.code());
+                    if (res.code() == 404)//请求页面路径错误
+                        return retInfo(info, HttpInfo.CheckURL);
+                    if (res.code() == 416)//请求数据流范围错误
+                        return retInfo(info, HttpInfo.Message, "请求Http数据流范围错误\n" + res.body().string());
+                    if (res.code() == 500)//服务器内部错误
+                        return retInfo(info, HttpInfo.NoResult);
+                    if (res.code() == 502)//错误网关
+                        return retInfo(info, HttpInfo.CheckNet);
+                    if (res.code() == 504)//网关超时
+                        return retInfo(info, HttpInfo.CheckNet);
                 }
             }
-            return retInfo(info,HttpInfo.CheckURL);
+            return retInfo(info, HttpInfo.CheckURL);
         } catch (Exception e) {
             e.printStackTrace();
-            return retInfo(info,HttpInfo.NoResult);
+            return retInfo(info, HttpInfo.NoResult);
         } finally {
-            if(null != res)
+            if (null != res)
                 res.close();
         }
     }
 
-    HttpInfo retInfo(HttpInfo info, int code){
-        retInfo(info,code,null);
+    HttpInfo retInfo(HttpInfo info, int code) {
+        retInfo(info, code, null);
         return info;
     }
 
     /**
      * 封装请求结果
      */
-    HttpInfo retInfo(HttpInfo info, int code, String resDetail){
-        info.packInfo(code,unicodeToString(resDetail));
+    HttpInfo retInfo(HttpInfo info, int code, String resDetail) {
+        info.packInfo(code, unicodeToString(resDetail));
         //拦截请求结果
         dealInterceptor(info);
-        showLog("Response: "+info.getRetDetail());
+        showLog("Response: " + info.getRetDetail());
         return info;
     }
 
@@ -250,7 +251,7 @@ class HttpHelper extends BaseHelper{
      * unicode中文转码
      */
     private String unicodeToString(String str) {
-        if(TextUtils.isEmpty(str))
+        if (TextUtils.isEmpty(str))
             return "";
         Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
         Matcher matcher = pattern.matcher(str);
@@ -265,31 +266,31 @@ class HttpHelper extends BaseHelper{
     /**
      * 处理拦截器
      */
-    private void dealInterceptor(HttpInfo info){
+    private void dealInterceptor(HttpInfo info) {
         try {
-            if(info.isSuccessful() && null != resultInterceptors){ //请求结果拦截器
-                for(ResultInterceptor interceptor : resultInterceptors){
+            if (info.isSuccessful() && null != resultInterceptors) { //请求结果拦截器
+                for (ResultInterceptor interceptor : resultInterceptors) {
                     interceptor.intercept(info);
                 }
-            }else{ //请求链路异常拦截器
-                if(null != exceptionInterceptors){
-                    for(ExceptionInterceptor interceptor : exceptionInterceptors){
+            } else { //请求链路异常拦截器
+                if (null != exceptionInterceptors) {
+                    for (ExceptionInterceptor interceptor : exceptionInterceptors) {
                         interceptor.intercept(info);
                     }
                 }
             }
-        }catch (Exception e){
-            showLog("拦截器处理异常："+e.getMessage());
+        } catch (Exception e) {
+            showLog("拦截器处理异常：" + e.getMessage());
         }
     }
 
     /**
      * 请求结果回调
      */
-    void responseCallback(HttpInfo info, ProgressCallback progressCallback, int code){
+    void responseCallback(HttpInfo info, ProgressCallback progressCallback, int code) {
         //同步回调
-        if(null != progressCallback)
-            progressCallback.onResponseSync(info.getUrl(),info);
+        if (null != progressCallback)
+            progressCallback.onResponseSync(info.getUrl(), info);
         //异步主线程回调
         Message msg = new DownloadMessage(
                 code,
@@ -303,16 +304,14 @@ class HttpHelper extends BaseHelper{
     /**
      * 添加请求头参数
      */
-    Request.Builder addHeadsToRequest(HttpInfo info, Request.Builder requestBuilder){
-        if(null != info.getHeads() && !info.getHeads().isEmpty()){
+    Request.Builder addHeadsToRequest(HttpInfo info, Request.Builder requestBuilder) {
+        if (null != info.getHeads() && !info.getHeads().isEmpty()) {
             for (String key : info.getHeads().keySet()) {
-                requestBuilder.addHeader(key,info.getHeads().get(key));
+                requestBuilder.addHeader(key, info.getHeads().get(key));
             }
         }
         return requestBuilder;
     }
-
-
 
 
 }

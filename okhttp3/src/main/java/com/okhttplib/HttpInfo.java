@@ -180,7 +180,7 @@ public class HttpInfo {
          * @param url 下载文件的网络地址
          * @param saveFileName 文件保存名称：不包括扩展名
          */
-        public Builder addDownloadFile(String url,String saveFileName){
+        public Builder addDownloadFile(String url, String saveFileName){
             addDownloadFile(url,null,saveFileName,null);
             return this;
         }
@@ -191,7 +191,7 @@ public class HttpInfo {
          * @param saveFileName 文件保存名称：不包括扩展名
          * @param progressCallback 下载进度回调接口
          */
-        public Builder addDownloadFile(String url,String saveFileName,ProgressCallback progressCallback){
+        public Builder addDownloadFile(String url, String saveFileName, ProgressCallback progressCallback){
             addDownloadFile(url,null,saveFileName,progressCallback);
             return this;
         }
@@ -203,7 +203,7 @@ public class HttpInfo {
          * @param saveFileName 文件保存名称：不包括扩展名
          * @param progressCallback 下载进度回调接口
          */
-        public Builder addDownloadFile(String url,String saveFileDir,String saveFileName,ProgressCallback progressCallback){
+        public Builder addDownloadFile(String url, String saveFileDir, String saveFileName, ProgressCallback progressCallback){
             if(null == this.downloadFiles){
                 this.downloadFiles = new ArrayList<>();
             }

@@ -6,7 +6,7 @@ import com.okhttplib.callback.ProgressCallback;
 /**
  * 上传响应回调信息体
  */
-public class UploadMessage extends OkMessage{
+public class UploadMessage extends OkMessage {
 
     public String filePath;
     public HttpInfo info;

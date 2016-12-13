@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * 下载状态
  */
-@StringDef({DownloadStatus.INIT,DownloadStatus.DOWNLOADING,DownloadStatus.PAUSE,DownloadStatus.COMPLETED})
+@StringDef({DownloadStatus.INIT, DownloadStatus.DOWNLOADING, DownloadStatus.PAUSE, DownloadStatus.COMPLETED})
 @Retention(RetentionPolicy.SOURCE)
 public @interface DownloadStatus {
 

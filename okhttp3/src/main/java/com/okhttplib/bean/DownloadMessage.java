@@ -6,7 +6,7 @@ import com.okhttplib.callback.ProgressCallback;
 /**
  * 下载响应回调信息体
  */
-public class DownloadMessage extends OkMessage{
+public class DownloadMessage extends OkMessage {
 
     public String filePath;
     public HttpInfo info;

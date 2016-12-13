@@ -5,7 +5,7 @@ import com.okhttplib.callback.ProgressCallback;
 /**
  * 上传/下载进度回调信息体
  */
-public class ProgressMessage extends OkMessage{
+public class ProgressMessage extends OkMessage {
 
     public ProgressCallback progressCallback;
     public int percent;

@@ -145,7 +145,7 @@ class DownUpLoadHelper extends BaseHelper{
             //删除下载任务
             if(null != downloadTaskMap)
                 downloadTaskMap.remove(fileInfo.getSaveFileNameEncrypt());
-            helper.getHttpHelper().responseCallback(httpInfo,progressCallback,OkMainHandler.RESPONSE_DOWNLOAD_CALLBACK);
+            helper.getHttpHelper().responseCallback(httpInfo,progressCallback, OkMainHandler.RESPONSE_DOWNLOAD_CALLBACK);
         } catch (Exception e){
             showLog("下载文件失败："+e.getMessage());
         }
