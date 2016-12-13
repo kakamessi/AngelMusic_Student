@@ -73,15 +73,23 @@ public class VideoActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_play:
                 Toast.makeText(this, "====开始===", Toast.LENGTH_LONG).show();
+                play(0);
+
                 break;
             case R.id.btn_pause:
                 Toast.makeText(this, "====暂停===", Toast.LENGTH_LONG).show();
+                pause();
+
                 break;
             case R.id.btn_replay:
                 Toast.makeText(this, "====重播===", Toast.LENGTH_LONG).show();
+                replay();
+
                 break;
             case R.id.btn_stop:
                 Toast.makeText(this, "====停止===", Toast.LENGTH_LONG).show();
+                stop();
+
                 break;
         }
     }
