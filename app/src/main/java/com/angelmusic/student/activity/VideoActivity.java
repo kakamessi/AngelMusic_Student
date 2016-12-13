@@ -3,7 +3,6 @@ package com.angelmusic.student.activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
