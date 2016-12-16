@@ -46,7 +46,6 @@ public class SaveData {
 			// fr.close();// 关闭文件
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-
 			Log.e("SaveData", "保存时文件异常-->" + e.toString());
 			e.printStackTrace();
 		}

@@ -1,9 +1,13 @@
 package com.angelmusic.student.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +15,7 @@ import android.view.WindowManager;
 
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.NetworkUtil;
 
 import butterknife.ButterKnife;
 
@@ -36,6 +41,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setTAG();
         ActionDispatcher.getInstance().register(TAG, actionHandler);
         LogUtil.setTAG(TAG);//给Log工具设置默认的TAG
+        if (!NetworkUtil.checkedNetWork(this)) {
+            showDialog("没有网络", "请设置网络", "设置", "取消");
+        }
     }
 
 
@@ -83,6 +91,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //设置屏幕常亮
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    //显示dialog
+    private void showDialog(String title, String message, String positive, String neutral) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle(title).setMessage(message);
+        builder.setPositiveButton(positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        }).setNeutralButton(neutral, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        }).create();
+        builder.show();
     }
 }
 
