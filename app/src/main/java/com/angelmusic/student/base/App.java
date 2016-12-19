@@ -2,10 +2,22 @@ package com.angelmusic.student.base;
 
 import android.app.Application;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.annotation.CacheLevel;
+import com.okhttplib.annotation.CacheType;
+import com.okhttplib.callback.ProgressCallback;
+import com.okhttplib.cookie.PersistentCookieJar;
+import com.okhttplib.cookie.cache.SetCookieCache;
+import com.okhttplib.cookie.persistence.SharedPrefsCookiePersistor;
+
+import java.io.IOException;
 
 
 /**
@@ -13,6 +25,10 @@ import com.angelmusic.student.utils.LogUtil;
  */
 
 public class App extends Application {
+    public static PatchManager mPatchManager;
+    private final String PATCH_URL = "";//下载补丁的地址
+    private final String PATCH_PATH = getExternalFilesDir(null).getAbsolutePath() + "patch";//补丁的本地存储地址
+    private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
 
     /**
      * 整个(app)程序初始化之前被调用
@@ -24,6 +40,78 @@ public class App extends Application {
         //initCrash();
         initService();
         LogUtil.isDebug = true;//设置是否打印Log日志
+        initOkHttp();//初始化网络框架设置
+        initHotfix();//热修复的初始化
+        downAndSetPatch();//下载补丁并安装补丁
+    }
+
+    //初始化网络框架
+    private void initOkHttp() {
+        OkHttpUtil.init(this)
+                .setConnectTimeout(30)//连接超时时间
+                .setWriteTimeout(30)//写超时时间
+                .setReadTimeout(30)//读超时时间
+                .setMaxCacheSize(10 * 1024 * 1024)//缓存空间大小
+                .setCacheLevel(CacheLevel.FIRST_LEVEL)//缓存等级
+                .setCacheType(CacheType.NETWORK_THEN_CACHE)//缓存类型
+                .setShowHttpLog(true)//显示请求日志
+                .setShowLifecycleLog(true)//显示Activity销毁日志
+                .setRetryOnConnectionFailure(false)//失败后不自动重连
+//                .setDownloadFileDir(downloadFileDir)//文件下载保存目录
+                .addResultInterceptor(HttpInterceptor.ResultInterceptor)//请求结果拦截器
+                .addExceptionInterceptor(HttpInterceptor.ExceptionInterceptor)//请求链路异常拦截器
+                .setCookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(this)))//持久化cookie
+                .build();
+    }
+
+    //进行热修复
+    private void initHotfix() {
+        mPatchManager = new PatchManager(this);// 初始化patch管理类
+        String versionName = null;
+        try {
+            versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        mPatchManager.init(versionName);// 初始化patch版本
+        mPatchManager.loadPatch();// 加载已经添加到PatchManager中的patch
+    }
+
+    //下载补丁文件
+    private void downAndSetPatch() {
+        OkHttpUtil.init(this).setDownloadFileDir(PATCH_PATH);//设置文件下载的保存目录
+        downloadFile();
+    }
+
+    /**
+     * 文件下载
+     */
+    private void downloadFile() {
+        final HttpInfo info = HttpInfo.Builder()
+                .addDownloadFile(PATCH_URL, "hotfix", new ProgressCallback() {
+                    @Override
+                    public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
+                        if (done) {
+                            try {
+                                mPatchManager.addPatch(PATCH_PATH + PATCH_NAME);//下载完成，安装下载的补丁
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onResponseMain(String filePath, HttpInfo info) {
+                        if (info.getRetCode() == HttpInfo.CheckNet) {
+                            //网络不可用时弹框请求设置网络
+                        }
+                    }
+                }).build();
+        OkHttpUtil.Builder()
+                .setReadTimeout(120)
+                .build()//绑定请求标识
+                .doDownloadFileAsync(info);
+
     }
 
     private void initService() {

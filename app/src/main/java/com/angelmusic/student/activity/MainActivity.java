@@ -33,11 +33,11 @@ public class MainActivity extends BaseActivity {
         TAG = "==MainActivity==";
     }
 
-    @OnClick({R.id.button, R.id.activity_main})
+    @OnClick({R.id.button})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-                Toast.makeText(this, "=====测试一下======", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "=====测试一下OK======", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, VideoActivity.class);
                 startActivity(intent);
                 break;

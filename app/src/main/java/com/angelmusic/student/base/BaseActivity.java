@@ -1,7 +1,7 @@
 package com.angelmusic.student.base;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.view.WindowManager;
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.utils.LogUtil;
 
+import java.io.File;
+import java.io.IOException;
+
 import butterknife.ButterKnife;
 
 /**
@@ -20,6 +23,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected String TAG = "BaseActivity";
+    private final String APATCH_NAME = "myfix.apatch"; // 补丁文件名
     private Handler actionHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -83,6 +87,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //设置屏幕常亮
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    public void update() {
+        String patchFileStr = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + APATCH_NAME;
+        try {
+            App.mPatchManager.addPatch(patchFileStr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
