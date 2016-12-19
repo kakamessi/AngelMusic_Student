@@ -23,6 +23,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     @Override
     protected int setContentViewId() {
         return R.layout.activity_main;
