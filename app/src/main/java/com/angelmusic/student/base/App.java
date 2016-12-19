@@ -3,7 +3,6 @@ package com.angelmusic.student.base;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.service.StudentService;
