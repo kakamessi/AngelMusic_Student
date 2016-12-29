@@ -3,6 +3,7 @@ package com.angelmusic.student.base;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.service.StudentService;
@@ -16,6 +17,7 @@ import com.okhttplib.cookie.PersistentCookieJar;
 import com.okhttplib.cookie.cache.SetCookieCache;
 import com.okhttplib.cookie.persistence.SharedPrefsCookiePersistor;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -26,7 +28,7 @@ import java.io.IOException;
 public class App extends Application {
     public static PatchManager mPatchManager;
     private final String PATCH_URL = "";//下载补丁的地址
-    private final String PATCH_PATH = getExternalFilesDir(null).getAbsolutePath() + "patch";//补丁的本地存储地址
+    private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
 
     /**
@@ -39,7 +41,7 @@ public class App extends Application {
         //initCrash();
         initService();
         LogUtil.isDebug = true;//设置是否打印Log日志
-        initOkHttp();//初始化网络框架设置
+        initOkHttp();//初始化网络框架
         initHotfix();//热修复的初始化
         downAndSetPatch();//下载补丁并安装补丁
     }
@@ -63,7 +65,7 @@ public class App extends Application {
                 .build();
     }
 
-    //进行热修复
+    //热修复初始化
     private void initHotfix() {
         mPatchManager = new PatchManager(this);// 初始化patch管理类
         String versionName = null;
@@ -78,6 +80,7 @@ public class App extends Application {
 
     //下载补丁文件
     private void downAndSetPatch() {
+        PATCH_PATH = getExternalFilesDir(null).getAbsolutePath() + File.separator + "patch";
         OkHttpUtil.init(this).setDownloadFileDir(PATCH_PATH);//设置文件下载的保存目录
         downloadFile();
     }
@@ -102,7 +105,7 @@ public class App extends Application {
                     @Override
                     public void onResponseMain(String filePath, HttpInfo info) {
                         if (info.getRetCode() == HttpInfo.CheckNet) {
-                            //网络不可用时弹框请求设置网络
+                            //网络不可用弹框请求设置网络
                         }
                     }
                 }).build();

@@ -12,8 +12,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        //发布版
         release {
-            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources true
+            //允许混淆
+            minifyEnabled true
+            //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
