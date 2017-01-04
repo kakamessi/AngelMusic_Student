@@ -3,6 +3,7 @@ package com.angelmusic.student.activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -42,6 +43,7 @@ public class VideoActivity extends BaseActivity {
     private int currentPosition = 0;
     private boolean isPlaying;
     private int swich = 0;
+    private String currentPath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,22 @@ public class VideoActivity extends BaseActivity {
         surfaceView.getHolder().addCallback(callback);
         // 为进度条添加进度更改事件
         seekBar.setOnSeekBarChangeListener(change);
+
+        setPlayPath();
+    }
+
+    @Override
+    protected void handleMsg(Message msg) {
+        super.handleMsg(msg);
+
+       // LogUtil.i(msg.obj.toString());
+        Toast.makeText(VideoActivity.this, msg.obj.toString() ,0).show();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -154,10 +172,9 @@ public class VideoActivity extends BaseActivity {
      *
      * @param msec 播放初始位置
      */
-    protected void play(final int msec) {
+    protected void  play(final int msec) {
         // 获取视频文件地址
-        //String path = et_path.getText().toString().trim();
-        String path = getFilePath();
+        String path = currentPath;
 
         File file = new File(path);
         if (!file.exists()) {
@@ -230,10 +247,11 @@ public class VideoActivity extends BaseActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
+            LogUtil.e("--------------------------CAT  play(final int msec)   ");
         }
     }
 
-    private String getFilePath() {
+    private String setPlayPath() {
         String result = "";
 
         if (swich % 2 == 0) {
@@ -242,6 +260,8 @@ public class VideoActivity extends BaseActivity {
             result = "/sdcard/hehe.mp4";
         }
         swich++;
+
+        currentPath = result;
         return result;
     }
 
@@ -249,7 +269,9 @@ public class VideoActivity extends BaseActivity {
     * 停止播放
     */
     protected void stop() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+        if (mediaPlayer != null) {
+            // && mediaPlayer.isPlaying()  某些异常情况下可以加上判断
+
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
@@ -278,7 +300,7 @@ public class VideoActivity extends BaseActivity {
      * 切换视频
      */
     protected void switchVedio() {
-
+        setPlayPath();
         stop();
 
         isPlaying = false;
@@ -290,16 +312,19 @@ public class VideoActivity extends BaseActivity {
      * 暂停或继续
      */
     protected void pause() {
+
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            btnPause.setText("继续");
+            Toast.makeText(this, "暂停播放", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (btnPause.getText().toString().trim().equals("继续")) {
             btnPause.setText("暂停");
             mediaPlayer.start();
             Toast.makeText(this, "继续播放", Toast.LENGTH_LONG).show();
             return;
-        }
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
-            btnPause.setText("继续");
-            Toast.makeText(this, "暂停播放", Toast.LENGTH_LONG).show();
         }
 
     }

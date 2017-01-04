@@ -36,10 +36,9 @@ public class ActionDispatcher implements IActionDispatcher {
 
         }
 
-        Message msg = Message.obtain();
-
         for (Handler value : mapHandler.values()) {
 
+            Message msg = Message.obtain();
             msg.obj = actionType;
             value.sendMessage(msg);
 
