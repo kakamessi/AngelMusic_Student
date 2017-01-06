@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">StudentPad</string>
+
+
+    <!--常规课-->
+    <string name="idle_text">请看大屏幕</string>
+
 </resources>
