@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">StudentPad</string>
-
-
+    <!--版本更新检查接口-->
+    <string name="apk_check_version">http://app.angelmusic360.com/api/version</string>
+    <!--apk下载接口-->
+    <string name="apk_download">http://video.angelmusic360.com</string>
     <!--常规课-->
     <string name="idle_text">请看大屏幕</string>
 

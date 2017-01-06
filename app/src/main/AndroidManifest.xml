@@ -37,13 +37,19 @@
         <service android:name=".service.StudentService"/>
 
         <!--视频交互界面-->
-        <activity android:name=".activity.VideoActivity" android:screenOrientation="landscape">
-        </activity>
-        
-        <!--请看大屏幕界面-->
-        <activity android:name=".activity.IdleActivity" android:screenOrientation="landscape">
+        <activity
+            android:name=".activity.VideoActivity"
+            android:screenOrientation="landscape">
         </activity>
 
+        <!--请看大屏幕界面-->
+        <activity
+            android:name=".activity.IdleActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".activity.UpdateTestActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

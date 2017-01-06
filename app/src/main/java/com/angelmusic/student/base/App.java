@@ -30,6 +30,7 @@ public class App extends Application {
     private final String PATCH_URL = "";//下载补丁的地址
     private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
+    public static OkHttpUtil.Builder init;
 
     /**
      * 整个(app)程序初始化之前被调用
@@ -48,8 +49,8 @@ public class App extends Application {
 
     //初始化网络框架
     private void initOkHttp() {
-        OkHttpUtil.init(this)
-                .setConnectTimeout(30)//连接超时时间
+        init = OkHttpUtil.init(this);
+        init.setConnectTimeout(30)//连接超时时间
                 .setWriteTimeout(30)//写超时时间
                 .setReadTimeout(30)//读超时时间
                 .setMaxCacheSize(10 * 1024 * 1024)//缓存空间大小
@@ -58,7 +59,7 @@ public class App extends Application {
                 .setShowHttpLog(true)//显示请求日志
                 .setShowLifecycleLog(true)//显示Activity销毁日志
                 .setRetryOnConnectionFailure(false)//失败后不自动重连
-//                .setDownloadFileDir(downloadFileDir)//文件下载保存目录
+//                .setDownloadFileDir(String downloadFileDir)//文件下载保存目录(根据实际需求设置App.init.set...)
                 .addResultInterceptor(HttpInterceptor.ResultInterceptor)//请求结果拦截器
                 .addExceptionInterceptor(HttpInterceptor.ExceptionInterceptor)//请求链路异常拦截器
                 .setCookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(this)))//持久化cookie
@@ -86,7 +87,7 @@ public class App extends Application {
     }
 
     /**
-     * 文件下载
+     * 补丁文件下载
      */
     private void downloadFile() {
         final HttpInfo info = HttpInfo.Builder()

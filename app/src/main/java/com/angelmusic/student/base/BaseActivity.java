@@ -5,10 +5,18 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.angelmusic.student.R;
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -24,12 +32,16 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     protected String TAG = "BaseActivity";
     private final String APATCH_NAME = "myfix.apatch"; // 补丁文件名
+    private ViewGroup mViewGroup;
+    private View loadingView;//加载圈圈的布局
+    private Animation rotateAnimation;//加载圈圈的动画
     private Handler actionHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             handleMsg(msg);
         }
     };
+    private ImageView ivLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +53,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActionDispatcher.getInstance().register(TAG, actionHandler);
         LogUtil.setTAG(TAG);//给Log工具设置默认的TAG
     }
-
 
     @Override
     protected void onStart() {
@@ -89,6 +100,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
+    /**
+     * 热修复更新
+     */
     public void update() {
         String patchFileStr = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + APATCH_NAME;
         try {
@@ -96,6 +110,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 加载过程中显示旋转圈
+     */
+    public void showLoadingDialog() {
+        loadingView = LayoutInflater.from(this).inflate(R.layout.loading_layout, null);
+        ivLoading = (ImageView) loadingView.findViewById(R.id.iv_loading);
+        rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        rotateAnimation.setInterpolator(new LinearInterpolator());
+        mViewGroup = (ViewGroup) this.findViewById(android.R.id.content);
+        mViewGroup.addView(loadingView);
+        ivLoading.setVisibility(View.VISIBLE);
+        ivLoading.startAnimation(rotateAnimation);//开始动画
+    }
+
+    /**
+     * 停止旋转圈
+     */
+    public void hideLoadingDialog() {
+        ivLoading.setVisibility(View.GONE);
+        ivLoading.clearAnimation();
     }
 }
 

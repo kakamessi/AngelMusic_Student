@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomAlertDialogBackground" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
 </resources>

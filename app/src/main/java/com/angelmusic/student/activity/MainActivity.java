@@ -20,7 +20,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -35,13 +34,19 @@ public class MainActivity extends BaseActivity {
         TAG = "==MainActivity==";
     }
 
-    @OnClick({R.id.button})
+    @OnClick({R.id.button, R.id.button2, R.id.button3})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
                 Toast.makeText(this, "=====测试一下OK======", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, VideoActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.button2:
+                break;
+            case R.id.button3:
+                Intent intent3 = new Intent(MainActivity.this, UpdateTestActivity.class);
+                startActivity(intent3);
                 break;
         }
     }

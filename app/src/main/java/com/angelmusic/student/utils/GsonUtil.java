@@ -1,5 +1,7 @@
 package com.angelmusic.student.utils;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -9,6 +11,8 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by fei on 2016/12/13.
@@ -32,12 +36,23 @@ public class GsonUtil {
      * @param object 要转化的对象
      * @return json字符串
      */
-    public static String objectToString(Object object) {
+    public static String objectToJsonString(Object object) {
         String jsonString = null;
         if (gson != null) {
             jsonString = gson.toJson(object);
         }
         return jsonString;
+    }
+
+    /**
+     * json字符串转换成object
+     */
+    public static <T> T jsonToObject(String jsonString, Class<T> cls) {
+        T t = null;
+        if (!TextUtils.isEmpty(jsonString) && gson != null) {
+            t = gson.fromJson(jsonString, cls);
+        }
+        return t;
     }
 
     /**
@@ -50,13 +65,15 @@ public class GsonUtil {
      * @return
      */
     public static <T> List<T> jsonToList2(String jsonString, Class<T> cls) {
-        Gson gson = new Gson();
-        List<T> list = new ArrayList<T>();
-        JsonArray array = new JsonParser().parse(jsonString).getAsJsonArray();
-        for (final JsonElement elem : array) {
-            list.add(gson.fromJson(elem, cls));
+        if (!TextUtils.isEmpty(jsonString) && gson != null) {
+            List<T> list = new ArrayList<T>();
+            JsonArray array = new JsonParser().parse(jsonString).getAsJsonArray();
+            for (final JsonElement elem : array) {
+                list.add(gson.fromJson(elem, cls));
+            }
+            return list;
         }
-        return list;
+        return null;
     }
 
     /**

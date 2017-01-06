@@ -1,5 +1,6 @@
 package com.angelmusic.student.utils;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
@@ -33,6 +34,13 @@ public class SDCardUtil {
         return "sd卡不可用";
     }
 
+    public static String getAppFilePath(Context mContext) {
+        if (isAvailable()) {
+            return mContext.getExternalFilesDir(null).getAbsolutePath() + File.separator;
+        }
+        return "sd卡不可用";
+    }
+
     /**
      * 获取系统存储路径
      *
@@ -50,13 +58,13 @@ public class SDCardUtil {
     public static long getSDAvailableSize() {
         if (isAvailable()) {
             StatFs fs = new StatFs(getSDCardPath());
-            long count,size;
-            if(Build.VERSION.SDK_INT>18){
+            long count, size;
+            if (Build.VERSION.SDK_INT > 18) {
                 count = fs.getFreeBlocksLong();
                 size = fs.getBlockSizeLong();
-            }else{
-                 count = fs.getFreeBlocks();
-                 size = fs.getBlockSize();
+            } else {
+                count = fs.getFreeBlocks();
+                size = fs.getBlockSize();
             }
             return count * size;
         }

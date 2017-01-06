@@ -3,7 +3,11 @@ package com.angelmusic.student.utils;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.StatFs;
+import android.text.TextUtils;
+
+import com.angelmusic.stu.utils.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +17,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.LinkedList;
+import java.util.List;
+
+import static android.R.attr.path;
 
 /**
  * Created by fei on 2016/12/2.
@@ -285,12 +293,46 @@ public class FileUtil {
     }
 
     /**
-     * 得到一个文件Intent
+     * 查询某个文件夹所有的文件的文件名
      */
-    public static Intent getFileIntent(String path, String mimetype) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(new File(path)), mimetype);
-        return intent;
+    public static List<String> getDownloadFileNames(String filePath) {
+        List<String> fileList = null;
+        File downloadFile = new File(filePath);
+        if (!downloadFile.exists()) {
+            downloadFile.mkdirs();
+        }
+        String path = downloadFile.getAbsolutePath();//下载的文件的存放路径（文件夹）
+        File file = null;
+        if (path != null) {
+            file = new File(path);
+        }
+        if (file != null && file.isDirectory()) {
+            fileList = new LinkedList<>();
+            File[] files = file.listFiles();
+            if (files != null && files.length > 0) {
+                for (File f : files) {
+                    fileList.add(f.getName());
+                }
+            }
+        }
+        return fileList;
+    }
+
+    /**
+     * 查询某个文件夹下是否含有某个文件
+     */
+    public static boolean isFileExist(String filePath, String fileName) {
+        boolean isExist = false;
+        List<String> downloadFileNames = getDownloadFileNames(filePath);
+        LogUtil.e(downloadFileNames.size() + "");
+        for (String name : downloadFileNames) {
+            LogUtil.e(name);
+            if (fileName.equals(name)) {
+                isExist = true;
+                break;
+            }
+        }
+        return isExist;
     }
 }
 

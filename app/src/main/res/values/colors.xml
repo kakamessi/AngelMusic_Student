@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!-- 浅黑色 -->
+    <color name="black_light">#333333</color>
+    <!-- 白色 -->
+    <color name="white">#FFFFFF</color>
+    <!--透明色-->
+    <color name="transparent">#00000000</color>
+    <!--黑线的颜色-->
+    <color name="black_line">#d8d8d8</color>
 </resources>

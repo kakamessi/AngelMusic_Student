@@ -91,7 +91,6 @@ public class VideoActivity extends BaseActivity {
             case R.id.btn_play:
                 Toast.makeText(this, "====开始===", Toast.LENGTH_LONG).show();
                 play(0);
-
                 break;
             case R.id.btn_pause:
                 Toast.makeText(this, "====暂停===", Toast.LENGTH_LONG).show();
