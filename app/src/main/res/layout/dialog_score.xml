@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/score_two"
+        android:id="@+id/imageView" />
+
+    <TextView
+        android:text="哇！获得了三颗星"
+        android:layout_marginTop="325dp"
+        android:textColor="#666666"
+        android:textSize="29sp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/textView1"
+        >
+
+        <TextView
+            android:text="音高"
+            android:textColor="#666666"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_yingao" />
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/score_bare_empty"
+            android:id="@+id/iv_yingao" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="90%"
+            android:textColor="#8ab708"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+
+
+<!--    <TextView
+        android:text="节奏"
+        android:layout_marginTop="30dp"
+        android:textColor="#666666"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/tv_yingao"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_jiezou" />
+
+    <TextView
+        android:text="时值"
+        android:layout_marginTop="30dp"
+        android:textColor="#666666"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/tv_jiezou"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_shizhi" />-->
+
+</RelativeLayout>
