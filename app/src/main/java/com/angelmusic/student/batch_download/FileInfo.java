@@ -2,6 +2,7 @@ package com.angelmusic.student.batch_download;
 
 /**
  * Created by fei on 2017/1/5.
+ * 要下载的文件信息类
  */
 
 public class FileInfo {

@@ -71,6 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void handleMsg(Message msg) {
     }
 
+    //****向教师端发送命令
+    protected void sendMsg(String str) {
+    }
 
     @Override
     protected void onResume() {

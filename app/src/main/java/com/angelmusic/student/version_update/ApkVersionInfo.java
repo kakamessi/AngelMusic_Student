@@ -9,16 +9,22 @@ import java.io.Serializable;
 
 public class ApkVersionInfo implements Serializable {
 
-    private DetailBean detail;
-    private String description;
-    private String code;
+    /**
+     * code : 200
+     * description : 请求成功
+     * detail : {"code":"1.0.1","createDate":"2017-01-10 14:36:29","id":1,"info":"hhaa","isforced":1,"remark":"","state":1,"type":1,"url":"/a/1.apk"}
+     */
 
-    public DetailBean getDetail() {
-        return detail;
+    private int code;
+    private String description;
+    private DetailBean detail;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setDetail(DetailBean detail) {
-        this.detail = detail;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -29,24 +35,52 @@ public class ApkVersionInfo implements Serializable {
         this.description = description;
     }
 
-    public String getCode() {
-        return code;
+    public DetailBean getDetail() {
+        return detail;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDetail(DetailBean detail) {
+        this.detail = detail;
     }
 
     public static class DetailBean {
-        private int id;
-        private String create_date;
-        private String remark;
+        /**
+         * code : 1.0.1
+         * createDate : 2017-01-10 14:36:29
+         * id : 1
+         * info : hhaa
+         * isforced : 1
+         * remark :
+         * state : 1
+         * type : 1
+         * url : /a/1.apk
+         */
+
         private String code;
-        private String type;
-        private int coursetype;
-        private String isForced;
-        private String url;
+        private String createDate;
+        private int id;
         private String info;
+        private int isforced;
+        private String remark;
+        private int state;
+        private int type;
+        private String url;
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getCreateDate() {
+            return createDate;
+        }
+
+        public void setCreateDate(String createDate) {
+            this.createDate = createDate;
+        }
 
         public int getId() {
             return id;
@@ -56,12 +90,20 @@ public class ApkVersionInfo implements Serializable {
             this.id = id;
         }
 
-        public String getCreate_date() {
-            return create_date;
+        public String getInfo() {
+            return info;
         }
 
-        public void setCreate_date(String create_date) {
-            this.create_date = create_date;
+        public void setInfo(String info) {
+            this.info = info;
+        }
+
+        public int getIsforced() {
+            return isforced;
+        }
+
+        public void setIsforced(int isforced) {
+            this.isforced = isforced;
         }
 
         public String getRemark() {
@@ -72,36 +114,20 @@ public class ApkVersionInfo implements Serializable {
             this.remark = remark;
         }
 
-        public String getCode() {
-            return code;
+        public int getState() {
+            return state;
         }
 
-        public void setCode(String code) {
-            this.code = code;
+        public void setState(int state) {
+            this.state = state;
         }
 
-        public String getType() {
+        public int getType() {
             return type;
         }
 
-        public void setType(String type) {
+        public void setType(int type) {
             this.type = type;
-        }
-
-        public int getCoursetype() {
-            return coursetype;
-        }
-
-        public void setCoursetype(int coursetype) {
-            this.coursetype = coursetype;
-        }
-
-        public String getIsForced() {
-            return isForced;
-        }
-
-        public void setIsForced(String isForced) {
-            this.isForced = isForced;
         }
 
         public String getUrl() {
@@ -110,14 +136,6 @@ public class ApkVersionInfo implements Serializable {
 
         public void setUrl(String url) {
             this.url = url;
-        }
-
-        public String getInfo() {
-            return info;
-        }
-
-        public void setInfo(String info) {
-            this.info = info;
         }
     }
 }

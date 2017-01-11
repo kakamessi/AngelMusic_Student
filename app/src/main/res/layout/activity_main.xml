@@ -1,33 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.angelmusic.student.activity.MainActivity">
+    android:orientation="horizontal"
+    tools:context="com.angelmusic.student.activity.MainActivity"
+    >
+    <!--初始进入时的界面-->
+    <RelativeLayout
+        android:id="@+id/layout_main_01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Button"/>
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/main_page_bg"/>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="下载"
-        />
+        <ImageButton
+            android:id="@+id/ib_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/down_btn_selector"
+            android:onClick="onClick"/>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="更新"/>
+        <TextView
+            android:id="@+id/tv_blackboard_chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="250dp"
+            android:text="天使音乐学院"
+            android:textColor="@color/white"
+            android:textSize="58px"/>
+
+        <TextView
+            android:id="@+id/tv_blackboard_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_blackboard_chinese"
+            android:layout_centerInParent="true"
+            android:text="ANGEL MUSIC COLLEGE"
+            android:textColor="@color/white"
+            android:textSize="32px"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textStyle"
+                android:text="WIFI名称："/>
+
+            <TextView
+                android:id="@+id/tv_wifi_name"
+                style="@style/textStyleWhite"
+                android:text="wifi_name"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:text="教室名称："/>
+
+            <TextView
+                android:id="@+id/tv_classroom_name"
+                style="@style/textStyleWhite"
+                android:text="classroom_name"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:text="座位号："/>
+
+            <TextView
+                android:id="@+id/tv_seat_id"
+                style="@style/textStyleWhite"
+                android:text="seat_id"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:text="钢琴链接状态："/>
+
+            <TextView
+                android:id="@+id/tv_connection_status"
+                style="@style/textStyleWhite"
+                android:text="connection_status"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <!--显示当前pad座位号时的界面-->
+    <RelativeLayout
+        android:id="@+id/layout_main_02"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/seat_num_bg"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_seat_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="245dp"
+            android:paddingRight="35dp"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="140px"/>
+    </RelativeLayout>
 </LinearLayout>

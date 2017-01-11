@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:background="@drawable/dialog_bg"
-    android:orientation="vertical">
-
-    <!-- Title -->
-    <TextView
+    android:background="@mipmap/apk_update_bg">
+    <!-- OK&Cancel Button -->
+    <LinearLayout
+        android:id="@+id/ll_bt"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:text="发现新版本"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/black_light"
-        android:textSize="@dimen/normal_text_size"/>
-    <!-- split -->
+        android:orientation="horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/black_line"/>
+        <Button
+            android:id="@+id/btn_update_id_cancel"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/cancel_btn_selector"/>
+
+        <Button
+            android:id="@+id/btn_update_id_ok"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/update_btn_selector"/>
+    </LinearLayout>
     <!-- Content -->
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        >
+        android:layout_height="300dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_above="@id/ll_bt"
+        android:layout_marginTop="180dp"
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -43,25 +48,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="最新版本：天使音乐V2.0.0"
-                android:padding="5dp"
                 android:textColor="@color/black_light"
                 android:textSize="@dimen/medium_text_size"
                 />
 
-            <TextView
-                android:id="@+id/tv_update_apk_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="新版本大小：10.00M"
-                android:padding="5dp"
-                android:textColor="@color/black_light"
-                android:textSize="@dimen/medium_text_size"
-                />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_update_apk_size"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="新版本大小：10.00M"-->
+                <!--android:textColor="@color/black_light"-->
+                <!--android:textSize="@dimen/medium_text_size"-->
+                <!--/>-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="更新内容："
                 android:textColor="@color/black_light"
                 android:textSize="@dimen/medium_text_size"
@@ -78,34 +80,5 @@
                 />
         </LinearLayout>
     </ScrollView>
-
-    <!-- OK&Cancel Button -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_update_id_cancel"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg_cancel_dialog"
-            android:text="以后再说"
-            android:textColor="@color/black_light"
-            android:textSize="@dimen/normal_text_size"/>
-
-
-        <Button
-            android:id="@+id/btn_update_id_ok"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg_ok_dialog"
-            android:text="立即更新"
-            android:textColor="@color/black_light"
-            android:textSize="@dimen/normal_text_size"/>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
 

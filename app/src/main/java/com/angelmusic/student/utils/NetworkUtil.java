@@ -3,6 +3,10 @@ package com.angelmusic.student.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+
+import static android.content.Context.WIFI_SERVICE;
 
 /**
  * Created by fei on 2016/12/13.
@@ -61,5 +65,16 @@ public class NetworkUtil {
             return false;
         }
         return true;
+    }
+
+    /**获取WIFI名称*/
+    public static String getWifiName(Context context){
+        if(checkedNetWork(context)){
+            WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            return wifiInfo.getSSID().substring(1,wifiInfo.getSSID().lastIndexOf("\""));
+        }else {
+            return "未连接WIFI";
+        }
     }
 }

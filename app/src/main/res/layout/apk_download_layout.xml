@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_centerInParent="true"
-              android:background="@drawable/dialog_bg"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/apk_download_bg">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:height="45dp"
-        android:paddingLeft="200dp"
-        android:paddingRight="200dp"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:text="下载进度"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/black_light"
-        android:textSize="@dimen/normal_text_size"/>
+        android:textColor="@color/gray_text"
+        android:textSize="38sp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="20dp"
+        android:progressDrawable="@drawable/progressbar_style"/>
 
     <TextView
         android:id="@+id/tv_progress_apk_download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:padding="15dp"
         android:text="0%"
-        android:textSize="@dimen/normal_text_size"/>
+        android:textSize="35sp"/>
 
-</LinearLayout>
+</RelativeLayout>

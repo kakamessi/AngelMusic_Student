@@ -8,6 +8,7 @@ import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
 import com.okhttplib.annotation.CacheLevel;
@@ -45,6 +46,8 @@ public class App extends Application {
         initOkHttp();//初始化网络框架
         initHotfix();//热修复的初始化
         downAndSetPatch();//下载补丁并安装补丁
+//      initCrash();
+        SharedPreferencesUtil.setContextAndInit(this, "ANGELMUSIC", MODE_PRIVATE);
     }
 
     //初始化网络框架

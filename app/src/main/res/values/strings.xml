@@ -1,7 +1,10 @@
 <resources>
+    <!--APP名称-->
     <string name="app_name">StudentPad</string>
+    <!--域名信息-->
+    <string name="domain_name">http://192.168.2.112</string>
     <!--版本更新检查接口-->
-    <string name="apk_check_version">http://app.angelmusic360.com/api/version</string>
+    <string name="apk_check_version">/client/version/versionInfo.json</string>
     <!--apk下载接口-->
     <string name="apk_download">http://video.angelmusic360.com</string>
     <!--常规课-->

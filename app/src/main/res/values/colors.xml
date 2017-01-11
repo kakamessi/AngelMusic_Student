@@ -11,4 +11,24 @@
     <color name="transparent">#00000000</color>
     <!--黑线的颜色-->
     <color name="black_line">#d8d8d8</color>
+    <!--首页底部栏绿色字体-->
+    <color name="green_text">#9fce17</color>
+    <!--首页底部栏黑色字体-->
+    <color name="black_text">#3a5200</color>
+    <!--首页底部栏红色字体-->
+    <color name="red_text">#ff143b</color>
+    <!--座位蓝颜色-->
+    <color name="blue_seat_text">#19aaff</color>
+    <!--座位绿颜色-->
+    <color name="green_seat_text">#8ab708</color>
+    <!--座位边框实线颜色-->
+    <color name="gray_seat_line_solid">#acacac</color>
+    <!--座位边框虚线颜色-->
+    <color name="gray_seat_line_dashed">#acacac</color>
+    <!--虚线内字体颜色-->
+    <color name="gray_seat_text_solid">#888888</color>
+    <!--实线内字体颜色-->
+    <color name="gray_seat_text_dashed">#575757</color>
+    <!--灰色字体颜色-->
+    <color name="gray_text">#666666</color>
 </resources>

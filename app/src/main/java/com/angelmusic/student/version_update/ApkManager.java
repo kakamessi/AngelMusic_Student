@@ -8,14 +8,15 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
-import com.angelmusic.student.activity.UpdateTestActivity;
 import com.angelmusic.student.base.App;
+import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
@@ -60,27 +61,33 @@ public class ApkManager {
      * 请求服务器检查是否需要更新
      */
     public void checkVersionInfo() {
-        ((UpdateTestActivity) mContext).showLoadingDialog();//显示加载进度圆圈
+        ((BaseActivity) mContext).showLoadingDialog();//显示加载进度圆圈
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.apk_check_version)).addParam("type", "2").addParam("coursetype", "4").build(),
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name) + mContext.getResources().getString(R.string
+                        .apk_check_version)).addParam
+                        ("type", "2")
+                        .build(),
                 new CallbackOk() {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
+                        String jsonResult = info.getRetDetail();
+                        ((BaseActivity) mContext).hideLoadingDialog();//关闭旋转进度圆
                         if (info.isSuccessful()) {
-                            String jsonResult = info.getRetDetail();
-                            //Gson解析
-                            apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);
-                            if (!apkVersionInfo.getCode().equals(ApkUtil.getVersionName(mContext))) {
-                                ((UpdateTestActivity) mContext).hideLoadingDialog();//关闭旋转进度圆圈
-                                showUpdateDialog(apkVersionInfo);
+                            Log.e("====ok====", jsonResult);
+                            apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);//Gson解析
+                            if (apkVersionInfo.getCode() == 200) {
+                                if (apkVersionInfo.getDetail().getCode() != ApkUtil.getVersionName(mContext)) {
+                                    showUpdateDialog(apkVersionInfo);
+                                }
+                            } else {
+                                Toast.makeText(mContext, apkVersionInfo.getDescription(), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
                 });
-
     }
 
     /**
@@ -96,35 +103,27 @@ public class ApkManager {
         //下载的apk的存储路径
         final String apkPath = SDCardUtil.getAppFilePath(mContext) + APK_PATH + File.separator;
         //弹框
-        final Dialog dialog = new AlertDialog.Builder(mContext, R.style.CustomAlertDialogBackground).create();
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        final Dialog updateDialog = new Dialog(mContext, R.style.CustomAlertDialogBackground);
+//        updateDialog.setCancelable(true);
+        updateDialog.setCanceledOnTouchOutside(false);
         View view = LayoutInflater.from(mContext).inflate(R.layout.version_update_dialog, null);
-        dialog.setContentView(view);
-
         final Button btnOk = (Button) view.findViewById(R.id.btn_update_id_ok);
         final Button btnCancel = (Button) view.findViewById(R.id.btn_update_id_cancel);
         final TextView tvContent = (TextView) view.findViewById(R.id.tv_update_content);
         final TextView tvUpdateTile = (TextView) view.findViewById(R.id.tv_update_title);
-        final TextView tvApkSize = (TextView) view.findViewById(R.id.tv_update_apk_size);
-
+//        final TextView tvApkSize = (TextView) view.findViewById(R.id.tv_update_apk_size);
         tvUpdateTile.setText("最新版本：" + apkVersionInfo.getDetail().getCode());
-        tvApkSize.setText("新版本大小：" + "=======");
+//        tvApkSize.setText("新版本大小：" + "=======");
         tvContent.setText(apkVersionInfo.getDetail().getInfo());
-
-        //判断是否强制更新，如果是
-        String isForced = apkVersionInfo.getDetail().getIsForced();
-        if ("0".equals(isForced)) {//非强制更新
+        //判断是否强制更新
+        int isForced = apkVersionInfo.getDetail().getIsforced();
+        if (isForced == 1) {//非强制更新
             btnCancel.setVisibility(View.VISIBLE);
-            btnOk.setBackgroundResource(R.drawable.btn_bg_ok_dialog);
-            btnOk.setText("立即更新");
-        } else if ("1".equals(isForced)) {//强制更新
+        } else if (isForced == 2) {//强制更新
             btnCancel.setVisibility(View.GONE);
-            btnOk.setBackgroundResource(R.drawable.btn_bg_update_dialog);
-            btnOk.setText("更新");
         }
-
+        updateDialog.setContentView(view, new RelativeLayout.LayoutParams(1000, 800));
+        updateDialog.show();
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +135,7 @@ public class ApkManager {
                     showDownloadDialog(apkUrl, apkPath, apkName);
                 }
                 apkManager = null;
-                dialog.dismiss();
+                updateDialog.dismiss();
             }
         });
 
@@ -144,9 +143,10 @@ public class ApkManager {
             @Override
             public void onClick(View v) {
                 apkManager = null;
-                dialog.dismiss();
+                updateDialog.dismiss();
             }
         });
+
     }
 
     /**
@@ -158,7 +158,7 @@ public class ApkManager {
         downloadDialog.setCanceledOnTouchOutside(false);
         downloadDialog.show();
         View view = LayoutInflater.from(mContext).inflate(R.layout.apk_download_layout, null);
-        downloadDialog.setContentView(view);
+        downloadDialog.setContentView(view, new RelativeLayout.LayoutParams(1000, 800));
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         final TextView tvProgress = (TextView) view.findViewById(R.id.tv_progress_apk_download);
         downloadApk(apkUrl, apkPath, apkName, progressBar, tvProgress);
