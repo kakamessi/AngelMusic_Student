@@ -20,17 +20,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:layout_below="@+id/textView1"
         >
 
         <TextView
+            android:layout_centerVertical="true"
             android:text="音高"
             android:textColor="#666666"
             android:textSize="25sp"
@@ -39,46 +39,89 @@
             android:id="@+id/tv_yingao" />
 
         <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_yingao"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:src="@drawable/score_bare_empty"
             android:id="@+id/iv_yingao" />
 
+        <ImageView
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/tv_yingao"
+            android:layout_marginLeft="19dp"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:src="@drawable/score_bar_full"
+            android:id="@+id/iv_yingao_full" />
+
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_yingao"
             android:layout_marginLeft="10dp"
             android:text="90%"
             android:textColor="#8ab708"
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
 
-
-<!--    <TextView
-        android:text="节奏"
-        android:layout_marginTop="30dp"
-        android:textColor="#666666"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/tv_yingao"
-        android:textSize="25sp"
+    <RelativeLayout
+        android:id="@+id/rl2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_jiezou" />
-
-    <TextView
-        android:text="时值"
-        android:layout_marginTop="30dp"
-        android:textColor="#666666"
         android:layout_marginLeft="50dp"
-        android:layout_below="@+id/tv_jiezou"
-        android:textSize="25sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_shizhi" />-->
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl1"
+        >
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:text="节奏"
+            android:textColor="#666666"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_jz" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_jz"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/score_bare_empty"
+            android:id="@+id/iv_jz" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/tv_jz"
+            android:layout_marginLeft="19dp"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:src="@drawable/score_bar_full"
+            android:id="@+id/iv_jz_full" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_jz"
+            android:layout_marginLeft="10dp"
+            android:text="90%"
+            android:textColor="#8ab708"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+
+
+
+
 
 </RelativeLayout>
