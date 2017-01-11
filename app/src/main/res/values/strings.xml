@@ -9,5 +9,6 @@
     <string name="apk_download">http://video.angelmusic360.com</string>
     <!--常规课-->
     <string name="idle_text">请看大屏幕</string>
-
+    <!--首页背景图信息接口-->
+    <string name="home_bg">/client/waitPic/picInfo.json</string>
 </resources>

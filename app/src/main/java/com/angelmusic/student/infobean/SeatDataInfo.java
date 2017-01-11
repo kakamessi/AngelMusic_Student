@@ -5,13 +5,32 @@ package com.angelmusic.student.infobean;
  * 座位相关信息
  */
 
-public class SeatData {
+public class SeatDataInfo {
+    private String schoolName;//学校名称
+    private String schoolId;//学校id
     private String classroomName;//教室名称
     private String classroomId;//教室id
     private String classId;//班级id
     private String seatId;//座位号
     private String rowNum;//班级座位行数
     private String columnNum;//班级座位列数
+
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
 
     public String getClassroomName() {
         return classroomName;

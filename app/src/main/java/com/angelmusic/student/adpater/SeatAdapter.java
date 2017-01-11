@@ -8,31 +8,38 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.angelmusic.student.R;
+import com.angelmusic.student.infobean.SeatDataInfo;
 
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
  * Created by fei on 2017/1/9.
  */
 
 public class SeatAdapter extends BaseAdapter {
-    private List<String> list;
+    private SeatDataInfo seatDataInfo;
     private Context context;
 
-    public SeatAdapter(Context context, List<String> list) {
+    public SeatAdapter(Context context) {
+        this.context = context;
+    }
+
+    public SeatAdapter(Context context, SeatDataInfo seatDataInfo) {
         super();
         this.context = context;
-        this.list = list;
+        this.seatDataInfo = seatDataInfo;
     }
 
     @Override
     public int getCount() {
-        return list.size();// item总数
+        return 33;// item总数
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);// 返回下标为position的item的数据
+        return null;// 返回下标为position的item的数据
     }
 
     @Override
@@ -53,7 +60,7 @@ public class SeatAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvSeat.setText(list.get(position));
+        holder.tvSeat.setText("第" + position + "号座位");
         return convertView;
     }
 

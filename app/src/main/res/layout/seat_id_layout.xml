@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/seat_id_bg">
+    <!--显示当前pad座位号时的界面-->
+    <TextView
+        android:id="@+id/tv_seat_num"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:paddingRight="75dp"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="180px"/>
+</RelativeLayout>
