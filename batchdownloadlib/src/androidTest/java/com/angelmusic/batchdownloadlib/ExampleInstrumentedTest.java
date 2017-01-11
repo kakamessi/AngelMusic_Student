@@ -1,4 +1,4 @@
-package com.okhttplib;
+package com.angelmusic.batchdownloadlib;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.okhttplib.test", appContext.getPackageName());
+        assertEquals("com.angelmusic.batchdownloadlib.test", appContext.getPackageName());
     }
 }

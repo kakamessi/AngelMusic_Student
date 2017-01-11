@@ -1,4 +1,4 @@
-package com.okhttplib;
+package com.angelmusic.batchdownloadlib;
 
 import org.junit.Test;
 
