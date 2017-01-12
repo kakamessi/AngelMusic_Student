@@ -1,5 +1,6 @@
 package com.angelmusic.student.activity;
 
+import android.app.Service;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
@@ -13,7 +14,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -24,6 +24,7 @@ import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -47,6 +48,7 @@ public class VideoActivity extends BaseActivity {
     private boolean isPlaying;
     private int swich = 0;
     private String currentPath = "";
+    private File currentfile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class VideoActivity extends BaseActivity {
 //        seekBar.setOnSeekBarChangeListener(change);
 
         setPlayPath();
+
     }
 
     @Override
@@ -75,8 +78,13 @@ public class VideoActivity extends BaseActivity {
 
         if((msg.obj.toString()).equals("1")){
             play(0);
-        }else {
-            pause();
+
+        }else if((msg.obj.toString()).equals("2")){
+            //pause();
+            switchVedio();
+
+        }else if((msg.obj.toString()).equals("3")){
+            this.finish();
         }
 
     }
@@ -89,7 +97,7 @@ public class VideoActivity extends BaseActivity {
         View layout = inflater.inflate(R.layout.dialog_score, null);
 
         // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-        PopupWindow window = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        PopupWindow window = new PopupWindow(layout, 1221, 1134);
         // TODO: 2016/5/17 设置背景颜色
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         // TODO: 2016/5/17 设置可以获取焦点
@@ -112,6 +120,8 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stop();
+
     }
 
     @Override
@@ -138,7 +148,6 @@ public class VideoActivity extends BaseActivity {
                 break;
             case R.id.btn_replay:
 
-                //replay();
                 switchVedio();
 
                 break;
@@ -146,8 +155,19 @@ public class VideoActivity extends BaseActivity {
 
                 dialog7();
 
+                //mediaPlayer.setVolume(0, 0);
+
                 break;
         }
+    }
+
+    public void OpenVolume(){
+
+        AudioManager audioManager=(AudioManager)getSystemService(Service.AUDIO_SERVICE);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
+        mediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM), audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
+        mediaPlayer.start();
+
     }
 
     private SurfaceHolder.Callback callback = new SurfaceHolder.Callback() {
@@ -170,6 +190,8 @@ public class VideoActivity extends BaseActivity {
                 play(currentPosition);
                 currentPosition = 0;
             }
+
+            //initVideo(0);
         }
 
         @Override
@@ -219,6 +241,7 @@ public class VideoActivity extends BaseActivity {
             Toast.makeText(this, "视频文件路径错误", Toast.LENGTH_LONG).show();
             return;
         }
+        currentfile = file;
         try {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -292,14 +315,19 @@ public class VideoActivity extends BaseActivity {
     private String setPlayPath() {
         String result = "";
 
-        int rr = new Random().nextInt(3);
+//        int rr = new Random().nextInt(1);
+//        if (rr == 0) {
+//            result = "/sdcard/ykzzldx.mp4";
+//        } else if(rr ==1){
+//            result = "/sdcard/hehe.mp4";
+//        }else {
+//            result = "/sdcard/ffff.mp4";
+//        }
 
-        if (rr == 0) {
+        if (swich%2== 0) {
             result = "/sdcard/ykzzldx.mp4";
-        } else if(rr ==1){
+        } else if(swich%2 ==1){
             result = "/sdcard/hehe.mp4";
-        }else {
-            result = "/sdcard/ffff.mp4";
         }
         swich++;
 
