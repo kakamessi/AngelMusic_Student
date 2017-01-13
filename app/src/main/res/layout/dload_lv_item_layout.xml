@@ -15,18 +15,6 @@
         android:text="第N节课"
         android:textColor="#666666"
         android:textSize="30sp"/>
-    <!--下载图标-->
-    <TextView
-        android:id="@+id/tv_dload_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="20dp"
-        android:drawableRight="@mipmap/down_all_btn_normal"
-        android:gravity="center"
-        android:paddingRight="60dp"
-        android:text="下载"
-        android:textColor="#666666"
-        android:textSize="30sp"/>
     <!--进度条图标-->
     <LinearLayout
         android:id="@+id/ll_progress"
@@ -35,8 +23,7 @@
         android:orientation="horizontal"
         android:paddingBottom="20dp"
         android:paddingRight="60dp"
-        android:paddingTop="10dp"
-        android:visibility="gone">
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/tv_progress"
@@ -54,17 +41,4 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"/>
     </LinearLayout>
-    <!--删除图标-->
-    <TextView
-        android:id="@+id/tv_delete_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="20dp"
-        android:drawableRight="@mipmap/delete_icon"
-        android:gravity="center"
-        android:paddingRight="60dp"
-        android:text="删除"
-        android:textColor="#666666"
-        android:textSize="30sp"
-        android:visibility="gone"/>
 </LinearLayout>

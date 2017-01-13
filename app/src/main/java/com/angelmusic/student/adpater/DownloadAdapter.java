@@ -40,9 +40,6 @@ public class DownloadAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.dload_lv_item_layout, null);
             holder.tvCourseName = (TextView) convertView.findViewById(R.id.tv_courseName);
-            holder.tvDelete = (TextView) convertView.findViewById(R.id.tv_delete_icon);
-            holder.tvDownload = (TextView) convertView.findViewById(R.id.tv_dload_icon);
-            holder.llProgress = (LinearLayout) convertView.findViewById(R.id.ll_progress);
             holder.circleProgress = (CustomCircleProgress) convertView.findViewById(R.id.circleProgress);
             holder.tvProgress = (TextView) convertView.findViewById(R.id.tv_progress);
             convertView.setTag(holder);
@@ -55,8 +52,7 @@ public class DownloadAdapter extends BaseAdapter {
 
     // 封装数据
     static class ViewHolder {
-        private TextView tvCourseName, tvDownload, tvDelete, tvProgress;
-        private LinearLayout llProgress;
+        private TextView tvCourseName,tvProgress;
         private CustomCircleProgress circleProgress;
     }
 }

@@ -28,8 +28,6 @@ import com.angelmusic.student.version_update.ApkManager;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.angelmusic.student.R.id.tv_seat_num;
-
 /**
  * 主页
  */
@@ -193,22 +191,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 接收教师端消息
-     */
-    @Override
-    protected void handleMsg(Message msg) {
-        super.handleMsg(msg);
-        //需要和教师端定义协议
-        String teacherMsg = msg.obj.toString();
-        String substring = teacherMsg.substring(teacherMsg.indexOf("|"));//不确定待定
-        if (substring.equals("协商定义的内容")) {
-            SharedPreferencesUtil.setString("seatInfo", "需要存储的信息字符串");//存储
-            SeatDataInfo seatDataInfo = getSeatDataInfo(substring);
-            showSeatIdPopupWindow(seatDataInfo.getSeatId());
-        }
-    }
-
     private PopupWindow popupWindow;
 
     /**
@@ -245,6 +227,22 @@ public class MainActivity extends BaseActivity {
      */
     private void hideSeatIdPopupWindow() {
         popupWindow.dismiss();
+    }
+
+    /**
+     * 接收教师端消息
+     */
+    @Override
+    protected void handleMsg(Message msg) {
+        super.handleMsg(msg);
+        //需要和教师端定义协议
+        String teacherMsg = msg.obj.toString();
+        String substring = teacherMsg.substring(teacherMsg.indexOf("|"));//不确定待定
+        if (substring.equals("协商定义的内容")) {
+            SharedPreferencesUtil.setString("seatInfo", "需要存储的信息字符串");//存储
+            SeatDataInfo seatDataInfo = getSeatDataInfo(substring);
+            showSeatIdPopupWindow(seatDataInfo.getSeatId());
+        }
     }
 
     /**

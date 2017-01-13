@@ -2,10 +2,12 @@ package com.angelmusic.student.customview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -21,20 +23,22 @@ public class CustomCircleProgress extends ProgressBar {
     //定义一些属性常量
     private static final int PROGRESS_DEFAULT_COLOR = 0xFF8ab609;//默认圆(边框)的颜色
     private static final int PROGRESS_REACHED_COLOR = 0XFF7aa300;//进度条的颜色
-    private static final int PROGRESS_REACHED_HEIGHT = 2;//进度条的高度
+    private static final int CENTER_TRIANGLE_COLOR = 0xFF8ab609;//中间三角形颜色
+    private static final int CENTER_SQUARE_COLOR = 0xFF8ab609;//中间方形或者两条数线颜色
+    private static final int PROGRESS_REACHED_HEIGHT = 4;//进度条的高度
     private static final int PROGRESS_DEFAULT_HEIGHT = 2;//默认圆的高度
     private static final int PROGRESS_RADIUS = 30;//圆的半径
 
     //View的当前状态，默认为未开始
-    private Status mStatus = Status.End;
+    private Status mStatus = Status.Start;
     //画笔
     private Paint mPaint;
+    //默认圆(边框)的颜色
+    private int mDefaultColor = PROGRESS_DEFAULT_COLOR;
     //进度条的颜色
     private int mReachedColor = PROGRESS_REACHED_COLOR;
     //进度条的高度
     private int mReachedHeight = dp2px(PROGRESS_REACHED_HEIGHT);
-    //默认圆(边框)的颜色
-    private int mDefaultColor = PROGRESS_DEFAULT_COLOR;
     //默认圆(边框)的高度
     private int mDefaultHeight = dp2px(PROGRESS_DEFAULT_HEIGHT);
     //圆的半径
@@ -78,7 +82,7 @@ public class CustomCircleProgress extends ProgressBar {
         //让三角形的长度等于圆的半径(等边三角形)
         triangleLength = mRadius;
         //绘制三角形，首先我们需要确定三个点的坐标
-        float firstX = (float) ((mRadius * 2 - Math.sqrt(3.0) / 2 * mRadius) / 2);//左上角第一个点的横坐标，根据勾三股四弦五定律,Math.sqrt(3.0)表示对3开方
+        float firstX = (float) ((mRadius * 2 - Math.sqrt(3.0) / 2 * mRadius) / 2);//左上角第一个点的横坐标，根据勾股定律,Math.sqrt(3.0)表示对3开方
         //为了显示的好看些，这里微调下firstX横坐标
         float mFirstX = (float) (firstX + firstX * 0.2);
         float firstY = mRadius - triangleLength / 2;
@@ -98,6 +102,7 @@ public class CustomCircleProgress extends ProgressBar {
         //下面是设置画笔的一些属性
         mPaint.setAntiAlias(true);//抗锯齿
         mPaint.setDither(true);//防抖动，绘制出来的图要更加柔和清晰
+        mPaint.setDither(true);
         mPaint.setStyle(Paint.Style.STROKE);//设置填充样式
         /**
          *  Paint.Style.FILL    :填充内部
@@ -110,9 +115,6 @@ public class CustomCircleProgress extends ProgressBar {
     }
 
     /**
-     * 使用onMeasure方法是因为我们的自定义圆形View的一些属性(如：进度条宽度等)都交给用户自己去自定义了，所以我们需要去测量下
-     * 看是否符合要求
-     *
      * @param widthMeasureSpec
      * @param heightMeasureSpec
      */
@@ -121,19 +123,14 @@ public class CustomCircleProgress extends ProgressBar {
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         int paintHeight = Math.max(mReachedHeight, mDefaultHeight);//比较两数，取最大值
 
         if (heightMode != MeasureSpec.EXACTLY) {
-            //如果用户没有精确指出宽高时，我们就要测量整个View所需要分配的高度了，测量自定义圆形View设置的上下内边距+圆形view的直径+圆形描边边框的高度
             int exceptHeight = getPaddingTop() + getPaddingBottom() + mRadius * 2 + paintHeight;
-            //然后再将测量后的值作为精确值传给父类，告诉他我需要这么大的空间，你给我分配吧
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(exceptHeight, MeasureSpec.EXACTLY);
         }
         if (widthMode != MeasureSpec.EXACTLY) {
-            //这里在自定义属性中没有设置圆形边框的宽度，所以这里直接用高度代替
             int exceptWidth = getPaddingLeft() + getPaddingRight() + mRadius * 2 + paintHeight;
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(exceptWidth, MeasureSpec.EXACTLY);
         }
@@ -144,47 +141,47 @@ public class CustomCircleProgress extends ProgressBar {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        /**
-         * 这里canvas.save();和canvas.restore();是两个相互匹配出现的，作用是用来保存画布的状态和取出保存的状态的
-         * 当我们对画布进行旋转，缩放，平移等操作的时候其实我们是想对特定的元素进行操作,但是当你用canvas的方法来进行这些操作的时候，其实是对整个画布进行了操作，
-         * 那么之后在画布上的元素都会受到影响，所以我们在操作之前调用canvas.save()来保存画布当前的状态，当操作之后取出之前保存过的状态，
-         * (比如：前面元素设置了平移或旋转的操作后，下一个元素在进行绘制之前执行了canvas.save();和canvas.restore()操作)这样后面的元素就不会受到(平移或旋转的)影响
-         */
         canvas.save();
-        //为了保证最外层的圆弧全部显示，我们通常会设置自定义view的padding属性，这样就有了内边距，所以画笔应该平移到内边距的位置，这样画笔才会刚好在最外层的圆弧上
-        //画笔平移到指定paddingLeft， getPaddingTop()位置
-        canvas.translate(getPaddingLeft(), getPaddingTop());
-        mPaint.setStyle(Paint.Style.STROKE);
-        //画默认圆(边框)的一些设置
-        mPaint.setColor(mDefaultColor);
-        mPaint.setStrokeWidth(mDefaultHeight);
-        canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);
-
-        //画进度条的一些设置
-        mPaint.setColor(mReachedColor);
-        mPaint.setStrokeWidth(mReachedHeight);
-        //根据进度绘制圆弧
-        float sweepAngle = getProgress() * 1.0f / getMax() * 360;
-        canvas.drawArc(new RectF(0, 0, mRadius * 2, mRadius * 2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
-
-        //有了path之后就可以在onDraw中绘制三角形的End和Starting状态了
-        if (mStatus == Status.End) {//未开始状态，画笔填充三角形
-            mPaint.setStyle(Paint.Style.FILL);
-            //设置颜色
-            mPaint.setColor(Color.parseColor("#01A1EB"));
-            //画三角形
-            canvas.drawPath(mPath, mPaint);
-        } else {//正在进行状态,画两条竖线
+        if (mStatus == Status.Start) {
+            //绘制下载的图标
+            mPaint.setFilterBitmap(true);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_all_btn_normal);
+            Rect rectFSrc = new Rect(0, 0, mRadius, mRadius);
+            Rect rectFDst = new Rect(mRadius / 2, mRadius / 2, mRadius * 2, mRadius * 2);
+            canvas.drawBitmap(bitmap, rectFSrc, rectFDst, mPaint);
+        } else if (mStatus == Status.End) {
+            //绘制垃圾桶
+            mPaint.setFilterBitmap(true);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.delete_icon);
+            Rect rectFSrc = new Rect(0, 0, mRadius, mRadius);
+            Rect rectFDst = new Rect(mRadius / 2, mRadius / 2, mRadius * 2, mRadius * 2);
+            canvas.drawBitmap(bitmap, rectFSrc, rectFDst, mPaint);
+        } else {
+            canvas.translate(getPaddingLeft(), getPaddingTop());
             mPaint.setStyle(Paint.Style.STROKE);
-            mPaint.setStrokeWidth(dp2px(5));
-            mPaint.setColor(Color.parseColor("#01A1EB"));
-            canvas.drawLine(mRadius * 2 / 3, mRadius * 2 / 3, mRadius * 2 / 3, 2 * mRadius * 2 / 3, mPaint);
-            canvas.drawLine(2 * mRadius - (mRadius * 2 / 3), mRadius * 2 / 3, 2 * mRadius - (mRadius * 2 / 3), 2 * mRadius * 2 / 3, mPaint);
+            //画默认圆(边框)的一些设置
+            mPaint.setColor(mDefaultColor);
+            mPaint.setStrokeWidth(mDefaultHeight);
+            canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);
+
+            //画进度条的一些设置
+            mPaint.setColor(mReachedColor);
+            mPaint.setStrokeWidth(mReachedHeight);
+            //根据进度绘制圆弧
+            float sweepAngle = getProgress() * 1.0f / getMax() * 360;
+            canvas.drawArc(new RectF(0, 0, mRadius * 2, mRadius * 2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
+
+            if (mStatus == Status.Pause) {//开始后暂停，画笔填充三角形
+                mPaint.setStyle(Paint.Style.FILL);
+                mPaint.setColor(CENTER_TRIANGLE_COLOR);
+                canvas.drawPath(mPath, mPaint);
+            } else if (mStatus == Status.Loading) {//正在下载状态,画方块
+                mPaint.setColor(CENTER_SQUARE_COLOR);
+                mPaint.setStyle(Paint.Style.FILL);
+                canvas.drawRect(mRadius * 2 / 3, mRadius * 2 / 3, 2 * mRadius - (mRadius * 2 / 3), 2 * mRadius - (mRadius * 2 / 3), mPaint);
+            }
         }
-
         canvas.restore();
-
     }
 
     /**
@@ -197,23 +194,12 @@ public class CustomCircleProgress extends ProgressBar {
                 dpVal, getResources().getDisplayMetrics());
     }
 
-    /**
-     * sp 2 px
-     *
-     * @param spVal
-     * @return
-     */
-    protected int sp2px(int spVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                spVal, getResources().getDisplayMetrics());
-
-    }
-
-
     //当前view显示的状态
     public enum Status {
-        End,
-        Starting
+        Start,//初始未下载
+        Pause,//下载暂停中
+        Loading,//正在下载中
+        End//下载完成
     }
 
     //设置Status的set/get方法
@@ -225,5 +211,4 @@ public class CustomCircleProgress extends ProgressBar {
         this.mStatus = status;
         invalidate();
     }
-
 }
