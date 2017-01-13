@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:orientation="horizontal">
 
     <TextView
@@ -9,12 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:paddingBottom="20dp"
         android:paddingLeft="60dp"
         android:paddingTop="20dp"
         android:text="第N节课"
         android:textColor="#666666"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
     <!--进度条图标-->
     <LinearLayout
         android:id="@+id/ll_progress"
@@ -29,16 +30,18 @@
             android:id="@+id/tv_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
             android:text="100%"
             android:textColor="#666666"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <com.angelmusic.student.customview.CustomCircleProgress
             android:id="@+id/circleProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"/>
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"/>
     </LinearLayout>
 </LinearLayout>

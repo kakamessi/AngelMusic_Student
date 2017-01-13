@@ -7,7 +7,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.angelmusic.student.R;
+import com.angelmusic.student.adpater.DownloadAdapter;
 import com.angelmusic.student.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,17 +21,23 @@ import butterknife.OnClick;
  */
 public class DownloadActivity extends BaseActivity {
 
-
     @BindView(R.id.ib_back)
     ImageButton ibBack;
     @BindView(R.id.btn_dload_all)
     Button btnDloadAll;
     @BindView(R.id.lv_course)
     ListView lvCourse;
+    private DownloadAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i + "");
+        }
+        adapter = new DownloadAdapter(this, list);
+        lvCourse.setAdapter(adapter);
     }
 
     @Override

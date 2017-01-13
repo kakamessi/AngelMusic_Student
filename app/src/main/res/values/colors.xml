@@ -20,13 +20,13 @@
     <!--座位蓝颜色-->
     <color name="blue_seat_text">#19aaff</color>
     <!--座位绿颜色-->
-    <color name="green_seat_text">#8ab708</color>
+    <color name="green_seat_text">#9ed500</color>
     <!--座位边框实线颜色-->
-    <color name="gray_seat_line_solid">#acacac</color>
+    <color name="gray_seat_line_solid">#ffffff</color>
     <!--座位边框虚线颜色-->
     <color name="gray_seat_line_dashed">#acacac</color>
     <!--虚线内字体颜色-->
-    <color name="gray_seat_text_solid">#888888</color>
+    <color name="gray_seat_text_solid">#ffffff</color>
     <!--实线内字体颜色-->
     <color name="gray_seat_text_dashed">#575757</color>
     <!--灰色字体颜色-->

@@ -125,8 +125,8 @@ public class MainActivity extends BaseActivity {
         TAG = "==MainActivity==";
     }
 
-    //显示座位号的PopupWindow
-    private void showSeatDialog(View view) {
+    //显示所有座位号列表的弹框
+    private void showSeatPopup(View view) {
         View contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.seat_layout, null);
         GridView gridView = (GridView) contentView.findViewById(R.id.gv_seat);
         gridView.setNumColumns(5);//这里动态设置列数
@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity {
             case R.id.tv_seat_id:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {
                     tvSeatId.setClickable(false);
-                    showSeatDialog(view);
+                    showSeatPopup(view);
                 } else {
                     //向教师端请求数据
 

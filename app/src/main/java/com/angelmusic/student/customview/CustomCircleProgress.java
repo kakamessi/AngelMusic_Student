@@ -27,7 +27,7 @@ public class CustomCircleProgress extends ProgressBar {
     private static final int CENTER_SQUARE_COLOR = 0xFF8ab609;//中间方形或者两条数线颜色
     private static final int PROGRESS_REACHED_HEIGHT = 4;//进度条的高度
     private static final int PROGRESS_DEFAULT_HEIGHT = 2;//默认圆的高度
-    private static final int PROGRESS_RADIUS = 30;//圆的半径
+    private static final int PROGRESS_RADIUS = 20;//圆的半径
 
     //View的当前状态，默认为未开始
     private Status mStatus = Status.Start;
@@ -82,15 +82,17 @@ public class CustomCircleProgress extends ProgressBar {
         //让三角形的长度等于圆的半径(等边三角形)
         triangleLength = mRadius;
         //绘制三角形，首先我们需要确定三个点的坐标
-        float firstX = (float) ((mRadius * 2 - Math.sqrt(3.0) / 2 * mRadius) / 2);//左上角第一个点的横坐标，根据勾股定律,Math.sqrt(3.0)表示对3开方
+        float firstX = (float) ((mRadius * 2 - Math.sqrt(3.0) / 2 * mRadius) / 2) + 2;//左上角第一个点的横坐标，根据勾股定律,Math.sqrt(3.0)表示对3开方
         //为了显示的好看些，这里微调下firstX横坐标
         float mFirstX = (float) (firstX + firstX * 0.2);
-        float firstY = mRadius - triangleLength / 2;
+        float firstY = mRadius - triangleLength / 2 + 2;
         //同理，依次可得出第二个点(左下角)第三个点的坐标
         float secondX = mFirstX;
-        float secondY = (float) (mRadius + triangleLength / 2);
-        float thirdX = (float) (mFirstX + Math.sqrt(3.0) / 2 * mRadius);
-        float thirdY = mRadius;
+        float secondY = (float) (mRadius + triangleLength / 2) + 2;
+        //同理，依次可得出第三个点的坐标
+        float thirdX = (float) (mFirstX + Math.sqrt(3.0) / 2 * mRadius) + 2;
+        float thirdY = mRadius + 2;
+
         mPath.moveTo(mFirstX, firstY);
         mPath.lineTo(secondX, secondY);
         mPath.lineTo(thirdX, thirdY);
@@ -110,8 +112,6 @@ public class CustomCircleProgress extends ProgressBar {
          *  Paint.Style.STROKE  ：仅描边
          */
         mPaint.setStrokeCap(Paint.Cap.ROUND);//设置画笔笔刷类型
-
-
     }
 
     /**
@@ -145,24 +145,24 @@ public class CustomCircleProgress extends ProgressBar {
         if (mStatus == Status.Start) {
             //绘制下载的图标
             mPaint.setFilterBitmap(true);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_all_btn_normal);
-            Rect rectFSrc = new Rect(0, 0, mRadius, mRadius);
-            Rect rectFDst = new Rect(mRadius / 2, mRadius / 2, mRadius * 2, mRadius * 2);
-            canvas.drawBitmap(bitmap, rectFSrc, rectFDst, mPaint);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_all_icon);
+            Rect rectSrc = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//位置
+            Rect rectDst = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//区域
+            canvas.drawBitmap(bitmap, rectSrc, rectDst, mPaint);
         } else if (mStatus == Status.End) {
             //绘制垃圾桶
             mPaint.setFilterBitmap(true);
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.delete_icon);
-            Rect rectFSrc = new Rect(0, 0, mRadius, mRadius);
-            Rect rectFDst = new Rect(mRadius / 2, mRadius / 2, mRadius * 2, mRadius * 2);
-            canvas.drawBitmap(bitmap, rectFSrc, rectFDst, mPaint);
+            Rect rectSrc = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//位置
+            Rect rectDst = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//区域
+            canvas.drawBitmap(bitmap, rectSrc, rectDst, mPaint);
         } else {
             canvas.translate(getPaddingLeft(), getPaddingTop());
             mPaint.setStyle(Paint.Style.STROKE);
             //画默认圆(边框)的一些设置
             mPaint.setColor(mDefaultColor);
             mPaint.setStrokeWidth(mDefaultHeight);
-            canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);
+            canvas.drawCircle(mRadius + 2, mRadius + 2, mRadius - 2, mPaint);
 
             //画进度条的一些设置
             mPaint.setColor(mReachedColor);
@@ -178,7 +178,8 @@ public class CustomCircleProgress extends ProgressBar {
             } else if (mStatus == Status.Loading) {//正在下载状态,画方块
                 mPaint.setColor(CENTER_SQUARE_COLOR);
                 mPaint.setStyle(Paint.Style.FILL);
-                canvas.drawRect(mRadius * 2 / 3, mRadius * 2 / 3, 2 * mRadius - (mRadius * 2 / 3), 2 * mRadius - (mRadius * 2 / 3), mPaint);
+                canvas.drawRect(mRadius * 2 / 3 + 2, mRadius * 2 / 3 + 2, 2 * mRadius - (mRadius * 2 / 3) + 2, 2 * mRadius - (mRadius * 2 / 3) + 2,
+                        mPaint);
             }
         }
         canvas.restore();

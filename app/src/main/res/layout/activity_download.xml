@@ -88,7 +88,8 @@
                 android:id="@+id/lv_course"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="#f2f2f2"
+                android:padding="10dp"
+                android:divider="#d2d2d2"
                 android:dividerHeight="1px"/>
         </LinearLayout>
     </LinearLayout>
