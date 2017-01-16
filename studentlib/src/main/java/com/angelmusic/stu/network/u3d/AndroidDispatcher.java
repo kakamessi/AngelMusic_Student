@@ -72,9 +72,14 @@ public class AndroidDispatcher implements IDispatcher{
      */
     public void quit(){
 
-        beatThread.quit();
-        write.quit();
-        socket.disconnect();
+        if(beatThread!=null)
+            beatThread.quit();
+
+        if(write!=null)
+            write.quit();
+
+        if(socket!=null)
+            socket.disconnect();
 
         socket = null;
         rec = null;
@@ -84,12 +89,12 @@ public class AndroidDispatcher implements IDispatcher{
 
     public void reConnect(boolean isLib) throws Exception {
 
-        rec = null;
-
-        socket.connect(host,port);
-        rec = new TCPRec(socket,host,port,receiver);
-
-        new Thread(rec).start();
+//        rec = null;
+//
+//        socket.connect(host,port);
+//        rec = new TCPRec(socket,host,port,receiver);
+//
+//        new Thread(rec).start();
         Log.e("kaka", "____________________________________重连成功_________");
     }
 

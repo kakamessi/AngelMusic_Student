@@ -119,6 +119,53 @@
     </RelativeLayout>
 
 
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl2"
+        >
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:text="节奏"
+            android:textColor="#666666"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_sz" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_sz"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/score_bare_empty"
+            android:id="@+id/iv_sz" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/tv_sz"
+            android:layout_marginLeft="19dp"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:src="@drawable/score_bar_full"
+            android:id="@+id/iv_sz_full" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_sz"
+            android:layout_marginLeft="10dp"
+            android:text="90%"
+            android:textColor="#8ab708"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 
 

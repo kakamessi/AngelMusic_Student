@@ -5,7 +5,8 @@ package com.angelmusic.student.constant;
  */
 
 public class Constant {
-    public static final String HOST = "192.168.2.117";
+
+    public static String HOST = "192.168.2.76";
     public static final int PORT = 20000;
 
 }

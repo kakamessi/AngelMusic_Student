@@ -6,19 +6,24 @@ package com.angelmusic.stu.network.model;
 
 public class ActionType {
 
-    public static final String TYPE_VEDIO_PLAY = "1|1,0";
-    public static final String TYPE_VEDIO_ = "GetMessage";
-    public static final String TYPE_VEDIO = "GetMessage";
-
-
     public static final int ACTION_VEDIO_PLAY = 1;
     public static final int ACTION_VEDIO_PAUSE = 2;
     public static final int ACTION_VEDIO_RESUME = 3;
     public static final int ACTION_VEDIO_FINISH = 4;
     public static final int ACTION_VEDIO_REPALY = 5;
 
-
     public static final String CONSTANT_HEARTBEAT = "k_k";
     public static final String CONSTANT_TRUE_HEARTBEAT = "b_b";
+
+
+
+
+
+
+
+
+
+
+
 
 }
