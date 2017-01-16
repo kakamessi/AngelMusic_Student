@@ -62,7 +62,7 @@ public class AndroidDispatcher implements IDispatcher{
 
         //beat
         beatThread = new ReConnectThread();
-        beatThread.start();
+        //beatThread.start();
 
     }
 

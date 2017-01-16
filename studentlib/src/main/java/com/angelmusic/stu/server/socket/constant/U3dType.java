@@ -15,7 +15,7 @@ public class U3dType {
      */
     public static final String TYPE_Main_Camera = "Main Camera";
 
-
+    public static final String TYPE_Communication = "Communication";
 
 
 

@@ -242,7 +242,12 @@ public class MainActivity extends BaseActivity {
             SharedPreferencesUtil.setString("seatInfo", "需要存储的信息字符串");//存储
             SeatDataInfo seatDataInfo = getSeatDataInfo(substring);
             showSeatIdPopupWindow(seatDataInfo.getSeatId());
+        }if("2".equals(teacherMsg.substring(0,1))){
+
+            showSeatIdPopupWindow(teacherMsg.substring(2,3));
+
         }
+        
     }
 
     /**

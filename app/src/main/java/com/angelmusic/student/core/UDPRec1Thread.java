@@ -1,9 +1,12 @@
 package com.angelmusic.student.core;
 
 import android.os.Handler;
+import android.util.Log;
 
+import com.angelmusic.stu.MyApplication;
 import com.angelmusic.stu.network.u3d.AndroidDispatcher;
 import com.angelmusic.student.constant.Constant;
+import com.angelmusic.student.utils.Utils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -35,15 +38,24 @@ public class UDPRec1Thread extends Thread {
             DatagramPacket packet = new DatagramPacket(data, data.length);
 
             // 3、一直监听端口，接收数据包
-            socket.receive(packet);
+            while (true) {
 
-            String quest_ip = packet.getAddress().toString().substring(1);
+                socket.receive(packet);
 
-            Constant.HOST = quest_ip;
+                String quest_ip = packet.getAddress().toString().substring(1);
+                Log.e("UDPRec1Thread", quest_ip + "");
 
-            AndroidDispatcher.getInstance().quit();
-            AndroidDispatcher.getInstance().init(Constant.HOST, Constant.PORT, new MsgReceiver());
+                Constant.HOST = quest_ip;
 
+                AndroidDispatcher.getInstance().quit();
+                AndroidDispatcher.getInstance().init(Constant.HOST, Constant.PORT, new MsgReceiver());
+
+                Thread.sleep(1000);
+
+
+                AndroidDispatcher.getInstance().sendMsg(ActionType.getMsg());
+
+            }
 //            Message msg = new Message();
 //            msg.what = 4;
 //            msg.obj = quest_ip;

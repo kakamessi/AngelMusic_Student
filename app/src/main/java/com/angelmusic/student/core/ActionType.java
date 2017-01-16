@@ -1,5 +1,8 @@
 package com.angelmusic.student.core;
 
+import com.angelmusic.student.base.App;
+import com.angelmusic.student.utils.Utils;
+
 /**
  * Created by DELL on 2017/1/13.
  */
@@ -7,9 +10,13 @@ package com.angelmusic.student.core;
 public class ActionType {
 
 
-    public static final int PORT = 20000;
+    public static String getMsg(){
 
+        String result = "";
 
+        result = "1|" + "1d3f54sdfsdf" + "@" + Utils.getLocalIp(App.getApplication());
 
+        return result;
+    }
 
 }

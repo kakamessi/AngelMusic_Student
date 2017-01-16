@@ -17,11 +17,11 @@ public class UdpServerClient {
 
     public void testUdp(){
 
-        UnityPlayer.UnitySendMessage(U3dType.TYPE_Main_Camera,U3dType.METHOD_ON_MSG, "hi guancheng");
+        UnityPlayer.UnitySendMessage(U3dType.TYPE_Communication,U3dType.METHOD_ON_MSG, "1|aewf45g45@192.168.1.25");
 
     }
 
-    public void sendBroadCast(){
+    public void sendSycMsg(){
 
         final String hostIP = "255.255.255.255";
         final int port = 8000;

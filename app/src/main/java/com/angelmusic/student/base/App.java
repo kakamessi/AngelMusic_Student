@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
+import com.angelmusic.student.core.UDPRec1Thread;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -27,11 +28,19 @@ import java.io.IOException;
  */
 
 public class App extends Application {
+    private static App myApplication = null;
     public static PatchManager mPatchManager;
     private final String PATCH_URL = "";//下载补丁的地址
     private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
     public static OkHttpUtil.Builder init;
+
+    public static App getApplication(){
+        if (myApplication == null){
+            myApplication = new App();
+        }
+        return myApplication;
+    }
 
     /**
      * 整个(app)程序初始化之前被调用
@@ -40,6 +49,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        myApplication = this;
         //initCrash();
         initService();
         LogUtil.isDebug = true;//设置是否打印Log日志
@@ -48,6 +58,8 @@ public class App extends Application {
         downAndSetPatch();//下载补丁并安装补丁
 //      initCrash();
         SharedPreferencesUtil.setContextAndInit(this, "ANGELMUSIC", MODE_PRIVATE);
+
+        new UDPRec1Thread().start();
     }
 
     //初始化网络框架

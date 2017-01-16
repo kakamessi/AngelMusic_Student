@@ -3,6 +3,7 @@ package com.angelmusic.stu.server.receiver;
 import com.angelmusic.stu.server.socket.constant.Constant;
 import com.angelmusic.stu.server.socket.constant.NetParams;
 import com.angelmusic.stu.server.socket.constant.U3dType;
+import com.angelmusic.stu.utils.Log;
 import com.unity3d.player.UnityPlayer;
 
 /**
@@ -21,6 +22,7 @@ public class DefaultReceiver extends Receiver {
     public synchronized void receive(byte[] buffer){
 
         String action = new String(buffer);
+        Log.e("DefaultReceiver", action + "_____________________");
         String[] sourceStrArray = checkData(action);
 
         for (int i = 0; i < sourceStrArray.length; i++) {
@@ -29,8 +31,7 @@ public class DefaultReceiver extends Receiver {
             if(innerAction(sourceStrArray[i])){
                 continue;
             }
-
-            UnityPlayer.UnitySendMessage(U3dType.TYPE_Main_Camera,U3dType.METHOD_ON_MSG, sourceStrArray[i]);
+            UnityPlayer.UnitySendMessage(U3dType.TYPE_Communication,U3dType.METHOD_ON_MSG, sourceStrArray[i]);
 
         }
 
