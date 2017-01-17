@@ -7,21 +7,19 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Message;
-import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
-import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
@@ -33,11 +31,15 @@ import butterknife.OnClick;
 
 public class VideoActivity extends BaseActivity {
 
+
+    @BindView(R.id.black_tv)
+    TextView blackTv;
     @BindView(R.id.surface_view)
     SurfaceView surfaceView;
 
+
     //存的是文件名称 和 地址
-    private Map<String,String> files = new HashMap<>();
+    private Map<String, String> files = new HashMap<>();
     private String currentPath = "";
     private File currentfile = null;
 
@@ -54,78 +56,6 @@ public class VideoActivity extends BaseActivity {
 
         initView();
     }
-
-    private void initView() {
-
-        // 为SurfaceHolder添加回调
-        surfaceView.getHolder().addCallback(callback);
-
-        setPlayPath();
-
-    }
-
-    @Override
-    protected void handleMsg(Message msg) {
-        super.handleMsg(msg);
-
-        String str = msg.obj.toString();
-        String type = str.substring(0,1);
-
-        Toast.makeText(VideoActivity.this, str ,0).show();
-
-        if("".equals(type)){
-            //
-
-
-        }else if("".equals(type)){
-
-        }else if("".equals(type)){
-
-        }else if("".equals(type)){
-
-        }
-
-
-        if((msg.obj.toString()).equals("1")){
-            play(0);
-
-        }else if((msg.obj.toString()).equals("2")){
-            //pause();
-            switchVedio();
-
-        }else if((msg.obj.toString()).equals("3")){
-            this.finish();
-        }
-
-    }
-
-
-    protected void dialog7() {
-
-        LayoutInflater inflater = getLayoutInflater();
-
-        View layout = inflater.inflate(R.layout.dialog_score, null);
-
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-        PopupWindow window = new PopupWindow(layout, 1221, 1134);
-        // TODO: 2016/5/17 设置背景颜色
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
-        // TODO: 2016/5/17 设置可以获取焦点
-        window.setFocusable(true);
-        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
-        window.setOutsideTouchable(true);
-        // TODO：更新popupwindow的状态
-        window.update();
-        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
-        window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
-
-
-//        LayoutInflater inflater = getLayoutInflater();
-//        View layout = inflater.inflate(R.layout.dialog_score, null);
-//        new AlertDialog.Builder(this).setView(layout).show();
-
-    }
-
 
     @Override
     protected void onDestroy() {
@@ -153,9 +83,73 @@ public class VideoActivity extends BaseActivity {
         }
     }
 
-    public void OpenVolume(){
+    private void initView() {
+        // 为SurfaceHolder添加回调
+        surfaceView.getHolder().addCallback(callback);
 
-        AudioManager audioManager=(AudioManager)getSystemService(Service.AUDIO_SERVICE);
+        blackTv.setVisibility(View.VISIBLE);
+
+        setPlayPath();
+    }
+
+    @Override
+    protected void handleMsg(Message msg) {
+        super.handleMsg(msg);
+
+        String str = msg.obj.toString();
+        String type = str.substring(0, 1);
+
+        Toast.makeText(VideoActivity.this, str, 0).show();
+
+        if ("".equals(type)) {
+            //
+
+        } else if ("".equals(type)) {
+            play(0);
+
+        } else if ("".equals(type)) {
+            pause();
+
+        } else if ("".equals(type)) {
+            switchVedio();
+
+        } else if ("".equals(type)) {
+            this.finish();
+
+        }
+
+
+    }
+
+
+    protected void dialog7() {
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        View layout = inflater.inflate(R.layout.dialog_score, null);
+
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
+        PopupWindow window = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 设置背景颜色
+        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
+        // TODO: 2016/5/17 设置可以获取焦点
+        window.setFocusable(true);
+        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
+        window.setOutsideTouchable(true);
+        // TODO：更新popupwindow的状态
+        window.update();
+        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
+        window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
+
+//        LayoutInflater inflater = getLayoutInflater();
+//        View layout = inflater.inflate(R.layout.dialog_score, null);
+//        new AlertDialog.Builder(this).setView(layout).show();
+
+    }
+
+    public void OpenVolume() {
+
+        AudioManager audioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
         mediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM), audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
         mediaPlayer.start();
@@ -219,12 +213,35 @@ public class VideoActivity extends BaseActivity {
         }
     };
 
+    private String setPlayPath() {
+        String result = "";
+
+//        int rr = new Random().nextInt(1);
+//        if (rr == 0) {
+//            result = "/sdcard/ykzzldx.mp4";
+//        } else if(rr ==1){
+//            result = "/sdcard/hehe.mp4";
+//        }else {
+//            result = "/sdcard/ffff.mp4";
+//        }
+
+        if (swich % 2 == 0) {
+            result = "/sdcard/ykzzldx.mp4";
+        } else if (swich % 2 == 1) {
+            result = "/sdcard/hehe.mp4";
+        }
+        swich++;
+
+        currentPath = result;
+        return result;
+    }
+
     /**
      * 开始播放
      *
      * @param msec 播放初始位置
      */
-    protected void  play(final int msec) {
+    protected void play(final int msec) {
         // 获取视频文件地址
         String path = currentPath;
 
@@ -280,29 +297,6 @@ public class VideoActivity extends BaseActivity {
         }
     }
 
-    private String setPlayPath() {
-        String result = "";
-
-//        int rr = new Random().nextInt(1);
-//        if (rr == 0) {
-//            result = "/sdcard/ykzzldx.mp4";
-//        } else if(rr ==1){
-//            result = "/sdcard/hehe.mp4";
-//        }else {
-//            result = "/sdcard/ffff.mp4";
-//        }
-
-        if (swich%2== 0) {
-            result = "/sdcard/ykzzldx.mp4";
-        } else if(swich%2 ==1){
-            result = "/sdcard/hehe.mp4";
-        }
-        swich++;
-
-        currentPath = result;
-        return result;
-    }
-
     /*
     * 停止播放
     */
@@ -355,7 +349,7 @@ public class VideoActivity extends BaseActivity {
             mediaPlayer.pause();
             return;
 
-        }else{
+        } else {
 
             mediaPlayer.start();
             return;
