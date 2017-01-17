@@ -43,7 +43,7 @@ public class ApkManager {
     private static ApkManager apkManager;
     private DownloadFileInfo fileInfo = null;
     private ApkVersionInfo apkVersionInfo;
-    private final String APK_PATH = "APK_UPDATE";
+    private final String APK_PATH = "apk_update";
     private Dialog downloadDialog;
 
     public ApkManager(Context mContext) {
@@ -68,7 +68,7 @@ public class ApkManager {
         okHttpUtil.doGetAsync(
                 HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name) + mContext.getResources().getString(R.string
                         .apk_check_version)).addParam
-                        ("type", "2")
+                        ("type", "1")
                         .build(),
                 new CallbackOk() {
                     @Override
@@ -76,7 +76,6 @@ public class ApkManager {
                         String jsonResult = info.getRetDetail();
                         ((BaseActivity) mContext).hideLoadingDialog();//关闭旋转进度圆
                         if (info.isSuccessful()) {
-                            Log.e("====ok====", jsonResult);
                             apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);//Gson解析
                             if (apkVersionInfo.getCode() == 200) {
                                 if (apkVersionInfo.getDetail().getCode() != ApkUtil.getVersionName(mContext)) {
@@ -104,16 +103,13 @@ public class ApkManager {
         final String apkPath = SDCardUtil.getAppFilePath(mContext) + APK_PATH + File.separator;
         //弹框
         final Dialog updateDialog = new Dialog(mContext, R.style.CustomAlertDialogBackground);
-//        updateDialog.setCancelable(true);
         updateDialog.setCanceledOnTouchOutside(false);
         View view = LayoutInflater.from(mContext).inflate(R.layout.version_update_dialog, null);
         final Button btnOk = (Button) view.findViewById(R.id.btn_update_id_ok);
         final Button btnCancel = (Button) view.findViewById(R.id.btn_update_id_cancel);
         final TextView tvContent = (TextView) view.findViewById(R.id.tv_update_content);
         final TextView tvUpdateTile = (TextView) view.findViewById(R.id.tv_update_title);
-//        final TextView tvApkSize = (TextView) view.findViewById(R.id.tv_update_apk_size);
         tvUpdateTile.setText("最新版本：" + apkVersionInfo.getDetail().getCode());
-//        tvApkSize.setText("新版本大小：" + "=======");
         tvContent.setText(apkVersionInfo.getDetail().getInfo());
         //判断是否强制更新
         int isForced = apkVersionInfo.getDetail().getIsforced();

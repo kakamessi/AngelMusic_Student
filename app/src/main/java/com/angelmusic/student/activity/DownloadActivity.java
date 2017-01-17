@@ -9,7 +9,10 @@ import android.widget.ListView;
 import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.DownloadAdapter;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.batch_download.infobean.FileInfo;
+import com.angelmusic.student.utils.SDCardUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +31,72 @@ public class DownloadActivity extends BaseActivity {
     @BindView(R.id.lv_course)
     ListView lvCourse;
     private DownloadAdapter adapter;
+    private List<List<FileInfo>> fileInfoList;
+    private String[] urls1 = new String[]{
+            "http://pic29.nipic.com/20130524/12835793_143405446113_2.jpg",
+            "http://www.qqpk.cn/article/uploadfiles/201111/20111108212457686.jpg",
+            "http://video.angelmusic360.com/video/20161012/next8.mp4",
+            "http://video.angelmusic360.com/video/20161012/next9.mp4",
+            "http://video.angelmusic360.com/video/20161026/B04-2-1.mp4",
+            "http://video.angelmusic360.com/video/20161109/B04-5-1.mp4",
+            "http://video.angelmusic360.com/video/20161109/B04-5-2.mp4",
+            "http://video.angelmusic360.com/txt/20161014/B04T2Point.txt",
+            "http://video.angelmusic360.com/stave/20161014/B04T2.png"
+    };
+    private String[] urls2 = new String[]{
+            "http://video.angelmusic360.com/video/20161109/B04-5-1.mp4",
+            "http://video.angelmusic360.com/video/20161026/B04-2-4.mp4",
+            "http://video.angelmusic360.com/video/20161012/next8.mp4",
+            "http://video.angelmusic360.com/video/20161012/next9.mp4",
+            "http://video.angelmusic360.com/video/20161012/B04T1.mp4",
+            "http://video.angelmusic360.com/stave/20161014/B04T2.png"
+    };
+    private String[] urls3 = new String[]{
+            "http://video.angelmusic360.com/video/20161109/B04-5-1.mp4",
+            "http://video.angelmusic360.com/video/20161109/B04-5-2.mp4",
+            "http://video.angelmusic360.com/video/20161026/B04-2-1.mp4",
+            "http://video.angelmusic360.com/video/20161026/B04-2-4.mp4",
+            "http://video.angelmusic360.com/video/20161012/next8.mp4",
+            "http://video.angelmusic360.com/txt/20161014/B04T2MIDI.txt",
+            "http://video.angelmusic360.com/txt/20161014/B04T2Point.txt",
+            "http://video.angelmusic360.com/stave/20161014/B04T2.png"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(i + "");
-        }
-        adapter = new DownloadAdapter(this, list);
+        initData();
+        adapter = new DownloadAdapter(this, fileInfoList);
         lvCourse.setAdapter(adapter);
+    }
+
+    private void initData() {
+        fileInfoList = new ArrayList<>();
+        //假数据，共3节课，每节课中有重复的文件
+        //第一节课
+        List<FileInfo> listItem1 = new ArrayList<>();
+        for (int j = 0; j < 9; j++) {
+            listItem1.add(new FileInfo(getFileName(urls1[j]), SDCardUtil.getAppFilePath(this) + "class01" + File.separator + getFileName(urls1[j]), urls1[j], "第一节课", 0, 0));
+        }
+        List<FileInfo> listItem2 = new ArrayList<>();
+        for (int j = 0; j < 6; j++) {
+            listItem2.add(new FileInfo(getFileName(urls2[j]), SDCardUtil.getAppFilePath(this) + "class02" + File.separator + getFileName(urls1[j]), urls2[j], "第二节课", 0, 0));
+        }
+        List<FileInfo> listItem3 = new ArrayList<>();
+        for (int j = 0; j < 8; j++) {
+            listItem3.add(new FileInfo(getFileName(urls3[j]), SDCardUtil.getAppFilePath(this) + "class03" + File.separator + getFileName(urls1[j]), urls3[j], "第三节课", 0, 0));
+        }
+        fileInfoList.add(listItem1);
+        fileInfoList.add(listItem2);
+        fileInfoList.add(listItem3);
+    }
+
+    //切割url获取文件名，带后缀
+    private String getFileName(String fileUrl) {
+        if (fileUrl != null) {
+            return fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+        }
+        return null;
     }
 
     @Override

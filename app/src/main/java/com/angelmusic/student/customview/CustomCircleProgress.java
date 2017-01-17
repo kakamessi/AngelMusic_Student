@@ -25,7 +25,7 @@ public class CustomCircleProgress extends ProgressBar {
     private static final int PROGRESS_REACHED_COLOR = 0XFF7aa300;//进度条的颜色
     private static final int CENTER_TRIANGLE_COLOR = 0xFF8ab609;//中间三角形颜色
     private static final int CENTER_SQUARE_COLOR = 0xFF8ab609;//中间方形或者两条数线颜色
-    private static final int PROGRESS_REACHED_HEIGHT = 4;//进度条的高度
+    private static final int PROGRESS_REACHED_HEIGHT = 3;//进度条的高度
     private static final int PROGRESS_DEFAULT_HEIGHT = 2;//默认圆的高度
     private static final int PROGRESS_RADIUS = 20;//圆的半径
 
@@ -163,13 +163,12 @@ public class CustomCircleProgress extends ProgressBar {
             mPaint.setColor(mDefaultColor);
             mPaint.setStrokeWidth(mDefaultHeight);
             canvas.drawCircle(mRadius + 2, mRadius + 2, mRadius - 2, mPaint);
-
             //画进度条的一些设置
             mPaint.setColor(mReachedColor);
             mPaint.setStrokeWidth(mReachedHeight);
             //根据进度绘制圆弧
             float sweepAngle = getProgress() * 1.0f / getMax() * 360;
-            canvas.drawArc(new RectF(0, 0, mRadius * 2, mRadius * 2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
+            canvas.drawArc(new RectF(2, 2, mRadius * 2+2, mRadius * 2+2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
 
             if (mStatus == Status.Pause) {//开始后暂停，画笔填充三角形
                 mPaint.setStyle(Paint.Style.FILL);

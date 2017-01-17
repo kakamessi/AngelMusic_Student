@@ -56,9 +56,7 @@ public class App extends Application {
         initOkHttp();//初始化网络框架
         initHotfix();//热修复的初始化
         downAndSetPatch();//下载补丁并安装补丁
-//      initCrash();
-        SharedPreferencesUtil.setContextAndInit(this, "ANGELMUSIC", MODE_PRIVATE);
-
+        SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);
     }
 
     //初始化网络框架

@@ -1,13 +1,7 @@
 package com.angelmusic.student.utils;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.StatFs;
-import android.text.TextUtils;
-
-import com.angelmusic.stu.utils.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,8 +13,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.LinkedList;
 import java.util.List;
-
-import static android.R.attr.path;
 
 /**
  * Created by fei on 2016/12/2.
@@ -36,7 +28,18 @@ public class FileUtil {
         File file = new File(filePath);
         return file.exists();
     }
-
+    /**
+     * 删除单个文件
+     * @param   filePath    被删除文件的文件名
+     * @return 文件删除成功返回true，否则返回false
+     */
+    public static boolean deleteFile(String filePath) {
+        File file = new File(filePath);
+        if (file.isFile() && file.exists()) {
+            return file.delete();
+        }
+        return false;
+    }
     /**
      * 删除指定文件夹下所有文件, 保留文件夹
      */
