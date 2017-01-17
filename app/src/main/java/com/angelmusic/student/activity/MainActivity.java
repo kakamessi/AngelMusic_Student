@@ -16,11 +16,14 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.SeatAdapter;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.infobean.SeatDataInfo;
+import com.angelmusic.student.login.LoginManager;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
@@ -172,6 +175,18 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_classroom_name:
                 //预留
+                Log.e("======","=========");
+                LoginManager.login(this, "10", new LoginManager.IsLoginSucceed() {
+                    @Override
+                    public void isSucceed() {
+                        Toast.makeText(MainActivity.this, "=====succeed====", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void isFailed() {
+                        Toast.makeText(MainActivity.this, "=====failed====", Toast.LENGTH_LONG).show();
+                    }
+                });
                 break;
             case R.id.tv_seat_id:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {
@@ -242,12 +257,13 @@ public class MainActivity extends BaseActivity {
             SharedPreferencesUtil.setString("seatInfo", "需要存储的信息字符串");//存储
             SeatDataInfo seatDataInfo = getSeatDataInfo(substring);
             showSeatIdPopupWindow(seatDataInfo.getSeatId());
-        }if("2".equals(teacherMsg.substring(0,1))){
+        }
+        if ("2".equals(teacherMsg.substring(0, 1))) {
 
-            showSeatIdPopupWindow(teacherMsg.substring(2,3));
+            showSeatIdPopupWindow(teacherMsg.substring(2, 3));
 
         }
-        
+
     }
 
     /**

@@ -10,6 +10,7 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.DownloadAdapter;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.batch_download.infobean.FileInfo;
+import com.angelmusic.student.login.LoginManager;
 import com.angelmusic.student.utils.SDCardUtil;
 
 import java.io.File;
@@ -31,6 +32,7 @@ public class DownloadActivity extends BaseActivity {
     @BindView(R.id.lv_course)
     ListView lvCourse;
     private DownloadAdapter adapter;
+    //模拟数据
     private List<List<FileInfo>> fileInfoList;
     private String[] urls1 = new String[]{
             "http://pic29.nipic.com/20130524/12835793_143405446113_2.jpg",
