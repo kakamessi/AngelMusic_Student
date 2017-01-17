@@ -3,6 +3,7 @@ package com.angelmusic.student.utils;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 /**
@@ -37,12 +38,19 @@ public class Utils {
                 ( i >> 24 & 0xFF) ;
     }
 
-    public static String getDeviceId(Context con){
+    public static String getDeviceId(Context context){
 
-        TelephonyManager tm = (TelephonyManager)con.getSystemService(Context.TELEPHONY_SERVICE);
-        String DEVICE_ID = tm.getDeviceId();
+        String id;
+        //android.telephony.TelephonyManager
+        TelephonyManager mTelephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (mTelephony.getDeviceId() != null) {
+            id = mTelephony.getDeviceId();
+        } else {
+            //android.provider.Settings;
+            id = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        }
+        return id;
 
-        return DEVICE_ID;
     }
 
 

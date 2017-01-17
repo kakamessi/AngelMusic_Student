@@ -1,70 +1,1 @@
-package com.angelmusic.student.core;
-
-import android.os.Handler;
-import android.util.Log;
-
-import com.angelmusic.stu.MyApplication;
-import com.angelmusic.stu.network.u3d.AndroidDispatcher;
-import com.angelmusic.student.constant.Constant;
-import com.angelmusic.student.utils.Utils;
-
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-
-/**
- * Created by DELL on 2017/1/16.
- */
-
-public class UDPRec1Thread extends Thread {
-
-
-    private Handler handler;
-    private int port = 8000;
-
-    public UDPRec1Thread() {
-
-    }
-
-    @Override
-    public void run() {
-
-        DatagramSocket socket = null;
-        try {
-            // 1、创建套接字
-            socket = new DatagramSocket(port);
-
-            // 2、创建数据报
-            byte[] data = new byte[1024];
-            DatagramPacket packet = new DatagramPacket(data, data.length);
-
-            // 3、一直监听端口，接收数据包
-            while (true) {
-
-                socket.receive(packet);
-
-                String quest_ip = packet.getAddress().toString().substring(1);
-                Log.e("UDPRec1Thread", quest_ip + "");
-
-                Constant.HOST = quest_ip;
-
-                AndroidDispatcher.getInstance().quit();
-                AndroidDispatcher.getInstance().init(Constant.HOST, Constant.PORT, new MsgReceiver());
-
-                Thread.sleep(1000);
-
-
-                AndroidDispatcher.getInstance().sendMsg(ActionType.getMsg());
-
-            }
-//            Message msg = new Message();
-//            msg.what = 4;
-//            msg.obj = quest_ip;
-//            handler.sendMessage(msg);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-}
+package com.angelmusic.student.core;import android.os.Handler;import android.os.Message;import android.util.Log;import com.angelmusic.stu.network.u3d.AndroidDispatcher;import com.angelmusic.student.constant.Constant;import java.net.DatagramPacket;import java.net.DatagramSocket;/** * Created by DELL on 2017/1/16. */public class UDPRec1Thread extends Thread {    private int port = 8000;    private String quest_ip = "";    private Handler handler;    public UDPRec1Thread(Handler handler) {        this.handler = handler;    }    @Override    public void run() {        DatagramSocket socket = null;        try {            // 1、创建套接字            socket = new DatagramSocket(port);            // 2、创建数据报            byte[] data = new byte[1024];            DatagramPacket packet = new DatagramPacket(data, data.length);            // 3、一直监听端口，接收数据包            while (true) {                socket.receive(packet);                quest_ip = packet.getAddress().toString().substring(1);                Log.e("UDPRec1Thread", quest_ip + "");                Constant.HOST = quest_ip;                if(!AndroidDispatcher.getInstance().isAlive()) {                    AndroidDispatcher.getInstance().quit();                    AndroidDispatcher.getInstance().init(Constant.HOST, Constant.PORT, new MsgReceiver());                }                Thread.sleep(1000);                AndroidDispatcher.getInstance().sendMsg(ActionType.getMsg());//                Message msg = new Message();//                msg.what = 4;//                msg.obj = quest_ip;//                handler.sendMessage(msg);            }        } catch (Exception e) {            e.printStackTrace();        }    }}

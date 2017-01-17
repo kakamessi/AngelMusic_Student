@@ -14,7 +14,7 @@ public class ActionType {
 
         String result = "";
 
-        result = "1|" + "1d3f54sdfsdf" + "@" + Utils.getLocalIp(App.getApplication());
+        result = "1|" + Utils.getDeviceId(App.getApplication()) + "@" + Utils.getLocalIp(App.getApplication());
 
         return result;
     }

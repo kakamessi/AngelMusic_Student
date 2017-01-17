@@ -98,6 +98,12 @@ public class AndroidDispatcher implements IDispatcher{
         Log.e("kaka", "____________________________________重连成功_________");
     }
 
+    public boolean isAlive(){
+
+        return socket==null?false:socket.getmSocket().isConnected();
+
+    }
+
     /**
      * 发送消息
      * @param bytes

@@ -59,7 +59,6 @@ public class App extends Application {
 //      initCrash();
         SharedPreferencesUtil.setContextAndInit(this, "ANGELMUSIC", MODE_PRIVATE);
 
-        new UDPRec1Thread().start();
     }
 
     //初始化网络框架
