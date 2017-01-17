@@ -40,13 +40,10 @@ public class LoginManager {
                         String jsonResult = info.getRetDetail();
                         Log.e("===jsonResult===", jsonResult);
                         if (info.isSuccessful()) {
-                            Log.e("======", "--55---");
                             stuInfo = GsonUtil.jsonToObject(jsonResult, StuInfo.class);//Gson解析
                             if (stuInfo.getCode() == 200) {
                                 isLoginSucceed.isSucceed();
-                                Log.e("======", "--44---");
                             } else {
-                                Log.e("======", "--33---");
                                 isLoginSucceed.isFailed();
                             }
                         }
