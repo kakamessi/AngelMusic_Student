@@ -204,7 +204,7 @@ public class MainActivity extends BaseActivity {
         tvSeatNum.setText(seatId);
         popupWindow = new PopupWindow(contentView, 800, 800);
         popupWindow.setFocusable(false);
-        popupWindow.setOutsideTouchable(false);
+        popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         final WindowManager.LayoutParams wlBackground = getWindow().getAttributes();
         wlBackground.alpha = 0.5f;// 设置PopupWindow以外部分的背景颜色  有一种变暗的效果
