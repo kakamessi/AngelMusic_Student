@@ -7,12 +7,12 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Message;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
@@ -21,34 +21,32 @@ import android.widget.Toast;
 
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class VideoActivity extends BaseActivity {
 
-    @BindView(R.id.btn_play)
-    Button btnPlay;
-    @BindView(R.id.btn_pause)
-    Button btnPause;
-    @BindView(R.id.btn_replay)
-    Button btnReplay;
-    @BindView(R.id.btn_stop)
-    Button btnStop;
     @BindView(R.id.surface_view)
     SurfaceView surfaceView;
+
+    //存的是文件名称 和 地址
+    private Map<String,String> files = new HashMap<>();
+    private String currentPath = "";
+    private File currentfile = null;
+
 
     private MediaPlayer mediaPlayer;
     private int currentPosition = 0;
     private boolean isPlaying;
     private int swich = 0;
-    private String currentPath = "";
-    private File currentfile = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +60,6 @@ public class VideoActivity extends BaseActivity {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
 
-//        // 为进度条添加进度更改事件
-//        seekBar.setOnSeekBarChangeListener(change);
-
         setPlayPath();
 
     }
@@ -73,8 +68,23 @@ public class VideoActivity extends BaseActivity {
     protected void handleMsg(Message msg) {
         super.handleMsg(msg);
 
-       // LogUtil.i(msg.obj.toString());
-        Toast.makeText(VideoActivity.this, msg.obj.toString() ,0).show();
+        String str = msg.obj.toString();
+        String type = str.substring(0,1);
+
+        Toast.makeText(VideoActivity.this, str ,0).show();
+
+        if("".equals(type)){
+            //
+
+
+        }else if("".equals(type)){
+
+        }else if("".equals(type)){
+
+        }else if("".equals(type)){
+
+        }
+
 
         if((msg.obj.toString()).equals("1")){
             play(0);
@@ -134,29 +144,11 @@ public class VideoActivity extends BaseActivity {
         TAG = "==VideoActivity==";
     }
 
-    @OnClick({R.id.btn_play, R.id.btn_pause, R.id.btn_replay, R.id.btn_stop})
+    @OnClick()
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_play:
-
+            case 1:
                 play(0);
-                break;
-            case R.id.btn_pause:
-
-                pause();
-
-                break;
-            case R.id.btn_replay:
-
-                switchVedio();
-
-                break;
-            case R.id.btn_stop:
-
-                dialog7();
-
-                //mediaPlayer.setVolume(0, 0);
-
                 break;
         }
     }
@@ -261,30 +253,6 @@ public class VideoActivity extends BaseActivity {
                     // 按照初始位置播放
                     mediaPlayer.seekTo(msec);
 
-                    // 设置进度条的最大进度为视频流的最大播放时长
-//                    seekBar.setMax(mediaPlayer.getDuration());
-//                    // 开始线程，更新进度条的刻度
-//                    new Thread() {
-//
-//                        @Override
-//                        public void run() {
-//                            try {
-//                                isPlaying = true;
-//                                while (isPlaying) {
-//                                    int current = mediaPlayer
-//                                            .getCurrentPosition();
-//                                    seekBar.setProgress(current);
-//
-//                                    sleep(500);
-//                                }
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }.start();
-
-                    btnPlay.setEnabled(false);
-
                 }
             });
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -292,7 +260,7 @@ public class VideoActivity extends BaseActivity {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     // 在播放完毕被回调
-                    btnPlay.setEnabled(true);
+
                 }
             });
 
@@ -345,7 +313,7 @@ public class VideoActivity extends BaseActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
-            btnPlay.setEnabled(true);
+
             isPlaying = false;
         }
     }
@@ -357,7 +325,6 @@ public class VideoActivity extends BaseActivity {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(0);
 
-            btnPause.setText("暂停");
             return;
         }
         isPlaying = false;
@@ -384,18 +351,17 @@ public class VideoActivity extends BaseActivity {
     protected void pause() {
 
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+
             mediaPlayer.pause();
-            btnPause.setText("继续");
-
             return;
-        }
 
-        if (btnPause.getText().toString().trim().equals("继续")) {
-            btnPause.setText("暂停");
+        }else{
+
             mediaPlayer.start();
-
             return;
         }
 
     }
+
+
 }
