@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.batch_download.db.DAOImpl;
@@ -35,6 +34,11 @@ public class DownloadAdapter extends BaseAdapter {
     public DownloadAdapter(Context mContext, List<List<FileInfo>> fileInfoList) {
         this.mContext = mContext;
         this.fileInfoList = fileInfoList;
+    }
+
+    //可以随时更改数据后更新适配器
+    public void freshenProgress(int position) {
+        notifyDataSetInvalidated();
     }
 
     @Override
@@ -79,6 +83,7 @@ public class DownloadAdapter extends BaseAdapter {
         }
         //计算下载进度百分比
         int progress = (int) (((float) downloadNum / (float) fileInfoList.get(position).size()) * 100);
+
         //设置显示的百分比
         holder.tvProgress.setText(progress + "%");
         //设置按钮的显示样式
@@ -105,7 +110,7 @@ public class DownloadAdapter extends BaseAdapter {
                             //向数据库插入一条下载信息(file_name为主键，若数据库已经存在则不插入（失败）)
                             DAOImpl.getInstance(mContext).insertFile(fileInfo);
                             //下载此文件
-                            downloadFiles(fileInfo);
+                            downloadFiles(fileInfo, position);
                         } else {
                             //获取数据库中当前文件名的quoteCount值
                             final int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
@@ -129,7 +134,7 @@ public class DownloadAdapter extends BaseAdapter {
                             //向数据库插入一条下载信息(file_name为主键，若数据库已经存在则不插入（失败）)
                             DAOImpl.getInstance(mContext).insertFile(fileInfo);
                             //下载此文件
-                            downloadFiles(fileInfo);
+                            downloadFiles(fileInfo, position);
                         } else {
                             //获取数据库中当前文件名的quoteCount值
                             final int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
@@ -172,7 +177,7 @@ public class DownloadAdapter extends BaseAdapter {
     /**
      * 文件下载
      */
-    private void downloadFiles(final FileInfo fileInfo) {
+    private void downloadFiles(final FileInfo fileInfo, final int position) {
         final String fileParentPath = fileInfo.getFileParentPath();//文件的存储路径
         final String fileName = fileInfo.getFileName();//文件名，带后缀
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
@@ -190,8 +195,8 @@ public class DownloadAdapter extends BaseAdapter {
                             int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileName);
                             //更新当前文件的最大课程引用计数
                             String courseName = fileInfo.getCourseName();//课程名
-                            //通知界面刷新
-
+                            //刷新界面
+                            freshenProgress(position);
                         }
                     }
 
