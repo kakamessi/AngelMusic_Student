@@ -71,13 +71,13 @@ public class MainActivity extends BaseActivity {
         ApkManager.getInstance(this).checkVersionInfo();//检查版本更新
         initData();
         initView();
-        //initPiano();
+        initPiano();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
+        UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
     }
 
     private void initView() {
