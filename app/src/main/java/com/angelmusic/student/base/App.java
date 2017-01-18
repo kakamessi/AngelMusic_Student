@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.utils.MyCrashHandler;
-import com.angelmusic.student.core.UDPRec1Thread;
+import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -28,6 +28,8 @@ import java.io.IOException;
  */
 
 public class App extends Application {
+
+    private CourseData cd = null;
     private static App myApplication = null;
     public static PatchManager mPatchManager;
     private final String PATCH_URL = "";//下载补丁的地址
@@ -141,5 +143,12 @@ public class App extends Application {
         Thread.setDefaultUncaughtExceptionHandler(handler);
     }
 
+    public CourseData getCd() {
+        return cd;
+    }
+
+    public void setCd(CourseData cd) {
+        this.cd = cd;
+    }
 
 }

@@ -20,11 +20,10 @@ import android.widget.Toast;
 
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,8 +37,8 @@ public class VideoActivity extends BaseActivity {
     SurfaceView surfaceView;
 
 
-    //存的是文件名称 和 地址
-    private Map<String, String> files = new HashMap<>();
+    //课程信息
+    private CourseData cd = null;
     private String currentPath = "";
     private File currentfile = null;
 
@@ -120,7 +119,6 @@ public class VideoActivity extends BaseActivity {
 
 
     }
-
 
     protected void dialog7() {
 

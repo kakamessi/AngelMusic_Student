@@ -1,5 +1,6 @@
 package com.angelmusic.student.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -15,8 +16,12 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.angelmusic.student.R;
+import com.angelmusic.student.activity.DownloadActivity;
+import com.angelmusic.student.activity.MainActivity;
+import com.angelmusic.student.activity.VideoActivity;
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -69,6 +74,19 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //****处理通信命令
     protected void handleMsg(Message msg) {
+
+        String str = msg.obj.toString();
+        String type = str.substring(0, 1);
+
+        if ("".equals(type)) {
+            //开始进行常规课
+
+
+
+            startActivity(new Intent(this, VideoActivity.class));
+        }
+
+
     }
 
     //****向教师端发送命令
