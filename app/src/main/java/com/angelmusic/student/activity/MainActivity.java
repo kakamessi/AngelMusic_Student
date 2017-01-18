@@ -31,6 +31,7 @@ import com.angelmusic.student.adpater.SeatAdapter;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.infobean.SeatDataInfo;
 import com.angelmusic.student.login.LoginManager;
+import com.angelmusic.student.login.StuInfo;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
@@ -208,18 +209,6 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_classroom_name:
                 //预留
-                Log.e("======","=========");
-                LoginManager.login(this, "10", new LoginManager.IsLoginSucceed() {
-                    @Override
-                    public void isSucceed() {
-                        Toast.makeText(MainActivity.this, "=====succeed====", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void isFailed() {
-                        Toast.makeText(MainActivity.this, "=====failed====", Toast.LENGTH_LONG).show();
-                    }
-                });
                 break;
             case R.id.tv_seat_id:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {

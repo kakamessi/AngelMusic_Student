@@ -6,20 +6,28 @@ package com.angelmusic.student.batch_download.infobean;
  */
 
 public class FileInfo {
-    private String fileName;
-    private String fileAbsPath;
-    private String fileUrl;
-    private String courseName;
+    private String CourseName;//第几节课
+    private String fileName;//文件名
+    private String fileUrl;//下载路径
+    private String fileParentPath;//文件的存放路径
     private int downloadState;//0:未下载完，1:下载完毕
-    private int quoteCount;//当前文件被几个课程使用
+    private int quoteCount;//当前文件被几个课程使用,不是1的时候不能删除
 
-    public FileInfo(String fileName, String fileAbsPath, String fileUrl, String courseName, int downloadState, int quoteCount) {
+    public FileInfo(String courseName, String fileName, String fileUrl, String fileParentPath, int downloadState, int quoteCount) {
+        CourseName = courseName;
         this.fileName = fileName;
-        this.fileAbsPath = fileAbsPath;
         this.fileUrl = fileUrl;
-        this.courseName = courseName;
+        this.fileParentPath = fileParentPath;
         this.downloadState = downloadState;
         this.quoteCount = quoteCount;
+    }
+
+    public String getCourseName() {
+        return CourseName;
+    }
+
+    public void setCourseName(String courseName) {
+        CourseName = courseName;
     }
 
     public String getFileName() {
@@ -30,14 +38,6 @@ public class FileInfo {
         this.fileName = fileName;
     }
 
-    public String getFileAbsPath() {
-        return fileAbsPath;
-    }
-
-    public void setFileAbsPath(String fileAbsPath) {
-        this.fileAbsPath = fileAbsPath;
-    }
-
     public String getFileUrl() {
         return fileUrl;
     }
@@ -46,12 +46,12 @@ public class FileInfo {
         this.fileUrl = fileUrl;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getFileParentPath() {
+        return fileParentPath;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setFileParentPath(String fileParentPath) {
+        this.fileParentPath = fileParentPath;
     }
 
     public int getDownloadState() {

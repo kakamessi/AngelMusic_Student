@@ -52,7 +52,7 @@
             android:name=".activity.IdleActivity"
             android:screenOrientation="landscape">
         </activity>
-        <!--课程下载界面-->
+        <!-- 课程下载界面 -->
         <activity
             android:name=".activity.DownloadActivity"
             android:launchMode="singleTask"

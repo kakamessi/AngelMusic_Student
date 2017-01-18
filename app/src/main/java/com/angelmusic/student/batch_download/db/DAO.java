@@ -12,13 +12,15 @@ public interface DAO {
 
     public void deleteFile(String fileName);
 
-    public void updateDownloadState(String fileName, String downloadState);
+    public void updateDownloadState(String fileName, int downloadState);
 
     public void updateQuoteCount(String fileName, int quoteCount);
 
     public int queryQuoteCount(String fileName);
 
     public String queryFilePath(String fileName);
+
+    public boolean queryFileExist(String fileName);
 
     public boolean queryDownloadState(String fileName);
 }

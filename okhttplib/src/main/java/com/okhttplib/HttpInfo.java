@@ -48,7 +48,6 @@ public class HttpInfo {
         private List<DownloadFileInfo> downloadFiles;
         private Map<String,String> heads;
 
-
         public Builder() {
         }
 

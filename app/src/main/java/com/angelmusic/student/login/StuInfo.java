@@ -179,6 +179,40 @@ public class StuInfo {
             public void setStudentNo(String studentNo) {
                 this.studentNo = studentNo;
             }
+
+            @Override
+            public String toString() {
+                return "StuInfoBean{" +
+                        "address=" + address +
+                        ", age=" + age +
+                        ", classId=" + classId +
+                        ", entrancetime='" + entrancetime + '\'' +
+                        ", gender='" + gender + '\'' +
+                        ", id=" + id +
+                        ", name='" + name + '\'' +
+                        ", phone='" + phone + '\'' +
+                        ", schoolId=" + schoolId +
+                        ", state=" + state +
+                        ", studentNo='" + studentNo + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "DetailBean{" +
+                    "stuInfo=" + stuInfo +
+                    ", IP='" + IP + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "StuInfo{" +
+                "code=" + code +
+                ", description='" + description + '\'' +
+                ", detail=" + detail +
+                '}';
     }
 }

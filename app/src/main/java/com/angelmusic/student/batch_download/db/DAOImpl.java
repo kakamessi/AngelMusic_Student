@@ -36,14 +36,18 @@ public class DAOImpl implements DAO {
     }
 
     /**
-     * 插入一个文件的下载信息
+     * 插入一条文件的下载信息
      */
     @Override
     public synchronized void insertFile(FileInfo fileInfo) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.execSQL("insert into tb_course(file_name,file_path,file_url,course_name,download_state,quote_count) values(?,?,?,?,?,?)",
-                new Object[]{fileInfo.getFileName(), fileInfo.getFileAbsPath(), fileInfo.getFileUrl(), fileInfo.getCourseName(), fileInfo
-                        .getDownloadState(), fileInfo.getQuoteCount()});
+        try {
+            db.execSQL("insert into tb_course(file_name,file_path,download_state,quote_count) values(?,?,?,?)",
+                    new Object[]{fileInfo.getFileName(), fileInfo.getFileParentPath() + fileInfo.getFileName(), fileInfo.getDownloadState(), fileInfo
+                            .getQuoteCount()});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         db.close();
     }
 
@@ -53,8 +57,7 @@ public class DAOImpl implements DAO {
     @Override
     public synchronized void deleteFile(String fileName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.execSQL("delete from tb_course where file_name = ?",
-                new Object[]{fileName});
+        db.execSQL("delete from tb_course where file_name = ?", new Object[]{fileName});
         db.close();
     }
 
@@ -62,7 +65,7 @@ public class DAOImpl implements DAO {
      * 更新文件的下载状态
      */
     @Override
-    public synchronized void updateDownloadState(String fileName, String downloadState) {
+    public synchronized void updateDownloadState(String fileName, int downloadState) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         ContentValues values = new ContentValues();
@@ -74,15 +77,22 @@ public class DAOImpl implements DAO {
     }
 
     /**
-     * 更新文件被几节课使用的数量
+     * 更新文件被quoteCount节课使用的值
      */
     @Override
     public synchronized void updateQuoteCount(String fileName, int quoteCount) {
-
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        ContentValues values = new ContentValues();
+        values.put("quote_count", quoteCount);
+        db.update("tb_course", values, "file_name=?", new String[]{fileName});
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        db.close();
     }
 
     /**
-     * 查询某个文件被几节课使用
+     * 查询某个文件的QuoteCount
      *
      * @return 最大引用数
      */
@@ -106,7 +116,29 @@ public class DAOImpl implements DAO {
      */
     @Override
     public synchronized String queryFilePath(String fileName) {
-        return null;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
+        String filePath = null;
+        while (cursor.moveToNext()) {
+            filePath = cursor.getString(cursor.getColumnIndex("file_path"));
+        }
+        db.close();
+        return filePath;
+    }
+
+    /**
+     * 查询一个文件是否存在
+     */
+    @Override
+    public synchronized boolean queryFileExist(String fileName) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
+        boolean isExist = false;
+        while (cursor.moveToNext()) {
+            isExist = true;
+        }
+        db.close();
+        return isExist;
     }
 
     /**

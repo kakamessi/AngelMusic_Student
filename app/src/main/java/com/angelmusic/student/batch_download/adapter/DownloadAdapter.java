@@ -1,4 +1,4 @@
-package com.angelmusic.student.adpater;
+package com.angelmusic.student.batch_download.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -61,13 +61,12 @@ public class DownloadAdapter extends BaseAdapter {
             holder.tvCourseName = (TextView) convertView.findViewById(R.id.tv_courseName);
             holder.circleProgress = (CustomCircleProgress) convertView.findViewById(circleProgress);
             holder.tvProgress = (TextView) convertView.findViewById(R.id.tv_progress);
-            holder.tvProgress.setTag(fileInfoList.get(position).get(position).getCourseName());
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //设置前台显示的课程名
+        //设置显示第几课
         holder.tvCourseName.setText(fileInfoList.get(position).get(position).getCourseName());
 
         //设置初始进入状态课程下载的百分比
@@ -87,6 +86,8 @@ public class DownloadAdapter extends BaseAdapter {
             holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);
         } else if (progress == 100) {
             holder.circleProgress.setStatus(CustomCircleProgress.Status.End);
+        } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {
+            holder.circleProgress.setProgress(progress);
         } else {
             holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);
             holder.circleProgress.setProgress(progress);
@@ -98,52 +99,61 @@ public class DownloadAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Start) {//初始下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
-                    //下载，查询数据库当前文件是否下载完毕，若未下载完成则向数据库插入一条下载信息并下载，否则更新数据库中当前文件信息的quote_count字段(+1)
+                    //下载，查询数据库当前文件是否下载完毕，
                     for (FileInfo fileInfo : fileInfoList.get(position)) {
                         if (!DAOImpl.getInstance(mContext).queryDownloadState(fileInfo.getFileName())) {
+                            //向数据库插入一条下载信息(file_name为主键，若数据库已经存在则不插入（失败）)
                             DAOImpl.getInstance(mContext).insertFile(fileInfo);
-                            downloadFile(fileInfo, holder.tvProgress);
+                            //下载此文件
+                            downloadFiles(fileInfo);
                         } else {
+                            //获取数据库中当前文件名的quoteCount值
                             final int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
+                            //更新数据库中当前文件信息的quote_count字段(+1)
                             DAOImpl.getInstance(mContext).updateQuoteCount(fileInfo.getFileName(), quoteCount + 1);
                         }
                     }
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {//下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
-                    //查询数据库当前文件是否下载完成，若没下载完成则删除数据库中此文件的信息并取消下载（下载完的不需要取消了）
+                    //文件若没下载完则执行暂停操作
                     for (FileInfo fileInfo : fileInfoList.get(position)) {
                         if (!DAOImpl.getInstance(mContext).queryDownloadState(fileInfo.getFileName())) {
-                            DAOImpl.getInstance(mContext).deleteFile(fileInfo.getFileName());
                             OkHttpUtil.getDefault().cancelRequest(fileInfo.getFileName());
                         }
                     }
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Pause) {//下载暂停状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
-                    //下载，查询数据库当前文件是否下载完，若未下载完成则向数据库插入一条下载信息并下载，否则更新数据库中当前文件信息的quote_count字段(+1)
+                    //继续下载，同下载
                     for (FileInfo fileInfo : fileInfoList.get(position)) {
                         if (!DAOImpl.getInstance(mContext).queryDownloadState(fileInfo.getFileName())) {
+                            //向数据库插入一条下载信息(file_name为主键，若数据库已经存在则不插入（失败）)
                             DAOImpl.getInstance(mContext).insertFile(fileInfo);
-                            downloadFile(fileInfo, holder.tvProgress);
+                            //下载此文件
+                            downloadFiles(fileInfo);
                         } else {
+                            //获取数据库中当前文件名的quoteCount值
                             final int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
+                            //更新数据库中当前文件信息的quote_count字段(+1)
                             DAOImpl.getInstance(mContext).updateQuoteCount(fileInfo.getFileName(), quoteCount + 1);
                         }
                     }
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.End) {//下载全部完成状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击变成初始下载状态
+                    //删除操作
                     //查询文件是否被多个课程使用，若是则把quoteCount数减1，否则直接删除本地文件
                     for (FileInfo fileInfo : fileInfoList.get(position)) {
                         int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
                         if (quoteCount == 1) {
                             //直接删除该文件并删除当前文件的数据库信息
-                            boolean deleteFile = FileUtil.deleteFile(fileInfo.getFileAbsPath());
+                            boolean deleteFile = FileUtil.deleteFile(fileInfo.getFileParentPath() + fileInfo.getFileName());
                             if (deleteFile) {
-                                Toast.makeText(mContext, fileInfo.getCourseName() + "删除成功", Toast.LENGTH_LONG).show();
+                                Toast.makeText(mContext, fileInfo.getCourseName() + "删除成功", Toast.LENGTH_SHORT).show();
                                 DAOImpl.getInstance(mContext).deleteFile(fileInfo.getFileName());
+                                holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);
                                 holder.tvProgress.setText(0 + "%");
                             }
                         } else {
-                            //更新当前文件数据库quoteCount数
+                            //更新当前文件数据库quoteCount值
                             DAOImpl.getInstance(mContext).updateQuoteCount(fileInfo.getFileName(), --quoteCount);
                         }
                     }
@@ -159,35 +169,35 @@ public class DownloadAdapter extends BaseAdapter {
         private CustomCircleProgress circleProgress;
     }
 
-    //文件下载
-    private void downloadFile(final FileInfo fileInfo, final TextView tvProgress) {
-        final String fileAbsPath = fileInfo.getFileAbsPath();//文件的绝对路径
-        final String fileParentPath = fileAbsPath.substring(0, fileAbsPath.lastIndexOf("/"));//文件的父路径
+    /**
+     * 文件下载
+     */
+    private void downloadFiles(final FileInfo fileInfo) {
+        final String fileParentPath = fileInfo.getFileParentPath();//文件的存储路径
         final String fileName = fileInfo.getFileName();//文件名，带后缀
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
-        App.init.setDownloadFileDir(fileParentPath);//设置文件下载的父路径
+        App.init.setDownloadFileDir(fileParentPath);//设置文件的下载路径
         final HttpInfo info = HttpInfo.Builder()
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override
                     public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
                         if (done) {
-                            LogUtil.d("====" + fileName, "下载进度：" + percent);
-                            //查询数据库中当前文件的最大引用计数
+                            LogUtil.e("====" + fileName, "下载进度：" + percent);
+                            //每下载完一个文件更新一下界面显示的下载进度
+                            //更新当前文件的下载状态
+                            DAOImpl.getInstance(mContext).updateDownloadState(fileInfo.getFileName(), 1);
+                            //查询数据库中当前文件的最大课程引用计数
                             int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileName);
-                            //删除数据库中所有为当前文件名的数据
-                            DAOImpl.getInstance(mContext).deleteFile(fileName);
-                            //向数据库插入一条最新的当前刚下载完的文件信息
-                            DAOImpl.getInstance(mContext).insertFile(fileInfo);
+                            //更新当前文件的最大课程引用计数
+                            String courseName = fileInfo.getCourseName();//课程名
+                            //通知界面刷新
 
                         }
                     }
 
                     @Override
                     public void onResponseMain(String filePath, HttpInfo info) {
-                        LogUtil.d("====" + fileName, "下载结果：" + info.getRetDetail());
-                        if (fileInfo.getCourseName().equals(tvProgress.getTag())) {
-                            Log.e("===========", fileInfo.getCourseName());
-                        }
+                        LogUtil.e("====" + fileName, "下载结果：" + info.getRetDetail());
                     }
                 })
                 .build();

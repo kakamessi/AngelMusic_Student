@@ -19,23 +19,18 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         /**
-         * 此表定义五个字段
-         * file_name:文件名称
-         * file_path:文件存放地址
-         * file_url:文件下载地址
-         * course_name:从属哪一节课的课程名
+         * 此表定义4个字段
+         * file_name:文件名称(主键)
+         * file_path:文件存放的绝对路径
          * download_state:下载的状态:1下载完,0未完成
-         * quote_count:当前文件被几节课使用，方便删除时的判断
+         * quote_count:当前文件被几节课使用，方便删除时的判断，不为1的时候不能删除本地文件，只执行quote-1操作
          */
-        final String SQL_CREATE_TB = "create table " + TB_NAME_COURSE + "(_id integer primary key autoincrement," +
-                "file_name String," +
+        final String SQL_CREATE_TB = "create table " + TB_NAME_COURSE +
+                "(file_name String primary key," +
                 "file_path String," +
-                "file_url String," +
-                "course_name String," +
                 "download_state integer," +
                 "quote_count integer)";
         db.execSQL(SQL_CREATE_TB);
-
     }
 
     @Override

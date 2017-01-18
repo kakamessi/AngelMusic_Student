@@ -28,8 +28,8 @@ public class LoginManager {
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
-        okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name) + mContext.getResources().getString(R
+        okHttpUtil.doPostAsync(
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.test_name) + mContext.getResources().getString(R
                         .string.stu_login))
                         .addParam("machineCode", machineCode)
                         .addParam("classNo", classNo)
@@ -38,11 +38,10 @@ public class LoginManager {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
-                        Log.e("===jsonResult===", jsonResult);
                         if (info.isSuccessful()) {
                             stuInfo = GsonUtil.jsonToObject(jsonResult, StuInfo.class);//Gson解析
                             if (stuInfo.getCode() == 200) {
-                                isLoginSucceed.isSucceed();
+                                isLoginSucceed.isSucceed(stuInfo);
                             } else {
                                 isLoginSucceed.isFailed();
                             }
@@ -54,7 +53,7 @@ public class LoginManager {
 
     //回调接口
     public interface IsLoginSucceed {
-        void isSucceed();
+        void isSucceed(StuInfo stuInfo);
 
         void isFailed();
     }
