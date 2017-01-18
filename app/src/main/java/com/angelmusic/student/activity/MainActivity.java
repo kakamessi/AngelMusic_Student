@@ -1,7 +1,11 @@
 package com.angelmusic.student.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.Html;
@@ -18,7 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.bean.UnityInterface;
+import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
+import com.angelmusic.stu.utils.SendDataUtil;
 import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.SeatAdapter;
 import com.angelmusic.student.base.BaseActivity;
@@ -64,6 +71,13 @@ public class MainActivity extends BaseActivity {
         ApkManager.getInstance(this).checkVersionInfo();//检查版本更新
         initData();
         initView();
+        //initPiano();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
     }
 
     private void initView() {
@@ -72,6 +86,25 @@ public class MainActivity extends BaseActivity {
         tvBlackboard.setText(schoolName);
         tvSeatId.setText(Html.fromHtml("<u>" + seatId + "</u>"));
         tvConnectionStatus.setText(Html.fromHtml("<u>" + pianoConStatus + "</u>"));
+    }
+
+    protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
+    private void initPiano(){
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        filter.addAction(ACTION_USB_PERMISSION);
+        registerReceiver(mUsbReceiver, filter);
+        updateDevice();
+        connectDevice();
+    }
+    // 更新设备列表
+    public boolean updateDevice() {
+        return UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).update();
+    }
+    // 连接设备
+    public void connectDevice() {
+        UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).connect();
     }
 
     /**
@@ -274,4 +307,68 @@ public class MainActivity extends BaseActivity {
         super.sendMsg(str);
 
     }
+
+    private UnityInterface.OnUpdateListener updateListener;
+    public void stopConnect() {
+        UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).stopConnect();
+    }
+    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.i(TAG, "BroadcastReceiver-->" + action);
+            String status = null;
+            switch (action) {
+                case UsbManager.ACTION_USB_DEVICE_ATTACHED:
+                    status = "usb-insert";
+                    Log.i(TAG, "检测到有USB插口接入-->" + action);
+                    Toast.makeText(context, "检测到有USB插口接入", Toast.LENGTH_SHORT)
+                            .show();
+                    updateDevice();
+                    connectDevice();
+                    // updateDeviceList();
+                    if (updateListener != null) {
+                        updateListener.onUpdate();
+                    }
+                    break;
+                case UsbManager.ACTION_USB_DEVICE_DETACHED:
+                    status = "usb-discrete";
+                    Log.i(TAG, "USB线被拔出-->" + action);
+                    Toast.makeText(context, "USB线被拔出", Toast.LENGTH_SHORT).show();
+                    UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
+                    if (updateListener != null) {
+                        updateListener.onUpdate();
+                    }
+                    // clear();
+                    break;
+                case ACTION_USB_PERMISSION:
+
+                    boolean isconnect = false;
+                    // 判断用户点击的是取消还是确认
+                    if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED,
+                            false)) {
+                        Log.i(TAG, "连接权限被允许-->" + action);
+                        Toast.makeText(context, "连接权限被允许", Toast.LENGTH_SHORT)
+                                .show();
+                        isconnect = UsbDeviceInfo.getUsbDeviceInfo(
+                                MainActivity.this).getUsbDeviceConnection();
+
+                        Log.d(TAG, "连接-->" + isconnect);
+                    } else {
+                        stopConnect();
+                        Log.i(TAG, "连接权限被取消-->" + action);
+                    }
+                    status = isconnect ? "link-success" : "link-fail";
+                    break;
+            }
+            if (status != null) {
+
+                // 发送状态到unity
+                SendDataUtil.sendDataToUnity(UnityInterface.cameraName,
+                        UnityInterface.sendStatusAddress, status);
+
+            }
+        }
+    };
+
 }
