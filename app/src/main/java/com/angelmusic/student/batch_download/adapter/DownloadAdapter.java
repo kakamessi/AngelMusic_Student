@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.batch_download.db.DAOImpl;
@@ -83,7 +84,6 @@ public class DownloadAdapter extends BaseAdapter {
         }
         //计算下载进度百分比
         int progress = (int) (((float) downloadNum / (float) fileInfoList.get(position).size()) * 100);
-
         //设置显示的百分比
         holder.tvProgress.setText(progress + "%");
         //设置按钮的显示样式
@@ -148,7 +148,8 @@ public class DownloadAdapter extends BaseAdapter {
                     //查询文件是否被多个课程使用，若是则把quoteCount数减1，否则直接删除本地文件
                     for (FileInfo fileInfo : fileInfoList.get(position)) {
                         int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileInfo.getFileName());
-                        if (quoteCount == 1) {
+                        Log.e("======", fileInfo.getFileName() + "==" + quoteCount);
+                        if (quoteCount <= 1) {
                             //直接删除该文件并删除当前文件的数据库信息
                             boolean deleteFile = FileUtil.deleteFile(fileInfo.getFileParentPath() + fileInfo.getFileName());
                             if (deleteFile) {
@@ -157,7 +158,7 @@ public class DownloadAdapter extends BaseAdapter {
                                 holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);
                                 holder.tvProgress.setText(0 + "%");
                             }
-                        } else {
+                        } else if (quoteCount > 1) {
                             //更新当前文件数据库quoteCount值
                             DAOImpl.getInstance(mContext).updateQuoteCount(fileInfo.getFileName(), --quoteCount);
                         }
@@ -190,9 +191,11 @@ public class DownloadAdapter extends BaseAdapter {
                             LogUtil.e("====" + fileName, "下载进度：" + percent);
                             //每下载完一个文件更新一下界面显示的下载进度
                             //更新当前文件的下载状态
-                            DAOImpl.getInstance(mContext).updateDownloadState(fileInfo.getFileName(), 1);
-                            //查询数据库中当前文件的最大课程引用计数
+                            DAOImpl.getInstance(mContext).updateDownloadState(fileName, 1);
+                            //查询数据库中当前文件的引用计数
                             int quoteCount = DAOImpl.getInstance(mContext).queryQuoteCount(fileName);
+                            //更新当前文件的引用计数
+                            DAOImpl.getInstance(mContext).updateQuoteCount(fileName, ++quoteCount);
                             //更新当前文件的最大课程引用计数
                             String courseName = fileInfo.getCourseName();//课程名
                             //刷新界面
