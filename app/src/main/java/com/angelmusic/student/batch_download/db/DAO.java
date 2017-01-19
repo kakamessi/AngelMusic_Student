@@ -1,26 +1,29 @@
 package com.angelmusic.student.batch_download.db;
 
-import com.angelmusic.student.batch_download.infobean.FileInfo;
-
 /**
  * Created by fei on 2017/1/16.
  * 数据库操作类接口
  */
 
 public interface DAO {
-    public void insertFile(FileInfo fileInfo);
+    public void insertFile(String fileName, String courseName, int downloadState);
 
     public void deleteFile(String fileName);
 
+    public void deleteFile(String fileName, String courseName);
+
     public void updateDownloadState(String fileName, int downloadState);
 
-    public void updateQuoteCount(String fileName, int quoteCount);
+    public boolean isFileNameExist(String fileName);
 
-    public int queryQuoteCount(String fileName);
+    public boolean isCourseNameExist(String courseName);
 
-    public String queryFilePath(String fileName);
+    public boolean isCourseNameExist(String fileName, String courseName);
 
-    public boolean queryFileExist(String fileName);
+    public boolean isDownloadOk(String fileName);
 
-    public boolean queryDownloadState(String fileName);
+    public boolean isDownloadOk(String fileName, String courseName);
+
+    public boolean isCanDeleteLocalFile(String fileName);
+
 }

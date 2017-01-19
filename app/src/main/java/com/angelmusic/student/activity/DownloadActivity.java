@@ -2,13 +2,12 @@ package com.angelmusic.student.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.angelmusic.student.R;
-import com.angelmusic.student.batch_download.adapter.DownloadAdapter;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.batch_download.adapter.DownloadAdapter;
 import com.angelmusic.student.batch_download.infobean.FileInfo;
 import com.angelmusic.student.utils.SDCardUtil;
 
@@ -26,13 +25,11 @@ public class DownloadActivity extends BaseActivity {
 
     @BindView(R.id.ib_back)
     ImageButton ibBack;
-    @BindView(R.id.btn_dload_all)
-    Button btnDloadAll;
     @BindView(R.id.lv_course)
     ListView lvCourse;
     private DownloadAdapter adapter;
     //模拟数据
-    private List<List<FileInfo>> fileInfoList;
+    private List<List<FileInfo>> fileInfoLists;
     private String[] urls1 = new String[]{
             "http://pic29.nipic.com/20130524/12835793_143405446113_2.jpg",//===1
             "http://www.qqpk.cn/article/uploadfiles/201111/20111108212457686.jpg",//===2
@@ -67,12 +64,12 @@ public class DownloadActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initData();
-        adapter = new DownloadAdapter(this, fileInfoList);
+        adapter = new DownloadAdapter(this, fileInfoLists, lvCourse);
         lvCourse.setAdapter(adapter);
     }
 
     private void initData() {
-        fileInfoList = new ArrayList<>();
+        fileInfoLists = new ArrayList<>();
         //假数据，共3节课，每节课中有重复的文件
         //第一节课
         List<FileInfo> listItem1 = new ArrayList<>();
@@ -87,9 +84,10 @@ public class DownloadActivity extends BaseActivity {
         for (int j = 0; j < 8; j++) {
             listItem3.add(new FileInfo("第三节课", getFileName(urls3[j]), urls3[j], SDCardUtil.getAppFilePath(this) + "COURSE" + File.separator, 0, 0));
         }
-        fileInfoList.add(listItem1);
-        fileInfoList.add(listItem2);
-        fileInfoList.add(listItem3);
+        fileInfoLists.add(null);//第一条设置成null
+        fileInfoLists.add(listItem1);
+        fileInfoLists.add(listItem2);
+        fileInfoLists.add(listItem3);
     }
 
     //切割url获取文件名，带后缀
@@ -110,25 +108,8 @@ public class DownloadActivity extends BaseActivity {
         TAG = "==DownloadActivity==";
     }
 
-    @OnClick({R.id.ib_back, R.id.btn_dload_all})
+    @OnClick({R.id.ib_back})
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ib_back:
-                finish();
-                break;
-            case R.id.btn_dload_all:
-                CharSequence text = btnDloadAll.getText();
-                if (text.equals("全部下载")) {
-                    btnDloadAll.setText("全部暂停");
-                    btnDloadAll.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.down_all_btn_clicked, 0, 0, 0);
-                } else if (text.equals("全部删除")) {
-                    btnDloadAll.setText("全部下载");
-                    btnDloadAll.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.delete_icon, 0, 0, 0);
-                } else if (text.equals("全部暂停")) {
-                    btnDloadAll.setText("全部下载");
-                    btnDloadAll.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.down_all_btn_normal, 0, 0, 0);
-                }
-                break;
-        }
+        finish();
     }
 }

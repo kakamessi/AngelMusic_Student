@@ -20,16 +20,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         /**
          * 此表定义4个字段
-         * file_name:文件名称(主键)
-         * file_path:文件存放的绝对路径
+         * file_name:文件名称
          * download_state:下载的状态:1下载完,0未完成
-         * quote_count:当前文件被几节课使用，方便删除时的判断，不为1的时候不能删除本地文件，只执行quote-1操作
+         * course_name:课程名
          */
         final String SQL_CREATE_TB = "create table " + TB_NAME_COURSE +
-                "(file_name String primary key," +
-                "file_path String," +
-                "download_state integer," +
-                "quote_count integer)";
+                "(_id integer primary key autoincrement," +
+                "file_name String ," +
+                "course_name String," +
+                "download_state)";
         db.execSQL(SQL_CREATE_TB);
     }
 
