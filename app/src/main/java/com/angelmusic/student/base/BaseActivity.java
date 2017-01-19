@@ -34,6 +34,7 @@ import butterknife.ButterKnife;
 
 import static android.R.attr.name;
 import static android.R.attr.path;
+import static android.R.attr.type;
 
 /**
  * Activity的基类
@@ -81,13 +82,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void handleMsg(Message msg) {
 
         String str = msg.obj.toString();
-        String type = str.substring(0, 1);
+        String[] ac = str.split("\\|");
         Log.e(TAG,"消息入口:  ---------- " + str);
 
-        if (ActionType.ACTION_PREPARE.equals(type)) {
+        if (ActionType.ACTION_PREPARE.equals(ac[0])) {
+
             //开始进行常规课
-            String namePart = str.split("\\|")[1];
-            String[] names = namePart.split("&");
+            String[] names = ac[1].split("&");
             String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
             for(String name: names){
                 App.getApplication().getCd().getFiles().put(name,sdDir + name);

@@ -18,6 +18,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
@@ -29,6 +30,8 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.R.attr.path;
 
 public class VideoActivity extends BaseActivity {
 
@@ -72,7 +75,7 @@ public class VideoActivity extends BaseActivity {
 
     @Override
     protected void setTAG() {
-        TAG = "==VideoActivity==";
+        TAG = "VideoActivity";
     }
 
     @OnClick()
@@ -89,73 +92,54 @@ public class VideoActivity extends BaseActivity {
         surfaceView.getHolder().addCallback(callback);
 
         blackTv.setVisibility(View.VISIBLE);
-
+        blackTv.setText("准备中");
+        surfaceView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     protected void handleMsg(Message msg) {
 
         String str = msg.obj.toString();
-        String type = str.substring(0, 1);
         String[] ac = str.split("\\|");
+        Log.e(TAG,"消息入口:  ---------- " + str);
 
         //播放，切换视频
-        if (ActionType.ACTION_PLAY.equals(type)) {
+        if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
             if(ac[1].equals("0")){
+                Log.e(TAG,"动作:  ---------- " + "投大屏");
+                stop();
                 blackTv.setVisibility(View.VISIBLE);
+                blackTv.setText("请看大屏幕");
+                surfaceView.setVisibility(View.INVISIBLE);
             }else{
                 blackTv.setVisibility(View.INVISIBLE);
+                surfaceView.setVisibility(View.VISIBLE);
                 String path = cd.getFiles().get(ac[2]);
+
                 switchVedio(path);
+//              currentPath = path;
+//              play(0);
+
+                Log.e(TAG,"动作:  ---------- " + "投学生屏开始播放视频：" + path);
             }
 
             //暂停继续播放视频
-        } else if (ActionType.ACTION_PAUSE_RESUME.equals(type)) {
+        } else if (ActionType.ACTION_PAUSE_RESUME.equals(ac[0])) {
 
-            if(ac[1].equals(2)) {
+            if(ac[1].equals("2")) {
+
+                Log.e(TAG,"动作:  ---------- " + "下课：");
                 this.finish();
 
             }else{
+
                 pause();
+                Log.e(TAG,"动作:  ---------- " + "暂停继续：");
             }
 
         }
 
-
-    }
-
-    protected void dialog7() {
-
-        LayoutInflater inflater = getLayoutInflater();
-
-        View layout = inflater.inflate(R.layout.dialog_score, null);
-
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-        PopupWindow window = new PopupWindow(layout, 1221, 1134);
-        // TODO: 2016/5/17 设置背景颜色
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
-        // TODO: 2016/5/17 设置可以获取焦点
-        window.setFocusable(true);
-        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
-        window.setOutsideTouchable(true);
-        // TODO：更新popupwindow的状态
-        window.update();
-        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
-        window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
-
-//        LayoutInflater inflater = getLayoutInflater();
-//        View layout = inflater.inflate(R.layout.dialog_score, null);
-//        new AlertDialog.Builder(this).setView(layout).show();
-
-    }
-
-    public void OpenVolume() {
-
-        AudioManager audioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
-        mediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM), audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
-        mediaPlayer.start();
 
     }
 
@@ -180,7 +164,6 @@ public class VideoActivity extends BaseActivity {
                 currentPosition = 0;
             }
 
-            //initVideo(0);
         }
 
         @Override
@@ -215,29 +198,6 @@ public class VideoActivity extends BaseActivity {
 
         }
     };
-
-    private String setPlayPath() {
-        String result = "";
-
-//        int rr = new Random().nextInt(1);
-//        if (rr == 0) {
-//            result = "/sdcard/ykzzldx.mp4";
-//        } else if(rr ==1){
-//            result = "/sdcard/hehe.mp4";
-//        }else {
-//            result = "/sdcard/ffff.mp4";
-//        }
-
-        if (swich % 2 == 0) {
-            result = "/sdcard/ykzzldx.mp4";
-        } else if (swich % 2 == 1) {
-            result = "/sdcard/hehe.mp4";
-        }
-        swich++;
-
-        currentPath = result;
-        return result;
-    }
 
     /**
      * 切换视频
@@ -308,8 +268,30 @@ public class VideoActivity extends BaseActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtil.e("--------------------------CAT  play(final int msec)   ");
+            LogUtil.e("视频播放Exception：                               " + e.toString());
         }
+    }
+
+    /**
+     * 暂停或继续
+     */
+    protected void pause() {
+
+        if(mediaPlayer==null){
+            return;
+        }
+
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+
+            mediaPlayer.pause();
+            return;
+
+        } else {
+
+            mediaPlayer.start();
+            return;
+        }
+
     }
 
     /*
@@ -342,23 +324,61 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    /**
-     * 暂停或继续
-     */
-    protected void pause() {
+    private String setPlayPath() {
+        String result = "";
 
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//        int rr = new Random().nextInt(1);
+//        if (rr == 0) {
+//            result = "/sdcard/ykzzldx.mp4";
+//        } else if(rr ==1){
+//            result = "/sdcard/hehe.mp4";
+//        }else {
+//            result = "/sdcard/ffff.mp4";
+//        }
 
-            mediaPlayer.pause();
-            return;
-
-        } else {
-
-            mediaPlayer.start();
-            return;
+        if (swich % 2 == 0) {
+            result = "/sdcard/ykzzldx.mp4";
+        } else if (swich % 2 == 1) {
+            result = "/sdcard/hehe.mp4";
         }
+        swich++;
+
+        currentPath = result;
+        return result;
+    }
+
+    protected void dialog7() {
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        View layout = inflater.inflate(R.layout.dialog_score, null);
+
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
+        PopupWindow window = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 设置背景颜色
+        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
+        // TODO: 2016/5/17 设置可以获取焦点
+        window.setFocusable(true);
+        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
+        window.setOutsideTouchable(true);
+        // TODO：更新popupwindow的状态
+        window.update();
+        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
+        window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
+
+//        LayoutInflater inflater = getLayoutInflater();
+//        View layout = inflater.inflate(R.layout.dialog_score, null);
+//        new AlertDialog.Builder(this).setView(layout).show();
 
     }
 
+    public void OpenVolume() {
+
+        AudioManager audioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
+        mediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM), audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
+        mediaPlayer.start();
+
+    }
 
 }

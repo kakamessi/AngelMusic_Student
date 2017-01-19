@@ -29,7 +29,7 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    private CourseData cd = null;
+    private CourseData cd = new CourseData();
     private static App myApplication = null;
     public static PatchManager mPatchManager;
     private final String PATCH_URL = "";//下载补丁的地址
