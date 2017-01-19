@@ -18,17 +18,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.activity.DownloadActivity;
 import com.angelmusic.student.activity.MainActivity;
 import com.angelmusic.student.activity.VideoActivity;
 import com.angelmusic.student.core.ActionDispatcher;
+import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
+
+import static android.R.attr.name;
+import static android.R.attr.path;
 
 /**
  * Activity的基类
@@ -77,11 +82,17 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         String str = msg.obj.toString();
         String type = str.substring(0, 1);
+        Log.e(TAG,"消息入口:  ---------- " + str);
 
-        if ("".equals(type)) {
+        if (ActionType.ACTION_PREPARE.equals(type)) {
             //开始进行常规课
-
-
+            String namePart = str.split("\\|")[1];
+            String[] names = namePart.split("&");
+            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
+            for(String name: names){
+                App.getApplication().getCd().getFiles().put(name,sdDir + name);
+                Log.e(TAG,"filepath: " + sdDir + name);
+            }
 
             startActivity(new Intent(this, VideoActivity.class));
         }

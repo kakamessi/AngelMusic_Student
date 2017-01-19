@@ -19,7 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.angelmusic.student.R;
+import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -38,7 +40,7 @@ public class VideoActivity extends BaseActivity {
 
 
     //课程信息
-    private CourseData cd = null;
+    private CourseData cd = App.getApplication().getCd();
     private String currentPath = "";
     private File currentfile = null;
 
@@ -88,32 +90,35 @@ public class VideoActivity extends BaseActivity {
 
         blackTv.setVisibility(View.VISIBLE);
 
-        setPlayPath();
     }
 
     @Override
     protected void handleMsg(Message msg) {
-        super.handleMsg(msg);
 
         String str = msg.obj.toString();
         String type = str.substring(0, 1);
+        String[] ac = str.split("\\|");
 
-        Toast.makeText(VideoActivity.this, str, 0).show();
+        //播放，切换视频
+        if (ActionType.ACTION_PLAY.equals(type)) {
 
-        if ("".equals(type)) {
-            //
+            if(ac[1].equals("0")){
+                blackTv.setVisibility(View.VISIBLE);
+            }else{
+                blackTv.setVisibility(View.INVISIBLE);
+                String path = cd.getFiles().get(ac[2]);
+                switchVedio(path);
+            }
 
-        } else if ("".equals(type)) {
-            play(0);
+            //暂停继续播放视频
+        } else if (ActionType.ACTION_PAUSE_RESUME.equals(type)) {
 
-        } else if ("".equals(type)) {
-            pause();
+            if(ac[1].equals(2)) {
+                this.finish();
 
-        } else if ("".equals(type)) {
-            switchVedio();
-
-        } else if ("".equals(type)) {
-            this.finish();
+            }else{
+                pause();
+            }
 
         }
 
@@ -235,6 +240,18 @@ public class VideoActivity extends BaseActivity {
     }
 
     /**
+     * 切换视频
+     */
+    protected void switchVedio(String path) {
+        currentPath = path;
+        stop();
+
+        isPlaying = false;
+        play(0);
+
+    }
+
+    /**
      * 开始播放
      *
      * @param msec 播放初始位置
@@ -322,18 +339,6 @@ public class VideoActivity extends BaseActivity {
         isPlaying = false;
         play(0);
 
-
-    }
-
-    /**
-     * 切换视频
-     */
-    protected void switchVedio() {
-        setPlayPath();
-        stop();
-
-        isPlaying = false;
-        play(0);
 
     }
 

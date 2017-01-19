@@ -9,6 +9,16 @@ import com.angelmusic.student.utils.Utils;
 
 public class ActionType {
 
+    public static final String GET_PAD_CODE = "1";
+
+    public static final String GET_PAD_NUM = "2";
+
+    public static final String ACTION_PREPARE = "3";
+
+    public static final String ACTION_PLAY = "4";
+
+    public static final String ACTION_PAUSE_RESUME = "5";
+
 
     public static String getMsg(){
 
