@@ -129,6 +129,23 @@ public class AndroidDispatcher implements IDispatcher{
     }
 
 
+    public void connectTeacher(String str,String host, int port, AbsReceiver mRever){
+
+        try {
+            socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
+
+        } catch (Exception e) {
+
+            init(host,port,mRever);
+            try {
+                Thread.sleep(1500);
+                socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
+            } catch (Exception e1) {
+
+                e1.printStackTrace();
+            }
+        }
+    }
 
 
 

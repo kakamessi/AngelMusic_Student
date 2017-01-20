@@ -3,9 +3,6 @@ package com.angelmusic.stu.server.socket.udp;
 import android.os.Handler;
 import android.util.Log;
 
-import com.angelmusic.stu.network.model.ActionType;
-import com.angelmusic.stu.network.u3d.AndroidDispatcher;
-import com.angelmusic.stu.server.socket.constant.Constant;
 import com.angelmusic.stu.server.socket.constant.NetParams;
 
 import java.net.DatagramPacket;
@@ -44,8 +41,6 @@ public class UDPServerRecThread extends Thread{
 
                 String quest_ip = packet.getAddress().toString().substring(1);
                 Log.e("UDPRec1Thread", quest_ip + "");
-
-                Thread.sleep(500);
 
                 ucc.sendSycMsg();
 
