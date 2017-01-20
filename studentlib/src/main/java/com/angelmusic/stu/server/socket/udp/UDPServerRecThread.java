@@ -1,0 +1,61 @@
+package com.angelmusic.stu.server.socket.udp;
+
+import android.os.Handler;
+import android.util.Log;
+
+import com.angelmusic.stu.network.model.ActionType;
+import com.angelmusic.stu.network.u3d.AndroidDispatcher;
+import com.angelmusic.stu.server.socket.constant.Constant;
+import com.angelmusic.stu.server.socket.constant.NetParams;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+/**
+ * Created by DELL on 2017/1/20.
+ */
+
+public class UDPServerRecThread extends Thread{
+
+
+    private Handler handler;
+
+    public UDPServerRecThread(Handler handler) {
+        this.handler = handler;
+    }
+
+    @Override
+    public void run() {
+
+        DatagramSocket socket = null;
+        try {
+            // 1、创建套接字
+            socket = new DatagramSocket(NetParams.TEACHER_UDP_PORT);
+
+            // 2、创建数据报
+            byte[] data = new byte[1024];
+            DatagramPacket packet = new DatagramPacket(data, data.length);
+            UdpServerClient ucc = new UdpServerClient();
+
+            // 3、一直监听端口，接收数据包
+            while (true) {
+
+                socket.receive(packet);
+
+                String quest_ip = packet.getAddress().toString().substring(1);
+                Log.e("UDPRec1Thread", quest_ip + "");
+
+                Thread.sleep(500);
+
+                ucc.sendSycMsg();
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+}

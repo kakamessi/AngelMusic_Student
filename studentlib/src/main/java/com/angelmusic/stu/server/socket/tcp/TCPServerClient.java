@@ -9,6 +9,7 @@ import android.os.Handler;
 import com.angelmusic.stu.server.receiver.AndroidReceiver;
 import com.angelmusic.stu.server.receiver.DefaultReceiver;
 import com.angelmusic.stu.server.socket.constant.Constant;
+import com.angelmusic.stu.server.socket.udp.UDPServerRecThread;
 
 import java.net.ServerSocket;
 
@@ -48,6 +49,9 @@ public class TCPServerClient{
         Thread th = new Thread(ar);
         th.setName("AcpThread_kaka");
         th.start();
+
+        //启动udp监听
+        new UDPServerRecThread(null).start();
 
     }
 

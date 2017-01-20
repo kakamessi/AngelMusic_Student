@@ -1,6 +1,6 @@
 package com.angelmusic.stu.server.socket.u3d;
 
-import com.angelmusic.stu.server.socket.constant.NetParams;
+import com.angelmusic.stu.network.model.NetParams;
 import com.angelmusic.stu.server.socket.udp.UDPRecThread;
 import com.angelmusic.stu.server.socket.udp.UDPWrite;
 

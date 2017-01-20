@@ -2,9 +2,9 @@ package com.angelmusic.stu.network.socket.udp;
 
 import android.os.Handler;
 
-import com.angelmusic.stu.network.model.NetParams;
 import com.angelmusic.stu.network.socket.AndroidReceiver;
 import com.angelmusic.stu.network.socket.DefaultReceiver;
+import com.angelmusic.stu.server.socket.constant.NetParams;
 
 import java.net.DatagramPacket;
 
