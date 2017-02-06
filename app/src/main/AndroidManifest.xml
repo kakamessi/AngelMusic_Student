@@ -55,13 +55,13 @@
         <!-- 课程下载界面 -->
         <activity
             android:name=".activity.DownloadActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape">
         </activity>
         <!-- 课程下载测试界面 -->
         <activity
             android:name=".activity.DownloadTestActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape">
         </activity>
     </application>

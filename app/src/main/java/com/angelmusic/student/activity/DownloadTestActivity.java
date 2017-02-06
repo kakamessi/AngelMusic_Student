@@ -1,5 +1,6 @@
 package com.angelmusic.student.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -77,7 +78,7 @@ public class DownloadTestActivity extends BaseActivity {
         for (int j = 0; j < 9; j++) {
             listItem1.add(new FileInfo("第一节课", getFileName(urls1[j]), urls1[j], SDCardUtil.getAppFilePath(this) + "COURSE" + File.separator, 0, 0));
         }
-        List<FileInfo> listItem2 = new ArrayList<> ();
+        List<FileInfo> listItem2 = new ArrayList<>();
         for (int j = 0; j < 6; j++) {
             listItem2.add(new FileInfo("第二节课", getFileName(urls2[j]), urls2[j], SDCardUtil.getAppFilePath(this) + "COURSE" + File.separator, 0, 0));
         }
@@ -118,6 +119,6 @@ public class DownloadTestActivity extends BaseActivity {
 
     @OnClick({R.id.ib_back})
     public void onClick(View view) {
-        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -1,5 +1,6 @@
 package com.angelmusic.student.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -130,6 +131,6 @@ public class DownloadActivity extends BaseActivity {
 
     @OnClick({R.id.ib_back})
     public void onClick(View view) {
-        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

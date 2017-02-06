@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
@@ -27,12 +26,11 @@ import com.okhttplib.callback.ProgressCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.id.list;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**
  * Created by fei on 2017/1/11.
- * 注意:传入的courseDataList的第一条数据需要设置为null
+ * 注意:传入的courseDataList的第一条数据需要设置为null,用于显示全部下载的item
  */
 
 public class DownloadAdapter extends BaseAdapter {
@@ -84,6 +82,7 @@ public class DownloadAdapter extends BaseAdapter {
             boolean allDloadOk = isAllDloadOk(courseDataList);//获取是否全部下载完了
             if (allDloadOk) {
                 firstHolder.btnDloadAll.setClickable(true);
+                firstHolder.btnDloadAll.setTag("clickable");
                 firstHolder.btnDloadAll.setText("全部删除");
                 firstHolder.btnDloadAll.setBackgroundResource(R.drawable.delete_all_btn_selector);
             } else {
@@ -103,10 +102,12 @@ public class DownloadAdapter extends BaseAdapter {
                 }
                 if (isNotExist || isHasPause) {
                     firstHolder.btnDloadAll.setClickable(true);
+                    firstHolder.btnDloadAll.setTag("clickable");
                     firstHolder.btnDloadAll.setText("全部下载");
                     firstHolder.btnDloadAll.setBackgroundResource(R.drawable.download_all_btn_selector);
                 } else {
                     firstHolder.btnDloadAll.setClickable(false);
+                    firstHolder.btnDloadAll.setTag("unclickable");
                     firstHolder.btnDloadAll.setText("全部下载");
                     firstHolder.btnDloadAll.setBackgroundResource(R.drawable.download_all_btn_bg_gray);
                 }
@@ -116,7 +117,8 @@ public class DownloadAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     refreshProgress();
                     CharSequence text = firstHolder.btnDloadAll.getText();
-                    if (text.equals("全部下载")) {
+                    String tag = (String) firstHolder.btnDloadAll.getTag();
+                    if (text.equals("全部下载") && "clickable".equals(tag)) {
                         for (int i = 1; i < courseDataList.size(); i++) {
                             startDownload(courseDataList.get(i));
                         }
@@ -162,6 +164,7 @@ public class DownloadAdapter extends BaseAdapter {
                 holder.tvProgress.setTextColor(Color.parseColor("#888888"));
             } else if (progress > 0 && progress < 100) {
                 if (DAO2Impl.getInstance(mContext).queryIsExist(courseName)) {
+                    boolean b = DAO2Impl.getInstance(mContext).queryIsLoading(courseName);
                     if (DAO2Impl.getInstance(mContext).queryIsLoading(courseName)) {
                         holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);
                     } else {
@@ -232,11 +235,8 @@ public class DownloadAdapter extends BaseAdapter {
      */
     private int getItemProgress(List<FileInfo> fileInfoList) {
         int downloadNum = 0;//当前课程已经下载的文件数量
-        Log.e("---fileInfoList---", fileInfoList.size() + "");
         for (FileInfo fileInfo : fileInfoList) {
-            LogUtil.e("===", fileInfo.getFileName() + "--" + fileInfo.getCourseName());
             boolean isDownloadOk = DAOImpl.getInstance(mContext).isDownloadOk(fileInfo.getFileName(), fileInfo.getCourseName());
-            Log.e("=isDownloadOk=", isDownloadOk + "");
             if (isDownloadOk) {
                 ++downloadNum;
             }
@@ -328,9 +328,8 @@ public class DownloadAdapter extends BaseAdapter {
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override
                     public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
-                        Log.e("-----------", fileName + "=" + percent);
+                        Log.e("----percent----", "="+percent);
                         if (done) {
-                            Log.e("---------------", "---------------100---------------");
                             //更新所有文件名为fileName的条目的下载状态
                             DAOImpl.getInstance(mContext).updateDownloadState(fileName, "1");
                             //刷新界面

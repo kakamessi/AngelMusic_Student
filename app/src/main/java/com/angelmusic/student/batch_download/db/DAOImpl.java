@@ -140,7 +140,6 @@ public class DAOImpl implements DAO {
     public synchronized boolean isDownloadOk(String fileName, String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ? and course_name = ?", new String[]{fileName, courseName});
-        Log.e("-cursor--02--", cursor.getCount() + "");
         boolean isDownloadOk = false;
         if (cursor.moveToNext()) {
             String downloadState = cursor.getString(cursor.getColumnIndex("download_state"));
