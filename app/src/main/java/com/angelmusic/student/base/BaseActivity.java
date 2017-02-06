@@ -163,8 +163,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 停止旋转圈
      */
     public void hideLoadingDialog() {
-        ivLoading.setVisibility(View.GONE);
-        ivLoading.clearAnimation();
+        if(ivLoading!=null){
+            ivLoading.setVisibility(View.GONE);
+            ivLoading.clearAnimation();
+        }
     }
 }
 

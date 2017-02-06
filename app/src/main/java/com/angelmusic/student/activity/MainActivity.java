@@ -30,8 +30,6 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.SeatAdapter;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.infobean.SeatDataInfo;
-import com.angelmusic.student.login.LoginManager;
-import com.angelmusic.student.login.StuInfo;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;

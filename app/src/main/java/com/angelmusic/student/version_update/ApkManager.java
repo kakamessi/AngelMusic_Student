@@ -13,10 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
-import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
@@ -61,7 +59,7 @@ public class ApkManager {
      * 请求服务器检查是否需要更新
      */
     public void checkVersionInfo() {
-        ((BaseActivity) mContext).showLoadingDialog();//显示加载进度圆圈
+//        ((BaseActivity) mContext).showLoadingDialog();//显示加载进度圆圈
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
@@ -74,7 +72,7 @@ public class ApkManager {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
-                        ((BaseActivity) mContext).hideLoadingDialog();//关闭旋转进度圆
+//                        ((BaseActivity) mContext).hideLoadingDialog();//关闭旋转进度圆
                         if (info.isSuccessful()) {
                             apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);//Gson解析
                             if (apkVersionInfo.getCode() == 200) {
