@@ -15,4 +15,8 @@
     <string name="idle_text">请看大屏幕</string>
     <!--首页背景图信息接口-->
     <string name="home_bg">/client/waitPic/picInfo.json</string>
+    <!--课程信息接口-->
+    <string name="course_info">/bm/admin/course/findCoursePartjson.json</string>
+    <!--要拼接的文件下载地址使用的部分-->
+    <string name="course_part_path">未定</string>
 </resources>

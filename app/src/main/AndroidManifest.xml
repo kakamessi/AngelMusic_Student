@@ -57,11 +57,12 @@
             android:name=".activity.DownloadActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        </activity>
+        <!-- 课程下载测试界面 -->
+        <activity
+            android:name=".activity.DownloadTestActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

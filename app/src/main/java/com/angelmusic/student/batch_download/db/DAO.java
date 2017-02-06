@@ -6,24 +6,22 @@ package com.angelmusic.student.batch_download.db;
  */
 
 public interface DAO {
-    public void insertFile(String fileName, String courseName, int downloadState);
+     void insertFile(String fileName, String courseName, String downloadState);
 
-    public void deleteFile(String fileName);
+     void deleteFile(String fileName, String courseName);
 
-    public void deleteFile(String fileName, String courseName);
+     void updateDownloadState(String fileName, String downloadState);
 
-    public void updateDownloadState(String fileName, int downloadState);
+     boolean isFileNameExist(String fileName);
 
-    public boolean isFileNameExist(String fileName);
+     boolean isCourseNameExist(String courseName);
 
-    public boolean isCourseNameExist(String courseName);
+     boolean isCourseNameExist(String fileName, String courseName);
 
-    public boolean isCourseNameExist(String fileName, String courseName);
+     boolean isDownloadOk(String fileName);
 
-    public boolean isDownloadOk(String fileName);
+     boolean isDownloadOk(String fileName, String courseName);
 
-    public boolean isDownloadOk(String fileName, String courseName);
-
-    public boolean isCanDeleteLocalFile(String fileName);
+     boolean isCanDeleteLocalFile(String fileName);
 
 }

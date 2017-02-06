@@ -145,7 +145,7 @@ public class CustomCircleProgress extends ProgressBar {
         if (mStatus == Status.Start) {
             //绘制下载的图标
             mPaint.setFilterBitmap(true);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_all_icon);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_all_btn_clicked);
             Rect rectSrc = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//位置
             Rect rectDst = new Rect(0, 0, 2 * mRadius, 2 * mRadius);//区域
             canvas.drawBitmap(bitmap, rectSrc, rectDst, mPaint);

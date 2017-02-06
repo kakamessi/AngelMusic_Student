@@ -202,7 +202,7 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ib_download:
                 //跳转到下载页
-                startActivity(new Intent(MainActivity.this, DownloadActivity.class));
+                startActivity(new Intent(MainActivity.this, DownloadTestActivity.class));
                 break;
             case R.id.tv_wifi_name:
                 //预留，后续可添加无网络时点击跳转到设置网络

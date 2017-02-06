@@ -31,14 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:background="@null"
-            android:drawableLeft="@mipmap/down_all_btn_normal"
-            android:drawablePadding="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/download_all_btn_selector"
             android:gravity="center"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:text="全部下载"
-            android:textColor="#888888"
-            android:textSize="26sp"/>
+            android:textColor="#ffffff"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 

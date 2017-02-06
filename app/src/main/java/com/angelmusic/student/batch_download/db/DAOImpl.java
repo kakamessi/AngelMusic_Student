@@ -14,7 +14,7 @@ import com.angelmusic.student.utils.LogUtil;
 
 public class DAOImpl implements DAO {
     private DBHelper dbHelper;
-    private static DAOImpl mThreadDAOImpl;
+    private static DAOImpl mDAOImpl;
 
     public DAOImpl(Context context) {
         dbHelper = new DBHelper(context);
@@ -26,35 +26,24 @@ public class DAOImpl implements DAO {
      * @param mContext 上下文对象
      */
     public synchronized static DAOImpl getInstance(Context mContext) {
-        if (null == mThreadDAOImpl) {
+        if (null == mDAOImpl) {
             synchronized (DAOImpl.class) {
-                if (null == mThreadDAOImpl) {
-                    mThreadDAOImpl = new DAOImpl(mContext);
+                if (null == mDAOImpl) {
+                    mDAOImpl = new DAOImpl(mContext);
                 }
             }
         }
-        return mThreadDAOImpl;
+        return mDAOImpl;
     }
 
     /**
      * 插入一条新数据
      */
     @Override
-    public synchronized void insertFile(String fileName, String courseName, int downloadState) {
+    public synchronized void insertFile(String fileName, String courseName, String downloadState) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.execSQL("insert into tb_course(file_name,course_name,download_state) values(?,?,?)",
                 new Object[]{fileName, courseName, downloadState});
-        Log.e("=====", fileName + "=插入成功==" + courseName + "==" + downloadState);
-        db.close();
-    }
-
-    /**
-     * 删除所有file_name = fileName的数据
-     */
-    @Override
-    public synchronized void deleteFile(String fileName) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.execSQL("delete from tb_course where file_name = ?", new Object[]{fileName});
         db.close();
     }
 
@@ -62,7 +51,7 @@ public class DAOImpl implements DAO {
      * 删除所有file_name=fileName并且course_name=courseName的数据
      */
     @Override
-    public void deleteFile(String fileName, String courseName) {
+    public synchronized void deleteFile(String fileName, String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.execSQL("delete from tb_course where file_name = ? and course_name = ?",
                 new Object[]{fileName, courseName});
@@ -73,7 +62,7 @@ public class DAOImpl implements DAO {
      * 将所有file_name=fileName的download_state的状态设置为downloadState
      */
     @Override
-    public void updateDownloadState(String fileName, int downloadState) {
+    public synchronized void updateDownloadState(String fileName, String downloadState) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         ContentValues values = new ContentValues();
@@ -88,7 +77,7 @@ public class DAOImpl implements DAO {
      * 查询是否存在file_name=fileName的条目
      */
     @Override
-    public boolean isFileNameExist(String fileName) {
+    public synchronized boolean isFileNameExist(String fileName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
         boolean isExist = false;
@@ -96,15 +85,13 @@ public class DAOImpl implements DAO {
             isExist = true;
         }
         db.close();
-        LogUtil.e("==isExist==", "=" + isExist);
         return isExist;
     }
 
     @Override
-    public boolean isCourseNameExist(String courseName) {
+    public synchronized boolean isCourseNameExist(String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where course_name = ?", new String[]{courseName});
-        LogUtil.e("==cursor.getCount()===", "isCourseNameExist=" + cursor.getCount());
         boolean isExist = false;
         if (cursor.moveToNext()) {
             isExist = true;
@@ -117,7 +104,7 @@ public class DAOImpl implements DAO {
      * 查询file_name=fileName并且course_name=courseName的条目是否存在
      */
     @Override
-    public boolean isCourseNameExist(String fileName, String courseName) {
+    public synchronized boolean isCourseNameExist(String fileName, String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ? and course_name = ?", new String[]{fileName, courseName});
         boolean isExist = false;
@@ -132,14 +119,13 @@ public class DAOImpl implements DAO {
      * 查询file_name=fileName的条目中是否有下载完的
      */
     @Override
-    public boolean isDownloadOk(String fileName) {
+    public synchronized boolean isDownloadOk(String fileName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
-        Log.e("-cursor--01--", cursor.getCount() + "");
         boolean isDownloadOk = false;
         while (cursor.moveToNext()) {
-            int downloadState = cursor.getInt(cursor.getColumnIndex("download_state"));
-            if (downloadState == 1) {
+            String downloadState = cursor.getString(cursor.getColumnIndex("download_state"));
+            if ("1".equals(downloadState)) {
                 isDownloadOk = true;
             }
         }
@@ -151,14 +137,14 @@ public class DAOImpl implements DAO {
      * 查询file_name=fileName并且course_name=courseName的条目是否有下载完
      */
     @Override
-    public boolean isDownloadOk(String fileName, String courseName) {
+    public synchronized boolean isDownloadOk(String fileName, String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ? and course_name = ?", new String[]{fileName, courseName});
         Log.e("-cursor--02--", cursor.getCount() + "");
         boolean isDownloadOk = false;
         if (cursor.moveToNext()) {
-            int downloadState = cursor.getInt(cursor.getColumnIndex("download_state"));
-            if (downloadState == 1) {
+            String downloadState = cursor.getString(cursor.getColumnIndex("download_state"));
+            if ("1".equals(downloadState)) {
                 isDownloadOk = true;
             }
         }
@@ -170,7 +156,7 @@ public class DAOImpl implements DAO {
      * 查询file_name=fileName的文件是否可以在本地删除
      */
     @Override
-    public boolean isCanDeleteLocalFile(String fileName) {
+    public synchronized boolean isCanDeleteLocalFile(String fileName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
         boolean isCanDelete = false;
