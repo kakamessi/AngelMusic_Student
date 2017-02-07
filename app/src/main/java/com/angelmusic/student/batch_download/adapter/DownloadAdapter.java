@@ -79,7 +79,7 @@ public class DownloadAdapter extends BaseAdapter {
                 firstHolder = (FirstViewHolder) convertView.getTag();
             }
             /*初始进入状态的显示*/
-            boolean allDloadOk = isAllDloadOk(courseDataList);//获取是否全部下载完了
+            boolean allDloadOk = isAllDLoadOk(courseDataList);//获取是否全部下载完了
             if (allDloadOk) {
                 firstHolder.btnDloadAll.setClickable(true);
                 firstHolder.btnDloadAll.setTag("clickable");
@@ -164,7 +164,6 @@ public class DownloadAdapter extends BaseAdapter {
                 holder.tvProgress.setTextColor(Color.parseColor("#888888"));
             } else if (progress > 0 && progress < 100) {
                 if (DAO2Impl.getInstance(mContext).queryIsExist(courseName)) {
-                    boolean b = DAO2Impl.getInstance(mContext).queryIsLoading(courseName);
                     if (DAO2Impl.getInstance(mContext).queryIsLoading(courseName)) {
                         holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);
                     } else {
@@ -173,7 +172,6 @@ public class DownloadAdapter extends BaseAdapter {
                     holder.circleProgress.setProgress(progress);
                 }
             }
-
 
             //设置点击监听事件
             holder.circleProgress.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +217,7 @@ public class DownloadAdapter extends BaseAdapter {
      * 是否全部下载完了
      * 注意fileInfoLists的第一条数据是null的
      */
-    private boolean isAllDloadOk(List<List<FileInfo>> courseDataList) {
+    private boolean isAllDLoadOk(List<List<FileInfo>> courseDataList) {
         boolean isAllOk = true;
         for (int i = 1; i < courseDataList.size(); i++) {
             int progress = getItemProgress(courseDataList.get(i));
@@ -316,7 +314,7 @@ public class DownloadAdapter extends BaseAdapter {
     }
 
     /**
-     * 当个文件的下载
+     * 单个文件的下载
      */
     private void downloadFile(final FileInfo fileInfo) {
         refreshProgress();
@@ -328,7 +326,7 @@ public class DownloadAdapter extends BaseAdapter {
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override
                     public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
-                        Log.e("----percent----", "="+percent);
+                        Log.e("----percent----", "=" + percent);
                         if (done) {
                             //更新所有文件名为fileName的条目的下载状态
                             DAOImpl.getInstance(mContext).updateDownloadState(fileName, "1");

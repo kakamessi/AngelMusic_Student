@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         /**
-         * 表1定义4个字段,记录每个文件的下载内容
+         * 表1定义3个字段,记录每个文件的下载内容
          * file_name:文件名称
          * download_state:下载的状态:"1"下载完,"0"未完成
          * course_name:课程名
