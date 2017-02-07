@@ -88,7 +88,8 @@ public class MainActivity extends BaseActivity {
     }
 
     protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
-    private void initPiano(){
+
+    private void initPiano() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
@@ -97,10 +98,12 @@ public class MainActivity extends BaseActivity {
         updateDevice();
         connectDevice();
     }
+
     // 更新设备列表
     public boolean updateDevice() {
         return UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).update();
     }
+
     // 连接设备
     public void connectDevice() {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).connect();
@@ -201,6 +204,7 @@ public class MainActivity extends BaseActivity {
             case R.id.ib_download:
                 //跳转到下载页
                 startActivity(new Intent(MainActivity.this, DownloadTestActivity.class));
+                overridePendingTransition(R.anim.bottom_in,R.anim.bottom_out);
                 break;
             case R.id.tv_wifi_name:
                 //预留，后续可添加无网络时点击跳转到设置网络
@@ -296,9 +300,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private UnityInterface.OnUpdateListener updateListener;
+
     public void stopConnect() {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).stopConnect();
     }
+
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
 
         public void onReceive(Context context, Intent intent) {

@@ -120,5 +120,6 @@ public class DownloadTestActivity extends BaseActivity {
     @OnClick({R.id.ib_back})
     public void onClick(View view) {
         startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.top_in, R.anim.top_out);
     }
 }
