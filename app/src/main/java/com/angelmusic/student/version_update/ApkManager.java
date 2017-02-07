@@ -19,17 +19,18 @@ import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SDCardUtil;
-import com.okhttplib.HttpInfo;
-import com.okhttplib.OkHttpUtil;
-import com.okhttplib.OkHttpUtilInterface;
-import com.okhttplib.bean.DownloadFileInfo;
-import com.okhttplib.callback.CallbackOk;
-import com.okhttplib.callback.ProgressCallback;
+import com.okhttp.HttpInfo;
+import com.okhttp.OkHttpUtil;
+import com.okhttp.OkHttpUtilInterface;
+import com.okhttp.bean.DownloadFileInfo;
+import com.okhttp.callback.CallbackOk;
+import com.okhttp.callback.ProgressCallback;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.okhttplib.annotation.CacheLevel.FIRST_LEVEL;
+import static com.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+
 
 /**
  * Created by fei on 2016/12/13.

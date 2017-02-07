@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
@@ -19,13 +20,14 @@ import com.angelmusic.student.batch_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.LogUtil;
-import com.okhttplib.HttpInfo;
-import com.okhttplib.OkHttpUtil;
-import com.okhttplib.callback.ProgressCallback;
+import com.okhttp.HttpInfo;
+import com.okhttp.OkHttpUtil;
+import com.okhttp.callback.ProgressCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**
@@ -336,8 +338,18 @@ public class DownloadAdapter extends BaseAdapter {
                     }
 
                     @Override
-                    public void onResponseMain(String filePath, HttpInfo info) {
-                        LogUtil.e("====" + fileName, "下载结果：" + info.getRetDetail());
+                    public void onResponseMain(String fileUrl, HttpInfo info) {
+                        LogUtil.e("==getRetDetail==" + fileName, "下载结果：" + info.getRetDetail());
+                        String result = info.getRetDetail();
+                        if ("网络地址错误".equals(result)) {
+                            Toast.makeText(mContext, "请求地址错误:"+fileUrl, Toast.LENGTH_SHORT).show();
+                        }else if ("网络中断".equals(result)){
+                            Toast.makeText(mContext, "网络中断", Toast.LENGTH_SHORT).show();
+                        }else if ("服务器内部错误".equals(result)){
+                            Toast.makeText(mContext, "服务器内部错误", Toast.LENGTH_SHORT).show();
+                        }else if ("请检查网络连接是否正常".equals(result)){
+                            Toast.makeText(mContext, "请检查网络连接是否正常", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .build();
