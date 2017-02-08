@@ -15,10 +15,10 @@ import com.angelmusic.student.batch_download.infobean.CourseInfo;
 import com.angelmusic.student.batch_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
-import com.okhttp.HttpInfo;
-import com.okhttp.OkHttpUtil;
-import com.okhttp.OkHttpUtilInterface;
-import com.okhttp.callback.CallbackOk;
+import com.angelmusic.stu.okhttp.HttpInfo;
+import com.angelmusic.stu.okhttp.OkHttpUtil;
+import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.okhttp.callback.CallbackOk;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 /**
  * 课程下载界面

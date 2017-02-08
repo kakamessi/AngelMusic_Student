@@ -20,9 +20,9 @@ import com.angelmusic.student.batch_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.LogUtil;
-import com.okhttp.HttpInfo;
-import com.okhttp.OkHttpUtil;
-import com.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.okhttp.HttpInfo;
+import com.angelmusic.stu.okhttp.OkHttpUtil;
+import com.angelmusic.stu.okhttp.callback.ProgressCallback;
 
 import java.util.ArrayList;
 import java.util.List;

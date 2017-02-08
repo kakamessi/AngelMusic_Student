@@ -19,17 +19,17 @@ import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SDCardUtil;
-import com.okhttp.HttpInfo;
-import com.okhttp.OkHttpUtil;
-import com.okhttp.OkHttpUtilInterface;
-import com.okhttp.bean.DownloadFileInfo;
-import com.okhttp.callback.CallbackOk;
-import com.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.okhttp.HttpInfo;
+import com.angelmusic.stu.okhttp.OkHttpUtil;
+import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.okhttp.bean.DownloadFileInfo;
+import com.angelmusic.stu.okhttp.callback.CallbackOk;
+import com.angelmusic.stu.okhttp.callback.ProgressCallback;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 
 /**
@@ -67,7 +67,7 @@ public class ApkManager {
         okHttpUtil.doGetAsync(
                 HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name) + mContext.getResources().getString(R.string
                         .apk_check_version)).addParam
-                        ("type", "1")
+                        ("type", "2")
                         .build(),
                 new CallbackOk() {
                     @Override

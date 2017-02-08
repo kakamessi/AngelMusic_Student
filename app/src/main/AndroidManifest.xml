@@ -39,6 +39,7 @@
         <!-- 首页 -->
         <activity
             android:name=".activity.MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape"/>
         <!-- 通信服务 -->
         <service android:name=".service.StudentService"/>
