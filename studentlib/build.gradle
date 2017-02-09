@@ -3,7 +3,9 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
-
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
@@ -31,4 +33,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/classes.jar')
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }

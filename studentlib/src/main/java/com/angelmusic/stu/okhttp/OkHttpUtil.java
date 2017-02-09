@@ -73,7 +73,7 @@ public class OkHttpUtil implements OkHttpUtilInterface {
      * @param context 上下文
      */
     public static Builder init(Application context) {
-        application = context;
+        application = (Application) context;
         application.registerActivityLifecycleCallbacks(new BaseActivityLifecycleCallbacks());
         return BuilderGlobal();
     }

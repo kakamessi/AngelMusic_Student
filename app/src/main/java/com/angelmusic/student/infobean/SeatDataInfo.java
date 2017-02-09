@@ -1,20 +1,43 @@
 package com.angelmusic.student.infobean;
 
+import java.util.List;
+
 /**
  * Created by fei on 2017/1/9.
  * 座位相关信息
  */
 
 public class SeatDataInfo {
-    private String schoolName;//学校名称
-    private String schoolId;//学校id
-    private String classroomName;//教室名称
-    private String classroomId;//教室id
-    private String classId;//班级id
-    private String seatId;//座位号
-    private String rowNum;//班级座位行数
-    private String columnNum;//班级座位列数
 
+    /**
+     * schoolID : 1
+     * schoolName :
+     * roomName : 测试教室
+     * roomID :
+     * classID :
+     * lineNo : 3
+     * columnNo : 3
+     * seatNo : 1
+     * seatList : [{"seatIndexDescription":"1","state":"1"},{"seatIndexDescription":"2","state":"1"},{"seatIndexDescription":"3","state":"1"},{"seatIndexDescription":"4","state":"1"},{"seatIndexDescription":"无","state":"2"},{"seatIndexDescription":"5","state":"1"},{"seatIndexDescription":"6","state":"1"},{"seatIndexDescription":"7","state":"3"},{"seatIndexDescription":"8","state":"1"}]
+     */
+
+    private String schoolID;
+    private String schoolName;
+    private String roomName;
+    private String roomID;
+    private String classID;
+    private int lineNo;
+    private int columnNo;
+    private String seatNo;
+    private List<SeatListBean> seatList;
+
+    public String getSchoolID() {
+        return schoolID;
+    }
+
+    public void setSchoolID(String schoolID) {
+        this.schoolID = schoolID;
+    }
 
     public String getSchoolName() {
         return schoolName;
@@ -24,59 +47,85 @@ public class SeatDataInfo {
         this.schoolName = schoolName;
     }
 
-    public String getSchoolId() {
-        return schoolId;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setSchoolId(String schoolId) {
-        this.schoolId = schoolId;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public String getClassroomName() {
-        return classroomName;
+    public String getRoomID() {
+        return roomID;
     }
 
-    public void setClassroomName(String classroomName) {
-        this.classroomName = classroomName;
+    public void setRoomID(String roomID) {
+        this.roomID = roomID;
     }
 
-    public String getClassroomId() {
-        return classroomId;
+    public String getClassID() {
+        return classID;
     }
 
-    public void setClassroomId(String classroomId) {
-        this.classroomId = classroomId;
+    public void setClassID(String classID) {
+        this.classID = classID;
     }
 
-    public String getClassId() {
-        return classId;
+    public int getLineNo() {
+        return lineNo;
     }
 
-    public void setClassId(String classId) {
-        this.classId = classId;
+    public void setLineNo(int lineNo) {
+        this.lineNo = lineNo;
     }
 
-    public String getSeatId() {
-        return seatId;
+    public int getColumnNo() {
+        return columnNo;
     }
 
-    public void setSeatId(String seatId) {
-        this.seatId = seatId;
+    public void setColumnNo(int columnNo) {
+        this.columnNo = columnNo;
     }
 
-    public String getRowNum() {
-        return rowNum;
+    public String getSeatNo() {
+        return seatNo;
     }
 
-    public void setRowNum(String rowNum) {
-        this.rowNum = rowNum;
+    public void setSeatNo(String seatNo) {
+        this.seatNo = seatNo;
     }
 
-    public String getColumnNum() {
-        return columnNum;
+    public List<SeatListBean> getSeatList() {
+        return seatList;
     }
 
-    public void setColumnNum(String columnNum) {
-        this.columnNum = columnNum;
+    public void setSeatList(List<SeatListBean> seatList) {
+        this.seatList = seatList;
+    }
+
+    public static class SeatListBean {
+        /**
+         * seatIndexDescription : 1
+         * state : 1
+         */
+
+        private String seatIndexDescription;
+        private String state;
+
+        public String getSeatIndexDescription() {
+            return seatIndexDescription;
+        }
+
+        public void setSeatIndexDescription(String seatIndexDescription) {
+            this.seatIndexDescription = seatIndexDescription;
+        }
+
+        public String getState() {
+            return state;
+        }
+
+        public void setState(String state) {
+            this.state = state;
+        }
     }
 }

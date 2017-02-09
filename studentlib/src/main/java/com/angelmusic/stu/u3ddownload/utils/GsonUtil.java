@@ -1,8 +1,7 @@
-package com.angelmusic.student.utils;
+package com.angelmusic.stu.u3ddownload.utils;
 
 import android.text.TextUtils;
 
-import com.angelmusic.stu.utils.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -12,8 +11,6 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by fei on 2016/12/13.
@@ -65,7 +62,7 @@ public class GsonUtil {
      * @param <T>
      * @return
      */
-    public static <T> List<T> jsonToList2(String jsonString, Class<T> cls) {
+    public static <T> List<T> jsonToList(String jsonString, Class<T> cls) {
         if (!TextUtils.isEmpty(jsonString) && gson != null) {
             List<T> list = new ArrayList<T>();
             JsonArray array = new JsonParser().parse(jsonString).getAsJsonArray();

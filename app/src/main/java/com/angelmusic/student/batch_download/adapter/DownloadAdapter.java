@@ -27,6 +27,7 @@ import com.angelmusic.stu.okhttp.callback.ProgressCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**
@@ -323,6 +324,7 @@ public class DownloadAdapter extends BaseAdapter {
         final String fileName = fileInfo.getFileName();//文件名，带后缀
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
         App.init.setDownloadFileDir(fileParentPath);//设置文件的下载路径
+        Log.e("=======url======", fileInfo.getFileUrl());
         final HttpInfo info = HttpInfo.Builder()
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override
@@ -341,12 +343,12 @@ public class DownloadAdapter extends BaseAdapter {
                         LogUtil.e("==getRetDetail==" + fileName, "下载结果：" + info.getRetDetail());
                         String result = info.getRetDetail();
                         if ("网络地址错误".equals(result)) {
-                            Toast.makeText(mContext, "请求地址错误:"+fileUrl, Toast.LENGTH_SHORT).show();
-                        }else if ("网络中断".equals(result)){
+                            Toast.makeText(mContext, "请求地址错误:" + fileUrl, Toast.LENGTH_SHORT).show();
+                        } else if ("网络中断".equals(result)) {
                             Toast.makeText(mContext, "网络中断", Toast.LENGTH_SHORT).show();
-                        }else if ("服务器内部错误".equals(result)){
+                        } else if ("服务器内部错误".equals(result)) {
                             Toast.makeText(mContext, "服务器内部错误", Toast.LENGTH_SHORT).show();
-                        }else if ("请检查网络连接是否正常".equals(result)){
+                        } else if ("请检查网络连接是否正常".equals(result)) {
                             Toast.makeText(mContext, "请检查网络连接是否正常", Toast.LENGTH_SHORT).show();
                         }
                     }

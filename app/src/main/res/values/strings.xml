@@ -2,7 +2,7 @@
     <!--APP名称-->
     <string name="app_name">StudentPad</string>
     <!--域名信息-->
-    <string name="domain_name">http://192.168.2.112</string>
+    <string name="domain_name">http://192.168.1.179</string>
     <!--测试用-->
     <string name="test_name">http://192.168.2.110:8085</string>
     <!--版本更新检查接口-->

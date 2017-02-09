@@ -2,11 +2,13 @@ package com.angelmusic.student.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.batch_download.adapter.DownloadAdapter;
@@ -19,6 +21,7 @@ import com.angelmusic.stu.okhttp.HttpInfo;
 import com.angelmusic.stu.okhttp.OkHttpUtil;
 import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.okhttp.callback.CallbackOk;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +31,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+import static android.media.CamcorderProfile.get;
+import static android.view.View.X;
 import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 /**
@@ -63,9 +69,8 @@ public class DownloadActivity extends BaseActivity {
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(this);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(domainName + getResources().getString(R.string
-                        .course_info)).addParam
-                        ("courseId", "----")//需要传入课程id参数
+                HttpInfo.Builder().setUrl("http://192.168.1.179/client/course/findCoursePart.json").addParam
+                        ("schoolId", "1")//需要传入课程id参数
                         .build(),
                 new CallbackOk() {
                     @Override
@@ -98,22 +103,43 @@ public class DownloadActivity extends BaseActivity {
      * 封装适配器的数据
      */
     private List<List<FileInfo>> packageData(List<CourseInfo.DetailBean> detail) {
+        Log.e("==========", "=detail.size=" + detail.size());
         fileInfoLists = new ArrayList<>();
         fileInfoLists.add(null);//第一条数据设置为null,保证第一条item显示全部下载的那个界面
-        for (CourseInfo.DetailBean detailBean : detail) {
-            String courseName = detailBean.getName();//课程名：“第n节课”
-            List<FileInfo> listItem = new ArrayList<>();
-            List<CourseInfo.DetailBean.SonPartBeanX> sonPart = detailBean.getSonPart();
-            for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX : sonPart) {
-                List<CourseInfo.DetailBean.SonPartBeanX.SonPartBean> sonPart1 = sonPartBeanX.getSonPart();
-                for (CourseInfo.DetailBean.SonPartBeanX.SonPartBean sonPartBean : sonPart1) {
-                    String video_uploadPath = sonPartBean.getVideo_uploadPath();//每个文件的后半部分url
-                    String fileName = video_uploadPath.substring(1);//带后缀的文件名
-                    String fileUrl = domainName + coursePartUrl + video_uploadPath;
-                    listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
+        if (detail != null) {
+            for (CourseInfo.DetailBean detailBean : detail) {//遍历detail
+                List<FileInfo> listItem = new ArrayList<>();//每new一个listItem代表一节课
+                String courseName = detailBean.getName();//课程名：“第N节课”
+                List<CourseInfo.DetailBean.SonPartBeanX> sonPart1 = detailBean.getSonPart();//第一层sonPart
+                for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX1 : sonPart1) {//遍历第一层sonPart
+                    List<CourseInfo.DetailBean.SonPartBeanX> sonPart2 = sonPartBeanX1.getSonPart();//第二层sonPart
+                    for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
+                        List<CourseInfo.DetailBean.SonPartBeanX> sonPart3 = sonPartBeanX2.getSonPart();//第三层sonPart
+                        if (sonPart3 != null) {
+                            for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX3 : sonPart3) {//遍历
+                                List<CourseInfo.DetailBean.SonPartBeanX> sonPart4 = sonPartBeanX3.getSonPart();
+                                String video_uploadPath3 = sonPartBeanX3.getVideo_uploadPath();
+                                if (!TextUtils.isEmpty(video_uploadPath3)) {
+                                    Log.e("-------------4----------", video_uploadPath3);
+                                    String fileName = video_uploadPath3.substring(1);//带后缀的文件名
+                                    String fileUrl = domainName  + video_uploadPath3;
+                                    listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
+                                }
+                            }
+                        } else {
+                            String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
+                            if (!TextUtils.isEmpty(video_uploadPath2)) {
+                                Log.e("-------------3----------", video_uploadPath2);
+                                String fileName = video_uploadPath2.substring(1);//带后缀的文件名
+                                String fileUrl = domainName + coursePartUrl + video_uploadPath2;
+                                listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
+                            }
+                        }
+                    }
                 }
+                if (listItem != null)
+                    fileInfoLists.add(listItem);
             }
-            fileInfoLists.add(listItem);
         }
         return fileInfoLists;
     }

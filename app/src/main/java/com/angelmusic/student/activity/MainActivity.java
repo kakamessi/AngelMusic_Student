@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.angelmusic.stu.bean.UnityInterface;
+import com.angelmusic.stu.u3ddownload.DLManager;
+import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
@@ -34,8 +36,12 @@ import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
  * 主页
@@ -122,9 +128,9 @@ public class MainActivity extends BaseActivity {
             seatDataInfo = getSeatDataInfo(seatInfoString);
         }
         if (seatDataInfo != null) {
-            classroomName = seatDataInfo.getClassroomName();
-            schoolName = seatDataInfo.getSchoolName();
-            seatId = seatDataInfo.getSeatId();
+//            classroomName = seatDataInfo.getClassroomName();
+//            schoolName = seatDataInfo.getSchoolName();
+//            seatId = seatDataInfo.getSeatId();
         } else {
             schoolName = "天使音乐";
             classroomName = "00";
@@ -203,8 +209,8 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ib_download:
                 //跳转到下载页
-                startActivity(new Intent(MainActivity.this, DownloadTestActivity.class));
-                overridePendingTransition(R.anim.bottom_in,R.anim.bottom_out);
+                startActivity(new Intent(MainActivity.this, DownloadActivity.class));
+                overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
                 break;
             case R.id.tv_wifi_name:
                 //预留，后续可添加无网络时点击跳转到设置网络
@@ -276,16 +282,11 @@ public class MainActivity extends BaseActivity {
         super.handleMsg(msg);
         //需要和教师端定义协议
         String teacherMsg = msg.obj.toString();
-        String substring = teacherMsg.substring(teacherMsg.indexOf("|"));//不确定待定
-        if (substring.equals("协商定义的内容")) {
-            SharedPreferencesUtil.setString("seatInfo", "需要存储的信息字符串");//存储
-            SeatDataInfo seatDataInfo = getSeatDataInfo(substring);
-            showSeatIdPopupWindow(seatDataInfo.getSeatId());
-        }
         if ("2".equals(teacherMsg.substring(0, 1))) {
-
-            showSeatIdPopupWindow(teacherMsg.substring(2, 3));
-
+            String json = teacherMsg.substring(1);
+            Log.e("###############", "json=" + json);
+            SeatDataInfo seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
+            showSeatIdPopupWindow(seatDataInfo.getSeatNo());
         }
 
     }
