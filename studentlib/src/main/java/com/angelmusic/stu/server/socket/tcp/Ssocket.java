@@ -1,7 +1,11 @@
 package com.angelmusic.stu.server.socket.tcp;
 
+import android.util.Log;
+
 import com.angelmusic.stu.server.receiver.Receiver;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -18,6 +22,9 @@ public class Ssocket {
     private OutputStream out;
     private InputStream in;
 
+    private DataInputStream dins = null;
+    private DataOutputStream dos = null;
+
     public Ssocket(Socket ss) throws Exception {
 
         mSocket = ss;
@@ -26,6 +33,8 @@ public class Ssocket {
         out = mSocket.getOutputStream();
         in = mSocket.getInputStream();
 
+        dins = new DataInputStream(in);
+        dos = new DataOutputStream(out);
 
     }
 
@@ -70,22 +79,42 @@ public class Ssocket {
     }
 
     public void read(Receiver receiver) throws Exception {
-        if (in != null) {
-            byte[] buffer = new byte[MAX_SIZE];
-            byte[] tmpBuffer;
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                tmpBuffer = new byte[len];
-                System.arraycopy(buffer, 0, tmpBuffer, 0, len);
-                receiver.receive(tmpBuffer);
-            }
+
+//        if (in != null) {
+//            byte[] buffer = new byte[MAX_SIZE];
+//            byte[] tmpBuffer;
+//            int len;
+//            while ((len = in.read(buffer)) > 0) {
+//                tmpBuffer = new byte[len];
+//                System.arraycopy(buffer, 0, tmpBuffer, 0, len);
+//                receiver.receive(tmpBuffer);
+//            }
+//        }
+
+        dins = new DataInputStream(in);
+        while(true) {
+            byte bb = dins.readByte();
+            int totalLen = dins.readInt();
+
+            byte[] data = new byte[totalLen - 4 - 1];
+            dins.readFully(data);
+            String msg = new String(data);
+            receiver.receive(data);
+            Log.e("SSocket","read_______________________________" + msg.length());
         }
+
     }
 
     public void write(byte[] buffer) throws Exception {
 
-            out.write(buffer);
-            out.flush();
+//            out.write(buffer);
+//            out.flush();
+
+        int totalLen = 1 + 4 + buffer.length;
+        dos.writeByte(1);
+        dos.writeInt(totalLen);
+        dos.write(buffer);
+        dos.flush();
 
     }
 

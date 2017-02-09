@@ -12,7 +12,6 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import static android.os.Build.VERSION_CODES.M;
 
 public class SSocket {
 
