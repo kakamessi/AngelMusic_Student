@@ -6,6 +6,7 @@ import android.util.Log;
 import com.angelmusic.stu.network.socket.AbsReceiver;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -18,7 +19,9 @@ public class SSocket {
     private Socket mSocket;
     private OutputStream out;
     private InputStream in;
+
     private DataInputStream dins = null;
+    private DataOutputStream dos = null;
 
     private int MAX_SIZE = 1024 * 3;
 
@@ -35,7 +38,9 @@ public class SSocket {
         if (mSocket.isConnected()) {
             out = mSocket.getOutputStream();
             in = mSocket.getInputStream();
+
             dins = new DataInputStream(in);
+            dos = new DataOutputStream(out);
         }
     }
 
@@ -77,6 +82,7 @@ public class SSocket {
         in = null;
         mSocket = null;
         dins = null;
+        dos = null;
     }
 
     public void read(AbsReceiver receiver) throws Exception {
@@ -106,10 +112,16 @@ public class SSocket {
     }
 
     public void write(byte[] buffer) throws Exception {
-        //if (out != null) {
-            out.write(buffer);
-            out.flush();
-        //}
+
+//      out.write(buffer);
+//      out.flush();
+
+        int totalLen = 1 + 4 + buffer.length;
+        dos.writeByte(1);
+        dos.writeInt(totalLen);
+        dos.write(buffer);
+        dos.flush();
+
     }
 
     public Socket getmSocket() {
