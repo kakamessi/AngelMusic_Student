@@ -96,7 +96,6 @@ public class SSocket {
 //            }
 //        }
 
-        dins = new DataInputStream(in);
         while(true) {
             byte bb = dins.readByte();
             int totalLen = dins.readInt();
