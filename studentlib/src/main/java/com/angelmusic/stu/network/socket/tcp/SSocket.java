@@ -1,18 +1,24 @@
 package com.angelmusic.stu.network.socket.tcp;
 
 
+import android.util.Log;
+
 import com.angelmusic.stu.network.socket.AbsReceiver;
 
+import java.io.DataInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+
+import static android.os.Build.VERSION_CODES.M;
 
 public class SSocket {
 
     private Socket mSocket;
     private OutputStream out;
     private InputStream in;
+    private DataInputStream dins = null;
 
     private int MAX_SIZE = 1024 * 3;
 
@@ -22,13 +28,14 @@ public class SSocket {
     public void connect(String host, int port) throws Exception {
         mSocket = new Socket();
         mSocket.setTcpNoDelay(true);
-        mSocket.setReceiveBufferSize(MAX_SIZE);
-        mSocket.setSendBufferSize(MAX_SIZE);
+//        mSocket.setReceiveBufferSize(MAX_SIZE);
+//        mSocket.setSendBufferSize(MAX_SIZE);
 
         mSocket.connect(new InetSocketAddress(host, port));
         if (mSocket.isConnected()) {
             out = mSocket.getOutputStream();
             in = mSocket.getInputStream();
+            dins = new DataInputStream(in);
         }
     }
 
@@ -69,19 +76,33 @@ public class SSocket {
         out = null;
         in = null;
         mSocket = null;
+        dins = null;
     }
 
     public void read(AbsReceiver receiver) throws Exception {
-        if (in != null) {
-            byte[] buffer = new byte[1024 * 3];
-            byte[] tmpBuffer;
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                tmpBuffer = new byte[len];
-                System.arraycopy(buffer, 0, tmpBuffer, 0, len);
-                receiver.receive(tmpBuffer);
-            }
+//        if (in!= null) {
+//            byte[] buffer = new byte[MAX_SIZE];
+//            byte[] tmpBuffer;
+//            int len;
+//            while ((len = in.read(buffer)) > 0) {
+//                tmpBuffer = new byte[len];
+//                System.arraycopy(buffer, 0, tmpBuffer, 0, len);
+//                receiver.receive(tmpBuffer);
+//            }
+//        }
+
+        dins = new DataInputStream(in);
+        while(true) {
+            byte bb = dins.readByte();
+            int totalLen = dins.readInt();
+
+            byte[] data = new byte[totalLen - 4 - 1];
+            dins.readFully(data);
+            String msg = new String(data);
+            receiver.receive(data);
+            Log.e("SSocket","read_______________________________" + msg.length());
         }
+
     }
 
     public void write(byte[] buffer) throws Exception {
