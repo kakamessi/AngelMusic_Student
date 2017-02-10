@@ -282,11 +282,12 @@ public class MainActivity extends BaseActivity {
         super.handleMsg(msg);
         //需要和教师端定义协议
         String teacherMsg = msg.obj.toString();
-        if ("2".equals(teacherMsg.substring(0, 1))) {
-            String json = teacherMsg.substring(1);
-            Log.e("###############", "json=" + json);
+        if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
+            String json = teacherMsg.substring(2);
             SeatDataInfo seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
-            showSeatIdPopupWindow(seatDataInfo.getSeatNo());
+            if (seatDataInfo != null) {
+                showSeatIdPopupWindow(seatDataInfo.getSeatNo());
+            }
         }
 
     }
