@@ -1,4 +1,4 @@
-package com.angelmusic.student.batch_download.infobean;
+package com.angelmusic.student.course_download.infobean;
 
 /**
  * Created by fei on 2017/1/13.

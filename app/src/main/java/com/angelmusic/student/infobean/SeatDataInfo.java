@@ -127,5 +127,28 @@ public class SeatDataInfo {
         public void setState(String state) {
             this.state = state;
         }
+
+        @Override
+        public String toString() {
+            return "SeatListBean{" +
+                    "seatIndexDescription='" + seatIndexDescription + '\'' +
+                    ", state='" + state + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "SeatDataInfo{" +
+                "schoolID='" + schoolID + '\'' +
+                ", schoolName='" + schoolName + '\'' +
+                ", roomName='" + roomName + '\'' +
+                ", roomID='" + roomID + '\'' +
+                ", classID='" + classID + '\'' +
+                ", lineNo=" + lineNo +
+                ", columnNo=" + columnNo +
+                ", seatNo='" + seatNo + '\'' +
+                ", seatList=" + seatList +
+                '}';
     }
 }

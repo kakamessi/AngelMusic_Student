@@ -34,5 +34,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/classes.jar')
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
-    compile files('libs/gson-2.8.0.jar')
+    compile 'com.google.code.gson:gson:2.8.0'
 }

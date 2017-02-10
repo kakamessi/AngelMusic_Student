@@ -63,7 +63,6 @@ public class DLManager {
             sendDataInfoList.add(new SendDataInfo(courseName, progress + ""));
         }
         String progressJson = GsonUtil.objectToJsonString(sendDataInfoList);
-        Log.e("=传给==U3D==", "=json=" + progressJson);
         return progressJson;
     }
 

@@ -110,9 +110,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        tvBlackboard.setText(schoolName);
         tvWifiName.setText(Html.fromHtml("<u>" + wifiName + "</u>"));
         tvClassroomName.setText(Html.fromHtml("<u>" + roomName + "</u>"));
-        tvBlackboard.setText(schoolName);
         tvSeatId.setText(Html.fromHtml("<u>" + seatId + "</u>"));
         tvConnectionStatus.setText(Html.fromHtml("<u>" + pianoConStatus + "</u>"));
     }
@@ -147,6 +147,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_wifi_name:
                 //预留，后续可添加无网络时点击跳转到设置网络
+                wifiName = NetworkUtil.getWifiName(this);//获取当前pad连接的wifi名称
+                tvWifiName.setText(Html.fromHtml("<u>" + wifiName + "</u>"));
                 break;
             case R.id.tv_classroom_name:
                 //预留
@@ -178,9 +180,9 @@ public class MainActivity extends BaseActivity {
         if (seatDataInfo == null) {
             String seatInfoJson = SharedPreferencesUtil.getString("seatInfoJson", null);
             seatDataInfo = GsonUtil.jsonToObject(seatInfoJson, SeatDataInfo.class);
-            if (seatDataInfo != null) {
-                gridView.setNumColumns(seatDataInfo.getColumnNo());//这里动态设置列数
-            }
+        }
+        if (seatDataInfo != null) {
+            gridView.setNumColumns(seatDataInfo.getColumnNo());//这里动态设置列数
         }
         SeatAdapter adapter = new SeatAdapter(this, seatDataInfo);
         gridView.setAdapter(adapter);

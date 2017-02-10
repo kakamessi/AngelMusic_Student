@@ -1,4 +1,4 @@
-package com.angelmusic.student.batch_download.db;
+package com.angelmusic.student.course_download.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

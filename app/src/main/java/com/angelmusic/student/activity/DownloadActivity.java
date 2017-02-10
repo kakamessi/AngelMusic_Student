@@ -11,17 +11,16 @@ import android.widget.Toast;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
-import com.angelmusic.student.batch_download.adapter.DownloadAdapter;
-import com.angelmusic.student.batch_download.db.DAO2Impl;
-import com.angelmusic.student.batch_download.infobean.CourseInfo;
-import com.angelmusic.student.batch_download.infobean.FileInfo;
+import com.angelmusic.student.course_download.adapter.DownloadAdapter;
+import com.angelmusic.student.course_download.db.DAO2Impl;
+import com.angelmusic.student.course_download.infobean.CourseInfo;
+import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.stu.okhttp.HttpInfo;
 import com.angelmusic.stu.okhttp.OkHttpUtil;
 import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.okhttp.callback.CallbackOk;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,9 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static android.media.CamcorderProfile.get;
-import static android.view.View.X;
 import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 /**

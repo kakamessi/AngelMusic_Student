@@ -8,9 +8,9 @@ import android.widget.ListView;
 
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
-import com.angelmusic.student.batch_download.adapter.DownloadAdapter;
-import com.angelmusic.student.batch_download.db.DAO2Impl;
-import com.angelmusic.student.batch_download.infobean.FileInfo;
+import com.angelmusic.student.course_download.adapter.DownloadAdapter;
+import com.angelmusic.student.course_download.db.DAO2Impl;
+import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.SDCardUtil;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.angelmusic.student.batch_download.adapter;
+package com.angelmusic.student.course_download.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -14,9 +14,9 @@ import android.widget.Toast;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
-import com.angelmusic.student.batch_download.db.DAO2Impl;
-import com.angelmusic.student.batch_download.db.DAOImpl;
-import com.angelmusic.student.batch_download.infobean.FileInfo;
+import com.angelmusic.student.course_download.db.DAO2Impl;
+import com.angelmusic.student.course_download.db.DAOImpl;
+import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.LogUtil;
@@ -27,7 +27,6 @@ import com.angelmusic.stu.okhttp.callback.ProgressCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**

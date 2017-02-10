@@ -1,11 +1,9 @@
-package com.angelmusic.student.batch_download.db;
+package com.angelmusic.student.course_download.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.angelmusic.stu.utils.Log;
 
 /**
  * Created by fei on 2017/1/16.

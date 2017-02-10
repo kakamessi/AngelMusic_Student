@@ -1,4 +1,4 @@
-package com.angelmusic.student.batch_download.db;
+package com.angelmusic.student.course_download.db;
 
 /**
  * Created by fei on 2017/1/16.

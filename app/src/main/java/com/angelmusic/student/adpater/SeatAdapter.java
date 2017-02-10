@@ -1,6 +1,7 @@
 package com.angelmusic.student.adpater;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,6 @@ import android.widget.TextView;
 
 import com.angelmusic.student.R;
 import com.angelmusic.student.infobean.SeatDataInfo;
-
-import java.util.List;
-
-import static android.R.id.list;
 
 /**
  * Created by fei on 2017/1/9.
@@ -34,6 +31,9 @@ public class SeatAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if (seatDataInfo == null) {
+            return 0;
+        }
         return seatDataInfo.getSeatList().size();// item总数
     }
 
@@ -60,11 +60,25 @@ public class SeatAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        String state = seatDataInfo.getSeatList().get(position).getState();
-        if ("无".equals(state)) {
+        String state = seatDataInfo.getSeatList().get(position).getState();//1能座，2无，3搜索不到
+        String seatIndexDescription = seatDataInfo.getSeatList().get(position).getSeatIndexDescription();
+        String seatNo = seatDataInfo.getSeatNo();
+        if ("无".equals(seatIndexDescription)) {
             holder.tvSeat.setText("无");
-        } else {
-            holder.tvSeat.setText("第" + state + "号座位");
+            holder.tvSeat.setTextColor(Color.parseColor("#888888"));
+            holder.tvSeat.setBackgroundResource(R.drawable.seat_text_bg_white);
+        } else if (seatNo.equals(seatIndexDescription)) {//当前pad号
+            holder.tvSeat.setTextColor(Color.parseColor("#ffffff"));
+            holder.tvSeat.setText(seatIndexDescription + "号座位");
+            holder.tvSeat.setBackgroundResource(R.drawable.seat_text_bg_blue);
+        } else if ("3".equals(state)) {//搜索不到
+            holder.tvSeat.setTextColor(Color.parseColor("#575757"));
+            holder.tvSeat.setText(seatIndexDescription + "号座位");
+            holder.tvSeat.setBackgroundResource(R.drawable.seat_text_bg_dashed);
+        } else if ("1".equals(state)) {
+            holder.tvSeat.setTextColor(Color.parseColor("#ffffff"));
+            holder.tvSeat.setText(seatIndexDescription + "号座位");
+            holder.tvSeat.setBackgroundResource(R.drawable.seat_text_bg_green);
         }
         return convertView;
     }

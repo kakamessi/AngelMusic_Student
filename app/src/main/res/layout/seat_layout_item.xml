@@ -10,7 +10,7 @@
         android:id="@+id/tv_seat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -18,7 +18,7 @@
         android:gravity="center"
         android:text="0号座位"
         android:textColor="@color/white"
-        android:textSize="14sp"/>
+        android:textSize="20sp"/>
 
 </LinearLayout>
 

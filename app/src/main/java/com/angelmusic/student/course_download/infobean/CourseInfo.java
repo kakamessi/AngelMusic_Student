@@ -1,4 +1,4 @@
-package com.angelmusic.student.batch_download.infobean;
+package com.angelmusic.student.course_download.infobean;
 
 import java.util.List;
 
