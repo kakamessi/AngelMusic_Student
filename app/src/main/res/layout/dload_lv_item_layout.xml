@@ -24,7 +24,7 @@
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:paddingRight="60dp"
+        android:paddingRight="55dp"
         android:paddingTop="10dp">
 
         <TextView
@@ -42,6 +42,6 @@
             android:id="@+id/circleProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>

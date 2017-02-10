@@ -127,11 +127,11 @@ public class CustomCircleProgress extends ProgressBar {
         int paintHeight = Math.max(mReachedHeight, mDefaultHeight);//比较两数，取最大值
 
         if (heightMode != MeasureSpec.EXACTLY) {
-            int exceptHeight = getPaddingTop() + getPaddingBottom() + mRadius * 2 + paintHeight;
+            int exceptHeight = getPaddingTop() + getPaddingBottom() + mRadius * 2 + paintHeight + PROGRESS_REACHED_HEIGHT;
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(exceptHeight, MeasureSpec.EXACTLY);
         }
         if (widthMode != MeasureSpec.EXACTLY) {
-            int exceptWidth = getPaddingLeft() + getPaddingRight() + mRadius * 2 + paintHeight;
+            int exceptWidth = getPaddingLeft() + getPaddingRight() + mRadius * 2 + paintHeight+PROGRESS_REACHED_HEIGHT;
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(exceptWidth, MeasureSpec.EXACTLY);
         }
 
@@ -168,7 +168,7 @@ public class CustomCircleProgress extends ProgressBar {
             mPaint.setStrokeWidth(mReachedHeight);
             //根据进度绘制圆弧
             float sweepAngle = getProgress() * 1.0f / getMax() * 360;
-            canvas.drawArc(new RectF(2, 2, mRadius * 2+2, mRadius * 2+2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
+            canvas.drawArc(new RectF(2, 2, mRadius * 2 + 2, mRadius * 2 + 2), -90, sweepAngle, false, mPaint);//drawArc：绘制圆弧
 
             if (mStatus == Status.Pause) {//开始后暂停，画笔填充三角形
                 mPaint.setStyle(Paint.Style.FILL);

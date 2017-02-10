@@ -2,7 +2,6 @@ package com.angelmusic.stu.u3ddownload;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.angelmusic.stu.MyApplication;
 import com.angelmusic.stu.okhttp.HttpInfo;
@@ -43,7 +42,7 @@ public class DLManager {
     }
 
     /**
-     * 获取课程下载的百分比
+     * 获取所有课程下载的百分比U3D调用
      */
     public String getProgressJson(String json) {
         List<GetDataInfo> getDataInfoList = GsonUtil.jsonToList(json, GetDataInfo.class);//解析json
@@ -67,11 +66,44 @@ public class DLManager {
     }
 
     /**
+     * 下载U3D调用
+     */
+    public void startDownload(String json) {
+        List<GetDataInfo> getDataInfoList = GsonUtil.jsonToList(json, GetDataInfo.class);//解析json
+        List<List<FileInfo>> packageData = packageData(getDataInfoList);
+        for (List<FileInfo> fileInfos : packageData) {
+            startDownload(fileInfos);
+        }
+    }
+
+    /**
+     * 暂停U3D调用
+     */
+    public void pauseDownload(String json) {
+        List<GetDataInfo> getDataInfoList = GsonUtil.jsonToList(json, GetDataInfo.class);//解析json
+        List<List<FileInfo>> packageData = packageData(getDataInfoList);
+        for (List<FileInfo> fileInfos : packageData) {
+            pauseDownload(fileInfos);
+        }
+    }
+
+    /**
+     * 删除U3D调用
+     */
+    public void deleteFiles(String json) {
+        List<GetDataInfo> getDataInfoList = GsonUtil.jsonToList(json, GetDataInfo.class);//解析json
+        List<List<FileInfo>> packageData = packageData(getDataInfoList);
+        for (List<FileInfo> fileInfos : packageData) {
+            deleteFiles(fileInfos);
+        }
+    }
+
+    /**
      * 封装数据
      */
-    private List<List<FileInfo>> packageData(List<GetDataInfo> getDataInfos) {
+    private List<List<FileInfo>> packageData(List<GetDataInfo> getDataInfoList) {
         List<List<FileInfo>> courseList = new ArrayList();//所有的课程
-        for (GetDataInfo data : getDataInfos) {
+        for (GetDataInfo data : getDataInfoList) {
             List<FileInfo> fileInfoList = new ArrayList<>();//某一节课
             String courseName = data.getCourse_name();
             List<String> urlList = data.getUrls();

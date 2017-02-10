@@ -152,18 +152,18 @@ public class DownloadAdapter extends BaseAdapter {
             //设置显示的百分比
             holder.tvProgress.setTextColor(Color.parseColor("#8ab609"));
             holder.tvProgress.setVisibility(View.VISIBLE);
-            holder.linearLayout.setPadding(0, 10, 80, 10);
+            holder.linearLayout.setPadding(0, 10, 55, 10);
             holder.tvProgress.setText(progress + "%");
 
             //设置按钮的显示样式
             if (progress == 0 && !DAOImpl.getInstance(mContext).isCourseNameExist(courseDataList.get(position).get(position).getCourseName())) {
                 holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);
                 holder.tvProgress.setVisibility(View.GONE);
-                holder.linearLayout.setPadding(0, 10, 130, 10);
+                holder.linearLayout.setPadding(0, 10, 80, 10);
             } else if (progress == 100) {
                 holder.circleProgress.setStatus(CustomCircleProgress.Status.End);
                 holder.tvProgress.setTextColor(Color.parseColor("#888888"));
-            } else if (progress > 0 && progress < 100) {
+            } else if (progress >= 0 && progress < 100) {
                 if (DAO2Impl.getInstance(mContext).queryIsExist(courseName)) {
                     if (DAO2Impl.getInstance(mContext).queryIsLoading(courseName)) {
                         holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);
@@ -348,7 +348,7 @@ public class DownloadAdapter extends BaseAdapter {
                         } else if ("服务器内部错误".equals(result)) {
                             Toast.makeText(mContext, "服务器内部错误", Toast.LENGTH_SHORT).show();
                         } else if ("请检查网络连接是否正常".equals(result)) {
-                            Toast.makeText(mContext, "请检查网络连接是否正常", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "请检查网络连接是否正常" + fileUrl, Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

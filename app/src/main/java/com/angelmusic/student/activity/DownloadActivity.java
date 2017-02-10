@@ -128,7 +128,7 @@ public class DownloadActivity extends BaseActivity {
                             if (!TextUtils.isEmpty(video_uploadPath2)) {
                                 Log.e("-------------3----------", video_uploadPath2);
                                 String fileName = video_uploadPath2.substring(1);//带后缀的文件名
-                                String fileUrl = domainName + coursePartUrl + video_uploadPath2;
+                                String fileUrl = domainName + video_uploadPath2;
                                 listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                             }
                         }
