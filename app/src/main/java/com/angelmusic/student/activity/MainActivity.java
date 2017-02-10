@@ -63,12 +63,14 @@ public class MainActivity extends BaseActivity {
     TextView tvBlackboard;
     @BindView(R.id.layout_main_01)
     RelativeLayout layoutMain01;
-    private SeatDataInfo seatDataInfo;
     private String wifiName;
     private String schoolName;
-    private String classroomName;
+    private String roomName;
     private String seatId;
     private String pianoConStatus;
+    private PopupWindow popupWindow;
+
+    protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,15 +87,34 @@ public class MainActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
     }
 
+    @Override
+    protected void setTAG() {
+        TAG = "==MainActivity==";
+    }
+
+    @Override
+    protected int setContentViewId() {
+        return R.layout.activity_main;
+    }
+
+    /**
+     * 数据初始化
+     */
+    private void initData() {
+        wifiName = NetworkUtil.getWifiName(this);//获取当前pad连接的wifi名称
+        seatId = SharedPreferencesUtil.getString("seatNo", "00");
+        roomName = SharedPreferencesUtil.getString("roomName", "00");
+        schoolName = SharedPreferencesUtil.getString("schoolName", "天使音乐");
+        pianoConStatus = "未链接";//钢琴是否连接
+    }
+
     private void initView() {
         tvWifiName.setText(Html.fromHtml("<u>" + wifiName + "</u>"));
-        tvClassroomName.setText(Html.fromHtml("<u>" + classroomName + "</u>"));
+        tvClassroomName.setText(Html.fromHtml("<u>" + roomName + "</u>"));
         tvBlackboard.setText(schoolName);
         tvSeatId.setText(Html.fromHtml("<u>" + seatId + "</u>"));
         tvConnectionStatus.setText(Html.fromHtml("<u>" + pianoConStatus + "</u>"));
     }
-
-    protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
 
     private void initPiano() {
         IntentFilter filter = new IntentFilter();
@@ -113,95 +134,6 @@ public class MainActivity extends BaseActivity {
     // 连接设备
     public void connectDevice() {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).connect();
-    }
-
-    /**
-     * 数据初始化
-     */
-    private void initData() {
-        wifiName = NetworkUtil.getWifiName(this);//获取当前pad连接的wifi名称
-        String seatInfoString = SharedPreferencesUtil.getString("seatInfo", null);//本地获取学校id,班级id等等信息，这是从教师端获取后存储在本地的String串
-        if (seatInfoString == null) {
-            //如果本地不存在数据则请求教师数据
-        } else {
-            //如果有数据则将教师端发过来的字符串数据切割封装成SeatDataInfo类
-            seatDataInfo = getSeatDataInfo(seatInfoString);
-        }
-        if (seatDataInfo != null) {
-//            classroomName = seatDataInfo.getClassroomName();
-//            schoolName = seatDataInfo.getSchoolName();
-//            seatId = seatDataInfo.getSeatId();
-        } else {
-            schoolName = "天使音乐";
-            classroomName = "00";
-            seatId = "00";
-        }
-        pianoConStatus = "未链接";//钢琴是否连接
-    }
-
-    /**
-     * 将教师端发过来的字符串数据切割封装成SeatDataInfo类,还需要和教师端协商再修改
-     */
-    private SeatDataInfo getSeatDataInfo(String seatInfo) {
-        SeatDataInfo seatDataInfo = null;
-        if (!TextUtils.isEmpty(seatInfo)) {
-            String[] seatInfoArr = seatInfo.split("#");
-            seatDataInfo = new SeatDataInfo();
-//            seatDataInfo.setSchoolName(seatInfoArr[]);
-//            seatDataInfo.setSchoolId(seatInfoArr[]);
-//            seatDataInfo.setClassroomName(seatInfoArr[]);
-//            seatDataInfo.setClassroomId(seatInfoArr[]);
-//            seatDataInfo.setClassId(seatInfoArr[]);
-//            seatDataInfo.setSeatId(seatInfoArr[]);
-//            seatDataInfo.setRowNum(seatInfoArr[]);
-//            seatDataInfo.setColumnNum(seatInfoArr[]);
-        }
-        return seatDataInfo;
-    }
-
-    @Override
-    protected int setContentViewId() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    protected void setTAG() {
-        TAG = "==MainActivity==";
-    }
-
-    //显示所有座位号列表的弹框
-    private void showSeatPopup(View view) {
-        View contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.seat_layout, null);
-        GridView gridView = (GridView) contentView.findViewById(R.id.gv_seat);
-        gridView.setNumColumns(5);//这里动态设置列数
-        SeatAdapter adapter = new SeatAdapter(this);
-        gridView.setAdapter(adapter);
-        final PopupWindow popupWindow = new PopupWindow(contentView, 1200, 800);
-        popupWindow.setFocusable(false);
-        popupWindow.setOutsideTouchable(false);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
-        final WindowManager.LayoutParams wlBackground = getWindow().getAttributes();
-        wlBackground.alpha = 0.5f;// 设置PopupWindow以外部分的背景颜色  有一种变暗的效果
-        getWindow().setAttributes(wlBackground);
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                wlBackground.alpha = 1.0f;// 当PopupWindow消失时,恢复其为原来的颜色
-                getWindow().setAttributes(wlBackground);
-            }
-        });
-        //关闭popupWindow的按钮
-        contentView.findViewById(R.id.ib_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvSeatId.setClickable(true);//防止重复点击
-                popupWindow.dismiss();
-            }
-        });
-        //设置PopupWindow进入和退出动画
-        popupWindow.setAnimationStyle(R.style.PopupAnim);
-        // 设置PopupWindow显示在中间
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
     @OnClick({R.id.ib_download, R.id.tv_wifi_name, R.id.tv_classroom_name, R.id.tv_seat_id, R.id.tv_connection_status})
@@ -236,7 +168,43 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private PopupWindow popupWindow;
+    /**
+     * 显示所有座位号列表的弹框
+     */
+    private void showSeatPopup(View view) {
+        View contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.seat_layout, null);
+        GridView gridView = (GridView) contentView.findViewById(R.id.gv_seat);
+        gridView.setNumColumns(5);//这里动态设置列数
+        SeatAdapter adapter = new SeatAdapter(this);
+        gridView.setAdapter(adapter);
+        final PopupWindow popupWindow = new PopupWindow(contentView, 1200, 800);
+        popupWindow.setFocusable(false);
+        popupWindow.setOutsideTouchable(false);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        final WindowManager.LayoutParams wlBackground = getWindow().getAttributes();
+        wlBackground.alpha = 0.5f;// 设置PopupWindow以外部分的背景颜色  有一种变暗的效果
+        getWindow().setAttributes(wlBackground);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                wlBackground.alpha = 1.0f;// 当PopupWindow消失时,恢复其为原来的颜色
+                getWindow().setAttributes(wlBackground);
+            }
+        });
+        //关闭popupWindow的按钮
+        contentView.findViewById(R.id.ib_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvSeatId.setClickable(true);//防止重复点击
+                popupWindow.dismiss();
+            }
+        });
+        //设置PopupWindow进入和退出动画
+        popupWindow.setAnimationStyle(R.style.PopupAnim);
+        // 设置PopupWindow显示在中间
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
+
 
     /**
      * 弹框显示当前pad的座位号
@@ -268,25 +236,25 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 去掉显示座位号的弹框
-     */
-    private void hideSeatIdPopupWindow() {
-        popupWindow.dismiss();
-    }
-
-    /**
      * 接收教师端消息
      */
     @Override
     protected void handleMsg(Message msg) {
         super.handleMsg(msg);
-        //需要和教师端定义协议
         String teacherMsg = msg.obj.toString();
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
             String json = teacherMsg.substring(2);
             SeatDataInfo seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
             if (seatDataInfo != null) {
                 showSeatIdPopupWindow(seatDataInfo.getSeatNo());
+                //设置界面显示
+                tvSeatId.setText(seatDataInfo.getSeatNo());
+                tvClassroomName.setText(seatDataInfo.getRoomName());
+                tvBlackboard.setText(seatDataInfo.getSchoolName());
+                //存储信息
+                SharedPreferencesUtil.setString("seatNo", seatDataInfo.getSeatNo());
+                SharedPreferencesUtil.setString("roomName", seatDataInfo.getRoomName());
+                SharedPreferencesUtil.setString("schoolName", seatDataInfo.getSchoolName());
             }
         }
 
