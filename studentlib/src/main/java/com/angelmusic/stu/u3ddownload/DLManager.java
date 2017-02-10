@@ -2,6 +2,7 @@ package com.angelmusic.stu.u3ddownload;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.angelmusic.stu.MyApplication;
 import com.angelmusic.stu.okhttp.HttpInfo;
@@ -45,7 +46,6 @@ public class DLManager {
      * 获取课程下载的百分比
      */
     public String getProgressJson(String json) {
-        Log.e("===U3D=传入=","=json="+json);
         List<GetDataInfo> getDataInfoList = GsonUtil.jsonToList(json, GetDataInfo.class);//解析json
         List<SendDataInfo> sendDataInfoList = new ArrayList<>();
         for (GetDataInfo getDataInfo : getDataInfoList) {
@@ -63,7 +63,7 @@ public class DLManager {
             sendDataInfoList.add(new SendDataInfo(courseName, progress + ""));
         }
         String progressJson = GsonUtil.objectToJsonString(sendDataInfoList);
-        Log.e("=传给==U3D==","=json="+progressJson);
+        Log.e("=传给==U3D==", "=json=" + progressJson);
         return progressJson;
     }
 

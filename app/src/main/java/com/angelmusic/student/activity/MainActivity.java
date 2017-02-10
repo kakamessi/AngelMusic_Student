@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity {
     private String roomName;
     private String seatId;
     private String pianoConStatus;
+    private SeatDataInfo seatDataInfo;
     private PopupWindow popupWindow;
 
     protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
@@ -174,8 +175,14 @@ public class MainActivity extends BaseActivity {
     private void showSeatPopup(View view) {
         View contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.seat_layout, null);
         GridView gridView = (GridView) contentView.findViewById(R.id.gv_seat);
-        gridView.setNumColumns(5);//这里动态设置列数
-        SeatAdapter adapter = new SeatAdapter(this);
+        if (seatDataInfo == null) {
+            String seatInfoJson = SharedPreferencesUtil.getString("seatInfoJson", null);
+            seatDataInfo = GsonUtil.jsonToObject(seatInfoJson, SeatDataInfo.class);
+            if (seatDataInfo != null) {
+                gridView.setNumColumns(seatDataInfo.getColumnNo());//这里动态设置列数
+            }
+        }
+        SeatAdapter adapter = new SeatAdapter(this, seatDataInfo);
         gridView.setAdapter(adapter);
         final PopupWindow popupWindow = new PopupWindow(contentView, 1200, 800);
         popupWindow.setFocusable(false);
@@ -244,7 +251,7 @@ public class MainActivity extends BaseActivity {
         String teacherMsg = msg.obj.toString();
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
             String json = teacherMsg.substring(2);
-            SeatDataInfo seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
+            seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
             if (seatDataInfo != null) {
                 showSeatIdPopupWindow(seatDataInfo.getSeatNo());
                 //设置界面显示
@@ -252,6 +259,7 @@ public class MainActivity extends BaseActivity {
                 tvClassroomName.setText(seatDataInfo.getRoomName());
                 tvBlackboard.setText(seatDataInfo.getSchoolName());
                 //存储信息
+                SharedPreferencesUtil.setString("seatInfoJson", json);
                 SharedPreferencesUtil.setString("seatNo", seatDataInfo.getSeatNo());
                 SharedPreferencesUtil.setString("roomName", seatDataInfo.getRoomName());
                 SharedPreferencesUtil.setString("schoolName", seatDataInfo.getSchoolName());

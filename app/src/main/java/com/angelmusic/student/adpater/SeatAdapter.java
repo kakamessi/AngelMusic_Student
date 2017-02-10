@@ -34,12 +34,12 @@ public class SeatAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 33;// item总数
+        return seatDataInfo.getSeatList().size();// item总数
     }
 
     @Override
     public Object getItem(int position) {
-        return null;// 返回下标为position的item的数据
+        return seatDataInfo.getSeatList().get(position);// 返回下标为position的item的数据
     }
 
     @Override
@@ -60,7 +60,12 @@ public class SeatAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvSeat.setText("第" + position + "号座位");
+        String state = seatDataInfo.getSeatList().get(position).getState();
+        if ("无".equals(state)) {
+            holder.tvSeat.setText("无");
+        } else {
+            holder.tvSeat.setText("第" + state + "号座位");
+        }
         return convertView;
     }
 
