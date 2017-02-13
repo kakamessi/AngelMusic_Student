@@ -1,14 +1,18 @@
 package com.angelmusic.student.activity;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -24,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.angelmusic.stu.bean.UnityInterface;
-import com.angelmusic.stu.u3ddownload.DLManager;
 import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
@@ -37,12 +40,8 @@ import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
  * 主页
@@ -72,6 +71,7 @@ public class MainActivity extends BaseActivity {
     private SeatDataInfo seatDataInfo;
     private PopupWindow popupWindow;
 
+    private static String[] PERMISSION= {Manifest.permission.READ_PHONE_STATE};
     protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
 
     @Override
@@ -81,6 +81,16 @@ public class MainActivity extends BaseActivity {
         initData();
         initView();
         initPiano();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(islacksOfPermission(PERMISSION[0])){
+            ActivityCompat.requestPermissions(this,PERMISSION,0x12);
+        }else{
+
+        }
     }
 
     @Override
@@ -344,5 +354,13 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
+
+    private  boolean islacksOfPermission(String permission){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            return ContextCompat.checkSelfPermission(this, permission) ==
+                    PackageManager.PERMISSION_DENIED;
+        }
+        return false;
+    }
 
 }
