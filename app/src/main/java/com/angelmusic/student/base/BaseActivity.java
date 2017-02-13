@@ -15,13 +15,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
-import com.angelmusic.student.activity.DownloadActivity;
-import com.angelmusic.student.activity.MainActivity;
 import com.angelmusic.student.activity.VideoActivity;
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.core.ActionType;
@@ -31,10 +27,6 @@ import java.io.File;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
-
-import static android.R.attr.name;
-import static android.R.attr.path;
-import static android.R.attr.type;
 
 /**
  * Activity的基类

@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.text.TextUtils;
+import android.util.Log;
 
 import static android.content.Context.WIFI_SERVICE;
 
@@ -67,13 +69,19 @@ public class NetworkUtil {
         return true;
     }
 
-    /**获取WIFI名称*/
-    public static String getWifiName(Context context){
-        if(checkedNetWork(context)){
+    /**
+     * 获取WIFI名称
+     */
+    public static String getWifiName(Context context) {
+        if (checkedNetWork(context)) {
             WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            return wifiInfo.getSSID().substring(1,wifiInfo.getSSID().lastIndexOf("\""));
-        }else {
+            if (TextUtils.isEmpty(wifiInfo.getSSID())) {
+                return wifiInfo.getSSID().substring(1, wifiInfo.getSSID().lastIndexOf("\""));
+            } else {
+                return "未连接WIFI";
+            }
+        } else {
             return "未连接WIFI";
         }
     }
