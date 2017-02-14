@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_idle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context="com.angelmusic.student.activity.IdleActivity">
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:background="@mipmap/kc_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/kc_wxp"
+            android:id="@+id/iv_wxp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:background="@mipmap/kc_keyboard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="100sp"
-        android:text="@string/idle_text"
-        android:id="@+id/textView" />
+        android:layout_below="@+id/rl_top">
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
