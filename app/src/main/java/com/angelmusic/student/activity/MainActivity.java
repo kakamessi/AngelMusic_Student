@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity {
     private SeatDataInfo seatDataInfo;
     private PopupWindow popupWindow;
 
-    private static String[] PERMISSION= {Manifest.permission.READ_PHONE_STATE};
+    private static String[] PERMISSION = {Manifest.permission.READ_PHONE_STATE};
     protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
 
     @Override
@@ -86,9 +87,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(islacksOfPermission(PERMISSION[0])){
-            ActivityCompat.requestPermissions(this,PERMISSION,0x12);
-        }else{
+        if (islacksOfPermission(PERMISSION[0])) {
+            ActivityCompat.requestPermissions(this, PERMISSION, 0x12);
+        } else {
 
         }
     }
@@ -174,6 +175,7 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_connection_status:
+                showSeatIdPopupWindow("40");
                 //预留
                 break;
             default:
@@ -197,7 +199,7 @@ public class MainActivity extends BaseActivity {
         }
         SeatAdapter adapter = new SeatAdapter(this, seatDataInfo);
         gridView.setAdapter(adapter);
-        final PopupWindow popupWindow = new PopupWindow(contentView, 1200, 800);
+        final PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setFocusable(false);
         popupWindow.setOutsideTouchable(false);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
@@ -235,7 +237,7 @@ public class MainActivity extends BaseActivity {
         View contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.seat_id_layout, null);
         TextView tvSeatNum = (TextView) contentView.findViewById(R.id.tv_seat_num);
         tvSeatNum.setText(seatId);
-        popupWindow = new PopupWindow(contentView, 800, 800);
+        popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setFocusable(false);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
@@ -355,8 +357,8 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    private  boolean islacksOfPermission(String permission){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+    private boolean islacksOfPermission(String permission) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return ContextCompat.checkSelfPermission(this, permission) ==
                     PackageManager.PERMISSION_DENIED;
         }

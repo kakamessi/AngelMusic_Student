@@ -5,6 +5,8 @@
     <string name="domain_name">http://192.168.1.179</string>
     <!--测试用-->
     <string name="test_name">http://192.168.2.110:8085</string>
+    <!--域名信息-->
+    <string name="domain_name_a">http://newapp.tianshiyinyue.cn</string>
     <!--版本更新检查接口-->
     <string name="apk_check_version">/client/version/versionInfo.json</string>
     <!--学生登录接口-->
