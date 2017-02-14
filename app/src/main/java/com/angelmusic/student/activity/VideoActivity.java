@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -30,8 +32,6 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static android.R.attr.path;
 
 public class VideoActivity extends BaseActivity {
 
@@ -78,11 +78,11 @@ public class VideoActivity extends BaseActivity {
         TAG = "VideoActivity";
     }
 
-    @OnClick()
+    @OnClick({R.id.black_tv})
     public void onClick(View view) {
         switch (view.getId()) {
-            case 1:
-                play(0);
+            case R.id.black_tv:
+                //dialog7();
                 break;
         }
     }
@@ -353,8 +353,8 @@ public class VideoActivity extends BaseActivity {
 
         View layout = inflater.inflate(R.layout.dialog_score, null);
 
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-        PopupWindow window = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134
+        PopupWindow window = new PopupWindow(layout, 733, 680);
         // TODO: 2016/5/17 设置背景颜色
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         // TODO: 2016/5/17 设置可以获取焦点
@@ -366,10 +366,29 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
+        ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
+        ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
+        ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
+
+        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+        params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.width =getIntFromDimens(100);
+        iv_1.setLayoutParams(params);
+
+        TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
+        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
+        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+
+
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
 //        new AlertDialog.Builder(this).setView(layout).show();
 
+    }
+
+    public int getIntFromDimens(int index) {
+        int result = this.getResources().getDimensionPixelSize(index);
+        return result;
     }
 
     public void OpenVolume() {
