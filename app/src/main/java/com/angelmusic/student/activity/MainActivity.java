@@ -175,7 +175,6 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_connection_status:
-                showSeatIdPopupWindow("40");
                 //预留
                 break;
             default:
