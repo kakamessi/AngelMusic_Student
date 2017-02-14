@@ -66,7 +66,7 @@ public class DownloadActivity extends BaseActivity {
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(this);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl("http://192.168.1.179/client/course/findCoursePart.json").addParam
+                HttpInfo.Builder().setUrl("http://newapp.tianshiyinyue.cn/client/course/findCoursePart.json").addParam
                         ("schoolId", "1")//需要传入课程id参数
                         .build(),
                 new CallbackOk() {
@@ -111,26 +111,11 @@ public class DownloadActivity extends BaseActivity {
                 for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX1 : sonPart1) {//遍历第一层sonPart
                     List<CourseInfo.DetailBean.SonPartBeanX> sonPart2 = sonPartBeanX1.getSonPart();//第二层sonPart
                     for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
-                        List<CourseInfo.DetailBean.SonPartBeanX> sonPart3 = sonPartBeanX2.getSonPart();//第三层sonPart
-                        if (sonPart3 != null) {
-                            for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX3 : sonPart3) {//遍历
-                                List<CourseInfo.DetailBean.SonPartBeanX> sonPart4 = sonPartBeanX3.getSonPart();
-                                String video_uploadPath3 = sonPartBeanX3.getVideo_uploadPath();
-                                if (!TextUtils.isEmpty(video_uploadPath3)) {
-                                    Log.e("-------------4----------", video_uploadPath3);
-                                    String fileName = video_uploadPath3.substring(1);//带后缀的文件名
-                                    String fileUrl = domainName  + video_uploadPath3;
-                                    listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
-                                }
-                            }
-                        } else {
-                            String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
-                            if (!TextUtils.isEmpty(video_uploadPath2)) {
-                                Log.e("-------------3----------", video_uploadPath2);
-                                String fileName = video_uploadPath2.substring(1);//带后缀的文件名
-                                String fileUrl = domainName + video_uploadPath2;
-                                listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
-                            }
+                        String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
+                        if (!TextUtils.isEmpty(video_uploadPath2)) {
+                            String fileName = video_uploadPath2.substring(1);//带后缀的文件名
+                            String fileUrl = domainName + video_uploadPath2;
+                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                         }
                     }
                 }
@@ -140,7 +125,6 @@ public class DownloadActivity extends BaseActivity {
         }
         return fileInfoLists;
     }
-
 
     @Override
     protected int setContentViewId() {

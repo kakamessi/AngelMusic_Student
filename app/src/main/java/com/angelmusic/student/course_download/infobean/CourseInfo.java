@@ -245,7 +245,6 @@ public class CourseInfo {
             public void setSonPart(List<SonPartBeanX> sonPart) {
                 this.sonPart = sonPart;
             }
-
         }
     }
 }
