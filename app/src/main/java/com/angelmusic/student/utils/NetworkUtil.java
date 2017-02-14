@@ -76,7 +76,7 @@ public class NetworkUtil {
         if (checkedNetWork(context)) {
             WifiManager wifiManager = (WifiManager) context.getSystemService(WIFI_SERVICE);
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            if (TextUtils.isEmpty(wifiInfo.getSSID())) {
+            if (!TextUtils.isEmpty(wifiInfo.getSSID())) {
                 return wifiInfo.getSSID().substring(1, wifiInfo.getSSID().lastIndexOf("\""));
             } else {
                 return "未连接WIFI";

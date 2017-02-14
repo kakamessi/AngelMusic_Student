@@ -41,6 +41,8 @@ import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -164,6 +166,11 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_classroom_name:
                 //预留
+                File oldFile = new File("/storage/emulated/0/Android/data/com.angelmusic" +
+                        ".student/files/course/E51F74837A45308A55362279D95C9F34");
+                File newFile = new File("/storage/emulated/0/Android/data/com.angelmusic.student/files/course/a/1.mp4");
+                boolean b = oldFile.renameTo(newFile);
+                Toast.makeText(this, "" + b, Toast.LENGTH_LONG).show();
                 break;
             case R.id.tv_seat_id:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {
@@ -176,6 +183,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_connection_status:
                 //预留
+                startActivity(new Intent(MainActivity.this, IdleActivity.class));
                 break;
             default:
 
@@ -277,6 +285,7 @@ public class MainActivity extends BaseActivity {
                 SharedPreferencesUtil.setString("seatNo", seatDataInfo.getSeatNo());
                 SharedPreferencesUtil.setString("roomName", seatDataInfo.getRoomName());
                 SharedPreferencesUtil.setString("schoolName", seatDataInfo.getSchoolName());
+                SharedPreferencesUtil.setString("schoolId", seatDataInfo.getSchoolID());//课程信息下载需要此参数
             }
         }
 

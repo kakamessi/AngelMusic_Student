@@ -2,11 +2,9 @@
     <!--APP名称-->
     <string name="app_name">StudentPad</string>
     <!--域名信息-->
-    <string name="domain_name">http://192.168.1.179</string>
+    <string name="domain_name">http://newapp.tianshiyinyue.cn</string>
     <!--测试用-->
     <string name="test_name">http://192.168.2.110:8085</string>
-    <!--域名信息-->
-    <string name="domain_name_a">http://newapp.tianshiyinyue.cn</string>
     <!--版本更新检查接口-->
     <string name="apk_check_version">/client/version/versionInfo.json</string>
     <!--学生登录接口-->
@@ -19,6 +17,6 @@
     <string name="home_bg">/client/waitPic/picInfo.json</string>
     <!--课程信息接口-->
     <string name="course_info">/bm/admin/course/findCoursePartjson.json</string>
-    <!--要拼接的文件下载地址使用的部分-->
-    <string name="course_part_path">未定</string>
+    <!--课件信息json接口-->
+    <string name="course_info_json">/client/course/findCoursePart.json</string>
 </resources>

@@ -163,7 +163,7 @@ public class DownloadAdapter extends BaseAdapter {
             } else if (progress == 100) {
                 holder.circleProgress.setStatus(CustomCircleProgress.Status.End);
                 holder.tvProgress.setTextColor(Color.parseColor("#888888"));
-            } else if (progress >= 0 && progress < 100) {
+            } else if (progress >=0 && progress < 100) {
                 if (DAO2Impl.getInstance(mContext).queryIsExist(courseName)) {
                     if (DAO2Impl.getInstance(mContext).queryIsLoading(courseName)) {
                         holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);

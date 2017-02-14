@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -117,7 +118,7 @@ public class ApkManager {
         } else if (isForced == 2) {//强制更新
             btnCancel.setVisibility(View.GONE);
         }
-        updateDialog.setContentView(view, new RelativeLayout.LayoutParams(1000, 800));
+        updateDialog.setContentView(view);
         updateDialog.show();
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

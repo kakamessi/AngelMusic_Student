@@ -14,6 +14,7 @@ import com.angelmusic.stu.okhttp.progress.ProgressRequestBody;
 import com.angelmusic.stu.okhttp.progress.ProgressResponseBody;
 import com.angelmusic.stu.okhttp.util.MediaTypeUtil;
 import com.angelmusic.stu.okhttp.util.EncryptUtil;
+import com.angelmusic.stu.utils.Log;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -197,6 +198,8 @@ class DownUpLoadHelper extends BaseHelper{
                 }
                 File oldFile = new File(fileInfo.getSaveFileDir(),fileInfo.getSaveFileNameEncrypt());
                 if(oldFile.exists() && oldFile.isFile()){
+                    Log.e("==old File==",oldFile.toString());
+                    Log.e("==new File==",newFile.toString());
                     boolean rename = oldFile.renameTo(newFile);
                     showLog("重命名["+rename+"]:"+newFile.getAbsolutePath());
                 }

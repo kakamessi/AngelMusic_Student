@@ -1,58 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@mipmap/apk_update_bg">
-    <!-- OK&Cancel Button -->
-    <LinearLayout
-        android:id="@+id/ll_bt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_update_id_cancel"
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/cancel_btn_selector"/>
-
-        <Button
-            android:id="@+id/btn_update_id_ok"
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/update_btn_selector"/>
-    </LinearLayout>
-    <!-- Content -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:layout_above="@id/ll_bt"
-        android:layout_marginTop="180dp"
-        android:layout_centerHorizontal="true">
-
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/apk_update_bg">
+        <!-- OK&Cancel Button -->
         <LinearLayout
+            android:id="@+id/ll_bt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_update_title"
+            <Button
+                android:id="@+id/btn_update_id_cancel"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/cancel_btn_selector"/>
+
+            <Button
+                android:id="@+id/btn_update_id_ok"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/update_btn_selector"/>
+        </LinearLayout>
+        <!-- Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_above="@id/ll_bt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="180dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="最新版本：天使音乐V2.0.0"
-                android:textColor="@color/black_light"
-                android:textSize="@dimen/medium_text_size"
-                />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <!--<TextView-->
+                <TextView
+                    android:id="@+id/tv_update_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="最新版本：天使音乐V2.0.0"
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/medium_text_size"
+                    />
+
+                <!--<TextView-->
                 <!--android:id="@+id/tv_update_apk_size"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
@@ -61,24 +68,24 @@
                 <!--android:textSize="@dimen/medium_text_size"-->
                 <!--/>-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="更新内容："
-                android:textColor="@color/black_light"
-                android:textSize="@dimen/medium_text_size"
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="更新内容："
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/medium_text_size"
+                    />
 
-            <TextView
-                android:id="@+id/tv_update_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="1、更新内容\n2、更新内容\n3、更新内容\n4、更新内容\n5、更新内容\n6、更新内容\n7、更新内容\n1、更新内容\n2、更新内容\n3、更新内容\n4、更新内容\n5、更新内容\n6、更新内容\n7、更新内容\n"
-                android:padding="5dp"
-                android:textColor="#666666"
-                android:textSize="@dimen/medium_text_size"
-                />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/tv_update_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="1、更新内容\n2、更新内容\n3、更新内容\n4、更新内容\n5、更新内容\n6、更新内容\n7、更新内容\n1、更新内容\n2、更新内容\n3、更新内容\n4、更新内容\n5、更新内容\n6、更新内容\n7、更新内容\n"
+                    android:padding="5dp"
+                    android:textColor="#666666"
+                    android:textSize="@dimen/medium_text_size"
+                    />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 </RelativeLayout>
-

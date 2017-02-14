@@ -21,6 +21,7 @@ import com.angelmusic.stu.okhttp.HttpInfo;
 import com.angelmusic.stu.okhttp.OkHttpUtil;
 import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.okhttp.callback.CallbackOk;
+import com.angelmusic.student.utils.SharedPreferencesUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,11 +44,12 @@ public class DownloadActivity extends BaseActivity {
     @BindView(R.id.lv_course)
     ListView lvCourse;
     private String domainName;//域名
-    private String coursePartUrl;//文件的部分下载地址
+    private String courseInfoJson;//获取课程信息json的接口
     private String courseParentPath;//文件存放的路径
     private CourseInfo courseInfo;//网络下载封装成的课程信息总类
     private List<List<FileInfo>> fileInfoLists;//适配器需要传入的数据
     private DownloadAdapter adapter;
+    private String schoolId;//学校ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +61,16 @@ public class DownloadActivity extends BaseActivity {
 
     //网络请求数据
     private void initData() {
+        schoolId = SharedPreferencesUtil.getString("schoolId", "1");
         domainName = getResources().getString(R.string.domain_name);
-        coursePartUrl = getResources().getString(R.string.course_part_path);
+        courseInfoJson = getResources().getString(R.string.course_info_json);
         courseParentPath = SDCardUtil.getAppFilePath(this) + "course" + File.separator;
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(this);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl("http://newapp.tianshiyinyue.cn/client/course/findCoursePart.json").addParam
-                        ("schoolId", "1")//需要传入课程id参数
+                HttpInfo.Builder().setUrl(domainName + courseInfoJson).addParam
+                        ("schoolId", schoolId)//需要传入课程id参数
                         .build(),
                 new CallbackOk() {
                     @Override
@@ -113,7 +116,7 @@ public class DownloadActivity extends BaseActivity {
                     for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
                         String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
                         if (!TextUtils.isEmpty(video_uploadPath2)) {
-                            String fileName = video_uploadPath2.substring(1);//带后缀的文件名
+                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/"));//带后缀的文件名
                             String fileUrl = domainName + video_uploadPath2;
                             listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                         }
