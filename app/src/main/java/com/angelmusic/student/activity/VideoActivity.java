@@ -2,12 +2,15 @@ package com.angelmusic.student.activity;
 
 import android.app.Service;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.hardware.usb.UsbManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -27,6 +30,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.usb.UsbDeviceConnect;
+import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.stu.usb.callback.CallbackInterface;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
@@ -36,9 +42,13 @@ import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.R.attr.key;
+import static com.angelmusic.student.activity.MainActivity.ACTION_USB_PERMISSION;
 
 public class VideoActivity extends BaseActivity {
 
@@ -66,12 +76,69 @@ public class VideoActivity extends BaseActivity {
     private boolean isPlaying;
     private int swich = 0;
 
+    /*记录钢琴弹奏输出*/
+    private ArrayList<String> notes = new ArrayList<String>();
+
+    /*收到钢琴消息handler*/
+    private Handler pianoHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            String str = (String) msg.obj;
+            notes.add(str);
+            Log.e(TAG,str);
+            //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
+            handlerNote(str);
+
+        }
+    };
+
+    private void handlerNote(String str) {
+
+        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+        int key =  Integer.parseInt(myDatas[2], 16) - 21;
+        Toast.makeText(this,key+"",0).show();
+
+        //音符
+
+
+        //亮灯
+
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initView();
+        initPiano();
+    }
+
+    private void initPiano() {
+
+        UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
+        UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
+            @Override
+            public void onReadCallback(String str) {
+
+                Message msg = Message.obtain();
+                msg.obj = str;
+                pianoHandler.sendMessage(msg);
+
+            }
+
+            @Override
+            public void onSendCallback(boolean isSend) {
+
+            }
+
+        });
+
+        UsbDeviceInfo.getUsbDeviceInfo(this).update();
+        UsbDeviceInfo.getUsbDeviceInfo(this).connect();
+
     }
 
     @Override
