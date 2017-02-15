@@ -1,12 +1,16 @@
 package com.angelmusic.student.activity;
 
 import android.app.Service;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,7 +19,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -41,6 +47,12 @@ public class VideoActivity extends BaseActivity {
     TextView blackTv;
     @BindView(R.id.surface_view)
     SurfaceView surfaceView;
+    @BindView(R.id.white_key_ll)
+    LinearLayout whiteKeyLl;
+    @BindView(R.id.black_key_rl)
+    RelativeLayout blackKeyRl;
+    @BindView(R.id.iv_yinfu_bg_ll)
+    LinearLayout ivYinfuBgLl;
 
 
     //课程信息
@@ -99,17 +111,17 @@ public class VideoActivity extends BaseActivity {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
-        Log.e(TAG,"消息入口:  ---------- " + str);
+        Log.e(TAG, "消息入口:  ---------- " + str);
 
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
-            if(ac[1].equals("0")){
-                Log.e(TAG,"动作:  ---------- " + "投大屏");
+            if (ac[1].equals("0")) {
+                Log.e(TAG, "动作:  ---------- " + "投大屏");
                 stop();
                 blackTv.setVisibility(View.VISIBLE);
                 blackTv.setText("请看大屏幕");
-            }else{
+            } else {
                 blackTv.setVisibility(View.INVISIBLE);
                 String path = cd.getFiles().get(ac[2]);
 
@@ -117,21 +129,21 @@ public class VideoActivity extends BaseActivity {
 //              currentPath = path;
 //              play(0);
 
-                Log.e(TAG,"动作:  ---------- " + "投学生屏开始播放视频：" + path);
+                Log.e(TAG, "动作:  ---------- " + "投学生屏开始播放视频：" + path);
             }
 
             //暂停继续播放视频
         } else if (ActionType.ACTION_PAUSE_RESUME.equals(ac[0])) {
 
-            if(ac[1].equals("2")) {
+            if (ac[1].equals("2")) {
 
-                Log.e(TAG,"动作:  ---------- " + "下课：");
+                Log.e(TAG, "动作:  ---------- " + "下课：");
                 this.finish();
 
-            }else{
+            } else {
 
                 pause();
-                Log.e(TAG,"动作:  ---------- " + "暂停继续：");
+                Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
 
         }
@@ -273,7 +285,7 @@ public class VideoActivity extends BaseActivity {
      */
     protected void pause() {
 
-        if(mediaPlayer==null){
+        if (mediaPlayer == null) {
             return;
         }
 
@@ -367,8 +379,8 @@ public class VideoActivity extends BaseActivity {
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
         ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-        params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
-        params.width = getIntFromDimens(350/2);
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.width = getIntFromDimens(350 / 2);
         iv_1.setLayoutParams(params);
 
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
@@ -383,7 +395,7 @@ public class VideoActivity extends BaseActivity {
     }
 
     public int getIntFromDimens(float index) {
-        int result = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, index, getResources().getDisplayMetrics());
+        int result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, index, getResources().getDisplayMetrics());
         return result;
     }
 
@@ -396,4 +408,93 @@ public class VideoActivity extends BaseActivity {
 
     }
 
+    /**
+     * 设置音符背景颜色
+     * 方法：通过设置背景图片
+     *
+     * @param position 第几个音符
+     * @param color    颜色 Color.RED&&Color.Blue
+     */
+    private void setYinfuBgColor(int position, int color) {
+        int childCount = ivYinfuBgLl.getChildCount();
+        if (position < childCount) {
+            for (int i = 0; i < childCount; i++) {
+                if (i == position) {
+                    if (color == Color.RED) {
+                        ivYinfuBgLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (color == Color.BLUE) {
+                        ivYinfuBgLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLl.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else {
+            Toast.makeText(this, "超出音符个数", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 设置白色按键的颜色
+     * 方法：通过改变背景图片颜色
+     *
+     * @param position 第几个按键
+     * @param color    颜色 Color.RED&&Color.BLUE
+     */
+    private void setWhiteKeyBgColor(int position, int color) {
+        int childCount = whiteKeyLl.getChildCount();
+        if (position < childCount) {
+            for (int i = 0; i < childCount; i++) {
+                if (i == position) {
+                    if (color == Color.RED) {
+                        ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                    } else if (color == Color.BLUE) {
+                        ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                    }
+                } else {
+                    ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                }
+            }
+        } else {
+            Toast.makeText(this, "超出按键个数", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 设置黑色按键的颜色
+     * 方法：通过设置背景图片
+     * 注意：使用时需要将style文件中的white_key_style中的图片隐藏掉
+     *
+     * @param position 第几个按键,不需要设置某个按键颜色时候传入-1
+     * @param color    颜色 Color.RED&&Color.BLUE 默认：Color.BLACK
+     */
+    private void setBlackKeyBgColor(int position, int color) {
+        int childCount = blackKeyRl.getChildCount();
+        if (position < childCount) {
+            for (int i = 0; i < childCount; i++) {
+                if (i == position) {
+                    if (color == Color.RED) {
+                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
+                    } else if (color == Color.BLUE) {
+                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
+                    }
+                } else {
+                    blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
+                }
+            }
+        } else {
+            Toast.makeText(this, "超出按键个数", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 改变图片颜色
+     */
+    private Drawable getTintPic(Context context, int image, int color) {
+        Drawable drawable = ContextCompat.getDrawable(context, image);
+        Drawable.ConstantState constantState = drawable.getConstantState();
+        Drawable newDrawable = DrawableCompat.wrap(constantState == null ? drawable : constantState.newDrawable()).mutate();
+        DrawableCompat.setTint(newDrawable, color);
+        return newDrawable;
+    }
 }

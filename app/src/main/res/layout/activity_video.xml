@@ -15,14 +15,14 @@
         android:layout_height="match_parent"/>
 
     <TextView
+        android:id="@+id/black_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
-        android:textSize="150sp"
-        android:textColor="@color/white"
         android:gravity="center"
         android:text="@string/idle_text"
-        android:id="@+id/black_tv"
+        android:textColor="@color/white"
+        android:textSize="150sp"
         />
-
+    <include layout="@layout/layout_yuepu"/>
 </RelativeLayout>
