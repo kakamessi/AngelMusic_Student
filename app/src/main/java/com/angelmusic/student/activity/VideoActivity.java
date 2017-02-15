@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -372,7 +373,7 @@ public class VideoActivity extends BaseActivity {
 
         ViewGroup.LayoutParams params = iv_1.getLayoutParams();
         params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
-        params.width =getIntFromDimens(100);
+        params.width = getIntFromDimens(350/2);
         iv_1.setLayoutParams(params);
 
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
@@ -386,8 +387,8 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    public int getIntFromDimens(int index) {
-        int result = this.getResources().getDimensionPixelSize(index);
+    public int getIntFromDimens(float index) {
+        int result = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, index, getResources().getDisplayMetrics());
         return result;
     }
 
