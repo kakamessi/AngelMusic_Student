@@ -8,6 +8,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.okhttp.HttpInfo;
+import com.angelmusic.stu.okhttp.OkHttpUtil;
+import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
@@ -17,10 +21,6 @@ import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
-import com.angelmusic.stu.okhttp.HttpInfo;
-import com.angelmusic.stu.okhttp.OkHttpUtil;
-import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
-import com.angelmusic.stu.okhttp.callback.CallbackOk;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 
 import java.io.File;
@@ -31,7 +31,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.media.CamcorderProfile.get;
 import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 /**
@@ -116,7 +115,7 @@ public class DownloadActivity extends BaseActivity {
                     for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
                         String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
                         if (!TextUtils.isEmpty(video_uploadPath2)) {
-                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/"));//带后缀的文件名
+                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/")+1);//带后缀的文件名
                             String fileUrl = domainName + video_uploadPath2;
                             listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                         }
