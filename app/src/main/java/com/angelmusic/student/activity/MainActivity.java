@@ -160,17 +160,11 @@ public class MainActivity extends BaseActivity {
                 overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
                 break;
             case R.id.tv_wifi_name:
-                //预留，后续可添加无网络时点击跳转到设置网络
                 wifiName = NetworkUtil.getWifiName(this);//获取当前pad连接的wifi名称
                 tvWifiName.setText(Html.fromHtml("<u>" + wifiName + "</u>"));
                 break;
             case R.id.tv_classroom_name:
                 //预留
-                File oldFile = new File("/storage/emulated/0/Android/data/com.angelmusic" +
-                        ".student/files/course/E51F74837A45308A55362279D95C9F34");
-                File newFile = new File("/storage/emulated/0/Android/data/com.angelmusic.student/files/course/a/1.mp4");
-                boolean b = oldFile.renameTo(newFile);
-                Toast.makeText(this, "" + b, Toast.LENGTH_LONG).show();
                 break;
             case R.id.tv_seat_id:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {
