@@ -9,6 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.angelmusic.student.activity.VideoActivity">
 
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,12 +23,6 @@
         android:gravity="center"
         android:text="@string/idle_text"
         android:id="@+id/black_tv"
-        android:visibility="invisible"
         />
-
-    <SurfaceView
-        android:id="@+id/surface_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </RelativeLayout>

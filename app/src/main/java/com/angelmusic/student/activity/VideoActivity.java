@@ -91,10 +91,7 @@ public class VideoActivity extends BaseActivity {
     private void initView() {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
-
-        blackTv.setVisibility(View.VISIBLE);
         blackTv.setText("准备中");
-        surfaceView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -112,10 +109,8 @@ public class VideoActivity extends BaseActivity {
                 stop();
                 blackTv.setVisibility(View.VISIBLE);
                 blackTv.setText("请看大屏幕");
-                surfaceView.setVisibility(View.INVISIBLE);
             }else{
                 blackTv.setVisibility(View.INVISIBLE);
-                surfaceView.setVisibility(View.VISIBLE);
                 String path = cd.getFiles().get(ac[2]);
 
                 switchVedio(path);
