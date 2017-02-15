@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.angelmusic.stu.MyApplication;
-import com.angelmusic.stu.okhttp.HttpInfo;
-import com.angelmusic.stu.okhttp.OkHttpUtil;
-import com.angelmusic.stu.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.stu.u3ddownload.db.DAO2Impl;
 import com.angelmusic.stu.u3ddownload.db.DAOImpl;
 import com.angelmusic.stu.u3ddownload.infobean.FileInfo;

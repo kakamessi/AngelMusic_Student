@@ -4,12 +4,12 @@ import android.app.Application;
 import android.os.Environment;
 import android.util.Log;
 
-import com.angelmusic.stu.okhttp.OkHttpUtil;
-import com.angelmusic.stu.okhttp.annotation.CacheLevel;
-import com.angelmusic.stu.okhttp.annotation.CacheType;
-import com.angelmusic.stu.okhttp.cookie.PersistentCookieJar;
-import com.angelmusic.stu.okhttp.cookie.cache.SetCookieCache;
-import com.angelmusic.stu.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheType;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.PersistentCookieJar;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.u3ddownload.HttpInterceptor;
 import com.angelmusic.stu.utils.MyCrashHandler;
 

@@ -6,14 +6,14 @@ import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.Utils;
-import com.angelmusic.stu.okhttp.HttpInfo;
-import com.angelmusic.stu.okhttp.OkHttpUtil;
-import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
-import com.angelmusic.stu.okhttp.callback.CallbackOk;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 
 import java.io.IOException;
 
-import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 /**
  * Created by fei on 2017/1/17.

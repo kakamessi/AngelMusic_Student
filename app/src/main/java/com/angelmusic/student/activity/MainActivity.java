@@ -41,8 +41,6 @@ import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
 
-import java.io.File;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 

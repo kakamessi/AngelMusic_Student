@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -20,17 +19,17 @@ import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SDCardUtil;
-import com.angelmusic.stu.okhttp.HttpInfo;
-import com.angelmusic.stu.okhttp.OkHttpUtil;
-import com.angelmusic.stu.okhttp.OkHttpUtilInterface;
-import com.angelmusic.stu.okhttp.bean.DownloadFileInfo;
-import com.angelmusic.stu.okhttp.callback.CallbackOk;
-import com.angelmusic.stu.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.angelmusic.stu.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 
 /**

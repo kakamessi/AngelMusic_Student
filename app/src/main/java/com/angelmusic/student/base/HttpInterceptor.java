@@ -1,9 +1,9 @@
 package com.angelmusic.student.base;
 
 
-import com.angelmusic.stu.okhttp.HttpInfo;
-import com.angelmusic.stu.okhttp.interceptor.ExceptionInterceptor;
-import com.angelmusic.stu.okhttp.interceptor.ResultInterceptor;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ExceptionInterceptor;
+import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ResultInterceptor;
 
 /**
  * Http拦截器
