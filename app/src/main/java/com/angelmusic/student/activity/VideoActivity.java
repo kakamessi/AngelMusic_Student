@@ -96,23 +96,29 @@ public class VideoActivity extends BaseActivity {
         }
     };
 
-    int index = 1;
+    int index = 0;
     private void handlerNote(String str) {
 
+        //确认选谱
         int[] music = music_g[music_num];
 
+        //获取钢琴弹奏音符
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
         int key = Integer.parseInt(myDatas[2], 16) - 21;
 
-        //音符
+        //处理输出信息，显示
         if (key == music[index]) {
 
-            setYinfuBgColor(index, Color.BLUE);
+            if(index==7) {
+                index = -1;
+            }
+            setYinfuBgColor(index+1, Color.RED);
+
             if (str.endsWith("0 ")) {
-                index++;
                 if (index == 7) {
                     index = 0;
                 }
+                index++;
             }
 
         }
@@ -127,14 +133,13 @@ public class VideoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initView();
         closePiano();
+        initView();
 
     }
 
     private void initPiano() {
 
-        UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
         UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
             @Override
             public void onReadCallback(String str) {
@@ -254,6 +259,12 @@ public class VideoActivity extends BaseActivity {
             initPiano();
             blackTv.setVisibility(View.INVISIBLE);
             activityIdle.setVisibility(View.VISIBLE);
+
+            if(music_num==0){
+                setYinfuBgColor(0,Color.RED);
+            }else if(music_num==1){
+
+            }
 
         } else if (type == 3) {
             //播放视频
