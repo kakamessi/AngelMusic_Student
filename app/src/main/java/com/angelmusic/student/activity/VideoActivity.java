@@ -109,15 +109,16 @@ public class VideoActivity extends BaseActivity {
         if (key == music[index]) {
 
             //处理输出信息，显示
-
-            if(index==7) {
-                index = -1;
+            if(index==music.length-1) {
+                setYinfuBgColor(0, Color.RED);
+            }else{
+                setYinfuBgColor(index+1, Color.RED);
             }
-            setYinfuBgColor(index+1, Color.RED);
 
+            //处理循环
             if (str.endsWith("0 ")) {
-                if (index == 7) {
-                    index = 0;
+                if (index == music.length-1) {
+                    index = -1;
                 }
                 index++;
             }
