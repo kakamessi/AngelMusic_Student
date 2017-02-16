@@ -106,8 +106,9 @@ public class VideoActivity extends BaseActivity {
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
         int key = Integer.parseInt(myDatas[2], 16) - 21;
 
-        //处理输出信息，显示
         if (key == music[index]) {
+
+            //处理输出信息，显示
 
             if(index==7) {
                 index = -1;
@@ -121,10 +122,11 @@ public class VideoActivity extends BaseActivity {
                 index++;
             }
 
+
+            //亮灯
+
+
         }
-
-        //亮灯
-
 
     }
 
@@ -260,8 +262,11 @@ public class VideoActivity extends BaseActivity {
             blackTv.setVisibility(View.INVISIBLE);
             activityIdle.setVisibility(View.VISIBLE);
 
+            /* 初始化界面显示的时候 默认高亮音符信息 */
             if(music_num==0){
                 setYinfuBgColor(0,Color.RED);
+                setWhiteKeyBgColor(0,Color.RED);
+
             }else if(music_num==1){
 
             }
