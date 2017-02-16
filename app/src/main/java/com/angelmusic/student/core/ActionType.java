@@ -19,6 +19,7 @@ public class ActionType {
 
     public static final String ACTION_PAUSE_RESUME = "5";
 
+    public static final String ACTION_GZ_ONE = "6";
 
     public static String getMsg(){
 

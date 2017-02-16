@@ -26,9 +26,9 @@ public class MusicNote {
     public static byte OFF_RED = 0x00;
     public static byte OFF_BLUE = 0x10;
 
-    public static final ArrayList<NoteInfo> note_1 = new ArrayList<NoteInfo>();
-    public static final ArrayList<NoteInfo> note_2 = new ArrayList<NoteInfo>();
-    public static final ArrayList<NoteInfo> note_3 = new ArrayList<NoteInfo>();
+    public static final ArrayList<NoteInfo> note_1 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> note_2 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> note_3 = new ArrayList<>();
     /*乐谱合集*/
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
 
@@ -47,13 +47,13 @@ public class MusicNote {
                 if (i < 3) {
                     NoteInfo ni1 = new NoteInfo(39, two_i, 8, false);
                     note_2.add(ni1);
-                    two_i++;
                 }
                 if (i < 6 && i > 2) {
                     NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
                     note_2.add(ni1);
-                    two_i++;
+
                 }
+                two_i++;
             }
         }
 

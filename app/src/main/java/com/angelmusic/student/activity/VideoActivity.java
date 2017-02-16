@@ -211,6 +211,7 @@ public class VideoActivity extends BaseActivity {
     private void initView() {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
+        //初始化界面就是准备中
         blackTv.setText("准备中");
 
         setLayoutStyle(2);
@@ -256,6 +257,12 @@ public class VideoActivity extends BaseActivity {
                 Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
 
+
+        }else if(ActionType.ACTION_GZ_ONE.equals(ac[0])){
+
+            stop();
+            setLayoutStyle(2);
+
         }
 
 
@@ -296,9 +303,10 @@ public class VideoActivity extends BaseActivity {
             /* 初始化界面显示的时候 默认高亮音符信息 */
             if(music_num==0){
                 setYinfuBgColor(0,Color.RED);
-                setWhiteKeyBgColor(0,Color.RED);
-
+                setWhiteKeyBgColor(8,Color.RED);
             }else if(music_num==1){
+
+            }else if(music_num==2){
 
             }
 
