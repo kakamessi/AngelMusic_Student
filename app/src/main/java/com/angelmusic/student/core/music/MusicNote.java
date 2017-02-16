@@ -38,7 +38,7 @@ public class MusicNote {
     public static final byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
             (byte)(OFF_INDEX+21), 0x06, OFF_COLOR, 0x0, (byte) 0xf7 };
 
-    
+
     //获取开灯指令集
     public static byte[] getLightbytes(int index,boolean isRed){
 
