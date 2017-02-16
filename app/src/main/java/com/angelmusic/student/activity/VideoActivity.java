@@ -37,6 +37,7 @@ import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
+import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -91,7 +92,7 @@ public class VideoActivity extends BaseActivity {
             notes.add(str);
             Log.e(TAG, str + ":" + str.length());
             //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-            handlerNote(str);
+            handlerNewNote(str);
 
         }
     };
@@ -123,14 +124,43 @@ public class VideoActivity extends BaseActivity {
                 index++;
 
                 //亮灯
+            }
+        }
+    }
 
+    int index_new = 0;
+    private void handlerNewNote(String str) {
+
+        //确认选谱
+        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num];
+
+        //获取钢琴弹奏音符
+        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+        int key = Integer.parseInt(myDatas[2], 16) - 21;
+
+        //处理输出
+        NoteInfo ni = al.get(index_new);
+        if (key == ni.getNoteNum()) {
+
+            //显示正确音符 和 钢琴键
+            setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
+            setYinfuBgColor(ni.getNoteIndex(),  ni.isRed()==true?Color.RED:Color.BLUE);
+
+            //处理循环
+            if (str.endsWith("0 ")) {
+
+                if (index_new == al.size()-1) {
+                    index_new = -1;
+                }
+                index_new++;
+
+                //亮灯
 
             }
-
         }
 
     }
-
+    /*------------------------------------------------------------------------------收到钢琴消息handler*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

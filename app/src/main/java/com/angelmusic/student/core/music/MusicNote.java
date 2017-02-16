@@ -1,5 +1,13 @@
 package com.angelmusic.student.core.music;
 
+import android.content.Context;
+
+import com.angelmusic.stu.usb.UsbDeviceInfo;
+
+import java.util.ArrayList;
+
+import static android.os.Build.VERSION_CODES.N;
+
 /**
  * Created by DELL on 2017/2/1
  */
@@ -17,6 +25,60 @@ public class MusicNote {
     public static int OFF_INDEX = 39;
     public static byte OFF_RED = 0x00;
     public static byte OFF_BLUE = 0x10;
+
+    public static final ArrayList<NoteInfo> note_1 = new ArrayList<NoteInfo>();
+    public static final ArrayList<NoteInfo> note_2 = new ArrayList<NoteInfo>();
+    public static final ArrayList<NoteInfo> note_3 = new ArrayList<NoteInfo>();
+    /*乐谱合集*/
+    public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
+
+    static{
+
+        /*----第一张谱子----*/
+        for(int i=0; i<8;i++){
+            NoteInfo ni1 = new NoteInfo(39,i,8,true);
+            note_1.add(ni1);
+        }
+
+        /*----第二张谱子--低 蓝色--*/
+        int two_i = 0;
+        for(int n = 0; n<4; n++) {
+            for (int i = 0; i < 6; i++) {
+                if (i < 3) {
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, false);
+                    note_2.add(ni1);
+                    two_i++;
+                }
+                if (i < 6 && i > 2) {
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
+                    note_2.add(ni1);
+                    two_i++;
+                }
+            }
+        }
+
+        /*----第三张谱子----*/
+        NoteInfo ni1 = new NoteInfo(39,0,8,true);
+        NoteInfo ni2 = new NoteInfo(41,1,9,true);
+        NoteInfo ni3 = new NoteInfo(43,2,10,true);
+        NoteInfo ni4 = new NoteInfo(39,3,8,true);
+
+        NoteInfo ni5 = new NoteInfo(41,4,9,true);
+        NoteInfo ni6 = new NoteInfo(43,5,10,true);
+        NoteInfo ni7 = new NoteInfo(43,6,10,true);
+        NoteInfo ni8 = new NoteInfo(41,7,9,true);
+
+        NoteInfo ni9 = new NoteInfo(39,8,8,true);
+        NoteInfo ni10 = new NoteInfo(43,9,10,true);
+        NoteInfo ni11= new NoteInfo(41,10,9,true);
+        NoteInfo ni12 = new NoteInfo(39,11,8,true);
+
+        note_3.add(ni1);note_3.add(ni2);note_3.add(ni3);note_3.add(ni4);
+        note_3.add(ni5);note_3.add(ni6);note_3.add(ni7);note_3.add(ni8);
+        note_3.add(ni9);note_3.add(ni10);note_3.add(ni11);note_3.add(ni12);
+
+
+    }
 
 
     /*乐谱信息   1  */
@@ -63,6 +125,26 @@ public class MusicNote {
         }
 
         return OFF_DATA;
+    }
+
+    //闪烁一次灯
+    public static void beat(final Context context, final int index, final boolean isRed){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+            }
+        }).start();
+
     }
 
 
