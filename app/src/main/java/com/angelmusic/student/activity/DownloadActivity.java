@@ -12,7 +12,6 @@ import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.course_download.adapter.DownloadAdapter;
@@ -20,6 +19,7 @@ import com.angelmusic.student.course_download.db.DAO2Impl;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
+import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 
@@ -102,7 +102,7 @@ public class DownloadActivity extends BaseActivity {
      * 封装适配器的数据
      */
     private List<List<FileInfo>> packageData(List<CourseInfo.DetailBean> detail) {
-        Log.e("==========", "=detail.size=" + detail.size());
+        LogUtil.e("==========", "=detail.size=" + detail.size());
         fileInfoLists = new ArrayList<>();
         fileInfoLists.add(null);//第一条数据设置为null,保证第一条item显示全部下载的那个界面
         if (detail != null) {
