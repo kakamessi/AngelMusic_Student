@@ -121,11 +121,11 @@ public class VideoActivity extends BaseActivity {
                     index = -1;
                 }
                 index++;
+
+                //亮灯
+
+
             }
-
-
-            //亮灯
-
 
         }
 
