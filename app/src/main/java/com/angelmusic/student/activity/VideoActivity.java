@@ -2,11 +2,9 @@ package com.angelmusic.student.activity;
 
 import android.app.Service;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.usb.UsbManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -38,6 +36,7 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.core.ActionType;
+import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -46,9 +45,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static android.R.attr.key;
-import static com.angelmusic.student.activity.MainActivity.ACTION_USB_PERMISSION;
 
 public class VideoActivity extends BaseActivity {
 
@@ -63,6 +59,8 @@ public class VideoActivity extends BaseActivity {
     RelativeLayout blackKeyRl;
     @BindView(R.id.iv_yinfu_bg_ll)
     LinearLayout ivYinfuBgLl;
+    @BindView(R.id.activity_idle)
+    LinearLayout activityIdle;
 
 
     //课程信息
@@ -86,21 +84,32 @@ public class VideoActivity extends BaseActivity {
 
             String str = (String) msg.obj;
             notes.add(str);
-            Log.e(TAG,str);
+            Log.e(TAG, str + ":" + str.length());
             //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
             handlerNote(str);
 
         }
     };
 
+    int index = 1;
+
     private void handlerNote(String str) {
 
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
-        int key =  Integer.parseInt(myDatas[2], 16) - 21;
-        Toast.makeText(this,key+"",0).show();
+        int key = Integer.parseInt(myDatas[2], 16) - 21;
 
         //音符
+        if (key == MusicNote.music_1[index]) {
 
+            setYinfuBgColor(index, Color.BLUE);
+            if (str.endsWith("0 ")) {
+                index++;
+                if (index == 7) {
+                    index = 0;
+                }
+            }
+
+        }
 
         //亮灯
 
@@ -171,6 +180,30 @@ public class VideoActivity extends BaseActivity {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
         blackTv.setText("准备中");
+
+        setLayoutStyle(3);
+    }
+
+    private void setLayoutStyle(int type) {
+
+        if (type == 1) {
+            //请看大屏幕
+            blackTv.setVisibility(View.VISIBLE);
+            blackTv.setText("请看大屏幕");
+
+        } else if (type == 2) {
+            //乐谱跟奏
+            blackTv.setVisibility(View.INVISIBLE);
+            activityIdle.setVisibility(View.VISIBLE);
+
+        } else if (type == 3) {
+            //播放视频
+            blackTv.setVisibility(View.INVISIBLE);
+            activityIdle.setVisibility(View.INVISIBLE);
+
+        }
+
+
     }
 
     @Override
@@ -186,10 +219,10 @@ public class VideoActivity extends BaseActivity {
             if (ac[1].equals("0")) {
                 Log.e(TAG, "动作:  ---------- " + "投大屏");
                 stop();
-                blackTv.setVisibility(View.VISIBLE);
-                blackTv.setText("请看大屏幕");
+                setLayoutStyle(1);
+
             } else {
-                blackTv.setVisibility(View.INVISIBLE);
+                setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[2]);
 
                 switchVedio(path);
