@@ -46,6 +46,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.R.attr.type;
+import static com.angelmusic.student.core.music.MusicNote.music_g;
+
 public class VideoActivity extends BaseActivity {
 
 
@@ -76,6 +79,8 @@ public class VideoActivity extends BaseActivity {
 
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
+    /* 课程资源索引 */
+    private int music_num = 0;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -94,11 +99,13 @@ public class VideoActivity extends BaseActivity {
     int index = 1;
     private void handlerNote(String str) {
 
+        int[] music = music_g[music_num];
+
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
         int key = Integer.parseInt(myDatas[2], 16) - 21;
 
         //音符
-        if (key == MusicNote.music_1[index]) {
+        if (key == music[index]) {
 
             setYinfuBgColor(index, Color.BLUE);
             if (str.endsWith("0 ")) {
@@ -163,54 +170,12 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected int setContentViewId() {
-        return R.layout.activity_video;
-    }
-
-    @Override
-    protected void setTAG() {
-        TAG = "VideoActivity";
-    }
-
-    @OnClick({R.id.black_tv})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.black_tv:
-                //dialog7();
-                break;
-        }
-    }
-
     private void initView() {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
         blackTv.setText("准备中");
 
         setLayoutStyle(2);
-    }
-
-    private void setLayoutStyle(int type) {
-
-        if (type == 1) {
-            //请看大屏幕
-            blackTv.setVisibility(View.VISIBLE);
-            blackTv.setText("请看大屏幕");
-
-        } else if (type == 2) {
-            //乐谱跟奏
-            initPiano();
-            blackTv.setVisibility(View.INVISIBLE);
-            activityIdle.setVisibility(View.VISIBLE);
-
-        } else if (type == 3) {
-            //播放视频
-            blackTv.setVisibility(View.INVISIBLE);
-            activityIdle.setVisibility(View.INVISIBLE);
-
-        }
-
-
     }
 
     @Override
@@ -252,6 +217,48 @@ public class VideoActivity extends BaseActivity {
                 pause();
                 Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
+
+        }
+
+
+    }
+
+    @Override
+    protected int setContentViewId() {
+        return R.layout.activity_video;
+    }
+
+    @Override
+    protected void setTAG() {
+        TAG = "VideoActivity";
+    }
+
+    @OnClick({R.id.black_tv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.black_tv:
+                //dialog7();
+                break;
+        }
+    }
+
+    private void setLayoutStyle(int type) {
+
+        if (type == 1) {
+            //请看大屏幕
+            blackTv.setVisibility(View.VISIBLE);
+            blackTv.setText("请看大屏幕");
+
+        } else if (type == 2) {
+            //乐谱跟奏
+            initPiano();
+            blackTv.setVisibility(View.INVISIBLE);
+            activityIdle.setVisibility(View.VISIBLE);
+
+        } else if (type == 3) {
+            //播放视频
+            blackTv.setVisibility(View.INVISIBLE);
+            activityIdle.setVisibility(View.INVISIBLE);
 
         }
 

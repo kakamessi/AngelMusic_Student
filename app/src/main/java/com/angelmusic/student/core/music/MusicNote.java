@@ -12,10 +12,13 @@ public class MusicNote {
             0x4c, 0x45, (byte) (39+21), 0x06, (byte) 0x01, 0x0,
             (byte) 0xf7 };
 
-
-    /*乐谱信息*/
+    /*乐谱信息   1  */
     public static final int[] music_1 = {39,39,39,39,  39,39,39,39};
 
+    /*乐谱信息   2  */
+    public static final int[] music_2 = {39,39,39,39,  39,39,39,39};
 
+    /*乐谱合集*/
+    public static final int[][] music_g = {music_1,music_2};
 
 }
