@@ -58,8 +58,8 @@ public class VideoActivity extends BaseActivity {
     SurfaceView surfaceView;
     @BindView(R.id.white_key_ll)
     LinearLayout whiteKeyLl;
-    @BindView(R.id.black_key_rl)
-    RelativeLayout blackKeyRl;
+    @BindView(R.id.black_key_ll)
+    LinearLayout blackKeyLl;
     @BindView(R.id.iv_yinfu_bg_ll)
     LinearLayout ivYinfuBgLl;
     @BindView(R.id.activity_idle)
@@ -600,17 +600,17 @@ public class VideoActivity extends BaseActivity {
      * @param color    颜色 Color.RED&&Color.BLUE 默认：Color.BLACK
      */
     private void setBlackKeyBgColor(int position, int color) {
-        int childCount = blackKeyRl.getChildCount();
+        int childCount = blackKeyLl.getChildCount();
         if (position < childCount) {
             for (int i = 0; i < childCount; i++) {
                 if (i == position) {
                     if (color == Color.RED) {
-                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
+                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
                     } else if (color == Color.BLUE) {
-                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
+                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
                     }
                 } else {
-                    blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
+                    blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
                 }
             }
         } else {

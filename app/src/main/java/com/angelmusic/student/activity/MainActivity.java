@@ -328,7 +328,6 @@ public class MainActivity extends BaseActivity {
                     // clear();
                     break;
                 case ACTION_USB_PERMISSION:
-
                     boolean isconnect = false;
                     // 判断用户点击的是取消还是确认
                     if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED,

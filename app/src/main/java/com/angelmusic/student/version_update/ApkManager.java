@@ -9,22 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.angelmusic.student.R;
-import com.angelmusic.student.base.App;
-import com.angelmusic.student.utils.FileUtil;
-import com.angelmusic.student.utils.GsonUtil;
-import com.angelmusic.student.utils.LogUtil;
-import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.utils.Log;
+import com.angelmusic.student.R;
+import com.angelmusic.student.base.App;
+import com.angelmusic.student.utils.FileUtil;
+import com.angelmusic.student.utils.GsonUtil;
+import com.angelmusic.student.utils.SDCardUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,11 +64,8 @@ public class ApkManager {
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name) + mContext.getResources().getString(R.string
-                        .apk_check_version)).addParam
-                        ("type", "2")
-                        .build(),
-                new CallbackOk() {
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name_request) + mContext.getResources().getString(R
+                        .string.apk_check_version)).addParam("type", "2").build(), new CallbackOk() {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
@@ -97,7 +93,7 @@ public class ApkManager {
         //截取URL后半部分作为文件名
         final String apkName = apkVersionInfo.getDetail().getUrl().substring(apkVersionInfo.getDetail().getUrl().lastIndexOf("/") + 1);
         //拼接apk的下载地址
-        final String apkUrl = mContext.getResources().getString(R.string.apk_download) + apkVersionInfo.getDetail().getUrl();//apk的下载地址
+        final String apkUrl = mContext.getResources().getString(R.string.domain_name_download) + apkVersionInfo.getDetail().getUrl();//apk的下载地址
         //下载的apk的存储路径
         final String apkPath = SDCardUtil.getAppFilePath(mContext) + APK_PATH + File.separator;
         //弹框
@@ -111,7 +107,7 @@ public class ApkManager {
         tvUpdateTile.setText("最新版本：" + apkVersionInfo.getDetail().getCode());
         tvContent.setText(apkVersionInfo.getDetail().getInfo());
         //判断是否强制更新
-        int isForced = apkVersionInfo.getDetail().getIsforced();
+        final int isForced = apkVersionInfo.getDetail().getIsforced();
         if (isForced == 1) {//非强制更新
             btnCancel.setVisibility(View.VISIBLE);
         } else if (isForced == 2) {//强制更新
@@ -125,9 +121,11 @@ public class ApkManager {
                 //首先检查下载路径下是否已经下载了该apk
                 if (FileUtil.isFileExist(apkPath, apkName)) {
                     //新版本已经下载直接安装
+                    Log.i("==============initApk=====1============",apkPath+apkName);
                     initApk(apkPath + apkName);
                 } else {
-                    showDownloadDialog(apkUrl, apkPath, apkName);
+                    Log.i("==============initApk=====2============",apkPath+apkName);
+                    showDownloadingDialog(apkUrl, apkPath, apkName, isForced);
                 }
                 apkManager = null;
                 updateDialog.dismiss();
@@ -147,13 +145,17 @@ public class ApkManager {
     /**
      * 显示apk下载进度的对话框
      */
-    public void showDownloadDialog(final String apkUrl, final String apkPath, final String apkName) {
+    public void showDownloadingDialog(final String apkUrl, final String apkPath, final String apkName, int isForced) {
         downloadDialog = new AlertDialog.Builder(mContext, R.style.CustomAlertDialogBackground).create();
         downloadDialog.setCancelable(false);
-        downloadDialog.setCanceledOnTouchOutside(false);
+        if (isForced == 1) {//非强制更新
+            downloadDialog.setCanceledOnTouchOutside(true);
+        } else if (isForced == 2) {//强制更新
+            downloadDialog.setCanceledOnTouchOutside(false);
+        }
         downloadDialog.show();
         View view = LayoutInflater.from(mContext).inflate(R.layout.apk_download_layout, null);
-        downloadDialog.setContentView(view, new RelativeLayout.LayoutParams(1000, 800));
+        downloadDialog.setContentView(view);
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         final TextView tvProgress = (TextView) view.findViewById(R.id.tv_progress_apk_download);
         downloadApk(apkUrl, apkPath, apkName, progressBar, tvProgress);
@@ -193,7 +195,7 @@ public class ApkManager {
      */
     private void initApk(String apkPath) {
         //如果本地存在下载的安装包则直接安装
-        LogUtil.e(apkPath);
+        Log.i("===============================",apkPath);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
         mContext.startActivity(intent);

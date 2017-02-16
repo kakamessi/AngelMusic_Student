@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.angelmusic.student.R;
@@ -22,17 +21,20 @@ public class IdleActivity extends BaseActivity {
     LinearLayout ivYinfuBgLl;
     @BindView(R.id.white_key_ll)
     LinearLayout whiteKeyLl;
-    @BindView(R.id.black_key_rl)
-    RelativeLayout blackKeyRl;
+    @BindView(R.id.black_key_ll)
+    LinearLayout blackKeyLl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setBlackKeyBgColor(3,Color.RED);
+//        setWhiteKeyBgColor(4,Color.RED);
+//        setYinfuBgColor(5,Color.BLUE);
     }
 
     @Override
     protected int setContentViewId() {
-        return R.layout.activity_idle;
+        return R.layout.layout_yuepu3;
     }
 
     @Override
@@ -101,17 +103,17 @@ public class IdleActivity extends BaseActivity {
      * @param color    颜色 Color.RED&&Color.BLUE 默认：Color.BLACK
      */
     private void setBlackKeyBgColor(int position, int color) {
-        int childCount = blackKeyRl.getChildCount();
+        int childCount = blackKeyLl.getChildCount();
         if (position < childCount) {
             for (int i = 0; i < childCount; i++) {
                 if (i == position) {
                     if (color == Color.RED) {
-                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
+                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
                     } else if (color == Color.BLUE) {
-                        blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
+                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
                     }
                 } else {
-                    blackKeyRl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
+                    blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
                 }
             }
         } else {

@@ -61,7 +61,7 @@ public class DownloadActivity extends BaseActivity {
     //网络请求数据
     private void initData() {
         schoolId = SharedPreferencesUtil.getString("schoolId", "1");
-        domainName = getResources().getString(R.string.domain_name);
+        domainName = getResources().getString(R.string.domain_name_request);
         courseInfoJson = getResources().getString(R.string.course_info_json);
         courseParentPath = SDCardUtil.getAppFilePath(this) + "course" + File.separator;
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()

@@ -19,8 +19,60 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:src="@mipmap/kc_puzi"/>
-        <!--音符遮盖图-->
+            android:src="@mipmap/kc_yuepu03"/>
+        <!--上行音符遮盖图-->
+        <LinearLayout
+            android:id="@+id/iv_yinfu_bg_ll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_puzi"
+            android:layout_alignLeft="@+id/iv_puzi"
+            android:layout_alignStart="@+id/iv_puzi"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="378dp"
+            android:layout_marginStart="378dp">
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg01"
+                style="@style/puziyinfu_bg_02"/>
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg02"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg03"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg04"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="362dp"
+                android:layout_marginStart="362dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg05"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_yinfu_upbg06"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                />
+        </LinearLayout>
+
+        <!--下行音符遮盖图-->
         <LinearLayout
             android:id="@+id/iv_yinfu_bg_ll"
             android:layout_width="wrap_content"
@@ -28,62 +80,47 @@
             android:layout_alignBottom="@+id/iv_puzi"
             android:layout_alignLeft="@+id/iv_puzi"
             android:layout_alignStart="@+id/iv_puzi"
-            android:layout_marginLeft="150dp"
-            android:layout_marginStart="150dp">
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="119dp"
+            android:layout_marginStart="119dp">
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg1"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="43dp"
-                android:layout_marginStart="43dp"/>
+                style="@style/puziyinfu_bg_02"/>
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg2"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="42dp"
-                android:layout_marginStart="42dp"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg3"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="42dp"
-                android:layout_marginStart="42dp"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg4"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="41dp"
-                android:layout_marginStart="41dp"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="362dp"
+                android:layout_marginStart="362dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg5"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="93dp"
-                android:layout_marginStart="93dp"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_yinfu_bg6"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="42dp"
-                android:layout_marginStart="42dp"
-                />
-
-            <ImageView
-                android:id="@+id/iv_yinfu_bg7"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="42dp"
-                android:layout_marginStart="42dp"
-                />
-
-            <ImageView
-                android:id="@+id/iv_yinfu_bg8"
-                style="@style/puziyinfu_bg"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="40dp"
+                style="@style/puziyinfu_bg_02"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 />
         </LinearLayout>
 
@@ -99,7 +136,7 @@
         <LinearLayout
             android:id="@+id/white_key_ll"
             android:layout_width="match_parent"
-            android:layout_height="226dp"
+            android:layout_height="236dp"
             android:layout_alignParentBottom="true"
             android:background="@mipmap/kc_keyboard_bg"
             android:orientation="horizontal">
@@ -165,8 +202,8 @@
                 style="@style/white_key_style"/>
         </LinearLayout>
         <!--黑色按键-->
-        <RelativeLayout
-            android:id="@+id/black_key_rl"
+        <LinearLayout
+            android:id="@+id/black_key_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/white_key_ll">
@@ -174,68 +211,70 @@
             <ImageView
                 android:id="@+id/iv_black_key1"
                 style="@style/black_key_style"
-                android:layout_marginLeft="66dp"/>
+                android:layout_marginLeft="61dp"
+                android:layout_marginStart="61dp"/>
 
             <ImageView
                 android:id="@+id/iv_black_key2"
                 style="@style/black_key_style"
-                android:layout_marginLeft="42dp"
-                android:layout_toRightOf="@id/iv_black_key1"/>
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"/>
 
             <ImageView
                 android:id="@+id/iv_black_key3"
                 style="@style/black_key_style"
-                android:layout_marginLeft="133dp"
-                android:layout_toRightOf="@id/iv_black_key2"
+                android:layout_marginLeft="121dp"
+                android:layout_marginStart="121dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key4"
                 style="@style/black_key_style"
-                android:layout_marginLeft="42dp"
-                android:layout_toRightOf="@id/iv_black_key3"/>
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"/>
 
             <ImageView
                 android:id="@+id/iv_black_key5"
                 style="@style/black_key_style"
-                android:layout_marginLeft="42dp"
-                android:layout_toRightOf="@id/iv_black_key4"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key6"
                 style="@style/black_key_style"
-                android:layout_marginLeft="133dp"
-                android:layout_toRightOf="@id/iv_black_key5"
+                android:layout_marginLeft="121dp"
+                android:layout_marginStart="121dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key7"
                 style="@style/black_key_style"
-                android:layout_marginLeft="42dp"
-                android:layout_toRightOf="@id/iv_black_key6"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key8"
                 style="@style/black_key_style"
-                android:layout_marginLeft="133dp"
-                android:layout_toRightOf="@id/iv_black_key7"
+                android:layout_marginLeft="121dp"
+                android:layout_marginStart="121dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key9"
                 style="@style/black_key_style"
-                android:layout_marginLeft="43dp"
-                android:layout_toRightOf="@id/iv_black_key8"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 />
 
             <ImageView
                 android:id="@+id/iv_black_key10"
                 style="@style/black_key_style"
-                android:layout_marginLeft="43dp"
-                android:layout_toRightOf="@id/iv_black_key9"/>
-        </RelativeLayout>
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"/>
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
+
