@@ -77,7 +77,7 @@ public class VideoActivity extends BaseActivity {
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
 
-    /*收到钢琴消息handler*/
+    /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -92,7 +92,6 @@ public class VideoActivity extends BaseActivity {
     };
 
     int index = 1;
-
     private void handlerNote(String str) {
 
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
@@ -122,7 +121,8 @@ public class VideoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         initView();
-        initPiano();
+        closePiano();
+
     }
 
     private void initPiano() {
@@ -150,10 +150,16 @@ public class VideoActivity extends BaseActivity {
 
     }
 
+    private void closePiano(){
+        UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         stop();
+        closePiano();
 
     }
 
@@ -181,7 +187,7 @@ public class VideoActivity extends BaseActivity {
         surfaceView.getHolder().addCallback(callback);
         blackTv.setText("准备中");
 
-        setLayoutStyle(3);
+        setLayoutStyle(2);
     }
 
     private void setLayoutStyle(int type) {
@@ -193,6 +199,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (type == 2) {
             //乐谱跟奏
+            initPiano();
             blackTv.setVisibility(View.INVISIBLE);
             activityIdle.setVisibility(View.VISIBLE);
 
