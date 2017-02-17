@@ -93,7 +93,7 @@ public class VideoActivity extends BaseActivity {
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
     /* 课程资源索引 */
-    private int music_num = 0;
+    private int music_num = 2;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -121,23 +121,25 @@ public class VideoActivity extends BaseActivity {
 
         //处理输出
         NoteInfo ni = al.get(index_new);
+        NoteInfo nextInfo = index_new+1>al.size()-1?al.get(0):al.get(index_new+1);
+
         if (key == ni.getNoteNum()) {
 
             //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
             if (music_num == 0) {
-                setViewStyle(1,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+                setViewStyle(1,nextInfo.getNoteIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE,nextInfo.getKeyIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE);
 
             } else if (music_num == 1) {
 
                 if(index_new<11) {
-                    setViewStyle(2, ni.getNoteIndex(), ni.isRed() == true ? Color.RED : Color.BLUE, ni.getKeyIndex(), ni.isRed() == true ? Color.RED : Color.BLUE);
+                    setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }else{
-                    setViewStyle(3, ni.getNoteIndex(), ni.isRed() == true ? Color.RED : Color.BLUE, ni.getKeyIndex(), ni.isRed() == true ? Color.RED : Color.BLUE);
+                    setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
 
             }else if(music_num==2){
 
-                setViewStyle(4,ni.getNoteIndex()+1,ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+                setViewStyle(4,nextInfo.getNoteIndex()+1,nextInfo.isRed()==true?Color.RED:Color.BLUE,nextInfo.getKeyIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE);
             }
 
             //处理循环
@@ -216,6 +218,9 @@ public class VideoActivity extends BaseActivity {
         surfaceView.getHolder().addCallback(callback);
         blackTv.setText("准备中");
 
+        blackTv.setVisibility(View.VISIBLE);
+        yuepuGroupLl.setVisibility(View.INVISIBLE);
+
         setLayoutStyle(2);
     }
 
@@ -264,6 +269,7 @@ public class VideoActivity extends BaseActivity {
 
             stop();
             //小学2 培训 幼儿园
+            music_num = Integer.parseInt(ac[1])-1;
             setLayoutStyle(2);
 
         }
