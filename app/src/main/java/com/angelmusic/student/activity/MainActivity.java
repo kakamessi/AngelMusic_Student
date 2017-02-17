@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ib_download:
                 //跳转到下载页
-                startActivity(new Intent(MainActivity.this, DownloadTestActivity.class));
+                startActivity(new Intent(MainActivity.this, DownloadActivity.class));
                 overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
                 break;
             case R.id.tv_wifi_name:
@@ -176,7 +176,6 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_connection_status:
-                DLManager.getInstance(this).downloadApk("http://video.tianshiyinyue.cn/apk/2017-02-16/app-debug2.0.apk");
                 //预留
                 break;
             default:

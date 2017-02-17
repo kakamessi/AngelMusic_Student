@@ -110,6 +110,7 @@ public class VideoActivity extends BaseActivity {
     };
 
     int index_new = 0;
+
     private void handlerNewNote(String str) {
 
         //确认选谱
@@ -121,31 +122,31 @@ public class VideoActivity extends BaseActivity {
 
         //处理输出
         NoteInfo ni = al.get(index_new);
-        NoteInfo nextInfo = index_new+1>al.size()-1?al.get(0):al.get(index_new+1);
+        NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
 
         if (key == ni.getNoteNum()) {
 
             //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
             if (music_num == 0) {
-                setViewStyle(1,nextInfo.getNoteIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE,nextInfo.getKeyIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE);
+                setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
             } else if (music_num == 1) {
 
-                if(index_new<11) {
+                if (index_new < 11) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-                }else{
+                } else {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
 
-            }else if(music_num==2){
+            } else if (music_num == 2) {
 
-                setViewStyle(4,nextInfo.getNoteIndex()+1,nextInfo.isRed()==true?Color.RED:Color.BLUE,nextInfo.getKeyIndex(),nextInfo.isRed()==true?Color.RED:Color.BLUE);
+                setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }
 
             //处理循环
             if (str.endsWith("0 ")) {
 
-                if (index_new == al.size()-1) {
+                if (index_new == al.size() - 1) {
                     index_new = -1;
                 }
                 index_new++;
@@ -162,7 +163,6 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         closePiano();
         initView();
     }
@@ -265,11 +265,11 @@ public class VideoActivity extends BaseActivity {
             }
 
 
-        }else if(ActionType.ACTION_GZ_ONE.equals(ac[0])){
+        } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
 
             stop();
             //小学2 培训 幼儿园
-            music_num = Integer.parseInt(ac[1])-1;
+            music_num = Integer.parseInt(ac[1]) - 1;
             setLayoutStyle(2);
 
         }
@@ -293,15 +293,15 @@ public class VideoActivity extends BaseActivity {
             /* 初始化界面显示的时候 默认高亮音符信息 */
             if (music_num == 0) {
 
-                setViewStyle(1,1,Color.RED,8,Color.RED);
+                setViewStyle(1, 1, Color.RED, 8, Color.RED);
 
             } else if (music_num == 1) {
 
-                setViewStyle(2,1,Color.BLUE,8,Color.BLUE);
+                setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
 
-            }else if(music_num==2){
+            } else if (music_num == 2) {
 
-                setViewStyle(4,1,Color.RED,8,Color.RED);
+                setViewStyle(4, 1, Color.RED, 8, Color.RED);
             }
 
         } else if (type == 3) {
@@ -528,7 +528,10 @@ public class VideoActivity extends BaseActivity {
 
     protected void dialog7() {
 
-        int starNum = 1; int yg = 1; int jz = 1; int sz = 1;
+        int starNum = 1;
+        int yg = 1;
+        int jz = 1;
+        int sz = 1;
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);
@@ -561,11 +564,11 @@ public class VideoActivity extends BaseActivity {
         TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
         TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
 
-        if(starNum==3){
+        if (starNum == 3) {
             ivBG.setImageResource(R.drawable.score_three);
-        }else if(starNum==2){
+        } else if (starNum == 2) {
             ivBG.setImageResource(R.drawable.score_two);
-        }else if(starNum==1){
+        } else if (starNum == 1) {
             ivBG.setImageResource(R.drawable.score_one);
         }
 
@@ -632,12 +635,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCount1 + 1; i++) {
                 if (i == yinfuPosition) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLl1.getChildAt(i - 1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLl1.getChildAt(i - 1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLl1.getChildAt(i - 1).setBackgroundResource(0);//无背景
                 }
             }
         } else {
@@ -649,12 +652,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCount2 + 1; i++) {
                 if (i == keyPosition) {
                     if (keyBgColor == Color.RED) {
-                        ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                        ((ImageView) whiteKeyLl1.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
                     } else if (keyBgColor == Color.BLUE) {
-                        ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                        ((ImageView) whiteKeyLl1.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
                     }
                 } else {
-                    ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                    ((ImageView) whiteKeyLl1.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
                 }
             }
         } else {
@@ -665,30 +668,52 @@ public class VideoActivity extends BaseActivity {
     //设置乐谱布局2样式
     private void setView2Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
         //音符背景颜色
-        int childCountUp1 = ivYinfuBgLlUp2.getChildCount();
-        int childCountDown1 = ivYinfuBgLlDown2.getChildCount();
-        if (1 <= yinfuPosition && yinfuPosition < childCountUp1 + 1) {
-            for (int i = 1; i < childCountUp1 + 1; i++) {
-                if (i == yinfuPosition) {
+        if (1 <= yinfuPosition && yinfuPosition <= 3) {
+            for (int i = 0; i < 3; i++) {
+                if (i == yinfuPosition - 1) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
-        } else if (childCountUp1 + 1 <= yinfuPosition && yinfuPosition < (childCountUp1 + childCountDown1 + 1)) {
-            for (int i = childCountUp1 + 1; i < (childCountUp1 + childCountDown1 + 1); i++) {
-                if (i == yinfuPosition) {
+        } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
+            for (int i = 0; i < 3; i++) {
+                if (i == yinfuPosition - 4) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
+            for (int i = 3; i < 6; i++) {
+                if (i == yinfuPosition - 4) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
+            for (int i = 3; i < 6; i++) {
+                if (i == yinfuPosition - 7) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
         } else {
@@ -716,30 +741,52 @@ public class VideoActivity extends BaseActivity {
     //设置乐谱布局3样式
     private void setView3Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
         //音符背景颜色
-        int childCountUp3 = ivYinfuBgLlUp3.getChildCount();
-        int childCountDown3 = ivYinfuBgLlDown3.getChildCount();
-        if (1 <= yinfuPosition && yinfuPosition < childCountUp3 + 1) {
-            for (int i = 1; i < childCountUp3 + 1; i++) {
-                if (i == yinfuPosition) {
+        if (1 <= yinfuPosition && yinfuPosition <= 3) {
+            for (int i = 0; i < 3; i++) {
+                if (i == yinfuPosition - 1) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
-        } else if (childCountUp3 + 1 <= yinfuPosition && yinfuPosition < (childCountUp3 + childCountDown3 + 1)) {
-            for (int i = childCountUp3 + 1; i < (childCountUp3 + childCountDown3 + 1); i++) {
-                if (i == yinfuPosition) {
+        } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
+            for (int i = 0; i < 3; i++) {
+                if (i == yinfuPosition - 4) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
+            for (int i = 3; i < 6; i++) {
+                if (i == yinfuPosition - 4) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
+            for (int i = 3; i < 6; i++) {
+                if (i == yinfuPosition - 7) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
         } else {
@@ -751,12 +798,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCount2 + 1; i++) {
                 if (i == keyPosition) {
                     if (keyBgColor == Color.RED) {
-                        ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                        ((ImageView) whiteKeyLl3.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
                     } else if (keyBgColor == Color.BLUE) {
-                        ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                        ((ImageView) whiteKeyLl3.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
                     }
                 } else {
-                    ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                    ((ImageView) whiteKeyLl3.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
                 }
             }
         } else {
@@ -772,12 +819,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCount1 + 1; i++) {
                 if (i == yinfuPosition) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLl4.getChildAt(i - 1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLl4.getChildAt(i - 1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(0);//无背景
+                    ivYinfuBgLl4.getChildAt(i - 1).setBackgroundResource(0);//无背景
                 }
             }
         } else {
@@ -789,12 +836,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCount2 + 1; i++) {
                 if (i == keyPosition) {
                     if (keyBgColor == Color.RED) {
-                        ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                        ((ImageView) whiteKeyLl4.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
                     } else if (keyBgColor == Color.BLUE) {
-                        ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                        ((ImageView) whiteKeyLl4.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
                     }
                 } else {
-                    ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                    ((ImageView) whiteKeyLl4.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
                 }
             }
         } else {
