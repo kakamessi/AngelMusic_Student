@@ -208,7 +208,6 @@ public class VideoActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         stop();
-        closePiano();
 
     }
 
@@ -264,19 +263,11 @@ public class VideoActivity extends BaseActivity {
         }else if(ActionType.ACTION_GZ_ONE.equals(ac[0])){
 
             stop();
+            //小学2 培训 幼儿园
             setLayoutStyle(2);
 
         }
 
-    }
-
-    @OnClick({R.id.black_tv})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.black_tv:
-                //dialog7();
-                break;
-        }
     }
 
     private void setLayoutStyle(int type) {
@@ -300,7 +291,7 @@ public class VideoActivity extends BaseActivity {
 
             } else if (music_num == 1) {
 
-                setViewStyle(1,1,Color.RED,8,Color.RED);
+                setViewStyle(2,1,Color.RED,8,Color.BLUE);
 
             }else if(music_num==2){
 
@@ -314,7 +305,15 @@ public class VideoActivity extends BaseActivity {
 
         }
 
+    }
 
+    @OnClick({R.id.black_tv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.black_tv:
+                //dialog7();
+                break;
+        }
     }
 
     private SurfaceHolder.Callback callback = new SurfaceHolder.Callback() {
