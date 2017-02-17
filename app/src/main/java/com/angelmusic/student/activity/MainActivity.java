@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.angelmusic.stu.bean.UnityInterface;
+import com.angelmusic.stu.u3ddownload.DLManager;
 import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
@@ -40,6 +41,7 @@ import com.angelmusic.student.infobean.SeatDataInfo;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.version_update.ApkManager;
+import com.angelmusic.student.version_update.ApkUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -174,8 +176,8 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_connection_status:
+                DLManager.getInstance(this).downloadApk("http://video.tianshiyinyue.cn/apk/2017-02-16/app-debug2.0.apk");
                 //预留
-                startActivity(new Intent(MainActivity.this, VideoActivity.class));
                 break;
             default:
 

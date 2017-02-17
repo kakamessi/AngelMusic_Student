@@ -1,5 +1,6 @@
 package com.angelmusic.student.version_update;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -28,6 +29,7 @@ import com.angelmusic.student.utils.SDCardUtil;
 import java.io.File;
 import java.io.IOException;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 
@@ -73,7 +75,7 @@ public class ApkManager {
                         if (info.isSuccessful()) {
                             apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);//Gson解析
                             if (apkVersionInfo.getCode() == 200) {
-                                if (apkVersionInfo.getDetail().getCode() != ApkUtil.getVersionName(mContext)) {
+                                if (!apkVersionInfo.getDetail().getCode().equals(ApkUtil.getVersionCode(mContext))) {
                                     showUpdateDialog(apkVersionInfo);
                                 }
                             } else {
@@ -118,24 +120,20 @@ public class ApkManager {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateDialog.dismiss();
                 //首先检查下载路径下是否已经下载了该apk
                 if (FileUtil.isFileExist(apkPath, apkName)) {
                     //新版本已经下载直接安装
-                    Log.i("==============initApk=====1============",apkPath+apkName);
                     initApk(apkPath + apkName);
                 } else {
-                    Log.i("==============initApk=====2============",apkPath+apkName);
                     showDownloadingDialog(apkUrl, apkPath, apkName, isForced);
                 }
-                apkManager = null;
-                updateDialog.dismiss();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apkManager = null;
                 updateDialog.dismiss();
             }
         });
@@ -203,5 +201,6 @@ public class ApkManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         mContext.startActivity(intent);
+        ((Activity)mContext).finish();
     }
 }

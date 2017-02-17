@@ -1,24 +1,32 @@
 package com.angelmusic.stu.u3ddownload;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.angelmusic.stu.MyApplication;
-import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
-import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
-import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.stu.u3ddownload.db.DAO2Impl;
 import com.angelmusic.stu.u3ddownload.db.DAOImpl;
 import com.angelmusic.stu.u3ddownload.infobean.FileInfo;
 import com.angelmusic.stu.u3ddownload.infobean.GetDataInfo;
 import com.angelmusic.stu.u3ddownload.infobean.SendDataInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.stu.u3ddownload.utils.FileUtil;
 import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.u3ddownload.utils.SDCardUtil;
+import com.unity3d.player.UnityPlayer;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.angelmusic.stu.MyApplication.init;
 
 /**
  * Created by fei on 2017/2/7.
@@ -28,6 +36,8 @@ public class DLManager {
     private Context mContext;
     private static DLManager dlManager;
     private String courseParentPath;
+    private DownloadFileInfo fileInfo;
+    private final String APK_PATH = "apk_update";
 
     public DLManager(Context mContext) {
         this.mContext = mContext;
@@ -39,6 +49,56 @@ public class DLManager {
             dlManager = new DLManager(mContext);
         }
         return dlManager;
+    }
+
+    /**
+     * U3D的APK断点下载
+     */
+    public void downloadApk(final String apkUrl) {
+        Log.e("-----------", "apkUrl:" + apkUrl);
+        final String apkName = apkUrl.substring(apkUrl.lastIndexOf("/") + 1, apkUrl.lastIndexOf("."));//去掉后缀名的，网络框架会自动添加上后缀
+        Log.e("-----------", "apkName:" + apkName);
+        final String apkPath = SDCardUtil.getAppFilePath(mContext) + APK_PATH + File.separator;
+        Log.e("-----------", "apkPath:" + apkPath);
+        MyApplication.init.setDownloadFileDir(apkPath);//设置下载路径
+        String fileName = apkName.substring(0, apkName.lastIndexOf("."));//将传入的文件名去掉后缀，因为下载后会自动添加后缀名
+
+        if (null == fileInfo)
+            fileInfo = new DownloadFileInfo(apkUrl, fileName, new ProgressCallback() {
+                @Override
+                public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
+                    int tempProgress = 0;//定义一个临时变量，保证进度增加了才通知U3D更新进度
+                    if (percent > tempProgress) {
+                        tempProgress = percent;
+                        UnityPlayer.UnitySendMessage("Communication", "GetCurrentDownLoadingProgress", percent + "");
+                    }
+                    if (percent == 100) {
+                        initApk(apkPath + (apkUrl.substring(apkUrl.lastIndexOf("/") + 1)));
+                    }
+                }
+
+                @Override
+                public void onResponseMain(String fileUrl, HttpInfo info) {
+                }
+            });
+        HttpInfo info = HttpInfo.Builder().addDownloadFile(fileInfo).build();
+        OkHttpUtil.Builder().setReadTimeout(120).build(this).doDownloadFileAsync(info);
+    }
+
+    /**
+     * 安装APK
+     */
+    private void initApk(String apkAbsPath) {
+        //如果本地存在下载的安装包则直接安装
+        File apkFile = new File(apkAbsPath);
+        if (!apkFile.exists()) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
+        mContext.startActivity(intent);
+        ((Activity) mContext).finish();
     }
 
     /**
@@ -222,7 +282,7 @@ public class DLManager {
         final String fileParentPath = fileInfo.getFileParentPath();//文件的存储路径
         final String fileName = fileInfo.getFileName();//文件名，带后缀
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
-        MyApplication.init.setDownloadFileDir(fileParentPath);//设置文件的下载路径
+        init.setDownloadFileDir(fileParentPath);//设置文件的下载路径
         final HttpInfo info = HttpInfo.Builder()
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override

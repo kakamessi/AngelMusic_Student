@@ -27,6 +27,7 @@ public class ApkUtil {
         }
         return null;
     }
+
     /**
      * 获取当前程序版本名
      */
@@ -44,7 +45,7 @@ public class ApkUtil {
     /**
      * 获取当前程序版本号
      */
-    public static int getVersionCode(Context mContext) {
+    public static String getVersionCode(Context mContext) {
         int versionCode = -1;
         try {
             PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
@@ -52,6 +53,6 @@ public class ApkUtil {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return versionCode;
+        return Integer.toString(versionCode);
     }
 }
