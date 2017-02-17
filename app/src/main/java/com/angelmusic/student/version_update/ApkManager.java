@@ -201,6 +201,5 @@ public class ApkManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         mContext.startActivity(intent);
-        ((Activity)mContext).finish();
     }
 }

@@ -349,11 +349,9 @@ public class MainActivity extends BaseActivity {
                     break;
             }
             if (status != null) {
-
                 // 发送状态到unity
                 SendDataUtil.sendDataToUnity(UnityInterface.cameraName,
                         UnityInterface.sendStatusAddress, status);
-
             }
         }
     };
