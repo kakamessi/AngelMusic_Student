@@ -109,42 +109,6 @@ public class VideoActivity extends BaseActivity {
         }
     };
 
-    int index = 0;
-    private void handlerNote(String str) {
-
-        //确认选谱
-        int[] music = music_g[music_num];
-
-        //获取钢琴弹奏音符
-        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
-        int key = Integer.parseInt(myDatas[2], 16) - 21;
-
-        if (key == music[index]) {
-
-            //处理输出信息，显示
-            if (index == music.length - 1) {
-//                setYinfuBgColor(0, Color.RED);
-            } else {
-//                setYinfuBgColor(index + 1, Color.RED);
-            }
-
-            //处理循环
-            if (str.endsWith("0 ")) {
-                if (index == music.length - 1) {
-                    index = -1;
-                }
-                index++;
-
-                //亮灯
-
-
-            }
-
-        }
-
-    }
-
-
     int index_new = 0;
     private void handlerNewNote(String str) {
 
@@ -169,7 +133,7 @@ public class VideoActivity extends BaseActivity {
 
             }else if(music_num==2){
 
-                setViewStyle(4,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+                setViewStyle(4,ni.getNoteIndex()+1,ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
             }
 
             //处理循环
@@ -328,15 +292,15 @@ public class VideoActivity extends BaseActivity {
             /* 初始化界面显示的时候 默认高亮音符信息 */
             if (music_num == 0) {
 
-                //int viewId, int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor
                 setViewStyle(1,1,Color.RED,8,Color.RED);
 
             } else if (music_num == 1) {
 
                 setViewStyle(1,1,Color.RED,8,Color.RED);
+
             }else if(music_num==2){
 
-                setViewStyle(1,1,Color.RED,8,Color.RED);
+                setViewStyle(4,1,Color.RED,8,Color.RED);
             }
 
         } else if (type == 3) {
