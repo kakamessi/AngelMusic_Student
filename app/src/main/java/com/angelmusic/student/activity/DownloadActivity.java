@@ -113,10 +113,22 @@ public class DownloadActivity extends BaseActivity {
                 for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX1 : sonPart1) {//遍历第一层sonPart
                     List<CourseInfo.DetailBean.SonPartBeanX> sonPart2 = sonPartBeanX1.getSonPart();//第二层sonPart
                     for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
-                        String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
-                        if (!TextUtils.isEmpty(video_uploadPath2)) {
-                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/") + 1);//带后缀的文件名
-                            String fileUrl = domainNameDownload + video_uploadPath2;
+                        String video_uploadPath = sonPartBeanX2.getVideo_uploadPath();//视频
+                        String png_uploadPath = sonPartBeanX2.getPng_uploadPath();//图片
+                        String xml_uploadPath = sonPartBeanX2.getXml_uploadPath();//xml文件
+                        if (!TextUtils.isEmpty(video_uploadPath)) {
+                            String fileName = video_uploadPath.substring(video_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
+                            String fileUrl = domainNameDownload + video_uploadPath;
+                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
+                        }
+                        if (!TextUtils.isEmpty(png_uploadPath)) {
+                            String fileName = png_uploadPath.substring(png_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
+                            String fileUrl = domainNameDownload + png_uploadPath;
+                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
+                        }
+                        if (!TextUtils.isEmpty(xml_uploadPath)) {
+                            String fileName = xml_uploadPath.substring(xml_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
+                            String fileUrl = domainNameDownload + xml_uploadPath;
                             listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                         }
                     }

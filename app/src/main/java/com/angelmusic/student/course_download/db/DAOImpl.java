@@ -76,11 +76,14 @@ public class DAOImpl implements DAO {
     @Override
     public synchronized boolean isFileNameExist(String fileName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ?", new String[]{fileName});
         boolean isExist = false;
         if (cursor.moveToNext()) {
             isExist = true;
         }
+        db.setTransactionSuccessful();
+        db.endTransaction();
         db.close();
         return isExist;
     }
@@ -136,6 +139,7 @@ public class DAOImpl implements DAO {
     @Override
     public synchronized boolean isDownloadOk(String fileName, String courseName) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
         Cursor cursor = db.rawQuery("select * from tb_course where file_name = ? and course_name = ?", new String[]{fileName, courseName});
         boolean isDownloadOk = false;
         if (cursor.moveToNext()) {
@@ -144,6 +148,8 @@ public class DAOImpl implements DAO {
                 isDownloadOk = true;
             }
         }
+        db.setTransactionSuccessful();
+        db.endTransaction();
         db.close();
         return isDownloadOk;
     }
