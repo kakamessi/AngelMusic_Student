@@ -700,7 +700,7 @@ public class VideoActivity extends BaseActivity {
             }
         } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
             for (int i = 3; i < 6; i++) {
-                if (i == yinfuPosition - 16) {
+                if (i == yinfuPosition - 4) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
