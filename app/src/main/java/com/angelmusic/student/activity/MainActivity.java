@@ -175,7 +175,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_connection_status:
                 //预留
-                startActivity(new Intent(MainActivity.this, IdleActivity.class));
+                startActivity(new Intent(MainActivity.this, VideoActivity.class));
                 break;
             default:
 

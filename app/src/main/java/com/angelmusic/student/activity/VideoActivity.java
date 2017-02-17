@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -36,8 +35,6 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.core.ActionType;
-import com.angelmusic.student.core.music.MusicNote;
-import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -47,8 +44,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.R.attr.type;
-import static com.angelmusic.student.R.id.imageView;
 import static com.angelmusic.student.core.music.MusicNote.music_g;
 
 public class VideoActivity extends BaseActivity {
@@ -58,14 +53,28 @@ public class VideoActivity extends BaseActivity {
     TextView blackTv;
     @BindView(R.id.surface_view)
     SurfaceView surfaceView;
-    @BindView(R.id.white_key_ll)
-    LinearLayout whiteKeyLl;
-    @BindView(R.id.black_key_ll)
-    LinearLayout blackKeyLl;
-    @BindView(R.id.iv_yinfu_bg_ll)
-    LinearLayout ivYinfuBgLl;
-    @BindView(R.id.activity_idle)
-    LinearLayout activityIdle;
+    @BindView(R.id.iv_yinfu_bg_ll_1)
+    LinearLayout ivYinfuBgLl1;
+    @BindView(R.id.white_key_ll_1)
+    LinearLayout whiteKeyLl1;
+    @BindView(R.id.iv_yinfu_bg_ll_up_2)
+    LinearLayout ivYinfuBgLlUp2;
+    @BindView(R.id.iv_yinfu_bg_ll_down_2)
+    LinearLayout ivYinfuBgLlDown2;
+    @BindView(R.id.white_key_ll_2)
+    LinearLayout whiteKeyLl2;
+    @BindView(R.id.iv_yinfu_bg_ll_up_3)
+    LinearLayout ivYinfuBgLlUp3;
+    @BindView(R.id.iv_yinfu_bg_ll_down_3)
+    LinearLayout ivYinfuBgLlDown3;
+    @BindView(R.id.white_key_ll_3)
+    LinearLayout whiteKeyLl3;
+    @BindView(R.id.iv_yinfu_bg_ll_4)
+    LinearLayout ivYinfuBgLl4;
+    @BindView(R.id.white_key_ll_4)
+    LinearLayout whiteKeyLl4;
+    @BindView(R.id.yuepu_group_ll)
+    LinearLayout yuepuGroupLl;
 
 
     //课程信息
@@ -93,12 +102,13 @@ public class VideoActivity extends BaseActivity {
             notes.add(str);
             Log.e(TAG, str + ":" + str.length());
             //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-            handlerNewNote(str);
+            handlerNote(str);
 
         }
     };
 
     int index = 0;
+
     private void handlerNote(String str) {
 
         //确认选谱
@@ -111,65 +121,45 @@ public class VideoActivity extends BaseActivity {
         if (key == music[index]) {
 
             //处理输出信息，显示
-            if(index==music.length-1) {
-                setYinfuBgColor(0, Color.RED);
-            }else{
-                setYinfuBgColor(index+1, Color.RED);
+            if (index == music.length - 1) {
+//                setYinfuBgColor(0, Color.RED);
+            } else {
+//                setYinfuBgColor(index + 1, Color.RED);
             }
 
             //处理循环
             if (str.endsWith("0 ")) {
-                if (index == music.length-1) {
+                if (index == music.length - 1) {
                     index = -1;
                 }
                 index++;
 
                 //亮灯
-            }
-        }
-    }
 
-    int index_new = 0;
-    private void handlerNewNote(String str) {
-
-        //确认选谱
-        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num];
-
-        //获取钢琴弹奏音符
-        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
-        int key = Integer.parseInt(myDatas[2], 16) - 21;
-
-        //处理输出
-        NoteInfo ni = al.get(index_new);
-        if (key == ni.getNoteNum()) {
-
-            //显示正确音符 和 钢琴键
-            setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
-            setYinfuBgColor(ni.getNoteIndex(),  ni.isRed()==true?Color.RED:Color.BLUE);
-
-            //处理循环
-            if (str.endsWith("0 ")) {
-
-                if (index_new == al.size()-1) {
-                    index_new = -1;
-                }
-                index_new++;
-
-                //亮灯
 
             }
+
         }
 
     }
-    /*------------------------------------------------------------------------------收到钢琴消息handler*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setViewStyle(4, 12, Color.RED, 1, Color.BLUE);
         closePiano();
         initView();
+    }
 
+    @Override
+    protected int setContentViewId() {
+        return R.layout.activity_video;
+    }
+
+    @Override
+    protected void setTAG() {
+        TAG = "VideoActivity";
     }
 
     private void initPiano() {
@@ -196,7 +186,7 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    private void closePiano(){
+    private void closePiano() {
         UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
@@ -212,10 +202,9 @@ public class VideoActivity extends BaseActivity {
     private void initView() {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
-        //初始化界面就是准备中
         blackTv.setText("准备中");
 
-        setLayoutStyle(1);
+        setLayoutStyle(2);
     }
 
     @Override
@@ -258,32 +247,16 @@ public class VideoActivity extends BaseActivity {
                 Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
 
-
-        }else if(ActionType.ACTION_GZ_ONE.equals(ac[0])){
-
-            stop();
-            setLayoutStyle(2);
-
         }
 
 
-    }
-
-    @Override
-    protected int setContentViewId() {
-        return R.layout.activity_video;
-    }
-
-    @Override
-    protected void setTAG() {
-        TAG = "VideoActivity";
     }
 
     @OnClick({R.id.black_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.black_tv:
-                dialog7();
+                //dialog7();
                 break;
         }
     }
@@ -294,28 +267,24 @@ public class VideoActivity extends BaseActivity {
             //请看大屏幕
             blackTv.setVisibility(View.VISIBLE);
             blackTv.setText("请看大屏幕");
-            activityIdle.setVisibility(View.INVISIBLE);
 
         } else if (type == 2) {
             //乐谱跟奏
             initPiano();
             blackTv.setVisibility(View.INVISIBLE);
-            activityIdle.setVisibility(View.VISIBLE);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if(music_num==0){
-                setYinfuBgColor(0,Color.RED);
-                setWhiteKeyBgColor(8,Color.RED);
-            }else if(music_num==1){
+            if (music_num == 0) {
+//                setYinfuBgColor(0, Color.RED);
+//                setWhiteKeyBgColor(0, Color.RED);
 
-            }else if(music_num==2){
+            } else if (music_num == 1) {
 
             }
 
         } else if (type == 3) {
             //播放视频
             blackTv.setVisibility(View.INVISIBLE);
-            activityIdle.setVisibility(View.INVISIBLE);
 
         }
 
@@ -528,16 +497,12 @@ public class VideoActivity extends BaseActivity {
 
     protected void dialog7() {
 
-        int starNum = 1; int yg = 1; int jz = 1; int sz = 1;
-
-
-
         LayoutInflater inflater = getLayoutInflater();
 
         View layout = inflater.inflate(R.layout.dialog_score, null);
 
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
-        PopupWindow window = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134
+        PopupWindow window = new PopupWindow(layout, 733, 680);
         // TODO: 2016/5/17 设置背景颜色
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         // TODO: 2016/5/17 设置可以获取焦点
@@ -549,29 +514,20 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
-
-        ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
-
         ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
         ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
-//        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-//        params.width = getIntFromDimens(350/10);
-//        iv_1.setLayoutParams(params);
+        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.width = getIntFromDimens(350 / 2);
+        iv_1.setLayoutParams(params);
 
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
         TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
         TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
 
-        if(starNum==3){
-            ivBG.setImageResource(R.drawable.score_three);
-        }else if(starNum==2){
-            ivBG.setImageResource(R.drawable.score_two);
-        }else if(starNum==1){
-            ivBG.setImageResource(R.drawable.score_one);
-        }
-        
+
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
 //        new AlertDialog.Builder(this).setView(layout).show();
@@ -584,7 +540,6 @@ public class VideoActivity extends BaseActivity {
     }
 
     public void OpenVolume() {
-
         AudioManager audioManager = (AudioManager) getSystemService(Service.AUDIO_SERVICE);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
         mediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM), audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
@@ -593,81 +548,216 @@ public class VideoActivity extends BaseActivity {
     }
 
     /**
-     * 设置音符背景颜色
-     * 方法：通过设置背景图片
+     * 设置乐谱视图样式
+     * 设置界面样式只需调用此方法即可
      *
-     * @param position 第几个音符
-     * @param color    颜色 Color.RED&&Color.Blue
+     * @param viewId        第几张谱子
+     * @param yinfuPosition 音符位置，从1开始，不用区分几行谱子
+     * @param yinfuBgColor  音符的覆盖颜色:Color.RED,Color.BLUE
+     * @param keyPosition   按键位置(1-15)
+     * @param keyBgColor    按键颜色:Color.RED,Color.BLUE
      */
-    private void setYinfuBgColor(int position, int color) {
-        int childCount = ivYinfuBgLl.getChildCount();
-        if (position < childCount) {
-            for (int i = 0; i < childCount; i++) {
-                if (i == position) {
-                    if (color == Color.RED) {
-                        ivYinfuBgLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
-                    } else if (color == Color.BLUE) {
-                        ivYinfuBgLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
-                    }
-                } else {
-                    ivYinfuBgLl.getChildAt(i).setBackgroundResource(0);//无背景
-                }
+    private void setViewStyle(int viewId, int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
+        int childCount = yuepuGroupLl.getChildCount();
+        //设置显示哪个布局
+        for (int i = 1; i < childCount + 1; i++) {
+            yuepuGroupLl.getChildAt(i - 1).setVisibility(View.GONE);
+            if (i == viewId) {
+                yuepuGroupLl.getChildAt(i - 1).setVisibility(View.VISIBLE);
             }
-        } else {
-            Toast.makeText(this, "超出音符个数", Toast.LENGTH_SHORT).show();
+        }
+        //设置布局中显示样式
+        switch (viewId) {
+            case 1:
+                setView1Style(yinfuPosition, yinfuBgColor, keyPosition, keyBgColor);
+                break;
+            case 2:
+                setView2Style(yinfuPosition, yinfuBgColor, keyPosition, keyBgColor);
+                break;
+            case 3:
+                setView3Style(yinfuPosition, yinfuBgColor, keyPosition, keyBgColor);
+                break;
+            case 4:
+                setView4Style(yinfuPosition, yinfuBgColor, keyPosition, keyBgColor);
+                break;
         }
     }
 
-    /**
-     * 设置白色按键的颜色
-     * 方法：通过改变背景图片颜色
-     *
-     * @param position 第几个按键
-     * @param color    颜色 Color.RED&&Color.BLUE
-     */
-    private void setWhiteKeyBgColor(int position, int color) {
-        int childCount = whiteKeyLl.getChildCount();
-        if (position < childCount) {
-            for (int i = 0; i < childCount; i++) {
-                if (i == position) {
-                    if (color == Color.RED) {
-                        ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
-                    } else if (color == Color.BLUE) {
-                        ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+    //设置乐谱布局1样式
+    private void setView1Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
+        //音符背景颜色
+        int childCount1 = ivYinfuBgLl1.getChildCount();
+        if (1 <= yinfuPosition && yinfuPosition < childCount1 + 1) {
+            for (int i = 1; i < childCount1 + 1; i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ((ImageView) whiteKeyLl.getChildAt(i)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                    ivYinfuBgLl1.getChildAt(i-1).setBackgroundResource(0);//无背景
                 }
             }
         } else {
-            Toast.makeText(this, "超出按键个数", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
+        }
+        //按键的颜色
+        int childCount2 = whiteKeyLl1.getChildCount();
+        if (1 <= keyPosition && keyPosition < childCount2 + 1) {
+            for (int i = 1; i < childCount2 + 1; i++) {
+                if (i == keyPosition) {
+                    if (keyBgColor == Color.RED) {
+                        ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                    } else if (keyBgColor == Color.BLUE) {
+                        ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                    }
+                } else {
+                    ((ImageView) whiteKeyLl1.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                }
+            }
+        } else {
+            Toast.makeText(this, "按键位置错误", Toast.LENGTH_SHORT).show();
         }
     }
 
-    /**
-     * 设置黑色按键的颜色
-     * 方法：通过设置背景图片
-     * 注意：使用时需要将style文件中的white_key_style中的图片隐藏掉
-     *
-     * @param position 第几个按键,不需要设置某个按键颜色时候传入-1
-     * @param color    颜色 Color.RED&&Color.BLUE 默认：Color.BLACK
-     */
-    private void setBlackKeyBgColor(int position, int color) {
-        int childCount = blackKeyLl.getChildCount();
-        if (position < childCount) {
-            for (int i = 0; i < childCount; i++) {
-                if (i == position) {
-                    if (color == Color.RED) {
-                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_key_righthand);//右手黑键
-                    } else if (color == Color.BLUE) {
-                        blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_key_lefthand);//左手黑键
+    //设置乐谱布局2样式
+    private void setView2Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
+        //音符背景颜色
+        int childCountUp1 = ivYinfuBgLlUp2.getChildCount();
+        int childCountDown1 = ivYinfuBgLlDown2.getChildCount();
+        if (1 <= yinfuPosition && yinfuPosition < childCountUp1 + 1) {
+            for (int i = 1; i < childCountUp1 + 1; i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    blackKeyLl.getChildAt(i).setBackgroundResource(R.mipmap.kc_black_key);//黑键
+                    ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (childCountUp1 + 1 <= yinfuPosition && yinfuPosition < (childCountUp1 + childCountDown1 + 1)) {
+            for (int i = childCountUp1 + 1; i < (childCountUp1 + childCountDown1 + 1); i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlDown2.getChildAt(i - childCountUp1-1).setBackgroundResource(0);//无背景
                 }
             }
         } else {
-            Toast.makeText(this, "超出按键个数", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
+        }
+        //按键的颜色
+        int childCount2 = whiteKeyLl2.getChildCount();
+        if (1 <= keyPosition && keyPosition < childCount2 + 1) {
+            for (int i = 1; i < childCount2 + 1; i++) {
+                if (i == keyPosition) {
+                    if (keyBgColor == Color.RED) {
+                        ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                    } else if (keyBgColor == Color.BLUE) {
+                        ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                    }
+                } else {
+                    ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                }
+            }
+        } else {
+            Toast.makeText(this, "按键位置错误", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //设置乐谱布局3样式
+    private void setView3Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
+        //音符背景颜色
+        int childCountUp3 = ivYinfuBgLlUp3.getChildCount();
+        int childCountDown3 = ivYinfuBgLlDown3.getChildCount();
+        if (1 <= yinfuPosition && yinfuPosition < childCountUp3 + 1) {
+            for (int i = 1; i < childCountUp3 + 1; i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlUp3.getChildAt(i-1).setBackgroundResource(0);//无背景
+                }
+            }
+        } else if (childCountUp3 + 1 <= yinfuPosition && yinfuPosition < (childCountUp3 + childCountDown3 + 1)) {
+            for (int i = childCountUp3 + 1; i < (childCountUp3 + childCountDown3 + 1); i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLlDown3.getChildAt(i-childCountUp3-1).setBackgroundResource(0);//无背景
+                }
+            }
+        } else {
+            Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
+        }
+        //按键的颜色
+        int childCount2 = whiteKeyLl3.getChildCount();
+        if (1 <= keyPosition && keyPosition < childCount2 + 1) {
+            for (int i = 1; i < childCount2 + 1; i++) {
+                if (i == keyPosition) {
+                    if (keyBgColor == Color.RED) {
+                        ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                    } else if (keyBgColor == Color.BLUE) {
+                        ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                    }
+                } else {
+                    ((ImageView) whiteKeyLl3.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                }
+            }
+        } else {
+            Toast.makeText(this, "按键位置错误", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //设置乐谱布局4样式
+    private void setView4Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
+        //音符背景颜色
+        int childCount1 = ivYinfuBgLl4.getChildCount();
+        if (1 <= yinfuPosition && yinfuPosition < childCount1 + 1) {
+            for (int i = 1; i < childCount1 + 1; i++) {
+                if (i == yinfuPosition) {
+                    if (yinfuBgColor == Color.RED) {
+                        ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                    } else if (yinfuBgColor == Color.BLUE) {
+                        ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                    }
+                } else {
+                    ivYinfuBgLl4.getChildAt(i-1).setBackgroundResource(0);//无背景
+                }
+            }
+        } else {
+            Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
+        }
+        //按键的颜色
+        int childCount2 = whiteKeyLl4.getChildCount();
+        if (1 <= keyPosition && keyPosition < childCount2 + 1) {
+            for (int i = 1; i < childCount2 + 1; i++) {
+                if (i == keyPosition) {
+                    if (keyBgColor == Color.RED) {
+                        ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                    } else if (keyBgColor == Color.BLUE) {
+                        ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                    }
+                } else {
+                    ((ImageView) whiteKeyLl4.getChildAt(i-1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+                }
+            }
+        } else {
+            Toast.makeText(this, "按键位置错误", Toast.LENGTH_SHORT).show();
         }
     }
 

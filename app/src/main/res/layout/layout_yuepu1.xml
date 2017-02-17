@@ -22,7 +22,7 @@
             android:src="@mipmap/kc_yuepu01"/>
         <!--音符遮盖图-->
         <LinearLayout
-            android:id="@+id/iv_yinfu_bg_ll"
+            android:id="@+id/iv_yinfu_bg_ll_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_puzi"
@@ -97,7 +97,7 @@
         android:background="@mipmap/kc_keyboard_bg">
         <!--白色按键-->
         <LinearLayout
-            android:id="@+id/white_key_ll"
+            android:id="@+id/white_key_ll_1"
             android:layout_width="match_parent"
             android:layout_height="236dp"
             android:layout_alignParentBottom="true"
@@ -166,10 +166,10 @@
         </LinearLayout>
         <!--黑色按键-->
         <LinearLayout
-            android:id="@+id/black_key_ll"
+            android:id="@+id/black_key_ll_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/white_key_ll">
+            android:layout_alignTop="@id/white_key_ll_1">
 
             <ImageView
                 android:id="@+id/iv_black_key1"

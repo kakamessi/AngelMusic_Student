@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.angelmusic.student.activity.VideoActivity">
 
     <SurfaceView
         android:id="@+id/surface_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/black_tv"
@@ -23,6 +23,33 @@
         android:text="@string/idle_text"
         android:textColor="@color/white"
         android:textSize="150sp"
+        android:visibility="gone"
         />
-    <include layout="@layout/layout_yuepu1"/>
+
+    <LinearLayout
+        android:id="@+id/yuepu_group_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/layout_yuepu1"
+            android:visibility="gone"
+            />
+
+        <include
+            layout="@layout/layout_yuepu2"
+            android:visibility="gone"
+            />
+
+        <include
+            layout="@layout/layout_yuepu3"
+            android:visibility="gone"
+            />
+
+        <include
+            layout="@layout/layout_yuepu4"
+            android:visibility="gone"
+            />
+    </LinearLayout>
 </RelativeLayout>

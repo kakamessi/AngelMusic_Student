@@ -152,18 +152,18 @@ public class DownloadAdapter extends BaseAdapter {
             //设置显示的百分比
             holder.tvProgress.setTextColor(Color.parseColor("#8ab609"));
             holder.tvProgress.setVisibility(View.VISIBLE);
-            holder.linearLayout.setPadding(0, 10, 55, 10);
+            holder.linearLayout.setPadding(0, 10, 85, 10);
             holder.tvProgress.setText(progress + "%");
 
             //设置按钮的显示样式
             if (progress == 0 && !DAOImpl.getInstance(mContext).isCourseNameExist(courseDataList.get(position).get(position).getCourseName())) {
                 holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);
                 holder.tvProgress.setVisibility(View.GONE);
-                holder.linearLayout.setPadding(0, 10, 80, 10);
+                holder.linearLayout.setPadding(0, 10, 120, 10);
             } else if (progress == 100) {
                 holder.circleProgress.setStatus(CustomCircleProgress.Status.End);
                 holder.tvProgress.setVisibility(View.GONE);
-                holder.linearLayout.setPadding(0, 10, 80, 10);
+                holder.linearLayout.setPadding(0, 10, 120, 10);
                 holder.tvProgress.setTextColor(Color.parseColor("#888888"));
             } else if (progress >=0 && progress < 100) {
                 if (DAO2Impl.getInstance(mContext).queryIsExist(courseName)) {

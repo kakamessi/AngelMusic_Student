@@ -195,9 +195,13 @@ public class ApkManager {
      */
     private void initApk(String apkPath) {
         //如果本地存在下载的安装包则直接安装
-        Log.i("===============================",apkPath);
+        File apkFile = new File(apkPath);
+        if (!apkFile.exists()) {
+            return;
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         mContext.startActivity(intent);
     }
 }

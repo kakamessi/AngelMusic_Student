@@ -19,7 +19,6 @@ import com.angelmusic.student.course_download.db.DAO2Impl;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
-import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 
@@ -42,7 +41,8 @@ public class DownloadActivity extends BaseActivity {
     ImageButton ibBack;
     @BindView(R.id.lv_course)
     ListView lvCourse;
-    private String domainName;//域名
+    private String domainNameRequest;//信息请求域名
+    private String domainNameDownload;//下载文件的域名
     private String courseInfoJson;//获取课程信息json的接口
     private String courseParentPath;//文件存放的路径
     private CourseInfo courseInfo;//网络下载封装成的课程信息总类
@@ -61,14 +61,14 @@ public class DownloadActivity extends BaseActivity {
     //网络请求数据
     private void initData() {
         schoolId = SharedPreferencesUtil.getString("schoolId", "1");
-        domainName = getResources().getString(R.string.domain_name_request);
+        domainNameRequest = getResources().getString(R.string.domain_name_request);
         courseInfoJson = getResources().getString(R.string.course_info_json);
         courseParentPath = SDCardUtil.getAppFilePath(this) + "course" + File.separator;
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(this);
         okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(domainName + courseInfoJson).addParam
+                HttpInfo.Builder().setUrl(domainNameRequest + courseInfoJson).addParam
                         ("schoolId", schoolId)//需要传入课程id参数
                         .build(),
                 new CallbackOk() {
@@ -102,7 +102,7 @@ public class DownloadActivity extends BaseActivity {
      * 封装适配器的数据
      */
     private List<List<FileInfo>> packageData(List<CourseInfo.DetailBean> detail) {
-        LogUtil.e("==========", "=detail.size=" + detail.size());
+        domainNameDownload = getResources().getString(R.string.domain_name_download);
         fileInfoLists = new ArrayList<>();
         fileInfoLists.add(null);//第一条数据设置为null,保证第一条item显示全部下载的那个界面
         if (detail != null) {
@@ -115,8 +115,8 @@ public class DownloadActivity extends BaseActivity {
                     for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
                         String video_uploadPath2 = sonPartBeanX2.getVideo_uploadPath();
                         if (!TextUtils.isEmpty(video_uploadPath2)) {
-                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/")+1);//带后缀的文件名
-                            String fileUrl = domainName + video_uploadPath2;
+                            String fileName = video_uploadPath2.substring(video_uploadPath2.lastIndexOf("/") + 1);//带后缀的文件名
+                            String fileUrl = domainNameDownload + video_uploadPath2;
                             listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
                         }
                     }
