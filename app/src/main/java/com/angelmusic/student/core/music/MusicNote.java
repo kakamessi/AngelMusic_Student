@@ -40,7 +40,7 @@ public class MusicNote {
             note_1.add(ni1);
         }
 
-        /*----第二张谱子--低 蓝色--*/
+        /*----第二张谱子--上面 低 蓝色--*/
         int two_i = 1;
         for(int n = 0; n<4; n++) {
             for (int i = 0; i < 6; i++) {
