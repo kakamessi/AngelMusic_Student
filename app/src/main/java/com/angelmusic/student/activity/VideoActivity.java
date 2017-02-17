@@ -93,7 +93,7 @@ public class VideoActivity extends BaseActivity {
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
     /* 课程资源索引 */
-    private int music_num = 2;
+    private int music_num = 1;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -297,7 +297,7 @@ public class VideoActivity extends BaseActivity {
 
             } else if (music_num == 1) {
 
-                setViewStyle(2,1,Color.RED,8,Color.BLUE);
+                setViewStyle(2,1,Color.BLUE,8,Color.BLUE);
 
             }else if(music_num==2){
 
@@ -671,12 +671,12 @@ public class VideoActivity extends BaseActivity {
             for (int i = 1; i < childCountUp1 + 1; i++) {
                 if (i == yinfuPosition) {
                     if (yinfuBgColor == Color.RED) {
-                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
+                        ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
-                        ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
+                        ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(R.mipmap.kc_blue_puzi_bg);//蓝色色背景
                     }
                 } else {
-                    ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
+                    ivYinfuBgLlUp2.getChildAt(i-1).setBackgroundResource(0);//无背景
                 }
             }
         } else if (childCountUp1 + 1 <= yinfuPosition && yinfuPosition < (childCountUp1 + childCountDown1 + 1)) {
