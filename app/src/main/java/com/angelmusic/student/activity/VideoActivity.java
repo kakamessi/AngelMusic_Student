@@ -668,9 +668,9 @@ public class VideoActivity extends BaseActivity {
     //设置乐谱布局2样式
     private void setView2Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
         //音符背景颜色
-        if (13 <= yinfuPosition && yinfuPosition <= 15) {
+        if (1 <= yinfuPosition && yinfuPosition <= 3) {
             for (int i = 0; i < 3; i++) {
-                if (i == yinfuPosition - 13) {
+                if (i == yinfuPosition - 1) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
@@ -683,8 +683,8 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (16 <= yinfuPosition && yinfuPosition <= 18) {
-            for (int i = 0; i < 15; i++) {
+        } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
+            for (int i = 0; i < 3; i++) {
                 if (i == yinfuPosition - 4) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
@@ -698,7 +698,7 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (19 <= yinfuPosition && yinfuPosition <= 21) {
+        } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
             for (int i = 3; i < 6; i++) {
                 if (i == yinfuPosition - 16) {
                     if (yinfuBgColor == Color.RED) {
@@ -713,9 +713,9 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (22 <= yinfuPosition && yinfuPosition <= 24) {
+        } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
             for (int i = 3; i < 6; i++) {
-                if (i == yinfuPosition - 19) {
+                if (i == yinfuPosition - 7) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
@@ -753,9 +753,9 @@ public class VideoActivity extends BaseActivity {
     //设置乐谱布局3样式
     private void setView3Style(int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor) {
         //音符背景颜色
-        if (1 <= yinfuPosition && yinfuPosition <= 3) {
+        if (13 <= yinfuPosition && yinfuPosition <= 15) {
             for (int i = 0; i < 3; i++) {
-                if (i == yinfuPosition - 1) {
+                if (i == yinfuPosition - 13) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
@@ -768,9 +768,9 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
+        } else if (16 <= yinfuPosition && yinfuPosition <= 18) {
             for (int i = 0; i < 3; i++) {
-                if (i == yinfuPosition - 4) {
+                if (i == yinfuPosition - 16) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
@@ -783,9 +783,9 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
+        } else if (19 <= yinfuPosition && yinfuPosition <= 21) {
             for (int i = 3; i < 6; i++) {
-                if (i == yinfuPosition - 4) {
+                if (i == yinfuPosition - 16) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
@@ -798,9 +798,9 @@ public class VideoActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
             }
-        } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
+        } else if (22 <= yinfuPosition && yinfuPosition <= 24) {
             for (int i = 3; i < 6; i++) {
-                if (i == yinfuPosition - 7) {
+                if (i == yinfuPosition - 19) {
                     if (yinfuBgColor == Color.RED) {
                         ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(R.mipmap.kc_red_puzi_bg);//红色背景
                     } else if (yinfuBgColor == Color.BLUE) {
