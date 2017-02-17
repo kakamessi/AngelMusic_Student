@@ -45,12 +45,12 @@ public class MusicNote {
         for(int n = 0; n<4; n++) {
             for (int i = 0; i < 6; i++) {
                 if (i < 3) {
-                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, false);
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
                     note_2.add(ni1);
                 }
                 if (i < 6 && i > 2) {
-                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
-                    note_2.add(ni1);
+                    NoteInfo ni2 = new NoteInfo(39, two_i, 8, false);
+                    note_2.add(ni2);
 
                 }
                 two_i++;
