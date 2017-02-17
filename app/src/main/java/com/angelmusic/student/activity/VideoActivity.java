@@ -680,6 +680,9 @@ public class VideoActivity extends BaseActivity {
                     ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
+            }
         } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
             for (int i = 0; i < 3; i++) {
                 if (i == yinfuPosition - 4) {
@@ -691,6 +694,9 @@ public class VideoActivity extends BaseActivity {
                 } else {
                     ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
+            }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
             }
         } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
             for (int i = 3; i < 6; i++) {
@@ -704,6 +710,9 @@ public class VideoActivity extends BaseActivity {
                     ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
+            }
         } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
             for (int i = 3; i < 6; i++) {
                 if (i == yinfuPosition - 7) {
@@ -715,6 +724,9 @@ public class VideoActivity extends BaseActivity {
                 } else {
                     ivYinfuBgLlUp2.getChildAt(i).setBackgroundResource(0);//无背景
                 }
+            }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlDown2.getChildAt(i).setBackgroundResource(0);//无背景
             }
         } else {
             Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
@@ -753,6 +765,9 @@ public class VideoActivity extends BaseActivity {
                     ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
+            }
         } else if (4 <= yinfuPosition && yinfuPosition <= 6) {
             for (int i = 0; i < 3; i++) {
                 if (i == yinfuPosition - 4) {
@@ -764,6 +779,9 @@ public class VideoActivity extends BaseActivity {
                 } else {
                     ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
+            }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
             }
         } else if (7 <= yinfuPosition && yinfuPosition <= 9) {
             for (int i = 3; i < 6; i++) {
@@ -777,6 +795,9 @@ public class VideoActivity extends BaseActivity {
                     ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
             }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
+            }
         } else if (10 <= yinfuPosition && yinfuPosition <= 12) {
             for (int i = 3; i < 6; i++) {
                 if (i == yinfuPosition - 7) {
@@ -788,6 +809,9 @@ public class VideoActivity extends BaseActivity {
                 } else {
                     ivYinfuBgLlUp3.getChildAt(i).setBackgroundResource(0);//无背景
                 }
+            }
+            for (int i = 0; i < 6; i++) {
+                ivYinfuBgLlDown3.getChildAt(i).setBackgroundResource(0);//无背景
             }
         } else {
             Toast.makeText(this, "音符位置错误", Toast.LENGTH_SHORT).show();
