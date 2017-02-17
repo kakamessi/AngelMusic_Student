@@ -36,7 +36,7 @@ public class MusicNote {
 
         /*----第一张谱子----*/
         for(int i=0; i<8;i++){
-            NoteInfo ni1 = new NoteInfo(39,i,8,true);
+            NoteInfo ni1 = new NoteInfo(39,i,7,true);
             note_1.add(ni1);
         }
 
@@ -45,11 +45,11 @@ public class MusicNote {
         for(int n = 0; n<4; n++) {
             for (int i = 0; i < 6; i++) {
                 if (i < 3) {
-                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, false);
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 7, false);
                     note_2.add(ni1);
                 }
                 if (i < 6 && i > 2) {
-                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 7, true);
                     note_2.add(ni1);
 
                 }

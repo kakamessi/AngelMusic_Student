@@ -48,6 +48,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static android.R.attr.type;
+import static com.angelmusic.student.R.id.imageView;
 import static com.angelmusic.student.core.music.MusicNote.music_g;
 
 public class VideoActivity extends BaseActivity {
@@ -214,7 +215,7 @@ public class VideoActivity extends BaseActivity {
         //初始化界面就是准备中
         blackTv.setText("准备中");
 
-        setLayoutStyle(2);
+        setLayoutStyle(1);
     }
 
     @Override
@@ -282,7 +283,7 @@ public class VideoActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.black_tv:
-                //dialog7();
+                dialog7();
                 break;
         }
     }
@@ -293,6 +294,7 @@ public class VideoActivity extends BaseActivity {
             //请看大屏幕
             blackTv.setVisibility(View.VISIBLE);
             blackTv.setText("请看大屏幕");
+            activityIdle.setVisibility(View.INVISIBLE);
 
         } else if (type == 2) {
             //乐谱跟奏
@@ -526,12 +528,16 @@ public class VideoActivity extends BaseActivity {
 
     protected void dialog7() {
 
+        int starNum = 1; int yg = 1; int jz = 1; int sz = 1;
+
+
+
         LayoutInflater inflater = getLayoutInflater();
 
         View layout = inflater.inflate(R.layout.dialog_score, null);
 
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134
-        PopupWindow window = new PopupWindow(layout, 733, 680);
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
+        PopupWindow window = new PopupWindow(layout, 1221, 1134);
         // TODO: 2016/5/17 设置背景颜色
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         // TODO: 2016/5/17 设置可以获取焦点
@@ -543,20 +549,29 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
+
+        ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
+
         ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
         ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
-        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        params.width = getIntFromDimens(350 / 2);
-        iv_1.setLayoutParams(params);
+//        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+//        params.width = getIntFromDimens(350/10);
+//        iv_1.setLayoutParams(params);
 
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
         TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
         TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
 
-
+        if(starNum==3){
+            ivBG.setImageResource(R.drawable.score_three);
+        }else if(starNum==2){
+            ivBG.setImageResource(R.drawable.score_two);
+        }else if(starNum==1){
+            ivBG.setImageResource(R.drawable.score_one);
+        }
+        
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
 //        new AlertDialog.Builder(this).setView(layout).show();
