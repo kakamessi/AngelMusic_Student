@@ -35,6 +35,8 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.core.ActionType;
+import com.angelmusic.student.core.music.MusicNote;
+import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.utils.LogUtil;
 
@@ -102,13 +104,12 @@ public class VideoActivity extends BaseActivity {
             notes.add(str);
             Log.e(TAG, str + ":" + str.length());
             //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-            handlerNote(str);
+            handlerNewNote(str);
 
         }
     };
 
     int index = 0;
-
     private void handlerNote(String str) {
 
         //确认选谱
@@ -143,6 +144,40 @@ public class VideoActivity extends BaseActivity {
 
     }
 
+
+    int index_new = 0;
+    private void handlerNewNote(String str) {
+
+        //确认选谱
+        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num];
+
+        //获取钢琴弹奏音符
+        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+        int key = Integer.parseInt(myDatas[2], 16) - 21;
+
+        //处理输出
+        NoteInfo ni = al.get(index_new);
+        if (key == ni.getNoteNum()) {
+
+            //显示正确音符 和 钢琴键
+
+
+            //处理循环
+            if (str.endsWith("0 ")) {
+
+                if (index_new == al.size()-1) {
+                    index_new = -1;
+                }
+                index_new++;
+
+                //亮灯
+
+            }
+        }
+
+    }
+
+    /*------------------------------------------------------------------------------收到钢琴消息handler*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -247,8 +282,13 @@ public class VideoActivity extends BaseActivity {
                 Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
 
-        }
 
+        }else if(ActionType.ACTION_GZ_ONE.equals(ac[0])){
+
+            stop();
+            setLayoutStyle(2);
+
+        }
 
     }
 
@@ -277,8 +317,9 @@ public class VideoActivity extends BaseActivity {
             if (music_num == 0) {
 //                setYinfuBgColor(0, Color.RED);
 //                setWhiteKeyBgColor(0, Color.RED);
-
             } else if (music_num == 1) {
+
+            }else if(music_num==2){
 
             }
 
@@ -497,12 +538,13 @@ public class VideoActivity extends BaseActivity {
 
     protected void dialog7() {
 
-        LayoutInflater inflater = getLayoutInflater();
+        int starNum = 1; int yg = 1; int jz = 1; int sz = 1;
 
+        LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);
 
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134
-        PopupWindow window = new PopupWindow(layout, 733, 680);
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
+        PopupWindow window = new PopupWindow(layout, 1221, 1134);
         // TODO: 2016/5/17 设置背景颜色
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         // TODO: 2016/5/17 设置可以获取焦点
@@ -514,19 +556,28 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
+
+        ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
+
         ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
         ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
-        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        params.width = getIntFromDimens(350 / 2);
-        iv_1.setLayoutParams(params);
+//        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+//        params.width = getIntFromDimens(350/10);
+//        iv_1.setLayoutParams(params);
 
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
         TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
         TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
 
+        if(starNum==3){
+            ivBG.setImageResource(R.drawable.score_three);
+        }else if(starNum==2){
+            ivBG.setImageResource(R.drawable.score_two);
+        }else if(starNum==1){
+            ivBG.setImageResource(R.drawable.score_one);
+        }
 
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
