@@ -159,8 +159,18 @@ public class VideoActivity extends BaseActivity {
         NoteInfo ni = al.get(index_new);
         if (key == ni.getNoteNum()) {
 
-            //显示正确音符 和 钢琴键
+            //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
+            if (music_num == 0) {
+                setViewStyle(1,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
 
+            } else if (music_num == 1) {
+
+                setViewStyle(2,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+
+            }else if(music_num==2){
+
+                setViewStyle(4,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+            }
 
             //处理循环
             if (str.endsWith("0 ")) {
@@ -182,7 +192,7 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setViewStyle(4, 12, Color.RED, 1, Color.BLUE);
+
         closePiano();
         initView();
     }
@@ -307,25 +317,32 @@ public class VideoActivity extends BaseActivity {
             //请看大屏幕
             blackTv.setVisibility(View.VISIBLE);
             blackTv.setText("请看大屏幕");
+            yuepuGroupLl.setVisibility(View.INVISIBLE);
 
         } else if (type == 2) {
             //乐谱跟奏
             initPiano();
             blackTv.setVisibility(View.INVISIBLE);
+            yuepuGroupLl.setVisibility(View.VISIBLE);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
             if (music_num == 0) {
-//                setYinfuBgColor(0, Color.RED);
-//                setWhiteKeyBgColor(0, Color.RED);
+
+                //int viewId, int yinfuPosition, int yinfuBgColor, int keyPosition, int keyBgColor
+                setViewStyle(1,1,Color.RED,8,Color.RED);
+
             } else if (music_num == 1) {
 
+                setViewStyle(1,1,Color.RED,8,Color.RED);
             }else if(music_num==2){
 
+                setViewStyle(1,1,Color.RED,8,Color.RED);
             }
 
         } else if (type == 3) {
             //播放视频
             blackTv.setVisibility(View.INVISIBLE);
+            yuepuGroupLl.setVisibility(View.INVISIBLE);
 
         }
 
