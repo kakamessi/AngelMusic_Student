@@ -129,7 +129,11 @@ public class VideoActivity extends BaseActivity {
 
             } else if (music_num == 1) {
 
-                setViewStyle(2,ni.getNoteIndex(),ni.isRed()==true?Color.RED:Color.BLUE,ni.getKeyIndex(),ni.isRed()==true?Color.RED:Color.BLUE);
+                if(index_new<11) {
+                    setViewStyle(2, ni.getNoteIndex(), ni.isRed() == true ? Color.RED : Color.BLUE, ni.getKeyIndex(), ni.isRed() == true ? Color.RED : Color.BLUE);
+                }else{
+                    setViewStyle(3, ni.getNoteIndex(), ni.isRed() == true ? Color.RED : Color.BLUE, ni.getKeyIndex(), ni.isRed() == true ? Color.RED : Color.BLUE);
+                }
 
             }else if(music_num==2){
 
