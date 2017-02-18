@@ -54,6 +54,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -955,5 +956,34 @@ public class VideoActivity extends BaseActivity {
                 });
 
     }
+
+
+    //--------------------------------------------跟灯----------------------------------------------------------
+    //递归控制
+    long times = 0;
+    //间隔时间
+    long spaceTime = 1000;
+    //延迟时间
+    long delay = 0;
+    public void followTempo(){
+
+        service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleWithFixedDelay(
+                new Runnable() {
+                    @Override
+                    public void run() {
+
+                        followTempo();
+                        times++;
+
+                    }
+                },
+                delay,
+                spaceTime,
+                TimeUnit.MILLISECONDS);
+
+    }
+    //--------------------------------------------跟灯----------------------------------------------------------
+
 
 }
