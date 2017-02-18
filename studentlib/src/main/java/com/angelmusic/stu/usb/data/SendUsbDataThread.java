@@ -9,6 +9,8 @@ import com.angelmusic.stu.utils.SendDataUtil;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author huzhikun
@@ -16,7 +18,9 @@ import java.util.Queue;
  */
 public class SendUsbDataThread extends Thread {
 
-	private Queue<byte[]> queueBuffer = new LinkedList<byte[]>();// 信息的队列
+	//前期使用LinkedList   后期改为了LinkedBlockingQueue
+	//private Queue<byte[]> queueBuffer = new LinkedList<byte[]>();// 信息的队列
+	private BlockingQueue<byte[]> queueBuffer = new LinkedBlockingQueue<>();
 
 	private UsbEndpoint epBulkOut;// 数据接口的发送节点
 	private String TAG = "SendUsbDataThread";
