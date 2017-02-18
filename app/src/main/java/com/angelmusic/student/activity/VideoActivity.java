@@ -26,6 +26,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.usb.UsbDeviceConnect;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.usb.callback.CallbackInterface;
@@ -33,19 +37,28 @@ import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
+import com.angelmusic.student.login.LoginManager;
+import com.angelmusic.student.login.StuInfo;
+import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.SharedPreferencesUtil;
+import com.angelmusic.student.utils.Utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 public class VideoActivity extends BaseActivity {
 
@@ -907,4 +920,40 @@ public class VideoActivity extends BaseActivity {
         DrawableCompat.setTint(newDrawable, color);
         return newDrawable;
     }
+
+    /**
+     * 上传分数
+     * @param mContext
+     */
+    public void postAccount(final Context mContext) {
+
+        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"");
+        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
+
+        String machineCode = Utils.getDeviceId(mContext);
+        Log.e("===machineCode===", machineCode);
+        OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
+                .setCacheLevel(FIRST_LEVEL)
+                .setConnectTimeout(25).build(mContext);
+        okHttpUtil.doPostAsync(
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.test_name) + mContext.getResources().getString(R
+                        .string.account_submit))
+                        .addParam("score", "2")
+                        .addParam("yingaoScore", "80")
+                        .addParam("jiezouScore", "80")
+                        .addParam("shizhiScore", "80")
+                        .addParam("lessonId", course_id)
+                        .addParam("stuId", stuId)
+                        .addParam("cid", cid)
+                        .build(),
+                new CallbackOk() {
+                    @Override
+                    public void onResponse(HttpInfo info) throws IOException {
+                        String jsonResult = info.getRetDetail();
+
+                    }
+                });
+
+    }
+
 }
