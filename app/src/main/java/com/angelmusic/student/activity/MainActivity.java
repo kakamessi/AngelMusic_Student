@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -36,7 +37,10 @@ import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
 import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.SeatAdapter;
+import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.constant.Constant;
+import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.infobean.SeatDataInfo;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -264,6 +268,8 @@ public class MainActivity extends BaseActivity {
     protected void handleMsg(Message msg) {
         super.handleMsg(msg);
         String teacherMsg = msg.obj.toString();
+        String[] ac = teacherMsg.split("\\|");
+
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
             String json = teacherMsg.substring(2);
             seatDataInfo = GsonUtil.jsonToObject(json, SeatDataInfo.class);
@@ -280,6 +286,30 @@ public class MainActivity extends BaseActivity {
                 SharedPreferencesUtil.setString("schoolName", seatDataInfo.getSchoolName());
                 SharedPreferencesUtil.setString("schoolId", seatDataInfo.getSchoolID());//课程信息下载需要此参数
             }
+        }else if (ActionType.ACTION_PREPARE.equals(ac[0])) {
+
+            //开始进行常规课
+            String[] names = ac[2].split("&");
+            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
+            for(String name: names){
+                App.getApplication().getCd().getFiles().put(name,sdDir + name);
+                Log.e(TAG,"filepath: " + sdDir + name);
+            }
+
+            App.getApplication().getPi().setCourse_Id(ac[1]);
+            startActivity(new Intent(this, VideoActivity.class));
+
+        }else if(ActionType.ACTION_LOGIN.equals(ac[0])){
+
+            //登录操作
+            login();
+
+        }else if(ActionType.ACTION_GET_CLASS.equals(ac[0])){
+
+            //保存班级id
+            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID,ac[1]);
+            Toast.makeText(App.getApplication(),"保存班级成功",0).show();
+
         }
 
     }
