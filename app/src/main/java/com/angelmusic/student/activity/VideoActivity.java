@@ -250,12 +250,13 @@ public class VideoActivity extends BaseActivity {
     private void initView() {
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
-        blackTv.setText("准备中");
 
-        blackTv.setVisibility(View.VISIBLE);
         yuepuGroupLl.setVisibility(View.INVISIBLE);
 
-        setLayoutStyle(2);
+        blackTv.setText("准备中");
+        blackTv.setVisibility(View.VISIBLE);
+
+        //setLayoutStyle(2);
     }
 
     @Override
