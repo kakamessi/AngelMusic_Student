@@ -269,6 +269,8 @@ public class MainActivity extends BaseActivity {
         super.handleMsg(msg);
         String teacherMsg = msg.obj.toString();
         String[] ac = teacherMsg.split("\\|");
+        Log.e(TAG, "MainActivity:  ---------- " + teacherMsg);
+        Toast.makeText(App.getApplication(),teacherMsg,0).show();
 
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
             String json = teacherMsg.substring(2);

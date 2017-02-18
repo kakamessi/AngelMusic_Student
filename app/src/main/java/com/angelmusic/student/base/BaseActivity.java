@@ -82,8 +82,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
-        Log.e(TAG,"消息入口:  ---------- " + str);
-        Toast.makeText(App.getApplication(),str,0).show();
 
 //        if (ActionType.ACTION_PREPARE.equals(ac[0])) {
 //

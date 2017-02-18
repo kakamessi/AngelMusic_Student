@@ -264,7 +264,8 @@ public class VideoActivity extends BaseActivity {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
-        Log.e(TAG, "消息入口:  ---------- " + str);
+        Log.e(TAG, "VideoActivity:  ---------- " + str);
+        Toast.makeText(App.getApplication(),str,0).show();
 
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
