@@ -132,7 +132,7 @@ public class VideoActivity extends BaseActivity {
 
             } else if (music_num == 1) {
 
-                if (index_new < 11) {
+                if (nextInfo.getNoteIndex() < 13) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 } else {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
