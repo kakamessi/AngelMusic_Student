@@ -106,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             //保存班级id
             SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID,ac[1]);
-            Toast.makeText(this,"保存班级成功",0).show();
+            Toast.makeText(App.getApplication(),"保存班级成功",0).show();
 
         }
 
@@ -121,7 +121,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             public void isSucceed(StuInfo stuInfo) {
                 //保存学生id
                 SharedPreferencesUtil.setString(Constant.CACHE_STUDENT_ID,stuInfo.getDetail().getStuInfo().getId()+"");
-                //Toast.makeText(out.this,"登录成功",0).show();
+                Toast.makeText(App.getApplication(),"登录成功",0).show();
             }
 
             @Override
