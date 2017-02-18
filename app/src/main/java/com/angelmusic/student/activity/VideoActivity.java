@@ -18,7 +18,6 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,11 +41,11 @@ import com.angelmusic.student.utils.LogUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.angelmusic.student.core.music.MusicNote.music_g;
 
 public class VideoActivity extends BaseActivity {
 
@@ -78,6 +77,8 @@ public class VideoActivity extends BaseActivity {
     @BindView(R.id.yuepu_group_ll)
     LinearLayout yuepuGroupLl;
 
+    //定时任务
+    private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
     //课程信息
     private CourseData cd = App.getApplication().getCd();
@@ -93,7 +94,7 @@ public class VideoActivity extends BaseActivity {
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
     /* 课程资源索引 */
-    private int music_num = 2;
+    private int music_num = 1;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
