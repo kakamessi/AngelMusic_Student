@@ -93,7 +93,7 @@ public class VideoActivity extends BaseActivity {
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
     /* 课程资源索引 */
-    private int music_num = 1;
+    private int music_num = 2;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -143,15 +143,25 @@ public class VideoActivity extends BaseActivity {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }
 
-            //处理循环
             if (str.endsWith("0 ")) {
 
+                //亮灯
+                if(music_num == 0){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
+
+                }else if(music_num == 1){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
+
+                }else if(music_num == 2){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),true,nextInfo.getNoteNum(),true);
+
+                }
+
+                //处理循环
                 if (index_new == al.size() - 1) {
                     index_new = -1;
                 }
                 index_new++;
-
-                //亮灯
 
             }
         }
@@ -294,14 +304,18 @@ public class VideoActivity extends BaseActivity {
             if (music_num == 0) {
 
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
+                MusicNote.openLight(VideoActivity.this,39,false);
 
             } else if (music_num == 1) {
 
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
+                MusicNote.openLight(VideoActivity.this,39,false);
 
             } else if (music_num == 2) {
 
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
+                MusicNote.openLight(VideoActivity.this,39,true);
+
             }
 
         } else if (type == 3) {

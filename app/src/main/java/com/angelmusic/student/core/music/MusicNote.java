@@ -1,8 +1,10 @@
 package com.angelmusic.student.core.music;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.student.activity.VideoActivity;
 
 import java.util.ArrayList;
 
@@ -92,37 +94,41 @@ public class MusicNote {
 
 
     /*亮灯指令*/
-    public static final byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
+    public static byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
             0x4c, 0x45, (byte) (ON_INDEX+21), 0x06, ON_COLOR, 0x0,
             (byte) 0xf7 };
-
     /* 熄灯指令 */
-    public static final byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
+    public static byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
             (byte)(OFF_INDEX+21), 0x06, OFF_COLOR, 0x0, (byte) 0xf7 };
 
 
     //获取开灯指令集
     public static byte[] getLightbytes(int index,boolean isRed){
-
-        ON_INDEX = index;
+        byte on_color = 0x01;
         if(isRed){
-            ON_COLOR = ON_RED;
+            on_color = ON_RED;
         }else{
-            ON_COLOR = ON_BLUE;
+            on_color = ON_BLUE;
         }
+        byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
+                0x4c, 0x45, (byte) (index+21), 0x06, on_color, 0x0,
+                (byte) 0xf7 };
 
         return ON_DATA;
     }
 
     //获取关灯指令集
     public static byte[] getCloseBytes(int index,boolean isRed){
+        byte off_color = 0x01;
 
-        OFF_INDEX = index;
         if(isRed){
-            OFF_COLOR = OFF_RED;
+            off_color = OFF_RED;
         }else{
-            OFF_COLOR = OFF_BLUE;
+            off_color = OFF_BLUE;
         }
+
+        byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
+                (byte)(index+21), 0x06, off_color, 0x0, (byte) 0xf7 };
 
         return OFF_DATA;
     }
@@ -146,6 +152,35 @@ public class MusicNote {
         }).start();
 
     }
+
+    public static void openLight(final Context context, final int index, final boolean isRed){
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+        Toast.makeText(context,index + ":::" + index,0).show();
+
+    }
+
+    public static void closeAndOpenNext(final Context context,final int closeIndex, final boolean closeRed, final int openIndex, final boolean openRed){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(closeIndex,closeRed));
+
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(openIndex,openRed));
+
+            }
+        }).start();
+
+    }
+
 
 
 }
