@@ -96,6 +96,9 @@ public class VideoActivity extends BaseActivity {
     /* 课程资源索引 */
     private int music_num = 1;
 
+    /* 当前课程id */
+    private String course_id = "";
+
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
         @Override
@@ -175,7 +178,13 @@ public class VideoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         closePiano();
+        initData();
         initView();
+    }
+
+    private void initData() {
+
+        course_id = App.getApplication().getPi().getCourse_Id();
     }
 
     @Override
