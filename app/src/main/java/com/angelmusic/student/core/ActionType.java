@@ -21,6 +21,10 @@ public class ActionType {
 
     public static final String ACTION_GZ_ONE = "6";
 
+    public static final String ACTION_LOGIN = "7";
+
+    public static final String ACTION_GET_CLASS = "8";
+
     public static String getMsg(){
 
         String result = "";

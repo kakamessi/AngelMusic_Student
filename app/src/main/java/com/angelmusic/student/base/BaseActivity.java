@@ -15,18 +15,25 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.activity.VideoActivity;
+import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.core.ActionType;
+import com.angelmusic.student.login.LoginManager;
+import com.angelmusic.student.login.StuInfo;
 import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.SharedPreferencesUtil;
 
 import java.io.File;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
+
+import static android.transition.Fade.OUT;
 
 /**
  * Activity的基类
@@ -88,8 +95,39 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
 
             startActivity(new Intent(this, VideoActivity.class));
+
+        }else if(ActionType.ACTION_LOGIN.equals(ac[0])){
+
+            //登录操作
+            login();
+
+        }else if(ActionType.ACTION_GET_CLASS.equals(ac[0])){
+
+            //保存班级id
+            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID,ac[1]);
+            Toast.makeText(this,"保存班级成功",0).show();
+
         }
 
+
+    }
+
+    protected void login(){
+
+        String classId = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
+        LoginManager.login(this,classId, new LoginManager.IsLoginSucceed() {
+            @Override
+            public void isSucceed(StuInfo stuInfo) {
+                //保存学生id
+                SharedPreferencesUtil.setString(Constant.CACHE_STUDENT_ID,stuInfo.getDetail().getStuInfo().getId()+"");
+                //Toast.makeText(out.this,"登录成功",0).show();
+            }
+
+            @Override
+            public void isFailed() {
+
+            }
+        });
 
     }
 

@@ -156,7 +156,15 @@ public class MusicNote {
     public static void openLight(final Context context, final int index, final boolean isRed){
 
         UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-        Toast.makeText(context,index + ":::" + index,0).show();
+
+    }
+
+    public static void closeAllLight(final Context context, final int index, final boolean isRed){
+
+        for(int i=0; i<88; i++) {
+            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index, isRed));
+        }
+
 
     }
 
