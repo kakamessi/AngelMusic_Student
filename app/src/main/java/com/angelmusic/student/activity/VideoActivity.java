@@ -163,14 +163,14 @@ public class VideoActivity extends BaseActivity {
             if (str.endsWith("0 ")) {
 
                 //亮灯
-                if(music_num == 0){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
+                if (music_num == 0) {
+                    MusicNote.closeAndOpenNext(VideoActivity.this, 39, false, 39, false);
 
-                }else if(music_num == 1){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
+                } else if (music_num == 1) {
+                    MusicNote.closeAndOpenNext(VideoActivity.this, 39, false, 39, false);
 
-                }else if(music_num == 2){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),true,nextInfo.getNoteNum(),true);
+                } else if (music_num == 2) {
+                    MusicNote.closeAndOpenNext(VideoActivity.this, ni.getNoteNum(), true, nextInfo.getNoteNum(), true);
 
                 }
 
@@ -195,29 +195,11 @@ public class VideoActivity extends BaseActivity {
         initView();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stop();
-
-    }
-
     private void initData() {
+
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
 
-        // 为SurfaceHolder添加回调
-        surfaceView.getHolder().addCallback(callback);
-    }
-
-    private void initView() {
-
-        yuepuGroupLl.setVisibility(View.INVISIBLE);
-
-        blackTv.setText("准备中");
-        blackTv.setVisibility(View.VISIBLE);
-
-        //setLayoutStyle(2);
     }
 
     @Override
@@ -258,14 +240,33 @@ public class VideoActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
-    //============================================================================通讯逻辑
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stop();
+
+    }
+
+    private void initView() {
+        // 为SurfaceHolder添加回调
+        surfaceView.getHolder().addCallback(callback);
+
+        yuepuGroupLl.setVisibility(View.INVISIBLE);
+
+        blackTv.setText("准备中");
+        blackTv.setVisibility(View.VISIBLE);
+
+        //setLayoutStyle(2);
+    }
+
     @Override
     protected void handleMsg(Message msg) {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
 
-        Toast.makeText(App.getApplication(),str,0).show();
+        Toast.makeText(App.getApplication(), str, Toast.LENGTH_SHORT).show();
 
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
@@ -281,14 +282,13 @@ public class VideoActivity extends BaseActivity {
                 //学生端播放视频，
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
-                Log.e("kaka","视频路径:" + path);
                 switchVedio(path);
 
                 //是否跟灯显示
-                String[] strA  = ac[2].split("&");
-                if(true){
+                String[] strA = ac[2].split("&");
+                if (true) {
 
-                    Toast.makeText(this,"开始跟灯",0).show();
+                    Toast.makeText(this, "开始跟灯", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -316,8 +316,6 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
-    //============================================================================通讯逻辑
-
 
     private void setLayoutStyle(int type) {
 
@@ -337,17 +335,17 @@ public class VideoActivity extends BaseActivity {
             if (music_num == 0) {
 
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this,39,false);
+                MusicNote.openLight(VideoActivity.this, 39, false);
 
             } else if (music_num == 1) {
 
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
-                MusicNote.openLight(VideoActivity.this,39,false);
+                MusicNote.openLight(VideoActivity.this, 39, false);
 
             } else if (music_num == 2) {
 
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this,39,true);
+                MusicNote.openLight(VideoActivity.this, 39, true);
 
             }
 
@@ -933,12 +931,13 @@ public class VideoActivity extends BaseActivity {
 
     /**
      * 上传分数
+     *
      * @param mContext
      */
     public void postAccount(final Context mContext) {
 
-        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"");
-        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
+        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID, "");
+        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID, "");
 
         String machineCode = Utils.getDeviceId(mContext);
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
@@ -973,7 +972,8 @@ public class VideoActivity extends BaseActivity {
     long spaceTime = 1000;
     //延迟时间
     long delay = 0;
-    public void followTempo(){
+
+    public void followTempo() {
 
         service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleWithFixedDelay(

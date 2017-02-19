@@ -1,6 +1,5 @@
 package com.angelmusic.student.version_update;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -19,7 +18,6 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.utils.FileUtil;
@@ -29,7 +27,6 @@ import com.angelmusic.student.utils.SDCardUtil;
 import java.io.File;
 import java.io.IOException;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 
 
@@ -149,6 +146,7 @@ public class ApkManager {
         if (isForced == 1) {//非强制更新
             downloadDialog.setCanceledOnTouchOutside(true);
         } else if (isForced == 2) {//强制更新
+            downloadDialog.setCancelable(false);
             downloadDialog.setCanceledOnTouchOutside(false);
         }
         downloadDialog.show();
