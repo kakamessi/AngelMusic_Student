@@ -10,7 +10,7 @@ import java.util.Date;
 public class Log {
 	// public static String log="";
 	public static ArrayList<String> logs = new ArrayList<String>();
-	public static boolean isLog = false;
+	public static boolean isLog = true;
 
 	private static String getDate() {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
@@ -75,8 +75,6 @@ public class Log {
 			e.printStackTrace(printWriter);
 			//转换成String，并返回该String
 			StringBuffer error = stringWriter.getBuffer();
-
-			e("kaka", error.toString());
 
 		}
 	}
