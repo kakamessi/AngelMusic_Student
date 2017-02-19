@@ -3,6 +3,8 @@ package com.angelmusic.student.base;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Environment;
+import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
@@ -15,7 +17,6 @@ import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
 import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.infobean.CourseData;
-import com.angelmusic.student.infobean.PublicInfo;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -37,9 +38,6 @@ public class App extends Application {
     private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
     public static OkHttpUtil.Builder init;
-
-    /* 公共信息 */
-    private PublicInfo pi = new PublicInfo();
 
     public static App getApplication(){
         if (myApplication == null){
@@ -63,6 +61,19 @@ public class App extends Application {
         initHotfix();//热修复的初始化
         downAndSetPatch();//下载补丁并安装补丁
         SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);
+
+        String sdDir = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/avva/";
+
+            File filePath = new File(sdDir);
+            File file = new File(sdDir);
+            // if file doesnt exists, then create it
+            if (!filePath.exists()) {
+
+                boolean s = filePath.mkdir();
+                Log.e("SaveData", "创建目录-->" + s);
+            }
+
     }
 
     //初始化网络框架
@@ -153,14 +164,6 @@ public class App extends Application {
 
     public void setCd(CourseData cd) {
         this.cd = cd;
-    }
-
-    public PublicInfo getPi() {
-        return pi;
-    }
-
-    public void setPi(PublicInfo pi) {
-        this.pi = pi;
     }
 
 }

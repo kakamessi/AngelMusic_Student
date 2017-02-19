@@ -290,13 +290,15 @@ public class MainActivity extends BaseActivity {
         }else if (ActionType.ACTION_PREPARE.equals(ac[0])) {
 
             //开始进行常规课
+            App.getApplication().getCd().setCourse_Id(ac[1]);
+
+            //整合视频资源
             String[] names = ac[2].split("&");
             String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
             for(String name: names){
                 App.getApplication().getCd().getFiles().put(name,sdDir + name);
             }
 
-            App.getApplication().getPi().setCourse_Id(ac[1]);
             startActivity(new Intent(this, VideoActivity.class));
 
         }else if(ActionType.ACTION_LOGIN.equals(ac[0])){

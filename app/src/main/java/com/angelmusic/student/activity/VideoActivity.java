@@ -95,7 +95,7 @@ public class VideoActivity extends BaseActivity {
     private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
     //课程信息
-    private CourseData cd = App.getApplication().getCd();
+    private CourseData cd = null;
     private String currentPath = "";
     private File currentfile = null;
 
@@ -197,7 +197,9 @@ public class VideoActivity extends BaseActivity {
 
     private void initData() {
 
-        course_id = App.getApplication().getPi().getCourse_Id();
+        cd = App.getApplication().getCd();
+        course_id = cd.getCourse_Id();
+
     }
 
     @Override
@@ -271,16 +273,23 @@ public class VideoActivity extends BaseActivity {
 
             if (ac[1].equals("0")) {
 
+                //请看大屏幕
                 stop();
                 setLayoutStyle(1);
 
             } else {
-                setLayoutStyle(3);
-                String path = cd.getFiles().get(ac[2]);
 
+                //学生端播放视频，
+                setLayoutStyle(3);
+                String path = cd.getFiles().get(ac[3]);
                 switchVedio(path);
-//              currentPath = path;
-//              play(0);
+
+                //是否跟灯显示
+                String[] strA  = ac[2].split("&");
+                if(true){
+
+                    Toast.makeText(this,"开始跟灯"，0).show();
+                }
 
             }
 
