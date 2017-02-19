@@ -84,6 +84,7 @@ public class DAOImpl implements DAO {
         }
         db.setTransactionSuccessful();
         db.endTransaction();
+        cursor.close();
         db.close();
         return isExist;
     }
@@ -96,6 +97,7 @@ public class DAOImpl implements DAO {
         if (cursor.moveToNext()) {
             isExist = true;
         }
+        cursor.close();
         db.close();
         return isExist;
     }
@@ -111,6 +113,7 @@ public class DAOImpl implements DAO {
         if (cursor.moveToNext()) {
             isExist = true;
         }
+        cursor.close();
         db.close();
         return isExist;
     }
@@ -129,6 +132,7 @@ public class DAOImpl implements DAO {
                 isDownloadOk = true;
             }
         }
+        cursor.close();
         db.close();
         return isDownloadOk;
     }
@@ -150,6 +154,7 @@ public class DAOImpl implements DAO {
         }
         db.setTransactionSuccessful();
         db.endTransaction();
+        cursor.close();
         db.close();
         return isDownloadOk;
     }
@@ -165,6 +170,7 @@ public class DAOImpl implements DAO {
         if (cursor.getCount() == 1) {
             isCanDelete = true;
         }
+        cursor.close();
         db.close();
         return isCanDelete;
     }

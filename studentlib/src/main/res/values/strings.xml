@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">studentlib</string>
+    <!--下载用的域名-->
+    <string name="domain_name_download">http://video.tianshiyinyue.cn</string>
 </resources>
