@@ -276,7 +276,7 @@ public class VideoActivity extends BaseActivity {
                 stop();
                 setLayoutStyle(1);
 
-            } else {
+            } else if(ac[1].equals("1")){
 
                 //学生端播放视频，
                 setLayoutStyle(3);
