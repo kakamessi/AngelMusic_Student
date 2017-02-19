@@ -30,8 +30,6 @@ public class SendHandler {
 
                 } catch (Exception e) {
 
-                    Log.kException(e);
-
                 }
 
             }

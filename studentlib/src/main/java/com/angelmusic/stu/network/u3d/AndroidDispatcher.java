@@ -95,7 +95,6 @@ public class AndroidDispatcher implements IDispatcher{
 //        rec = new TCPRec(socket,host,port,receiver);
 //
 //        new Thread(rec).start();
-        Log.e("kaka", "____________________________________重连成功_________");
     }
 
     public boolean isAlive(){

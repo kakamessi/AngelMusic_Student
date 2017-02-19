@@ -54,12 +54,10 @@ public class TCPWrite {
 
                 } catch (Exception e) {
 
-                    Log.e("kaka", "write失败  准备重连:  " + e.getMessage().toString());
-
                     try {
                         AndroidDispatcher.getInstance().reConnect(true);
                     } catch (Exception e1) {
-                        Log.kException(e1);
+
                     }
 
                 }

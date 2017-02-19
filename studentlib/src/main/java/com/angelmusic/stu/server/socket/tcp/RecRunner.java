@@ -46,8 +46,6 @@ public class RecRunner implements Runnable {
 
         } catch (Exception e) {
 
-            Log.e("kaka", "socket read 连接不稳定断开_____________________");
-
             e.printStackTrace();
         }
 

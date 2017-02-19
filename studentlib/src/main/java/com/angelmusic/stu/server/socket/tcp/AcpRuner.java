@@ -84,7 +84,6 @@ public class AcpRuner implements Runnable {
         } catch (Exception e) {
 
             e.printStackTrace();
-            Log.kException(e);
 
 
         }finally{

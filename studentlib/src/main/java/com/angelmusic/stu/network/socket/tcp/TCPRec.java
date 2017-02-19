@@ -43,7 +43,7 @@ public class TCPRec implements Runnable{
         } catch (Exception e) {
 
             try {
-                Log.e("kaka", "connect || read异常_____" + e.getMessage().toString() + host + ":" + port);
+
             }catch (Exception ex){
             }
 
