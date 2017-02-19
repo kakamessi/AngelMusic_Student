@@ -269,7 +269,6 @@ public class MainActivity extends BaseActivity {
         super.handleMsg(msg);
         String teacherMsg = msg.obj.toString();
         String[] ac = teacherMsg.split("\\|");
-        Log.e(TAG, "MainActivity:  ---------- " + teacherMsg);
         Toast.makeText(App.getApplication(),teacherMsg,0).show();
 
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
@@ -295,7 +294,6 @@ public class MainActivity extends BaseActivity {
             String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
             for(String name: names){
                 App.getApplication().getCd().getFiles().put(name,sdDir + name);
-                Log.e(TAG,"filepath: " + sdDir + name);
             }
 
             App.getApplication().getPi().setCourse_Id(ac[1]);

@@ -120,7 +120,6 @@ public class VideoActivity extends BaseActivity {
 
             String str = (String) msg.obj;
             notes.add(str);
-            Log.e(TAG, str + ":" + str.length());
             //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
             handlerNewNote(str);
 
@@ -264,14 +263,14 @@ public class VideoActivity extends BaseActivity {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
-        Log.e(TAG, "VideoActivity:  ---------- " + str);
+
         Toast.makeText(App.getApplication(),str,0).show();
 
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
             if (ac[1].equals("0")) {
-                Log.e(TAG, "动作:  ---------- " + "投大屏");
+
                 stop();
                 setLayoutStyle(1);
 
@@ -283,7 +282,6 @@ public class VideoActivity extends BaseActivity {
 //              currentPath = path;
 //              play(0);
 
-                Log.e(TAG, "动作:  ---------- " + "投学生屏开始播放视频：" + path);
             }
 
             //暂停继续播放视频
@@ -291,13 +289,11 @@ public class VideoActivity extends BaseActivity {
 
             if (ac[1].equals("2")) {
 
-                Log.e(TAG, "动作:  ---------- " + "下课：");
                 this.finish();
 
             } else {
 
                 pause();
-                Log.e(TAG, "动作:  ---------- " + "暂停继续：");
             }
 
 
@@ -934,7 +930,6 @@ public class VideoActivity extends BaseActivity {
         String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
 
         String machineCode = Utils.getDeviceId(mContext);
-        Log.e("===machineCode===", machineCode);
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);

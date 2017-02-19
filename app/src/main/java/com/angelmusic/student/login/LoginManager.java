@@ -24,7 +24,6 @@ public class LoginManager {
 
     public static void login(final Context mContext, String classNo, final IsLoginSucceed isLoginSucceed) {
         String machineCode = Utils.getDeviceId(mContext);
-        Log.e("===machineCode===", machineCode);
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);

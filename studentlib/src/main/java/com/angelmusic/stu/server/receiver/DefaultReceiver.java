@@ -22,7 +22,6 @@ public class DefaultReceiver extends Receiver {
     public synchronized void receive(byte[] buffer){
 
         String action = new String(buffer);
-        Log.e("DefaultReceiver", action + "_____________________");
         String[] sourceStrArray = checkData(action);
 
         for (int i = 0; i < sourceStrArray.length; i++) {
