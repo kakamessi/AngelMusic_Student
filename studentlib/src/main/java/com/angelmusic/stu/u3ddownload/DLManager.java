@@ -1,13 +1,10 @@
 package com.angelmusic.stu.u3ddownload;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.angelmusic.stu.MyApplication;
 import com.angelmusic.stu.u3ddownload.db.DAO2Impl;
 import com.angelmusic.stu.u3ddownload.db.DAOImpl;
 import com.angelmusic.stu.u3ddownload.infobean.FileInfo;
@@ -15,18 +12,22 @@ import com.angelmusic.stu.u3ddownload.infobean.GetDataInfo;
 import com.angelmusic.stu.u3ddownload.infobean.SendDataInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheType;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.PersistentCookieJar;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.u3ddownload.utils.FileUtil;
 import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.u3ddownload.utils.SDCardUtil;
+import com.angelmusic.stu.utils.MyCrashHandler;
 import com.unity3d.player.UnityPlayer;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.angelmusic.stu.MyApplication.init;
 
 /**
  * Created by fei on 2017/2/7.
@@ -38,10 +39,20 @@ public class DLManager {
     private String courseParentPath;
     private DownloadFileInfo fileInfo;
     private final String APK_PATH = "apk_update";
+    public static OkHttpUtil.Builder init;
 
     public DLManager(Context mContext) {
         this.mContext = mContext;
         courseParentPath = SDCardUtil.getAppFilePath(mContext) + "CourseFile" + File.separator;
+        initOkHttp();
+        initCrash();
+    }
+
+    private void initCrash() {
+        // 初始化捕捉异常的类
+        MyCrashHandler handler = MyCrashHandler.getInstance();
+        handler.init(mContext.getApplicationContext());
+        Thread.setDefaultUncaughtExceptionHandler(handler);
     }
 
     public static DLManager getInstance(Context mContext) {
@@ -51,29 +62,48 @@ public class DLManager {
         return dlManager;
     }
 
+    private void initOkHttp() {
+        init = OkHttpUtil.init(mContext);
+        init.setConnectTimeout(30)//连接超时时间
+                .setWriteTimeout(30)//写超时时间
+                .setReadTimeout(30)//读超时时间
+                .setMaxCacheSize(10 * 1024 * 1024)//缓存空间大小
+                .setCacheLevel(CacheLevel.FIRST_LEVEL)//缓存等级
+                .setCacheType(CacheType.NETWORK_THEN_CACHE)//缓存类型
+                .setShowHttpLog(true)//显示请求日志
+                .setShowLifecycleLog(true)//显示Activity销毁日志
+                .setRetryOnConnectionFailure(false)//失败后不自动重连
+                .addResultInterceptor(HttpInterceptor.ResultInterceptor)//请求结果拦截器
+                .addExceptionInterceptor(HttpInterceptor.ExceptionInterceptor)//请求链路异常拦截器
+                .setCookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(mContext)))//持久化cookie
+                .build();
+    }
+
     /**
      * U3D的APK断点下载
      */
-    public void downloadApk(final String apkUrl) {
-        Log.e("-----------", "apkUrl:" + apkUrl);
-        final String apkName = apkUrl.substring(apkUrl.lastIndexOf("/") + 1, apkUrl.lastIndexOf("."));//去掉后缀名的，网络框架会自动添加上后缀
-        Log.e("-----------", "apkName:" + apkName);
+    public void downloadApk(final String apkPartUrl) {
+        final String apkUrl = "http://video.tianshiyinyue.cn" + apkPartUrl;//拼接apk的下载地址
+        final String apkName = apkPartUrl.substring(apkPartUrl.lastIndexOf("/") + 1);//带后缀名
+        final String fileName = apkName.substring(0, apkName.lastIndexOf("."));//将传入的文件名去掉后缀，因为下载后会自动添加后缀名
         final String apkPath = SDCardUtil.getAppFilePath(mContext) + APK_PATH + File.separator;
-        Log.e("-----------", "apkPath:" + apkPath);
-        MyApplication.init.setDownloadFileDir(apkPath);//设置下载路径
-        String fileName = apkName.substring(0, apkName.lastIndexOf("."));//将传入的文件名去掉后缀，因为下载后会自动添加后缀名
-
-        if (null == fileInfo)
-            fileInfo = new DownloadFileInfo(apkUrl, fileName, new ProgressCallback() {
+        init.setDownloadFileDir(apkPath);//设置下载路径
+        //首先检查下载路径下是否已经下载了该apk
+        if (FileUtil.isFileExist(apkPath, apkName)) {
+            //新版本已经下载直接安装
+            initApk(apkPath + apkName);
+        } else if (null == fileInfo) {
+            final int[] tempProgress = {0};//定义一个临时变量，保证进度增加了才通知U3D更新进度
+            fileInfo = new DownloadFileInfo(
+                    apkUrl, fileName, new ProgressCallback() {
                 @Override
                 public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
-                    int tempProgress = 0;//定义一个临时变量，保证进度增加了才通知U3D更新进度
-                    if (percent > tempProgress) {
-                        tempProgress = percent;
+                    if (percent > tempProgress[0]) {
+                        tempProgress[0] = percent;
                         UnityPlayer.UnitySendMessage("Communication", "GetCurrentDownLoadingProgress", percent + "");
                     }
                     if (percent == 100) {
-                        initApk(apkPath + (apkUrl.substring(apkUrl.lastIndexOf("/") + 1)));
+                        initApk(apkPath + apkName);
                     }
                 }
 
@@ -81,6 +111,7 @@ public class DLManager {
                 public void onResponseMain(String fileUrl, HttpInfo info) {
                 }
             });
+        }
         HttpInfo info = HttpInfo.Builder().addDownloadFile(fileInfo).build();
         OkHttpUtil.Builder().setReadTimeout(120).build(this).doDownloadFileAsync(info);
     }
@@ -98,7 +129,6 @@ public class DLManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         mContext.startActivity(intent);
-        ((Activity) mContext).finish();
     }
 
     /**

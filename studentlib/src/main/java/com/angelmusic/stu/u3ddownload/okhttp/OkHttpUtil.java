@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
@@ -18,6 +19,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.bean.UploadFileInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.BaseActivityLifecycleCallbacks;
 import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ExceptionInterceptor;
 import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ResultInterceptor;
+import com.angelmusic.stu.utils.MyCrashHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,8 +74,8 @@ public class OkHttpUtil implements OkHttpUtilInterface {
      *
      * @param context 上下文
      */
-    public static Builder init(Application context) {
-        application = (Application) context;
+    public static Builder init(Context context) {
+        application = (Application) context.getApplicationContext();
         application.registerActivityLifecycleCallbacks(new BaseActivityLifecycleCallbacks());
         return BuilderGlobal();
     }

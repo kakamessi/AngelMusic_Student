@@ -94,6 +94,7 @@ public class DAO2Impl implements DAO2 {
                 isLoading = true;
             }
         }
+        cursor.close();
         db.close();
         return isLoading;
     }
@@ -109,6 +110,7 @@ public class DAO2Impl implements DAO2 {
         if (cursor.getCount() > 0) {
             isExist = true;
         }
+        cursor.close();
         db.close();
         return isExist;
     }
