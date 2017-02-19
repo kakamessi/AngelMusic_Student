@@ -205,11 +205,12 @@ public class VideoActivity extends BaseActivity {
     private void initData() {
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
+
+        // 为SurfaceHolder添加回调
+        surfaceView.getHolder().addCallback(callback);
     }
 
     private void initView() {
-        // 为SurfaceHolder添加回调
-        surfaceView.getHolder().addCallback(callback);
 
         yuepuGroupLl.setVisibility(View.INVISIBLE);
 
@@ -280,6 +281,7 @@ public class VideoActivity extends BaseActivity {
                 //学生端播放视频，
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
+                Log.e("kaka","视频路径:" + path);
                 switchVedio(path);
 
                 //是否跟灯显示
