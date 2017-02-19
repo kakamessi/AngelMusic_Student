@@ -195,11 +195,28 @@ public class VideoActivity extends BaseActivity {
         initView();
     }
 
-    private void initData() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stop();
 
+    }
+
+    private void initData() {
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
+    }
 
+    private void initView() {
+        // 为SurfaceHolder添加回调
+        surfaceView.getHolder().addCallback(callback);
+
+        yuepuGroupLl.setVisibility(View.INVISIBLE);
+
+        blackTv.setText("准备中");
+        blackTv.setVisibility(View.VISIBLE);
+
+        //setLayoutStyle(2);
     }
 
     @Override
@@ -240,26 +257,7 @@ public class VideoActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stop();
-
-    }
-
-    private void initView() {
-        // 为SurfaceHolder添加回调
-        surfaceView.getHolder().addCallback(callback);
-
-        yuepuGroupLl.setVisibility(View.INVISIBLE);
-
-        blackTv.setText("准备中");
-        blackTv.setVisibility(View.VISIBLE);
-
-        //setLayoutStyle(2);
-    }
-
+    //============================================================================通讯逻辑
     @Override
     protected void handleMsg(Message msg) {
 
@@ -288,7 +286,7 @@ public class VideoActivity extends BaseActivity {
                 String[] strA  = ac[2].split("&");
                 if(true){
 
-                    Toast.makeText(this,"开始跟灯"，0).show();
+                    Toast.makeText(this,"开始跟灯",0).show();
                 }
 
             }
@@ -316,6 +314,8 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
+    //============================================================================通讯逻辑
+
 
     private void setLayoutStyle(int type) {
 

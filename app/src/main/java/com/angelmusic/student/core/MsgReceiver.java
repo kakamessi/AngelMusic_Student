@@ -2,6 +2,7 @@ package com.angelmusic.student.core;
 
 import com.angelmusic.stu.network.model.ActionType;
 import com.angelmusic.stu.network.socket.AbsReceiver;
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.interfaces.IActionDispatcher;
 
 /**
@@ -26,6 +27,7 @@ public class MsgReceiver extends AbsReceiver {
         String[] sourceStrArray = checkData(buffer);
         for (int i = 0; i < sourceStrArray.length; i++){
             ad.dispatch(sourceStrArray[i]);
+            Log.e("kaka","收到教师端消息:" + sourceStrArray[i]);
         }
 
     }
