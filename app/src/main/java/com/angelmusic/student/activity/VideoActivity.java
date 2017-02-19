@@ -217,7 +217,6 @@ public class VideoActivity extends BaseActivity {
         blackTv.setText("准备中");
         blackTv.setVisibility(View.VISIBLE);
 
-        //setLayoutStyle(2);
     }
 
     @Override
@@ -981,7 +980,21 @@ public class VideoActivity extends BaseActivity {
                     @Override
                     public void run() {
 
-                        followTempo();
+                        if(times==3){
+                            delay = 3000;
+                            service.shutdown();
+
+                            followTempo();
+                        }if(times==7){
+                            delay = 3000;
+                            service.shutdown();
+
+                            followTempo();
+                        }if(times==11){
+                            service.shutdown();
+                        }
+
+                        MusicNote.beat(VideoActivity.this,39,false);
                         times++;
 
                     }
