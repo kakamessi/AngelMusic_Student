@@ -132,6 +132,7 @@ public class AndroidDispatcher implements IDispatcher{
 
         try {
             socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
+            Log.e("kaka","首次发送消息失败，检测无连接状态，准备连接");
 
         } catch (Exception e) {
 
@@ -139,9 +140,10 @@ public class AndroidDispatcher implements IDispatcher{
             try {
                 Thread.sleep(1500);
                 socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
+
             } catch (Exception e1) {
 
-                e1.printStackTrace();
+                Log.e("kaka",str);
             }
         }
     }

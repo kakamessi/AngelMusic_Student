@@ -40,11 +40,13 @@ public class TCPRec implements Runnable{
             socket.connect(host,port);
             socket.read(receiver);
 
+            Log.e("kaka","11111111111111学生端初始化连接成功");
         } catch (Exception e) {
 
             try {
-
+                Log.e("kaka","000000000000初始化连接失败，或者中途断开连接: " + e.getMessage().toString());
             }catch (Exception ex){
+                Log.e("kaka","000000000000初始化连接失败，或者中途断开连接 异常中异常: " + e.getMessage().toString());
             }
 
         }
