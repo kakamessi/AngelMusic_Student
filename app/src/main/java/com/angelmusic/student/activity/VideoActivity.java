@@ -117,6 +117,9 @@ public class VideoActivity extends BaseActivity {
 
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
+    /*是否进行钢琴检测,  只有在真正弹奏环节，才启动钢琴处理逻辑*/
+    private boolean isPianoActive = false;
+
     /* 课程资源索引 */
     private int music_num = 1;
 
@@ -131,10 +134,12 @@ public class VideoActivity extends BaseActivity {
             switch (msg.what) {
                 case 1:
 
-                    String str = (String) msg.obj;
-                    notes.add(str);
-                    //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-                    handlerNewNote(str);
+                    if(isPianoActive) {
+                        String str = (String) msg.obj;
+                        notes.add(str);
+                        //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
+                        handlerNewNote(str);
+                    }
 
                     break;
                 case 2:
@@ -212,7 +217,7 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        closePiano();
+
         initData();
         initView();
     }
@@ -228,6 +233,8 @@ public class VideoActivity extends BaseActivity {
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
 
+        //初始化钢琴
+        initPiano();
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
     }
@@ -289,6 +296,7 @@ public class VideoActivity extends BaseActivity {
 
         Toast.makeText(App.getApplication(),str,0).show();
 
+        isPianoActive = false;
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
@@ -310,6 +318,7 @@ public class VideoActivity extends BaseActivity {
                 String[] strA  = ac[2].split("&");
                 if(true){
 
+                    isPianoActive = true;
                     Toast.makeText(this,"开始跟灯",0).show();
                 }
 
@@ -330,6 +339,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
 
+            isPianoActive = true;
             stop();
             //小学2 培训 幼儿园
             music_num = Integer.parseInt(ac[1]) - 1;
@@ -351,7 +361,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (type == 2) {
             //乐谱跟奏
-            initPiano();
+            //initPiano();
             blackTv.setVisibility(View.INVISIBLE);
             yuepuGroupLl.setVisibility(View.VISIBLE);
 
