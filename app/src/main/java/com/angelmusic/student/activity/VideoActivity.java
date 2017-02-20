@@ -308,20 +308,21 @@ public class VideoActivity extends BaseActivity {
                 setLayoutStyle(1);
 
             } else if(ac[1].equals("1")){
-                Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
 
-                //学生端播放视频，
+                Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
+                //学生端播放视频，会带有附加逻辑~~~~~~
+
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
-
+                //播放视频
                 switchVedio(path);
+
+                //是否启动打击乐模式
 
                 //是否跟灯显示
                 String[] strA  = ac[2].split("&");
                 if(true){
-
                     isPianoActive = true;
-
                 }
 
             }
@@ -335,7 +336,7 @@ public class VideoActivity extends BaseActivity {
 
             } else {
 
-                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting");
+                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting" + isPlaying);
                 pause();
             }
 
