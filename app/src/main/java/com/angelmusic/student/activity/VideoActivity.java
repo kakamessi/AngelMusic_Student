@@ -302,12 +302,13 @@ public class VideoActivity extends BaseActivity {
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
             if (ac[1].equals("0")) {
-
+                Log.e("kaka","--AV handleMsg--"+  "qing kan da ping mu");
                 //请看大屏幕
                 stop();
                 setLayoutStyle(1);
 
             } else if(ac[1].equals("1")){
+                Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
 
                 //学生端播放视频，
                 setLayoutStyle(3);
@@ -329,16 +330,19 @@ public class VideoActivity extends BaseActivity {
         } else if (ActionType.ACTION_PAUSE_RESUME.equals(ac[0])) {
 
             if (ac[1].equals("2")) {
-
+                Log.e("kaka","--AV handleMsg--"+  "xia ke ");
                 this.finish();
 
             } else {
 
+                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting");
                 pause();
             }
 
 
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
+
+            Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
 
             isPianoActive = true;
             stop();

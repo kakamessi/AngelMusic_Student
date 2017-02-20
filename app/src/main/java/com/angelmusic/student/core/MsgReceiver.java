@@ -26,8 +26,8 @@ public class MsgReceiver extends AbsReceiver {
 
         String[] sourceStrArray = checkData(buffer);
         for (int i = 0; i < sourceStrArray.length; i++){
+            Log.e("kaka","receive teacher msg :::: " + sourceStrArray[i]);
             ad.dispatch(sourceStrArray[i]);
-            Log.e("kaka","收到教师端消息:" + sourceStrArray[i]);
         }
 
     }

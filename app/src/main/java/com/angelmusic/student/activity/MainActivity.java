@@ -297,7 +297,7 @@ public class MainActivity extends BaseActivity {
                 App.getApplication().getCd().getFiles().put(name, sdDir + name);
             }
 
-            Log.e("kaka", "跳转VideoActivity");
+            Log.e("kaka", "Start : VideoActivity");
             startActivity(new Intent(this, VideoActivity.class));
 
         } else if (ActionType.ACTION_LOGIN.equals(ac[0])) {
@@ -333,12 +333,12 @@ public class MainActivity extends BaseActivity {
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.i(TAG, "BroadcastReceiver-->" + action);
+            //Log.i(TAG, "BroadcastReceiver-->" + action);
             String status = null;
             switch (action) {
                 case UsbManager.ACTION_USB_DEVICE_ATTACHED:
                     status = "usb-insert";
-                    Log.i(TAG, "检测到有USB插口接入-->" + action);
+                    //Log.i(TAG, "检测到有USB插口接入-->" + action);
                     Toast.makeText(context, "检测到有USB插口接入", Toast.LENGTH_SHORT)
                             .show();
                     updateDevice();
@@ -350,7 +350,7 @@ public class MainActivity extends BaseActivity {
                     break;
                 case UsbManager.ACTION_USB_DEVICE_DETACHED:
                     status = "usb-discrete";
-                    Log.i(TAG, "USB线被拔出-->" + action);
+                    //Log.i(TAG, "USB线被拔出-->" + action);
                     Toast.makeText(context, "USB线被拔出", Toast.LENGTH_SHORT).show();
                     UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
                     if (updateListener != null) {
@@ -363,16 +363,16 @@ public class MainActivity extends BaseActivity {
                     // 判断用户点击的是取消还是确认
                     if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED,
                             false)) {
-                        Log.i(TAG, "连接权限被允许-->" + action);
+                        //Log.i(TAG, "连接权限被允许-->" + action);
                         Toast.makeText(context, "连接权限被允许", Toast.LENGTH_SHORT)
                                 .show();
                         isconnect = UsbDeviceInfo.getUsbDeviceInfo(
                                 MainActivity.this).getUsbDeviceConnection();
 
-                        Log.d(TAG, "连接-->" + isconnect);
+                        //Log.d(TAG, "连接-->" + isconnect);
                     } else {
                         stopConnect();
-                        Log.i(TAG, "连接权限被取消-->" + action);
+                        //Log.i(TAG, "连接权限被取消-->" + action);
                     }
                     status = isconnect ? "link-success" : "link-fail";
                     break;
