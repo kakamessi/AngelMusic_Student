@@ -29,7 +29,7 @@ public class SSocket {
 
     public void connect(String host, int port) throws Exception {
         mSocket = new Socket();
-        mSocket.setTcpNoDelay(true);
+//        mSocket.setTcpNoDelay(true);
 //        mSocket.setReceiveBufferSize(MAX_SIZE);
 //        mSocket.setSendBufferSize(MAX_SIZE);
 
