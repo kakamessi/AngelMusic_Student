@@ -54,16 +54,13 @@ public class AcpRuner implements Runnable {
             serverSocket = new ServerSocket(NetParams.PORT);
 
             while(true){
-
                 Ssocket socket = new Ssocket(serverSocket.accept());
-
 //                for(Ssocket ss : socketList){
 //                    if(ss.mSocket.getInetAddress().getHostAddress().equals(socket.mSocket.getInetAddress().getHostAddress())){
 //                        ss.disconnect();
 //                        socketList.remove(ss);
 //                    }
 //                }
-
                 for (Iterator<Ssocket> it = socketList.iterator(); it.hasNext();) {
                     Ssocket ss = it.next();
                     if (ss.mSocket.getInetAddress().getHostAddress().equals(socket.mSocket.getInetAddress().getHostAddress())) {
@@ -71,29 +68,24 @@ public class AcpRuner implements Runnable {
                         it.remove();  // ok
                     }
                 }
-
                 socketList.add(socket);
-
                 Thread th = new Thread(new RecRunner(handler,socket));
                 th.setName("RecThread___________kaka" + socket.mSocket.getInetAddress().getHostAddress() + " : "+socket.mSocket.getPort());
                 th.start();
-
             }
 
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
-
         }finally{
 
             try {
 
-                serverSocket.close();
+                if(serverSocket!=null) {
+                    serverSocket.close();
+                }
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+
             }
         }
 
