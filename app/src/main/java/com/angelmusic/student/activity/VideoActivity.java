@@ -312,7 +312,7 @@ public class VideoActivity extends BaseActivity {
                 //学生端播放视频，
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
-                Log.e("kaka","视频路径:" + path);
+
                 switchVedio(path);
 
                 //是否跟灯显示
@@ -320,7 +320,7 @@ public class VideoActivity extends BaseActivity {
                 if(true){
 
                     isPianoActive = true;
-                    Toast.makeText(this,"开始跟灯",0).show();
+
                 }
 
             }
@@ -1010,7 +1010,7 @@ public class VideoActivity extends BaseActivity {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
-                        Log.e("kaka","--"+jsonResult);
+                        Log.e("kaka","--上传分数--"+jsonResult);
 
                     }
                 });
