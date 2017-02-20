@@ -1,10 +1,12 @@
 package com.angelmusic.student.version_update;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.utils.FileUtil;
@@ -111,6 +114,7 @@ public class ApkManager {
             btnCancel.setVisibility(View.VISIBLE);
         } else if (isForced == 2) {//强制更新
             btnCancel.setVisibility(View.GONE);
+            updateDialog.setCancelable(false);
         }
         updateDialog.setContentView(view);
         updateDialog.show();
@@ -121,7 +125,7 @@ public class ApkManager {
                 //首先检查下载路径下是否已经下载了该apk
                 if (FileUtil.isFileExist(apkPath, apkName)) {
                     //新版本已经下载直接安装
-                    initApk(apkPath + apkName);
+                    initApk(apkPath + apkName, isForced);
                 } else {
                     showDownloadingDialog(apkUrl, apkPath, apkName, isForced);
                 }
@@ -146,7 +150,6 @@ public class ApkManager {
         if (isForced == 1) {//非强制更新
             downloadDialog.setCanceledOnTouchOutside(true);
         } else if (isForced == 2) {//强制更新
-            downloadDialog.setCancelable(false);
             downloadDialog.setCanceledOnTouchOutside(false);
         }
         downloadDialog.show();
@@ -154,13 +157,14 @@ public class ApkManager {
         downloadDialog.setContentView(view);
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         final TextView tvProgress = (TextView) view.findViewById(R.id.tv_progress_apk_download);
-        downloadApk(apkUrl, apkPath, apkName, progressBar, tvProgress);
+        downloadApk(apkUrl, apkPath, apkName, progressBar, tvProgress, isForced);
     }
 
     /**
      * 断点下载
      */
-    private void downloadApk(final String apkUrl, final String apkPath, final String apkName, final ProgressBar downloadProgress, final TextView tvResult) {
+    private void downloadApk(final String apkUrl, final String apkPath, final String apkName, final ProgressBar downloadProgress, final
+    TextView tvResult, final int isForced) {
         App.init.setDownloadFileDir(apkPath);//设置下载路径
         String fileName = apkName.substring(0, apkName.lastIndexOf("."));//将传入的文件名去掉后缀，因为下载后会自动添加后缀名
         if (null == fileInfo)
@@ -175,7 +179,7 @@ public class ApkManager {
                 public void onResponseMain(String fileUrl, HttpInfo info) {
                     if (info.isSuccessful()) {
                         //下载完成自动安装apk
-                        initApk(apkPath + apkName);
+                        initApk(apkPath + apkName, isForced);
                         downloadDialog.dismiss();//下载完成关闭下载进度对话框
                     } else {
                         Toast.makeText(mContext, info.getRetDetail(), Toast.LENGTH_SHORT).show();
@@ -189,7 +193,7 @@ public class ApkManager {
     /**
      * 安装APK
      */
-    private void initApk(String apkPath) {
+    private void initApk(String apkPath, int isForced) {
         //如果本地存在下载的安装包则直接安装
         File apkFile = new File(apkPath);
         if (!apkFile.exists()) {
@@ -199,5 +203,8 @@ public class ApkManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         mContext.startActivity(intent);
+        if (isForced == 2) {
+            System.exit(0);
+        }
     }
 }

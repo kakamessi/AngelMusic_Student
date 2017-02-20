@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ib_download:
                 //跳转到下载页
-                startActivity(new Intent(MainActivity.this, DownloadTestActivity.class));
+                startActivity(new Intent(MainActivity.this, DownloadActivity.class));
                 overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
                 break;
             case R.id.tv_wifi_name:
