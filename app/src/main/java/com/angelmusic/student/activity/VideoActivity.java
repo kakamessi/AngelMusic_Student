@@ -60,6 +60,17 @@ import butterknife.OnClick;
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 import static com.angelmusic.student.R.id.textView1;
 
+/**
+ *
+ *  本界面初始化只是一个单纯的准备中界面，其界面样式完全由教师端发消息来控制
+ *
+ *  界面样式由setLayoutStyle来控制，
+ *
+ *  主要有钢琴通讯处理，和教师端通信处理
+ *
+ *
+ *
+ */
 public class VideoActivity extends BaseActivity {
 
 
@@ -110,17 +121,29 @@ public class VideoActivity extends BaseActivity {
     private int music_num = 1;
 
     /* 当前课程id */
-    private String course_id = "";
+    private String course_id = "0";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
-            String str = (String) msg.obj;
-            notes.add(str);
-            //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-            handlerNewNote(str);
+            switch (msg.what) {
+                case 1:
+
+                    String str = (String) msg.obj;
+                    notes.add(str);
+                    //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
+                    handlerNewNote(str);
+
+                    break;
+                case 2:
+
+                    //提交成绩，弹出评分界面
+
+                    break;
+
+            }
 
         }
     };
@@ -235,6 +258,7 @@ public class VideoActivity extends BaseActivity {
             public void onReadCallback(String str) {
 
                 Message msg = Message.obtain();
+                msg.what = 1;
                 msg.obj = str;
                 pianoHandler.sendMessage(msg);
 
@@ -961,7 +985,7 @@ public class VideoActivity extends BaseActivity {
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
         okHttpUtil.doPostAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.test_name) + mContext.getResources().getString(R
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name_request) + mContext.getResources().getString(R
                         .string.account_submit))
                         .addParam("score", "2")
                         .addParam("yingaoScore", "80")
@@ -975,6 +999,7 @@ public class VideoActivity extends BaseActivity {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
+                        Log.e("kaka","--"+jsonResult);
 
                     }
                 });
@@ -1008,7 +1033,13 @@ public class VideoActivity extends BaseActivity {
 
                             followTempo();
                         }if(times==11){
+
                             service.shutdown();
+
+                            Message msg = Message.obtain();
+                            msg.what = 2;
+                            pianoHandler.sendMessage(msg);
+
                         }
 
                         MusicNote.beat(VideoActivity.this,39,false);
