@@ -267,7 +267,6 @@ public class MainActivity extends BaseActivity {
         super.handleMsg(msg);
         String teacherMsg = msg.obj.toString();
         String[] ac = teacherMsg.split("\\|");
-        Toast.makeText(App.getApplication(),teacherMsg,0).show();
 
         if (!TextUtils.isEmpty(teacherMsg) && "2".equals(teacherMsg.substring(0, 1))) {
             String json = teacherMsg.substring(2);
@@ -285,7 +284,7 @@ public class MainActivity extends BaseActivity {
                 SharedPreferencesUtil.setString("schoolName", seatDataInfo.getSchoolName());
                 SharedPreferencesUtil.setString("schoolId", seatDataInfo.getSchoolID());//课程信息下载需要此参数
             }
-        }else if (ActionType.ACTION_PREPARE.equals(ac[0])) {
+        } else if (ActionType.ACTION_PREPARE.equals(ac[0])) {
 
             //开始进行常规课
             App.getApplication().getCd().setCourse_Id(ac[1]);
@@ -294,23 +293,22 @@ public class MainActivity extends BaseActivity {
             String[] names = ac[2].split("&");
             String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
             App.getApplication().getCd().getFiles().clear();
-            for(String name: names){
-                App.getApplication().getCd().getFiles().put(name,sdDir + name);
+            for (String name : names) {
+                App.getApplication().getCd().getFiles().put(name, sdDir + name);
             }
 
-            Log.e("kaka","跳转VideoActivity");
+            Log.e("kaka", "跳转VideoActivity");
             startActivity(new Intent(this, VideoActivity.class));
 
-        }else if(ActionType.ACTION_LOGIN.equals(ac[0])){
+        } else if (ActionType.ACTION_LOGIN.equals(ac[0])) {
 
             //登录操作
             login();
 
-        }else if(ActionType.ACTION_GET_CLASS.equals(ac[0])){
+        } else if (ActionType.ACTION_GET_CLASS.equals(ac[0])) {
 
             //保存班级id
-            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID,ac[1]);
-            Toast.makeText(App.getApplication(),"保存班级成功",0).show();
+            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID, ac[1]);
 
         }
 
