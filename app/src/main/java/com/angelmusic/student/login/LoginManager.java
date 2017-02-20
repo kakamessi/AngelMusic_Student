@@ -28,7 +28,7 @@ public class LoginManager {
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
         okHttpUtil.doPostAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.test_name) + mContext.getResources().getString(R
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name_request) + mContext.getResources().getString(R
                         .string.stu_login))
                         .addParam("machineCode", machineCode)
                         .addParam("classNo", classNo)
@@ -37,6 +37,7 @@ public class LoginManager {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
+                        Log.e("kaka","登录：" + jsonResult);
                         if (info.isSuccessful()) {
                             stuInfo = GsonUtil.jsonToObject(jsonResult, StuInfo.class);//Gson解析
                             if (stuInfo.getCode() == 200) {
