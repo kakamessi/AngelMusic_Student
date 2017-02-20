@@ -1,6 +1,5 @@
 package com.angelmusic.student.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -17,12 +16,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
-import com.angelmusic.student.activity.VideoActivity;
 import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionDispatcher;
-import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.login.LoginManager;
 import com.angelmusic.student.login.StuInfo;
 import com.angelmusic.student.utils.LogUtil;
@@ -32,8 +28,6 @@ import java.io.File;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
-
-import static android.transition.Fade.OUT;
 
 /**
  * Activity的基类
