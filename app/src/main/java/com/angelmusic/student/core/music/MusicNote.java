@@ -8,6 +8,7 @@ import com.angelmusic.student.activity.VideoActivity;
 
 import java.util.ArrayList;
 
+import static android.R.attr.data;
 import static android.os.Build.VERSION_CODES.N;
 
 /**
@@ -92,6 +93,13 @@ public class MusicNote {
     /*乐谱合集*/
     public static final int[][] music_g = {music_1,music_2};
 
+    //--------------------------------------------------------------钢琴指令---------------------------------------------------------------
+
+    /*开启打击乐*/
+    public static byte[] open_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x01, 0x06, 0x00, 0x00, (byte)0xf7 };
+
+    /*关闭打击乐*/
+    public static byte[] close_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x00, 0x06, 0x00, 0x00, (byte)0xf7 };
 
     /*亮灯指令*/
     public static byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
@@ -101,6 +109,12 @@ public class MusicNote {
     public static byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
             (byte)(OFF_INDEX+21), 0x06, OFF_COLOR, 0x0, (byte) 0xf7 };
 
+    /* 设置钢琴动作指令 */
+    public void setPianoAction(Context context,byte[] data){
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(data);
+
+    }
 
     //获取开灯指令集
     public static byte[] getLightbytes(int index,boolean isRed){

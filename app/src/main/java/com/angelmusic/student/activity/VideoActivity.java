@@ -112,7 +112,7 @@ public class VideoActivity extends BaseActivity {
 
     private MediaPlayer mediaPlayer;
     private int currentPosition = 0;
-    private boolean isPlaying;
+    private boolean isPlaying = false;
     private int swich = 0;
 
     /*记录钢琴弹奏输出*/
@@ -508,6 +508,8 @@ public class VideoActivity extends BaseActivity {
                     // 按照初始位置播放
                     mediaPlayer.seekTo(msec);
 
+                    isPlaying = true;
+
                 }
             });
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -544,15 +546,14 @@ public class VideoActivity extends BaseActivity {
             return;
         }
 
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-
-            mediaPlayer.pause();
-            return;
-
-        } else {
-
+        if(!isPlaying){
             mediaPlayer.start();
+            isPlaying =true;
             return;
+        }
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            isPlaying =false;
         }
 
     }
