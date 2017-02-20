@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,9 +43,6 @@ import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
-import com.angelmusic.student.login.LoginManager;
-import com.angelmusic.student.login.StuInfo;
-import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
@@ -60,7 +58,19 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.student.R.id.textView1;
 
+/**
+ *
+ *  本界面初始化只是一个单纯的准备中界面，其界面样式完全由教师端发消息来控制
+ *
+ *  界面样式由setLayoutStyle来控制，
+ *
+ *  主要有钢琴通讯处理，和教师端通信处理
+ *
+ *
+ *
+ */
 public class VideoActivity extends BaseActivity {
 
 
@@ -107,21 +117,38 @@ public class VideoActivity extends BaseActivity {
 
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
+    /*是否进行钢琴检测,  只有在真正弹奏环节，才启动钢琴处理逻辑*/
+    private boolean isPianoActive = false;
+
     /* 课程资源索引 */
     private int music_num = 1;
 
     /* 当前课程id */
-    private String course_id = "";
+    private String course_id = "0";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
-            String str = (String) msg.obj;
-            notes.add(str);
-            //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-            handlerNewNote(str);
+            switch (msg.what) {
+                case 1:
+
+                    if(isPianoActive) {
+                        String str = (String) msg.obj;
+                        notes.add(str);
+                        //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
+                        handlerNewNote(str);
+                    }
+
+                    break;
+                case 2:
+
+                    //提交成绩，弹出评分界面
+
+                    break;
+
+            }
 
         }
     };
@@ -163,14 +190,14 @@ public class VideoActivity extends BaseActivity {
             if (str.endsWith("0 ")) {
 
                 //亮灯
-                if (music_num == 0) {
-                    MusicNote.closeAndOpenNext(VideoActivity.this, 39, false, 39, false);
+                if(music_num == 0){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
 
-                } else if (music_num == 1) {
-                    MusicNote.closeAndOpenNext(VideoActivity.this, 39, false, 39, false);
+                }else if(music_num == 1){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
 
-                } else if (music_num == 2) {
-                    MusicNote.closeAndOpenNext(VideoActivity.this, ni.getNoteNum(), true, nextInfo.getNoteNum(), true);
+                }else if(music_num == 2){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),true,nextInfo.getNoteNum(),true);
 
                 }
 
@@ -190,15 +217,35 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        closePiano();
+
         initData();
         initView();
     }
 
-    private void initData() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stop();
+        closePiano();
 
+    }
+
+    private void initData() {
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
+
+        //初始化钢琴
+        initPiano();
+        // 为SurfaceHolder添加回调
+        surfaceView.getHolder().addCallback(callback);
+    }
+
+    private void initView() {
+
+        yuepuGroupLl.setVisibility(View.INVISIBLE);
+
+        blackTv.setText("准备中");
+        blackTv.setVisibility(View.VISIBLE);
 
     }
 
@@ -219,6 +266,7 @@ public class VideoActivity extends BaseActivity {
             public void onReadCallback(String str) {
 
                 Message msg = Message.obtain();
+                msg.what = 1;
                 msg.obj = str;
                 pianoHandler.sendMessage(msg);
 
@@ -240,34 +288,16 @@ public class VideoActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stop();
-
-    }
-
-    private void initView() {
-        // 为SurfaceHolder添加回调
-        surfaceView.getHolder().addCallback(callback);
-
-        yuepuGroupLl.setVisibility(View.INVISIBLE);
-
-        blackTv.setText("准备中");
-        blackTv.setVisibility(View.VISIBLE);
-
-        //setLayoutStyle(2);
-    }
-
+    //============================================================================通讯逻辑
     @Override
     protected void handleMsg(Message msg) {
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
 
-        Toast.makeText(App.getApplication(), str, Toast.LENGTH_SHORT).show();
+        Toast.makeText(App.getApplication(),str,0).show();
 
+        isPianoActive = false;
         //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
 
@@ -277,18 +307,20 @@ public class VideoActivity extends BaseActivity {
                 stop();
                 setLayoutStyle(1);
 
-            } else {
+            } else if(ac[1].equals("1")){
 
                 //学生端播放视频，
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
+                Log.e("kaka","视频路径:" + path);
                 switchVedio(path);
 
                 //是否跟灯显示
-                String[] strA = ac[2].split("&");
-                if (true) {
+                String[] strA  = ac[2].split("&");
+                if(true){
 
-                    Toast.makeText(this, "开始跟灯", Toast.LENGTH_SHORT).show();
+                    isPianoActive = true;
+                    Toast.makeText(this,"开始跟灯",0).show();
                 }
 
             }
@@ -308,6 +340,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
 
+            isPianoActive = true;
             stop();
             //小学2 培训 幼儿园
             music_num = Integer.parseInt(ac[1]) - 1;
@@ -316,6 +349,8 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
+    //============================================================================通讯逻辑
+
 
     private void setLayoutStyle(int type) {
 
@@ -327,7 +362,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (type == 2) {
             //乐谱跟奏
-            initPiano();
+            //initPiano();
             blackTv.setVisibility(View.INVISIBLE);
             yuepuGroupLl.setVisibility(View.VISIBLE);
 
@@ -335,17 +370,17 @@ public class VideoActivity extends BaseActivity {
             if (music_num == 0) {
 
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this, 39, false);
+                MusicNote.openLight(VideoActivity.this,39,false);
 
             } else if (music_num == 1) {
 
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
-                MusicNote.openLight(VideoActivity.this, 39, false);
+                MusicNote.openLight(VideoActivity.this,39,false);
 
             } else if (music_num == 2) {
 
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this, 39, true);
+                MusicNote.openLight(VideoActivity.this,39,true);
 
             }
 
@@ -574,9 +609,9 @@ public class VideoActivity extends BaseActivity {
     protected void dialog7() {
 
         int starNum = 1;
-        int yg = 1;
-        int jz = 1;
-        int sz = 1;
+        float ratio_yg = 0.1f;
+        float ratio_jz = 0.2f;
+        float ratio_sz = 0.3f;
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);
@@ -594,28 +629,46 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
-
+        //星星
         ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
+        TextView tv_num = (TextView) layout.findViewById(R.id.textView1);
+        if (starNum == 3) {
+            ivBG.setImageResource(R.drawable.score_three);
+            tv_num.setText("哇！获得了三颗星");
+        } else if (starNum == 2) {
+            ivBG.setImageResource(R.drawable.score_two);
+            tv_num.setText("哇！获得了二颗星");
+        } else if (starNum == 1) {
+            ivBG.setImageResource(R.drawable.score_one);
+            tv_num.setText("哇！获得了一颗星");
+        }
 
+        //分数比例条， 数字
         ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
         ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
-//        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-//        params.width = getIntFromDimens(350/10);
-//        iv_1.setLayoutParams(params);
-
+        //音高
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
-        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
-        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+        tv_1.setText((int)(100*ratio_yg) + "%");
+        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+        params.width = getIntFromDimens(350*ratio_yg);
+        iv_1.setLayoutParams(params);
 
-        if (starNum == 3) {
-            ivBG.setImageResource(R.drawable.score_three);
-        } else if (starNum == 2) {
-            ivBG.setImageResource(R.drawable.score_two);
-        } else if (starNum == 1) {
-            ivBG.setImageResource(R.drawable.score_one);
-        }
+        //节奏
+        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
+        tv_2.setText((int)(100*ratio_jz) + "%");
+        ViewGroup.LayoutParams params1 = iv_2.getLayoutParams();
+        params1.width = getIntFromDimens(350*ratio_jz);
+        iv_2.setLayoutParams(params1);
+
+        //时值
+        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+        tv_3.setText((int)(100*ratio_sz) + "%");
+        ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
+        params2.width = getIntFromDimens(350*ratio_sz);
+        iv_3.setLayoutParams(params2);
+
 
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
@@ -931,20 +984,19 @@ public class VideoActivity extends BaseActivity {
 
     /**
      * 上传分数
-     *
      * @param mContext
      */
     public void postAccount(final Context mContext) {
 
-        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID, "");
-        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID, "");
+        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"");
+        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
 
         String machineCode = Utils.getDeviceId(mContext);
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
                 .setCacheLevel(FIRST_LEVEL)
                 .setConnectTimeout(25).build(mContext);
         okHttpUtil.doPostAsync(
-                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.test_name) + mContext.getResources().getString(R
+                HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name_request) + mContext.getResources().getString(R
                         .string.account_submit))
                         .addParam("score", "2")
                         .addParam("yingaoScore", "80")
@@ -958,6 +1010,7 @@ public class VideoActivity extends BaseActivity {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
                         String jsonResult = info.getRetDetail();
+                        Log.e("kaka","--"+jsonResult);
 
                     }
                 });
@@ -972,8 +1025,7 @@ public class VideoActivity extends BaseActivity {
     long spaceTime = 1000;
     //延迟时间
     long delay = 0;
-
-    public void followTempo() {
+    public void followTempo(){
 
         service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleWithFixedDelay(
@@ -981,7 +1033,27 @@ public class VideoActivity extends BaseActivity {
                     @Override
                     public void run() {
 
-                        followTempo();
+                        if(times==3){
+                            delay = 3000;
+                            service.shutdown();
+
+                            followTempo();
+                        }if(times==7){
+                            delay = 3000;
+                            service.shutdown();
+
+                            followTempo();
+                        }if(times==11){
+
+                            service.shutdown();
+
+                            Message msg = Message.obtain();
+                            msg.what = 2;
+                            pianoHandler.sendMessage(msg);
+
+                        }
+
+                        MusicNote.beat(VideoActivity.this,39,false);
                         times++;
 
                     }

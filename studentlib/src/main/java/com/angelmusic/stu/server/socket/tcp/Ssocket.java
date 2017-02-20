@@ -28,7 +28,7 @@ public class Ssocket {
     public Ssocket(Socket ss) throws Exception {
 
         mSocket = ss;
-        mSocket.setTcpNoDelay(true);
+//        mSocket.setTcpNoDelay(true);
 
         out = mSocket.getOutputStream();
         in = mSocket.getInputStream();
