@@ -226,6 +226,7 @@ public class VideoActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         stop();
+        closePiano();
 
     }
 
