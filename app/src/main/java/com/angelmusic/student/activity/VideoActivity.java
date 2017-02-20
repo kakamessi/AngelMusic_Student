@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -42,9 +43,6 @@ import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
-import com.angelmusic.student.login.LoginManager;
-import com.angelmusic.student.login.StuInfo;
-import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
@@ -60,6 +58,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.student.R.id.textView1;
 
 public class VideoActivity extends BaseActivity {
 
@@ -575,9 +574,9 @@ public class VideoActivity extends BaseActivity {
     protected void dialog7() {
 
         int starNum = 1;
-        int yg = 1;
-        int jz = 1;
-        int sz = 1;
+        float ratio_yg = 0.1f;
+        float ratio_jz = 0.2f;
+        float ratio_sz = 0.3f;
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);
@@ -595,28 +594,46 @@ public class VideoActivity extends BaseActivity {
         // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
         window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
-
+        //星星
         ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
+        TextView tv_num = (TextView) layout.findViewById(R.id.textView1);
+        if (starNum == 3) {
+            ivBG.setImageResource(R.drawable.score_three);
+            tv_num.setText("哇！获得了三颗星");
+        } else if (starNum == 2) {
+            ivBG.setImageResource(R.drawable.score_two);
+            tv_num.setText("哇！获得了二颗星");
+        } else if (starNum == 1) {
+            ivBG.setImageResource(R.drawable.score_one);
+            tv_num.setText("哇！获得了一颗星");
+        }
 
+        //分数比例条， 数字
         ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
         ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
         ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
 
-//        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-//        params.width = getIntFromDimens(350/10);
-//        iv_1.setLayoutParams(params);
-
+        //音高
         TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
-        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
-        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+        tv_1.setText((int)(100*ratio_yg) + "%");
+        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+        params.width = getIntFromDimens(350*ratio_yg);
+        iv_1.setLayoutParams(params);
 
-        if (starNum == 3) {
-            ivBG.setImageResource(R.drawable.score_three);
-        } else if (starNum == 2) {
-            ivBG.setImageResource(R.drawable.score_two);
-        } else if (starNum == 1) {
-            ivBG.setImageResource(R.drawable.score_one);
-        }
+        //节奏
+        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
+        tv_2.setText((int)(100*ratio_jz) + "%");
+        ViewGroup.LayoutParams params1 = iv_2.getLayoutParams();
+        params1.width = getIntFromDimens(350*ratio_jz);
+        iv_2.setLayoutParams(params1);
+
+        //时值
+        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+        tv_3.setText((int)(100*ratio_sz) + "%");
+        ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
+        params2.width = getIntFromDimens(350*ratio_sz);
+        iv_3.setLayoutParams(params2);
+
 
 //        LayoutInflater inflater = getLayoutInflater();
 //        View layout = inflater.inflate(R.layout.dialog_score, null);
