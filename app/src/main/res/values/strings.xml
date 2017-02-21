@@ -1,6 +1,6 @@
 <resources>
     <!--APP名称-->
-    <string name="app_name">StudentPad</string>
+    <string name="app_name">Student</string>
     <!--请求信息时的域名信息-->
     <string name="domain_name_request">http://newapp.tianshiyinyue.cn</string>
     <!--下载用的域名-->
