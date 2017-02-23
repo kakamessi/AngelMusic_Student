@@ -11,7 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.angelmusic.stu.utils.Log;
+import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.course_download.db.DAO2Impl;
@@ -20,9 +22,6 @@ import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.FileUtil;
 import com.angelmusic.student.utils.LogUtil;
-import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
-import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
-import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -329,7 +328,7 @@ public class DownloadAdapter extends BaseAdapter {
                 .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
                     @Override
                     public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
-                        Log.e("----percent----", "=" + percent);
+//                        LogUtil.e("----percent----", "=" + percent);
                         if (done) {
                             //更新所有文件名为fileName的条目的下载状态
                             DAOImpl.getInstance(mContext).updateDownloadState(fileName, "1");
@@ -340,7 +339,7 @@ public class DownloadAdapter extends BaseAdapter {
 
                     @Override
                     public void onResponseMain(String fileUrl, HttpInfo info) {
-                        LogUtil.e("==getRetDetail==" + fileName, "下载结果：" + info.getRetDetail());
+//                        LogUtil.e("==getRetDetail==" + fileName, "下载结果：" + info.getRetDetail());
                         String result = info.getRetDetail();
                         if ("网络地址错误".equals(result)) {
                             Toast.makeText(mContext, "请求地址错误:" + fileUrl, Toast.LENGTH_SHORT).show();

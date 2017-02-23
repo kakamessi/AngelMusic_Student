@@ -54,13 +54,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
-        //initCrash();
+        initCrash();
         initService();
         LogUtil.isDebug = true;//设置是否打印Log日志
         initOkHttp();//初始化网络框架
         initHotfix();//热修复的初始化
         downAndSetPatch();//下载补丁并安装补丁
-        SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);
+        SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);//初始化
 
         String sdDir = Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + "/avva/";
