@@ -44,7 +44,7 @@ public class TCPRec implements Runnable{
         } catch (Exception e) {
 
             //e可能为null 教师端删除进程 学生端崩溃
-            Log.e("kaka","000000000000初始化连接失败，或者中途断开连接: " + e.getMessage().toString());
+            e.printStackTrace();
 
         }
 
