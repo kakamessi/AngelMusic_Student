@@ -134,7 +134,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initPiano() {
-        IntentFilter filter = new IntentFilter();
+        final IntentFilter filter = new IntentFilter();
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         filter.addAction(ACTION_USB_PERMISSION);
@@ -153,7 +153,7 @@ public class MainActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).connect();
     }
 
-    @OnClick({R.id.ib_download, R.id.tv_wifi_name, R.id.tv_classroom_name, R.id.tv_seat_id, R.id.tv_connection_status})
+    @OnClick({R.id.ib_download, R.id.tv_wifi_name, R.id.tv_classroom_name, R.id.seatId_ll, R.id.tv_connection_status})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ib_download:
@@ -168,7 +168,7 @@ public class MainActivity extends BaseActivity {
             case R.id.tv_classroom_name:
                 //预留
                 break;
-            case R.id.tv_seat_id:
+            case R.id.seatId_ll:
                 if (!TextUtils.isEmpty(tvSeatId.getText())) {
                     tvSeatId.setClickable(false);
                     showSeatPopup(view);

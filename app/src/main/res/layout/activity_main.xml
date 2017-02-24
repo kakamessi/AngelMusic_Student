@@ -39,6 +39,7 @@
             android:text="天使音乐"
             android:textColor="@color/white"
             android:textSize="58px"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,14 +66,21 @@
                 style="@style/textStyleWhite"
                 android:text="classroom_name"/>
 
-            <TextView
-                style="@style/textStyle"
-                android:text="座位号："/>
+            <LinearLayout
+                android:id="@+id/seatId_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
 
-            <TextView
-                android:id="@+id/tv_seat_id"
-                style="@style/textStyleWhite"
-                android:text="seat_id"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="座位号："/>
+
+                <TextView
+                    android:id="@+id/tv_seat_id"
+                    style="@style/textStyleWhite"
+                    android:text="seat_id"/>
+            </LinearLayout>
 
             <TextView
                 style="@style/textStyle"
