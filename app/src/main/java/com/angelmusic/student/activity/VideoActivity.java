@@ -106,10 +106,8 @@ public class VideoActivity extends BaseActivity {
 
     //课程信息
     private CourseData cd = null;
+    //当前播放视频资源路径
     private String currentPath = "";
-    private File currentfile = null;
-
-
     private MediaPlayer mediaPlayer;
     private int currentPosition = 0;
     private boolean isPlaying = false;
@@ -119,10 +117,8 @@ public class VideoActivity extends BaseActivity {
     private ArrayList<String> notes = new ArrayList<String>();
     /*是否进行钢琴检测,  只有在真正弹奏环节，才启动钢琴处理逻辑*/
     private boolean isPianoActive = false;
-
     /* 课程资源索引 */
     private int music_num = 1;
-
     /* 当前课程id */
     private String course_id = "0";
 
@@ -130,34 +126,24 @@ public class VideoActivity extends BaseActivity {
     private Handler pianoHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-
             switch (msg.what) {
                 case 1:
-
                     if(isPianoActive) {
                         String str = (String) msg.obj;
                         //notes.add(str);
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-
                         handlerNewNote(str);
                     }
-
                     break;
                 case 2:
-
                     //提交成绩，弹出评分界面
-
                     break;
-
             }
-
         }
     };
 
-    int index_new = 0;
-
+    private int index_new = 0;
     private void handlerNewNote(String str) {
-
         //确认选谱  1peixun 2xiaoxue 3youery
         ArrayList<NoteInfo> al = null;
         if(music_num==1){
@@ -167,36 +153,26 @@ public class VideoActivity extends BaseActivity {
         }else if(music_num==3){
             al = MusicNote.note_1ist[2];
         }
-
         //获取钢琴弹奏音符
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
         int key = Integer.parseInt(myDatas[2], 16) - 21;
-
         //处理输出
         NoteInfo ni = al.get(index_new);
         NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
-
         if (key == ni.getNoteNum()) {
-
             //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
             if (music_num == 1) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-
             } else if (music_num == 2) {
-
                 if (nextInfo.getNoteIndex() < 13) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 } else {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
-
             } else if (music_num == 3) {
-
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }
-
             if (str.endsWith("0 ")) {
-
                 //亮灯
                 if(music_num == 1){
                     MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
@@ -214,7 +190,6 @@ public class VideoActivity extends BaseActivity {
                     index_new = -1;
                 }
                 index_new++;
-
             }
         }
 
@@ -574,7 +549,7 @@ public class VideoActivity extends BaseActivity {
             //Toast.makeText(this, "视频文件路径错误", Toast.LENGTH_LONG).show();
             return;
         }
-        currentfile = file;
+
         try {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
