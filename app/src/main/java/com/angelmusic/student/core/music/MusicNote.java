@@ -258,35 +258,61 @@ public class MusicNote {
         final int[] icolor = color;   //色值判断
         final int[] iindex = index;  //亮灯位置
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for(int n = 0; n<idur.length;n++){
+        for(int n = 0; n<idur.length;n++){
 
-                    if(iindex[n]!=-1){
-                        if(icolor[n]==1) {
-                            beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
-                        }else if(icolor[n]==0){
-                            beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
-                        }
-                        try {
-                            Thread.sleep((long)(idur[4]*1000));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    }else{
-
-                        try {
-                            Thread.sleep((long)(idur[4]*1000));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
+            if(iindex[n]!=-1){
+                if(icolor[n]==1) {
+                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+                }else if(icolor[n]==0){
+                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
                 }
+                try {
+                    Thread.sleep((long)(idur[4]*1000));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }else{
+
+                try {
+                    Thread.sleep((long)(idur[4]*1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
-        }).start();
+        }
+    }
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int n = 0; n<idur.length;n++){
+//
+//                    if(iindex[n]!=-1){
+//                        if(icolor[n]==1) {
+//                            beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+//                        }else if(icolor[n]==0){
+//                            beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+//                        }
+//                        try {
+//                            Thread.sleep((long)(idur[4]*1000));
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }else{
+//
+//                        try {
+//                            Thread.sleep((long)(idur[4]*1000));
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }).start();
 
     }
 

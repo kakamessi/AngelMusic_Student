@@ -59,6 +59,7 @@ import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
 import static com.angelmusic.student.R.id.textView1;
+import static com.google.common.collect.ComparisonChain.start;
 
 /**
  *
@@ -323,9 +324,7 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void handleMsg(Message msg) {
 
-        //熄灭所有亮灯
-        MusicNote.setPianoAction(this,MusicNote.close_djy);
-        MusicNote.closeAllLight(this);
+        resetStatus();
 
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
@@ -392,6 +391,19 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
+
+    private void resetStatus() {
+
+        //熄灭所有亮灯
+        MusicNote.setPianoAction(this,MusicNote.close_djy);
+        MusicNote.closeAllLight(this);
+        //关闭之前跟灯
+        if(gzThread!=null){
+            gzThread.interrupt();
+            gzThread = null;
+        }
+
+    }
     //============================================================================通讯逻辑
 
 
@@ -413,41 +425,45 @@ public class VideoActivity extends BaseActivity {
     }
 
     //-----------------------------------------------------------------判断是否启动跟奏亮灯
-
+    private Thread gzThread = null;
     private int checkGZ2(String[] strs) {
 
         int result = -1;
         if(course_id.equals("1") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
             isPianoActive = true;
-            new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1)).start();
+            gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
             result = 1;
         }
 
         if(course_id.equals("1") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
             isPianoActive = true;
-            new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2)).start();
+            gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
             result = 2;
 
         }
 
         if(course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
             isPianoActive = true;
-            new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3)).start();
+            gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
             result = 3;
         }
 
         if(course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
             isPianoActive = true;
-            new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4)).start();
+            gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
 
             result = 4;
         }
 
         if(course_id.equals("3") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
             isPianoActive = true;
-            new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5)).start();
+            gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
 
             result = 5;
+        }
+
+        if(gzThread!=null){
+            gzThread.start();
         }
 
         return result;
@@ -1095,47 +1111,38 @@ public class VideoActivity extends BaseActivity {
     
     //--------------------------------------------跟灯----------------------------------------------------------
     /* 退出视频时间检测循环 */
-    private boolean videoTime = true;
     class VideoRun implements Runnable{
-
         float[] delay = null; //时间延迟执行
         float[] dur = null;   //亮灯时间
         int[] color = null;
         int[] index = null;   //亮灯位置
-
         public VideoRun(int types,float[] mDelays,float[] mdur,int[] mcolor,int[] mindex) {
-
             delay = mDelays;
             dur = mdur;
             color = mcolor;
             index = mindex;
-
         }
-
         @Override
         public void run() {
-
             int xunhuan = 0;
-            while(videoTime){
-                if(xunhuan>delay.length-1){
-                    return;
-                }
-                if(mediaPlayer!=null){
-
-                    try {
-
-                        Thread.sleep(2);
-                        int curTime =  mediaPlayer.getCurrentPosition();
-                        if(curTime>(delay[xunhuan]*1000)){
-                            MusicNote.followTempo(VideoActivity.this,delay,dur,color,index);
-                            xunhuan++;
-                        }
-
-                    }catch (Exception e){
-
+            try {
+                while(true){
+                    if(xunhuan>delay.length-1){
+                        return;
+                    }
+                    if(mediaPlayer!=null){
+                            Thread.sleep(2);
+                            int curTime =  mediaPlayer.getCurrentPosition();
+                            if(curTime>(delay[xunhuan]*1000)){
+                                MusicNote.followTempo(VideoActivity.this,delay,dur,color,index);
+                                xunhuan++;
+                            }
                     }
                 }
+            }catch (Exception e){
+
             }
+
         }
     }
 
