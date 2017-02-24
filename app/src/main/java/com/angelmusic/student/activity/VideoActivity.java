@@ -249,8 +249,11 @@ public class VideoActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
 
+        //结束上课 必须重置或释放一些资源 重置钢琴音色
         MusicNote.setPianoAction(this,MusicNote.close_djy);
+        // 关闭视频播放
         stop();
+        // 关闭钢琴连接
         closePiano();
 
     }
@@ -389,6 +392,9 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
+    //============================================================================通讯逻辑
+
+
 
     //判断是否启动跟奏亮灯
     private boolean checkGZ(String[] strs) {
@@ -448,13 +454,6 @@ public class VideoActivity extends BaseActivity {
     }
 
     //-----------------------------------------------------------------判断是否启动跟奏亮灯
-
-
-
-
-
-    //============================================================================通讯逻辑
-
 
     private void setLayoutStyle(int type) {
 
@@ -688,29 +687,6 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    private String setPlayPath() {
-        String result = "";
-
-//        int rr = new Random().nextInt(1);
-//        if (rr == 0) {
-//            result = "/sdcard/ykzzldx.mp4";
-//        } else if(rr ==1){
-//            result = "/sdcard/hehe.mp4";
-//        }else {
-//            result = "/sdcard/ffff.mp4";
-//        }
-
-        if (swich % 2 == 0) {
-            result = "/sdcard/ykzzldx.mp4";
-        } else if (swich % 2 == 1) {
-            result = "/sdcard/hehe.mp4";
-        }
-        swich++;
-
-        currentPath = result;
-        return result;
-    }
-
     protected void dialog7() {
 
         int starNum = 1;
@@ -773,11 +749,6 @@ public class VideoActivity extends BaseActivity {
         ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
         params2.width = getIntFromDimens(350*ratio_sz);
         iv_3.setLayoutParams(params2);
-
-
-//        LayoutInflater inflater = getLayoutInflater();
-//        View layout = inflater.inflate(R.layout.dialog_score, null);
-//        new AlertDialog.Builder(this).setView(layout).show();
 
     }
 
@@ -1121,8 +1092,7 @@ public class VideoActivity extends BaseActivity {
                 });
 
     }
-
-
+    
     //--------------------------------------------跟灯----------------------------------------------------------
     /* 退出视频时间检测循环 */
     private boolean videoTime = true;
