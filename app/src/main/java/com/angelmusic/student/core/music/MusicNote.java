@@ -17,6 +17,7 @@ import static android.os.Build.VERSION_CODES.N;
 
 public class MusicNote {
 
+
     /*亮灯*/
     public static byte ON_COLOR = 0x01;
     public static int ON_INDEX = 39;
@@ -37,22 +38,22 @@ public class MusicNote {
 
     static{
 
-        /*----第一张谱子----*/
+        /*----第一张谱子---- 培训 第一个*/
         for(int i=0; i<8;i++){
             NoteInfo ni1 = new NoteInfo(39,i+1,8,true);
             note_1.add(ni1);
         }
 
-        /*----第二张谱子--上面 低 蓝色--*/
+        /*----第二张谱子--上面 低 蓝色-- 小学  第二个*/
         int two_i = 1;
         for(int n = 0; n<4; n++) {
             for (int i = 0; i < 6; i++) {
                 if (i < 3) {
-                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, true);
+                    NoteInfo ni1 = new NoteInfo(39, two_i, 8, false);
                     note_2.add(ni1);
                 }
                 if (i < 6 && i > 2) {
-                    NoteInfo ni2 = new NoteInfo(39, two_i, 8, false);
+                    NoteInfo ni2 = new NoteInfo(39, two_i, 8, true);
                     note_2.add(ni2);
 
                 }
@@ -60,7 +61,7 @@ public class MusicNote {
             }
         }
 
-        /*----第三张谱子----*/
+        /*----第三张谱子---幼儿园-   第三个*/
         NoteInfo ni1 = new NoteInfo(39,0,8,true);
         NoteInfo ni2 = new NoteInfo(41,1,9,true);
         NoteInfo ni3 = new NoteInfo(43,2,10,true);
@@ -110,7 +111,7 @@ public class MusicNote {
             (byte)(OFF_INDEX+21), 0x06, OFF_COLOR, 0x0, (byte) 0xf7 };
 
     /* 设置钢琴动作指令 */
-    public void setPianoAction(Context context,byte[] data){
+    public static void setPianoAction(Context context,byte[] data){
 
         UsbDeviceInfo.getUsbDeviceInfo(context).setData(data);
 
@@ -167,18 +168,41 @@ public class MusicNote {
 
     }
 
+    //闪烁一次灯
+    public static void beat(final Context context,final int index,final boolean isRed,final long time){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+            }
+        }).start();
+
+    }
+
     public static void openLight(final Context context, final int index, final boolean isRed){
 
         UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
 
     }
 
-    public static void closeAllLight(final Context context, final int index, final boolean isRed){
+    public static void closeAllLight(Context context){
 
-        for(int i=0; i<88; i++) {
-            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index, isRed));
-        }
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, true));
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, true));
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, true));
 
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, false));
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, false));
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, false));
 
     }
 
@@ -202,6 +226,105 @@ public class MusicNote {
         }).start();
 
     }
+
+
+
+
+    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
+    //1
+    public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
+    public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
+    public static int[] color1 = { 1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index1 = { 39, 39, 39, 39, 39, 39, 39, 39 };
+
+    public static  float[] delay2= { 6.54f, 15.09f, 23.59f, 32.16f };
+    public static float[] dur2 = { 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f };
+    public static int[] color2 = {1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index2 = { 21, 21, 21, 21, 21, 21, 21, 21 };
+    //2
+    public static float[] delay3 = { 7.18f, 19.1f, 31.13f, 43.1f };
+    public static float[] dur3 = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, };
+    public static int[] color3 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1 };
+    public static int[] index3 = { 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1 };
+
+    public static float[] delay4 = { 11.2f, 21.2f, 31.33f, 41.31f };
+    //public static float[] dur4 = { 1.764f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static float[] dur4 = { 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static int[] color4 = { 1,1,1,1,-1,1,-1};
+    public static int[] index4 = { 3, 3, 3, 3, -1, 3, -1};
+
+    //3
+    public static float[] delay5 = { 11.01f, 21.01f, 30.76f, 40.46f };
+    //public static float[] dur5 = { 1.836f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static int[] color5 = { 1,1,-1,1,-1,1,-1};
+    public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
+
+    //定时任务
+
+    public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) {
+
+        final Context icontext = context;
+        final float[] idelay = delay;  //每次延迟时间， 循环次数依据
+        final float[] idur = dur;      //音符间隔       音符个数
+        final int[] icolor = color;   //色值判断
+        final int[] iindex = index;  //亮灯位置
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int n = 0; n<idur.length;n++){
+
+                    if(iindex[n]!=-1){
+                        if(icolor[n]==1) {
+                            beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+                        }else if(icolor[n]==0){
+                            beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+                        }
+                        try {
+                            Thread.sleep((long)(idur[4]*1000));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }else{
+
+                        try {
+                            Thread.sleep((long)(idur[4]*1000));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }
+        }).start();
+
+//        service = Executors.newSingleThreadScheduledExecutor();
+//        service.scheduleWithFixedDelay(
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        for(int n = 0; n<idur.length;n++){
+//                            if(iindex[n]!=-1){
+//                                if(icolor[n]==1) {
+//                                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+//                                }else if(icolor[n]==0){
+//                                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+//                                }
+//                            }
+//                        }
+//                    }
+//                },
+//                (long) (0 * 1000),
+//                (long) (idur[0]*1000),
+//                TimeUnit.MILLISECONDS);
+
+    }
+
+    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
+
+
 
 
 

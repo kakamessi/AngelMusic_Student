@@ -136,8 +136,9 @@ public class VideoActivity extends BaseActivity {
 
                     if(isPianoActive) {
                         String str = (String) msg.obj;
-                        notes.add(str);
+                        //notes.add(str);
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
+
                         handlerNewNote(str);
                     }
 
@@ -157,8 +158,15 @@ public class VideoActivity extends BaseActivity {
 
     private void handlerNewNote(String str) {
 
-        //确认选谱
-        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num];
+        //确认选谱  1peixun 2xiaoxue 3youery
+        ArrayList<NoteInfo> al = null;
+        if(music_num==1){
+            al = MusicNote.note_1ist[0];
+        }else if(music_num==2){
+            al = MusicNote.note_1ist[1];
+        }else if(music_num==3){
+            al = MusicNote.note_1ist[2];
+        }
 
         //获取钢琴弹奏音符
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
@@ -171,10 +179,10 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
-            if (music_num == 0) {
+            if (music_num == 1) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
-            } else if (music_num == 1) {
+            } else if (music_num == 2) {
 
                 if (nextInfo.getNoteIndex() < 13) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
@@ -182,7 +190,7 @@ public class VideoActivity extends BaseActivity {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
 
-            } else if (music_num == 2) {
+            } else if (music_num == 3) {
 
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }
@@ -190,14 +198,14 @@ public class VideoActivity extends BaseActivity {
             if (str.endsWith("0 ")) {
 
                 //亮灯
-                if(music_num == 0){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
-
-                }else if(music_num == 1){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,false,39,false);
+                if(music_num == 1){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
 
                 }else if(music_num == 2){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),true,nextInfo.getNoteNum(),true);
+                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
+
+                }else if(music_num == 3){
+                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
 
                 }
 
@@ -217,20 +225,24 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        closePiano();
 
-        initData();
         initView();
+        initData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        MusicNote.setPianoAction(this,MusicNote.close_djy);
         stop();
         closePiano();
 
     }
 
     private void initData() {
+
         cd = App.getApplication().getCd();
         course_id = cd.getCourse_Id();
 
@@ -238,6 +250,7 @@ public class VideoActivity extends BaseActivity {
         initPiano();
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
+
     }
 
     private void initView() {
@@ -270,6 +283,7 @@ public class VideoActivity extends BaseActivity {
                 msg.obj = str;
                 pianoHandler.sendMessage(msg);
 
+
             }
 
             @Override
@@ -292,10 +306,12 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void handleMsg(Message msg) {
 
+        //熄灭所有亮灯
+        MusicNote.setPianoAction(this,MusicNote.close_djy);
+        MusicNote.closeAllLight(this);
+
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
-
-        Toast.makeText(App.getApplication(),str,0).show();
 
         isPianoActive = false;
         //播放，切换视频
@@ -311,6 +327,7 @@ public class VideoActivity extends BaseActivity {
 
                 Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
                 //学生端播放视频，会带有附加逻辑~~~~~~
+                String[] strA  = ac[2].split("&");
 
                 setLayoutStyle(3);
                 String path = cd.getFiles().get(ac[3]);
@@ -318,12 +335,15 @@ public class VideoActivity extends BaseActivity {
                 switchVedio(path);
 
                 //是否启动打击乐模式
+                if(strA[0].equals("节奏连连看")){
+                    MusicNote.setPianoAction(this,MusicNote.open_djy);
+
+                }else{
+                    MusicNote.setPianoAction(this,MusicNote.close_djy);
+                }
 
                 //是否跟灯显示
-                String[] strA  = ac[2].split("&");
-                if(true){
-                    isPianoActive = true;
-                }
+                checkGZ2(strA);
 
             }
 
@@ -348,12 +368,77 @@ public class VideoActivity extends BaseActivity {
             isPianoActive = true;
             stop();
             //小学2 培训 幼儿园
-            music_num = Integer.parseInt(ac[1]) - 1;
+            music_num = Integer.parseInt(course_id);
+
             setLayoutStyle(2);
 
         }
 
     }
+
+    //判断是否启动跟奏亮灯
+    private boolean checkGZ(String[] strs) {
+
+        boolean result = false;
+        if((course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1"))
+                || (course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))
+                || (course_id.equals("1")&& strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1"))
+                || (course_id.equals("1")&& strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))
+                || (course_id.equals("3")&& strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))){
+
+            result = true;
+        }
+
+        return result;
+    }
+
+    //-----------------------------------------------------------------判断是否启动跟奏亮灯
+
+    private int checkGZ2(String[] strs) {
+
+        int result = -1;
+        if(course_id.equals("1") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
+            isPianoActive = true;
+            new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1)).start();
+            result = 1;
+        }
+
+        if(course_id.equals("1") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+            isPianoActive = true;
+            new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2)).start();
+            result = 2;
+
+        }
+
+        if(course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
+            isPianoActive = true;
+            new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3)).start();
+            result = 3;
+        }
+
+        if(course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+            isPianoActive = true;
+            new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4)).start();
+
+            result = 4;
+        }
+
+        if(course_id.equals("3") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+            isPianoActive = true;
+            new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5)).start();
+
+            result = 5;
+        }
+
+        return result;
+    }
+
+    //-----------------------------------------------------------------判断是否启动跟奏亮灯
+
+
+
+
+
     //============================================================================通讯逻辑
 
 
@@ -367,23 +452,23 @@ public class VideoActivity extends BaseActivity {
 
         } else if (type == 2) {
             //乐谱跟奏
-            //initPiano();
+
             blackTv.setVisibility(View.INVISIBLE);
             yuepuGroupLl.setVisibility(View.VISIBLE);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (music_num == 0) {
-
+            if (music_num == 1) {
+                //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this,39,false);
+                MusicNote.openLight(VideoActivity.this,39,true);
 
-            } else if (music_num == 1) {
-
+            } else if (music_num == 2) {
+                //小学
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
                 MusicNote.openLight(VideoActivity.this,39,false);
 
-            } else if (music_num == 2) {
-
+            } else if (music_num == 3) {
+                //幼儿园
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
 
@@ -486,7 +571,7 @@ public class VideoActivity extends BaseActivity {
 
         File file = new File(path);
         if (!file.exists()) {
-            Toast.makeText(this, "视频文件路径错误", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "视频文件路径错误", Toast.LENGTH_LONG).show();
             return;
         }
         currentfile = file;
@@ -1025,50 +1110,51 @@ public class VideoActivity extends BaseActivity {
 
 
     //--------------------------------------------跟灯----------------------------------------------------------
-    //递归控制
-    long times = 0;
-    //间隔时间
-    long spaceTime = 1000;
-    //延迟时间
-    long delay = 0;
-    public void followTempo(){
+    /* 退出视频时间检测循环 */
+    private boolean videoTime = true;
+    class VideoRun implements Runnable{
 
-        service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleWithFixedDelay(
-                new Runnable() {
-                    @Override
-                    public void run() {
+        float[] delay = null; //时间延迟执行
+        float[] dur = null;   //亮灯时间
+        int[] color = null;
+        int[] index = null;   //亮灯位置
 
-                        if(times==3){
-                            delay = 3000;
-                            service.shutdown();
+        public VideoRun(int types,float[] mDelays,float[] mdur,int[] mcolor,int[] mindex) {
 
-                            followTempo();
-                        }if(times==7){
-                            delay = 3000;
-                            service.shutdown();
+            delay = mDelays;
+            dur = mdur;
+            color = mcolor;
+            index = mindex;
 
-                            followTempo();
-                        }if(times==11){
+        }
 
-                            service.shutdown();
+        @Override
+        public void run() {
 
-                            Message msg = Message.obtain();
-                            msg.what = 2;
-                            pianoHandler.sendMessage(msg);
+            int xunhuan = 0;
+            while(videoTime){
+                if(xunhuan>delay.length-1){
+                    return;
+                }
+                if(mediaPlayer!=null){
 
+                    try {
+
+                        Thread.sleep(2);
+                        int curTime =  mediaPlayer.getCurrentPosition();
+                        if(curTime>(delay[xunhuan]*1000)){
+                            MusicNote.followTempo(VideoActivity.this,delay,dur,color,index);
+                            xunhuan++;
                         }
 
-                        MusicNote.beat(VideoActivity.this,39,false);
-                        times++;
+                    }catch (Exception e){
 
                     }
-                },
-                delay,
-                spaceTime,
-                TimeUnit.MILLISECONDS);
-
+                }
+            }
+        }
     }
+
     //--------------------------------------------跟灯----------------------------------------------------------
 
 
