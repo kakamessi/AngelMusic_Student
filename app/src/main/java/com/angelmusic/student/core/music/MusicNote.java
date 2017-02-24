@@ -84,16 +84,6 @@ public class MusicNote {
 
     }
 
-
-    /*乐谱信息   1  */
-    public static final int[] music_1 = {39,39,39,39,  39,39,39,39};
-
-    /*乐谱信息   2  */
-    public static final int[] music_2 = {39,39,39,39,  39,39,39,39};
-
-    /*乐谱合集*/
-    public static final int[][] music_g = {music_1,music_2};
-
     //--------------------------------------------------------------钢琴指令---------------------------------------------------------------
 
     /*开启打击乐*/
@@ -260,8 +250,6 @@ public class MusicNote {
     public static int[] color5 = { 1,1,-1,1,-1,1,-1};
     public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
 
-    //定时任务
-
     public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) {
 
         final Context icontext = context;
@@ -299,26 +287,6 @@ public class MusicNote {
                 }
             }
         }).start();
-
-//        service = Executors.newSingleThreadScheduledExecutor();
-//        service.scheduleWithFixedDelay(
-//                new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        for(int n = 0; n<idur.length;n++){
-//                            if(iindex[n]!=-1){
-//                                if(icolor[n]==1) {
-//                                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
-//                                }else if(icolor[n]==0){
-//                                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
-//                                }
-//                            }
-//                        }
-//                    }
-//                },
-//                (long) (0 * 1000),
-//                (long) (idur[0]*1000),
-//                TimeUnit.MILLISECONDS);
 
     }
 
