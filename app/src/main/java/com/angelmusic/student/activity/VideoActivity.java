@@ -132,7 +132,7 @@ public class VideoActivity extends BaseActivity {
                         String str = (String) msg.obj;
                         //notes.add(str);
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-                        handlerNewNote(str);
+                        handlerNote(str);
                     }
                     break;
                 case 2:
@@ -142,25 +142,23 @@ public class VideoActivity extends BaseActivity {
         }
     };
 
+    /* 音符位置索引 */
     private int index_new = 0;
-    private void handlerNewNote(String str) {
-        //确认选谱  1peixun 2xiaoxue 3youery
-        ArrayList<NoteInfo> al = null;
-        if(music_num==1){
-            al = MusicNote.note_1ist[0];
-        }else if(music_num==2){
-            al = MusicNote.note_1ist[1];
-        }else if(music_num==3){
-            al = MusicNote.note_1ist[2];
-        }
+    private void handlerNote(String str){
+
+        //确认选谱  1培训 2小学 3幼儿园
+        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num-1];
+
         //获取钢琴弹奏音符
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
         int key = Integer.parseInt(myDatas[2], 16) - 21;
+
         //处理输出
         NoteInfo ni = al.get(index_new);
         NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
         if (key == ni.getNoteNum()) {
-            //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
+
+            //处理显示正确音符和钢琴键逻辑
             if (music_num == 1) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             } else if (music_num == 2) {
@@ -172,18 +170,10 @@ public class VideoActivity extends BaseActivity {
             } else if (music_num == 3) {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }
+
             if (str.endsWith("0 ")) {
-                //亮灯
-                if(music_num == 1){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
-
-                }else if(music_num == 2){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
-
-                }else if(music_num == 3){
-                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
-
-                }
+                //处理亮灯逻辑
+                MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
 
                 //处理循环
                 if (index_new == al.size() - 1) {
@@ -194,6 +184,55 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
+//    private void handlerNewNote(String str) {
+//
+//        //确认选谱  1培训 2小学 3幼儿园
+//        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num-1];
+//
+//        //获取钢琴弹奏音符
+//        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+//        int key = Integer.parseInt(myDatas[2], 16) - 21;
+//
+//        //处理输出
+//        NoteInfo ni = al.get(index_new);
+//        NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
+//        if (key == ni.getNoteNum()) {
+//
+//            //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
+//            if (music_num == 1) {
+//                setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+//            } else if (music_num == 2) {
+//                if (nextInfo.getNoteIndex() < 13) {
+//                    setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+//                } else {
+//                    setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+//                }
+//            } else if (music_num == 3) {
+//                setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+//            }
+//
+//            if (str.endsWith("0 ")) {
+//                //处理亮灯
+//                if(music_num == 1){
+//                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
+//
+//                }else if(music_num == 2){
+//                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
+//
+//                }else if(music_num == 3){
+//                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
+//
+//                }
+//
+//                //处理循环
+//                if (index_new == al.size() - 1) {
+//                    index_new = -1;
+//                }
+//                index_new++;
+//            }
+//        }
+//
+//    }
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
 
