@@ -251,8 +251,7 @@ public class VideoActivity extends BaseActivity {
         super.onDestroy();
 
         //结束上课 必须重置或释放一些资源 重置钢琴音色
-        MusicNote.setPianoAction(this,MusicNote.close_djy);
-        MusicNote.closeAllLight(this);
+        resetStatus();
         // 关闭视频播放
         stop();
         // 关闭钢琴连接
