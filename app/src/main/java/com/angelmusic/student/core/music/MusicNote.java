@@ -178,6 +178,15 @@ public class MusicNote {
 
     }
 
+    //闪烁一次灯
+    public static void beat2(final Context context,final int index,final boolean isRed,final long time) throws InterruptedException {
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+        Thread.sleep(time);
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+    }
+
     public static void openLight(final Context context, final int index, final boolean isRed){
 
         UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
@@ -265,23 +274,16 @@ public class MusicNote {
 
             if(iindex[n]!=-1){
                 if(icolor[n]==1) {
-                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+                    beat2(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
                 }else if(icolor[n]==0){
-                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+                    beat2(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
                 }
-                try {
-                    Thread.sleep((long)(idur[4]*1000));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                Thread.sleep((long)(idur[4]*1000));
 
             }else{
 
-                try {
-                    Thread.sleep((long)(idur[4]*1000));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Thread.sleep((long)(idur[4]*1000));
 
             }
         }
