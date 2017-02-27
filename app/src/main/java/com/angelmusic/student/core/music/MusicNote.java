@@ -1,15 +1,10 @@
 package com.angelmusic.student.core.music;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
-import com.angelmusic.student.activity.VideoActivity;
 
 import java.util.ArrayList;
-
-import static android.R.attr.data;
-import static android.os.Build.VERSION_CODES.N;
 
 /**
  * Created by DELL on 2017/2/1
@@ -274,9 +269,9 @@ public class MusicNote {
 
             if(iindex[n]!=-1){
                 if(icolor[n]==1) {
-                    beat2(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
                 }else if(icolor[n]==0){
-                    beat2(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
                 }
 
                 Thread.sleep((long)(idur[4]*1000));
