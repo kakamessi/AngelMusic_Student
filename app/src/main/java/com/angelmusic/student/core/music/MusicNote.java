@@ -250,7 +250,7 @@ public class MusicNote {
     public static int[] color5 = { 1,1,-1,1,-1,1,-1};
     public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
 
-    public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) {
+    public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) throws InterruptedException {
 
         final Context icontext = context;
         final float[] idelay = delay;  //每次延迟时间， 循环次数依据
@@ -259,6 +259,9 @@ public class MusicNote {
         final int[] iindex = index;  //亮灯位置
 
         for(int n = 0; n<idur.length;n++){
+
+            /* 立即打断循环 */
+            Thread.sleep(2);
 
             if(iindex[n]!=-1){
                 if(icolor[n]==1) {

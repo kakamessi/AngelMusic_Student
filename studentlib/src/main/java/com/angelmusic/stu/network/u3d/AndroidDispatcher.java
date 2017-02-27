@@ -140,10 +140,10 @@ public class AndroidDispatcher implements IDispatcher{
             try {
                 Thread.sleep(1500);
                 socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
-
+                Log.e("kaka","首次连接成功");
             } catch (Exception e1) {
 
-                Log.e("kaka",str);
+                Log.e("kaka","首次连接失败");
             }
         }
     }
