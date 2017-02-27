@@ -1,7 +1,7 @@
 package com.angelmusic.stu.server.socket.udp;
 
 import android.os.Handler;
-import android.util.Log;
+import com.angelmusic.stu.utils.Log;
 
 import com.angelmusic.stu.server.socket.constant.NetParams;
 
@@ -40,7 +40,7 @@ public class UDPServerRecThread extends Thread{
                 socket.receive(packet);
 
                 String quest_ip = packet.getAddress().toString().substring(1);
-                Log.e("UDPRec1Thread", quest_ip + "");
+                Log.e("UDPRec1Thread", "udp rec ip: " + quest_ip);
 
                 ucc.sendSycMsg();
 

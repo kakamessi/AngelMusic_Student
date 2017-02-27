@@ -1,8 +1,8 @@
 package com.angelmusic.stu.server.socket.tcp;
 
-import android.util.Log;
 
 import com.angelmusic.stu.server.receiver.Receiver;
+import com.angelmusic.stu.utils.Log;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -100,7 +100,7 @@ public class Ssocket {
             dins.readFully(data);
             String msg = new String(data);
             receiver.receive(data);
-            Log.e("SSocket","read_______________________________" + msg.length());
+            Log.e("SSocket","tcp read :  " + msg);
         }
 
     }
