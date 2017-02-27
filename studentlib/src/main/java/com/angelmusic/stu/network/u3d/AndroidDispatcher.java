@@ -132,7 +132,7 @@ public class AndroidDispatcher implements IDispatcher{
 
         try {
             socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
-            Log.e("kaka","首次发送消息失败，检测无连接状态，准备连接");
+            Log.e("kaka","tcp write OK");
 
         } catch (Exception e) {
 
@@ -140,10 +140,10 @@ public class AndroidDispatcher implements IDispatcher{
             try {
                 Thread.sleep(1500);
                 socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
-                Log.e("kaka","首次连接成功");
+                Log.e("kaka","init & write tcp ok");
             } catch (Exception e1) {
 
-                Log.e("kaka","首次连接失败");
+                Log.e("kaka","init & write tcp failed");
             }
         }
     }

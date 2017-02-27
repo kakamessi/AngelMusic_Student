@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.angelmusic.stu.network.u3d.AndroidDispatcher;
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.MsgReceiver;
 import com.angelmusic.student.core.UDPRec1Thread;
@@ -26,6 +27,7 @@ public class StudentService extends Service {
         udpRec.start();
 
         udpRec.sendSycMsg();
+        Log.e("UDPRec1Thread", "udp------------StudentService onCreate");
 
     }
 
