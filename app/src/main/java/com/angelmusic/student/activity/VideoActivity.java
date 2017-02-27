@@ -1131,7 +1131,6 @@ public class VideoActivity extends BaseActivity {
                         return;
                     }
                     if(mediaPlayer!=null){
-                            Thread.sleep(2);
                             int curTime =  mediaPlayer.getCurrentPosition();
                             if(curTime>(delay[xunhuan]*1000)){
                                 MusicNote.followTempo(VideoActivity.this,delay,dur,color,index);
