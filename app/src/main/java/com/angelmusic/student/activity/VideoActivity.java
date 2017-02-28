@@ -185,55 +185,6 @@ public class VideoActivity extends BaseActivity {
         }
 
     }
-//    private void handlerNewNote(String str) {
-//
-//        //确认选谱  1培训 2小学 3幼儿园
-//        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num-1];
-//
-//        //获取钢琴弹奏音符
-//        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
-//        int key = Integer.parseInt(myDatas[2], 16) - 21;
-//
-//        //处理输出
-//        NoteInfo ni = al.get(index_new);
-//        NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
-//        if (key == ni.getNoteNum()) {
-//
-//            //显示正确音符 和 钢琴键   setYinfuBgColor(ni.getNoteIndex(), ni.isRed()==true?Color.RED:Color.BLUE);
-//            if (music_num == 1) {
-//                setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-//            } else if (music_num == 2) {
-//                if (nextInfo.getNoteIndex() < 13) {
-//                    setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-//                } else {
-//                    setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-//                }
-//            } else if (music_num == 3) {
-//                setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-//            }
-//
-//            if (str.endsWith("0 ")) {
-//                //处理亮灯
-//                if(music_num == 1){
-//                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
-//
-//                }else if(music_num == 2){
-//                    MusicNote.closeAndOpenNext(VideoActivity.this,39,ni.isRed(),39,nextInfo.isRed());
-//
-//                }else if(music_num == 3){
-//                    MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
-//
-//                }
-//
-//                //处理循环
-//                if (index_new == al.size() - 1) {
-//                    index_new = -1;
-//                }
-//                index_new++;
-//            }
-//        }
-//
-//    }
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
 
@@ -295,22 +246,15 @@ public class VideoActivity extends BaseActivity {
         UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
             @Override
             public void onReadCallback(String str) {
-
                 Message msg = Message.obtain();
                 msg.what = 1;
                 msg.obj = str;
                 pianoHandler.sendMessage(msg);
-
-
             }
-
             @Override
             public void onSendCallback(boolean isSend) {
-
             }
-
         });
-
         UsbDeviceInfo.getUsbDeviceInfo(this).update();
         UsbDeviceInfo.getUsbDeviceInfo(this).connect();
 
