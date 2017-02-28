@@ -52,14 +52,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
-import static com.angelmusic.student.R.id.textView1;
-import static com.google.common.collect.ComparisonChain.start;
 
 /**
  *
@@ -111,7 +108,7 @@ public class VideoActivity extends BaseActivity {
     private String currentPath = "";
     private MediaPlayer mediaPlayer;
     private int currentPosition = 0;
-    private boolean isPlaying = false;
+    private boolean isMediaPlaying = false;
     private int swich = 0;
 
     /*记录钢琴弹奏输出*/
@@ -316,7 +313,7 @@ public class VideoActivity extends BaseActivity {
 
             } else {
 
-                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting" + isPlaying);
+                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting" + isMediaPlaying);
                 pause();
             }
 
@@ -528,7 +525,7 @@ public class VideoActivity extends BaseActivity {
         currentPath = path;
         stop();
 
-        isPlaying = false;
+        isMediaPlaying = false;
         play(0);
 
     }
@@ -567,7 +564,7 @@ public class VideoActivity extends BaseActivity {
                     // 按照初始位置播放
                     mediaPlayer.seekTo(msec);
 
-                    isPlaying = true;
+                    isMediaPlaying = true;
 
                 }
             });
@@ -576,7 +573,7 @@ public class VideoActivity extends BaseActivity {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     // 在播放完毕被回调
-
+                    isMediaPlaying = false;
                 }
             });
 
@@ -586,7 +583,7 @@ public class VideoActivity extends BaseActivity {
                 public boolean onError(MediaPlayer mp, int what, int extra) {
                     // 发生错误重新播放
                     play(0);
-                    isPlaying = false;
+                    isMediaPlaying = false;
                     return false;
                 }
             });
@@ -605,14 +602,14 @@ public class VideoActivity extends BaseActivity {
             return;
         }
 
-        if(!isPlaying){
+        if(!isMediaPlaying){
             mediaPlayer.start();
-            isPlaying =true;
+            isMediaPlaying = true;
             return;
         }
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
-            isPlaying =false;
+            isMediaPlaying =false;
         }
 
     }
@@ -622,13 +619,13 @@ public class VideoActivity extends BaseActivity {
     */
     protected void stop() {
         if (mediaPlayer != null) {
-            // && mediaPlayer.isPlaying()  某些异常情况下可以加上判断
+            // && mediaPlayer.isMediaPlaying()  某些异常情况下可以加上判断
 
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
 
-            isPlaying = false;
+            isMediaPlaying = false;
         }
     }
 
@@ -641,7 +638,7 @@ public class VideoActivity extends BaseActivity {
 
             return;
         }
-        isPlaying = false;
+        isMediaPlaying = false;
         play(0);
 
 
