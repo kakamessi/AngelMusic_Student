@@ -6,12 +6,21 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
 import com.unity3d.player.UnityPlayerActivity;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class UnityInterface extends UnityPlayerActivity {
 	private final String TAG = "UnityInterface";
@@ -103,6 +112,64 @@ public class UnityInterface extends UnityPlayerActivity {
 	}
 	public void setOnUpdateListener(OnUpdateListener updateListener) {
 		this.updateListener = updateListener;
+	}
+
+	//获取usb设备路径
+	public String getUsbPath(){
+
+		String dir = new String();
+		try {
+			Runtime runtime = Runtime.getRuntime();
+			Process proc = runtime.exec("mount");
+			InputStream is = proc.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is);
+			String line;
+			BufferedReader br = new BufferedReader(isr);
+			while ((line = br.readLine()) != null) {
+				if (line.contains("secure")) continue;
+				if (line.contains("asec")) continue;
+
+				if (line.contains("fat")) {
+					String columns[] = line.split(" ");
+					if (columns != null && columns.length > 1) {
+						dir = dir.concat(columns[1] + "\n");
+					}
+				} else if (line.contains("fuse")) {
+					String columns[] = line.split(" ");
+					if (columns != null && columns.length > 1) {
+						dir = dir.concat(columns[1] + "\n");
+					}
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dir;
+
+	}
+
+	public boolean isBox() {
+		WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		// 屏幕宽度
+		float screenWidth = display.getWidth();
+		// 屏幕高度
+		float screenHeight = display.getHeight();
+		DisplayMetrics dm = new DisplayMetrics();
+		display.getMetrics(dm);
+		double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
+		double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
+		// 屏幕尺寸
+		double screenInches = Math.sqrt(x + y);
+		// 大于6尺寸则为Pad
+		if (screenInches >= 20.0) {
+			return true;
+		}
+		return false;
 	}
 
 	private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
