@@ -48,6 +48,7 @@ public class UDPServerRecThread extends Thread{
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("UDPRec1Thread", "udp loop failes: " + e.getMessage());
         }
 
     }

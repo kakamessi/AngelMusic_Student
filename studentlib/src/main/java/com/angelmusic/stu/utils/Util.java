@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -134,6 +136,17 @@ public class Util {
 			return new String(c);
 		}
 		return "没有获得字符串";
+	}
+
+	/**
+	 * 判断当前设备是手机还是平板，代码来自 Google I/O App for Android
+	 * @param context
+	 * @return 平板返回 True，手机返回 False
+	 */
+	public static boolean isPad(Context context) {
+		return (context.getResources().getConfiguration().screenLayout
+				& Configuration.SCREENLAYOUT_SIZE_MASK)
+				>= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
 
 }

@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
+import com.angelmusic.stu.utils.Util;
 import com.unity3d.player.UnityPlayerActivity;
 
 import java.io.BufferedReader;
@@ -150,13 +152,24 @@ public class UnityInterface extends UnityPlayerActivity {
 
 	}
 
-	public boolean isBox() {
-		TelephonyManager telephony = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-		if (telephony.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE) {
+	public boolean isPad() {
+
+		String brand = Build.BRAND;
+		String model = Build.MODEL;
+		Log.e("kaka",brand + model);
+
+		DisplayMetrics metrics = new DisplayMetrics(); getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int width = metrics.widthPixels;
+		int height = metrics.heightPixels;
+		Log.e("kaka",width + " : " +height);
+
+
+		if(Util.isPad(this)){
 			return true;
-		}else {
+		}else{
 			return false;
 		}
+
 	}
 
 	private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
