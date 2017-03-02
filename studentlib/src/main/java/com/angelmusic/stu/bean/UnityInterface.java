@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.WindowManager;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
@@ -153,23 +151,12 @@ public class UnityInterface extends UnityPlayerActivity {
 	}
 
 	public boolean isBox() {
-		WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-		Display display = wm.getDefaultDisplay();
-		// 屏幕宽度
-		float screenWidth = display.getWidth();
-		// 屏幕高度
-		float screenHeight = display.getHeight();
-		DisplayMetrics dm = new DisplayMetrics();
-		display.getMetrics(dm);
-		double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
-		double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
-		// 屏幕尺寸
-		double screenInches = Math.sqrt(x + y);
-		// 大于6尺寸则为Pad
-		if (screenInches >= 20.0) {
+		TelephonyManager telephony = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+		if (telephony.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE) {
 			return true;
+		}else {
+			return false;
 		}
-		return false;
 	}
 
 	private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
