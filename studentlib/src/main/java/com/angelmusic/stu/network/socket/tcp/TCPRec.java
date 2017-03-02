@@ -45,6 +45,7 @@ public class TCPRec implements Runnable{
 
             //e可能为null 教师端删除进程 学生端崩溃
             e.printStackTrace();
+            Log.e("kaka","connect or read error");
 
         }
 
