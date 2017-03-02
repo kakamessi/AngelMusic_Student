@@ -1,7 +1,7 @@
 package com.angelmusic.stu.network.socket.tcp;
 
 
-import android.util.Log;
+import com.angelmusic.stu.utils.Log;
 
 import com.angelmusic.stu.network.socket.AbsReceiver;
 
@@ -104,7 +104,7 @@ public class SSocket {
             dins.readFully(data);
             String msg = new String(data);
             receiver.receive(data);
-            Log.e("SSocket","read_______________________________" + msg.length());
+            Log.e("SSocket","read______________________" + msg.length() + ": " + msg);
         }
 
     }
