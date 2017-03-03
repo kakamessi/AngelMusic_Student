@@ -154,16 +154,6 @@ public class UnityInterface extends UnityPlayerActivity {
 
 	public boolean isPad() {
 
-		String brand = Build.BRAND;
-		String model = Build.MODEL;
-		Log.e("kaka",brand + model);
-
-		DisplayMetrics metrics = new DisplayMetrics(); getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		int width = metrics.widthPixels;
-		int height = metrics.heightPixels;
-		Log.e("kaka",width + " : " +height);
-
-
 		if(Util.isPad(this)){
 			return true;
 		}else{
