@@ -297,7 +297,6 @@ public class MainActivity extends BaseActivity {
                 App.getApplication().getCd().getFiles().put(name, sdDir + name);
             }
 
-            Log.e("kaka", "Start : VideoActivity");
             startActivity(new Intent(this, VideoActivity.class));
 
         } else if (ActionType.ACTION_LOGIN.equals(ac[0])) {
