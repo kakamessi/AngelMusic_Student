@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -167,6 +168,11 @@ public class VideoActivity extends BaseActivity {
                 }
             } else if (music_num == 3) {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+            }else{
+
+                //由于UI实现逻辑变更，需要重新处理新课程曲谱
+
+
             }
 
             if (str.endsWith("0 ")) {
@@ -1069,7 +1075,6 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    private ArrayList<ImageView> ivList = new ArrayList();
     /**
      *      根据跟奏[数据] 设置对应的音符，琴键界面变化
      *      音符位置，音符颜色
@@ -1077,24 +1082,35 @@ public class VideoActivity extends BaseActivity {
      *      音符从左至右升序排列 1 - 10  上下都有的序号相同
      *
      */
-    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor){
+    private ArrayList<ImageView> noteList = null;
+    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor，, int keyIndex, int keyColor){
 
+        getNotes(vg);
+
+        //开始设置颜色，位置等UI信息
+        for(ImageView iv : noteList){
+
+            iv.setBackgroundResource(R.mipmap.kc_red_puzi_bg);
+
+        }
+
+        noteList = null;
+    }
+
+    private void getNotes(ViewGroup vg){
+        if(noteList==null){
+            noteList = new ArrayList<>();
+        }
         for(int i=0;i<vg.getChildCount();i++){
             if(vg.getChildAt(i) instanceof ViewGroup){
-                setNoteAndKey((ViewGroup) vg.getChildAt(i),noteIndex,noteColor);
+                getNotes((ViewGroup) vg.getChildAt(i));
             }else{
-                if("note".equals(vg.getChildAt(i).getTag())){
-                    ivList.add((ImageView) vg.getChildAt(i));
+                if(!TextUtils.isEmpty(vg.getChildAt(i).getTag().toString())){
+                    noteList.add((ImageView) vg.getChildAt(i));
                 }
             }
         }
-
-        for(ImageView iv : ivList){
-            iv.setBackgroundResource(R.mipmap.kc_red_puzi_bg);
-        }
-
     }
-
 
     //--------------------------------------------设置音符，琴键----------------------------------------------------------
 
