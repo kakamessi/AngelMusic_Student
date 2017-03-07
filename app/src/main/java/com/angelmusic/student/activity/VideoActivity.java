@@ -1049,7 +1049,56 @@ public class VideoActivity extends BaseActivity {
                 });
 
     }
-    
+
+    //--------------------------------------------设置音符，琴键----------------------------------------------------------
+
+//    music_num = 2;
+//    setLayoutStyle(2);
+//    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
+//    setNoteAndKey(yuepuGroupLl,0,0);
+
+    /**
+     * 替换view
+     * @param fu
+     * @param zi
+     */
+    private void replaceLayout(ViewGroup fu,int resId){
+
+        fu.removeAllViews();
+        ViewGroup vg = (ViewGroup)LayoutInflater.from(this).inflate(resId,fu);
+
+    }
+
+    private ArrayList<ImageView> ivList = new ArrayList();
+    /**
+     *      根据跟奏[数据] 设置对应的音符，琴键界面变化
+     *      音符位置，音符颜色
+     *
+     *      音符从左至右升序排列 1 - 10  上下都有的序号相同
+     *
+     */
+    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor){
+
+        for(int i=0;i<vg.getChildCount();i++){
+            if(vg.getChildAt(i) instanceof ViewGroup){
+                setNoteAndKey((ViewGroup) vg.getChildAt(i),noteIndex,noteColor);
+            }else{
+                if("note".equals(vg.getChildAt(i).getTag())){
+                    ivList.add((ImageView) vg.getChildAt(i));
+                }
+            }
+        }
+
+        for(ImageView iv : ivList){
+            iv.setBackgroundResource(R.mipmap.kc_red_puzi_bg);
+        }
+
+    }
+
+
+    //--------------------------------------------设置音符，琴键----------------------------------------------------------
+
+
     //--------------------------------------------跟灯----------------------------------------------------------
     /* 退出视频时间检测循环 */
     class VideoRun implements Runnable{
