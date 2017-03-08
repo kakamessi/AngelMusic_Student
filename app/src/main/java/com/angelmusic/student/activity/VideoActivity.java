@@ -1093,10 +1093,10 @@ public class VideoActivity extends BaseActivity {
         okHttpUtil.doPostAsync(
                 HttpInfo.Builder().setUrl(mContext.getResources().getString(R.string.domain_name_request) + mContext.getResources().getString(R
                         .string.account_submit))
-                        .addParam("score", "2")
-                        .addParam("yingaoScore", "80")
-                        .addParam("jiezouScore", "80")
-                        .addParam("shizhiScore", "80")
+                        .addParam("score", sd.getScore()+"")
+                        .addParam("yingaoScore", sd.getYingaoScore()+"")
+                        .addParam("jiezouScore", sd.getJiezouScore()+"")
+                        .addParam("shizhiScore", sd.getShizhiScore()+"")
                         .addParam("lessonId", course_id)
                         .addParam("jiekeId", jiekeId)
                         .addParam("stuId", stuId)
