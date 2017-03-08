@@ -44,7 +44,9 @@ import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.core.music.NoteInfo;
 import com.angelmusic.student.infobean.CourseData;
+import com.angelmusic.student.infobean.ScoreData;
 import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.MusicUtils;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
 
@@ -112,6 +114,8 @@ public class VideoActivity extends BaseActivity {
     private boolean isMediaPlaying = false;
     private int swich = 0;
 
+    /* 弹奏评分 */
+    private ScoreData sd = null;
     /* 弹出成绩弹窗 */
     private PopupWindow scoreWindow = null;
     /*记录钢琴弹奏输出*/
@@ -625,8 +629,11 @@ public class VideoActivity extends BaseActivity {
 
                     //视频播放完毕，弹出成绩界面，并上传成绩
                     if(isScore) {
+
+                        sd = MusicUtils.getScore(notes,notes);
                         showScore();
                         postAccount(VideoActivity.this);
+
                     }
 
                 }
@@ -696,71 +703,6 @@ public class VideoActivity extends BaseActivity {
         isMediaPlaying = false;
         play(0);
 
-
-    }
-
-    protected void showScore() {
-
-        int starNum = 1;
-        float ratio_yg = 0.1f;
-        float ratio_jz = 0.2f;
-        float ratio_sz = 0.3f;
-
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.dialog_score, null);
-
-        //星星
-        ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
-        TextView tv_num = (TextView) layout.findViewById(R.id.textView1);
-        if (starNum == 3) {
-            ivBG.setImageResource(R.drawable.score_three);
-            tv_num.setText("哇！获得了三颗星");
-        } else if (starNum == 2) {
-            ivBG.setImageResource(R.drawable.score_two);
-            tv_num.setText("哇！获得了二颗星");
-        } else if (starNum == 1) {
-            ivBG.setImageResource(R.drawable.score_one);
-            tv_num.setText("哇！获得了一颗星");
-        }
-
-        //分数比例条， 数字
-        ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
-        ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
-        ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
-
-        //音高
-        TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
-        tv_1.setText((int)(100*ratio_yg) + "%");
-        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
-        params.width = getIntFromDimens(350*ratio_yg);
-        iv_1.setLayoutParams(params);
-
-        //节奏
-        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
-        tv_2.setText((int)(100*ratio_jz) + "%");
-        ViewGroup.LayoutParams params1 = iv_2.getLayoutParams();
-        params1.width = getIntFromDimens(350*ratio_jz);
-        iv_2.setLayoutParams(params1);
-
-        //时值
-        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
-        tv_3.setText((int)(100*ratio_sz) + "%");
-        ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
-        params2.width = getIntFromDimens(350*ratio_sz);
-        iv_3.setLayoutParams(params2);
-
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
-        scoreWindow = new PopupWindow(layout, 1221, 1134);
-        // TODO: 2016/5/17 设置背景颜色
-        scoreWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
-        // TODO: 2016/5/17 设置可以获取焦点
-        scoreWindow.setFocusable(true);
-        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
-        scoreWindow.setOutsideTouchable(true);
-        // TODO：更新popupwindow的状态
-        scoreWindow.update();
-        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
-        scoreWindow.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
     }
 
@@ -1068,6 +1010,71 @@ public class VideoActivity extends BaseActivity {
         Drawable newDrawable = DrawableCompat.wrap(constantState == null ? drawable : constantState.newDrawable()).mutate();
         DrawableCompat.setTint(newDrawable, color);
         return newDrawable;
+    }
+
+    protected void showScore() {
+
+        int starNum = 1;
+        float ratio_yg = 0.1f;
+        float ratio_jz = 0.2f;
+        float ratio_sz = 0.3f;
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.dialog_score, null);
+
+        //星星
+        ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
+        TextView tv_num = (TextView) layout.findViewById(R.id.textView1);
+        if (starNum == 3) {
+            ivBG.setImageResource(R.drawable.score_three);
+            tv_num.setText("哇！获得了三颗星");
+        } else if (starNum == 2) {
+            ivBG.setImageResource(R.drawable.score_two);
+            tv_num.setText("哇！获得了二颗星");
+        } else if (starNum == 1) {
+            ivBG.setImageResource(R.drawable.score_one);
+            tv_num.setText("哇！获得了一颗星");
+        }
+
+        //分数比例条， 数字
+        ImageView iv_1 = (ImageView) layout.findViewById(R.id.iv_yingao_full);
+        ImageView iv_2 = (ImageView) layout.findViewById(R.id.iv_jz_full);
+        ImageView iv_3 = (ImageView) layout.findViewById(R.id.iv_sz_full);
+
+        //音高
+        TextView tv_1 = (TextView) layout.findViewById(R.id.tv_yg_score);
+        tv_1.setText((int)(100*ratio_yg) + "%");
+        ViewGroup.LayoutParams params = iv_1.getLayoutParams();
+        params.width = getIntFromDimens(350*ratio_yg);
+        iv_1.setLayoutParams(params);
+
+        //节奏
+        TextView tv_2 = (TextView) layout.findViewById(R.id.tv_jz_score);
+        tv_2.setText((int)(100*ratio_jz) + "%");
+        ViewGroup.LayoutParams params1 = iv_2.getLayoutParams();
+        params1.width = getIntFromDimens(350*ratio_jz);
+        iv_2.setLayoutParams(params1);
+
+        //时值
+        TextView tv_3 = (TextView) layout.findViewById(R.id.tv_sz_score);
+        tv_3.setText((int)(100*ratio_sz) + "%");
+        ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
+        params2.width = getIntFromDimens(350*ratio_sz);
+        iv_3.setLayoutParams(params2);
+
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
+        scoreWindow = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 设置背景颜色
+        scoreWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
+        // TODO: 2016/5/17 设置可以获取焦点
+        scoreWindow.setFocusable(true);
+        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
+        scoreWindow.setOutsideTouchable(true);
+        // TODO：更新popupwindow的状态
+        scoreWindow.update();
+        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
+        scoreWindow.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
+
     }
 
     /**
