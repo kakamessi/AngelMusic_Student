@@ -106,9 +106,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    protected void login(){
+    protected void login(String classId){
 
-        String classId = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
+        //String classId = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
         LoginManager.login(this,classId, new LoginManager.IsLoginSucceed() {
             @Override
             public void isSucceed(StuInfo stuInfo) {

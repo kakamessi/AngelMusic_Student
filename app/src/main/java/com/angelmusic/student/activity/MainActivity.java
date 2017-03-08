@@ -302,7 +302,7 @@ public class MainActivity extends BaseActivity {
         } else if (ActionType.ACTION_LOGIN.equals(ac[0])) {
 
             //登录操作
-            login();
+            login(ac[1]);
 
         } else if (ActionType.ACTION_GET_CLASS.equals(ac[0])) {
 
