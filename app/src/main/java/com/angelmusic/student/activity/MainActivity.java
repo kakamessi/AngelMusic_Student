@@ -307,7 +307,7 @@ public class MainActivity extends BaseActivity {
         } else if (ActionType.ACTION_GET_CLASS.equals(ac[0])) {
 
             //保存班级id
-            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID, ac[1]);
+            //SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID, ac[1]);
 
         }
 

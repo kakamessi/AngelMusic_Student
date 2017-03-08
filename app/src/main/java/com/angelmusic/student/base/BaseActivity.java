@@ -114,6 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             public void isSucceed(StuInfo stuInfo) {
                 //保存学生id
                 SharedPreferencesUtil.setString(Constant.CACHE_STUDENT_ID,stuInfo.getDetail().getStuInfo().getId()+"");
+                SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID, stuInfo.getDetail().getStuInfo().getClassId() + "");
                 Toast.makeText(App.getApplication(),"登录成功",0).show();
             }
 
