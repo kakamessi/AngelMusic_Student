@@ -448,6 +448,11 @@ public class VideoActivity extends BaseActivity {
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
 
+            } else{
+
+                //处理画谱新逻辑
+
+
             }
 
         } else if (type == 3) {
