@@ -128,7 +128,8 @@ public class VideoActivity extends BaseActivity {
     private int music_num = 1;
     /* 当前课程id */
     private String course_id = "-1";
-    private String jiekeId = "-1";
+    private String lesson_id = "-1";
+    private String gendeng_id = "-1";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -307,12 +308,26 @@ public class VideoActivity extends BaseActivity {
 
             //判断是否投大屏，以及是否计算成绩
             boolean isDaPing = false;
+            boolean isDajiYue = false;
+            boolean isGenDeng = false;
+
             String[] playParams = ac[1].split("&");
+            String[] scoreStr = playParams[1].split("-");
+            String[] gendengStr = playParams[3].split("-");
+
             if("0".equals(playParams[0])){
                 isDaPing = true;
             }
-            if("1".equals(playParams[1])){
+            if("1".equals(scoreStr[0])){
+                lesson_id = scoreStr[1];
                 isScore = true;
+            }
+            if("1".equals(playParams[2])){
+                isDajiYue = true;
+            }
+            if("1".equals(gendengStr[0])){
+                gendeng_id = gendengStr[1];
+                isGenDeng = true;
             }
 
             if (isDaPing) {
@@ -325,23 +340,21 @@ public class VideoActivity extends BaseActivity {
 
                 Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
                 //学生端播放视频，会带有附加逻辑~~~~~~
-                String[] strA  = ac[2].split("&");
 
                 setLayoutStyle(3);
-                String path = cd.getFiles().get(ac[3]);
-                //播放视频
+
+                String path = cd.getFiles().get(ac[2]);
                 switchVedio(path);
 
-                //是否启动打击乐模式
-                if(strA[0].equals("节奏连连看")){
+                //打击乐
+                if(isDajiYue){
                     MusicNote.setPianoAction(this,MusicNote.open_djy);
-
                 }else{
                     MusicNote.setPianoAction(this,MusicNote.close_djy);
                 }
 
-                //是否跟灯显示
-                checkGZ2(strA);
+                //跟灯
+                checkGZ2(isGenDeng);
 
             }
 
@@ -419,48 +432,69 @@ public class VideoActivity extends BaseActivity {
 
     //-----------------------------------------------------------------判断是否启动跟奏亮灯
     private Thread gzThread = null;
-    private int checkGZ2(String[] strs) {
-
-        int result = -1;
-        if(course_id.equals("1") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
+    private void checkGZ2(boolean isGd) {
+        if(isGd){
             isPianoActive = true;
-            gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
-            result = 1;
+            if(course_id.equals("1") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
+            }else if(course_id.equals("1") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
+            }else if(course_id.equals("2") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
+            }else if(course_id.equals("2") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
+            }else if(course_id.equals("3") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
+            }
+
+            if(gzThread!=null){
+                gzThread.start();
+            }
         }
-
-        if(course_id.equals("1") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-            isPianoActive = true;
-            gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
-            result = 2;
-
-        }
-
-        if(course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
-            isPianoActive = true;
-            gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
-            result = 3;
-        }
-
-        if(course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-            isPianoActive = true;
-            gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
-
-            result = 4;
-        }
-
-        if(course_id.equals("3") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-            isPianoActive = true;
-            gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
-
-            result = 5;
-        }
-
-        if(gzThread!=null){
-            gzThread.start();
-        }
-
-        return result;
     }
+//
+//    private int checkGZ2(String[] strs) {
+//
+//        int result = -1;
+//        if(course_id.equals("1") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
+//            isPianoActive = true;
+//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
+//            result = 1;
+//        }
+//
+//        if(course_id.equals("1") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+//            isPianoActive = true;
+//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
+//            result = 2;
+//
+//        }
+//
+//        if(course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
+//            isPianoActive = true;
+//            gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
+//            result = 3;
+//        }
+//
+//        if(course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+//            isPianoActive = true;
+//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
+//
+//            result = 4;
+//        }
+//
+//        if(course_id.equals("3") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
+//            isPianoActive = true;
+//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
+//
+//            result = 5;
+//        }
+//
+//        if(gzThread!=null){
+//            gzThread.start();
+//        }
+//
+//        return result;
+//    }
 
     //-----------------------------------------------------------------判断是否启动跟奏亮灯
 
@@ -1102,8 +1136,8 @@ public class VideoActivity extends BaseActivity {
                         .addParam("yingaoScore", sd.getYingaoScore()+"")
                         .addParam("jiezouScore", sd.getJiezouScore()+"")
                         .addParam("shizhiScore", sd.getShizhiScore()+"")
-                        .addParam("lessonId", course_id)
-                        .addParam("jiekeId", jiekeId)
+                        .addParam("lessonId", lesson_id)
+                        .addParam("jiekeId", course_id)
                         .addParam("stuId", stuId)
                         .addParam("cid", cid)
                         .build(),
