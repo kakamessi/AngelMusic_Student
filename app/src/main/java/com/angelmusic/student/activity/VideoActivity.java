@@ -134,18 +134,22 @@ public class VideoActivity extends BaseActivity {
     private Handler pianoHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+
+            String str = (String) msg.obj;
             switch (msg.what) {
                 case 1:
-                    if(isPianoActive) {
 
-                        String str = (String) msg.obj;
-                        if(isScore) {
-                            notes.add(str);
-                        }
+                    if(isPianoActive) {
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
                         handlerNote(str);
                     }
+
+                    if(isScore) {
+                        notes.add(str);
+                    }
+
                     break;
+
                 case 2:
                     //提交成绩，弹出评分界面
                     break;
@@ -387,6 +391,7 @@ public class VideoActivity extends BaseActivity {
         //默认不统计成绩
         isScore = false;
         isPianoActive = false;
+        notes.clear();
 
         if(scoreWindow!=null){
             scoreWindow.dismiss();
