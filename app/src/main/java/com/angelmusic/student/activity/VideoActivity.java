@@ -412,24 +412,6 @@ public class VideoActivity extends BaseActivity {
     }
     //============================================================================通讯逻辑
 
-
-
-    //判断是否启动跟奏亮灯
-    private boolean checkGZ(String[] strs) {
-
-        boolean result = false;
-        if((course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1"))
-                || (course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))
-                || (course_id.equals("1")&& strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1"))
-                || (course_id.equals("1")&& strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))
-                || (course_id.equals("3")&& strs[0].equals("节奏连连看") && strs[1].equals("完整奏"))){
-
-            result = true;
-        }
-
-        return result;
-    }
-
     //-----------------------------------------------------------------判断是否启动跟奏亮灯
     private Thread gzThread = null;
     private void checkGZ2(boolean isGd) {
