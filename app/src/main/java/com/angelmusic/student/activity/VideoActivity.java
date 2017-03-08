@@ -112,6 +112,8 @@ public class VideoActivity extends BaseActivity {
     private boolean isMediaPlaying = false;
     private int swich = 0;
 
+    /* 弹出成绩弹窗 */
+    private PopupWindow scoreWindow = null;
     /*记录钢琴弹奏输出*/
     private ArrayList<String> notes = new ArrayList<String>();
     /*是否进行钢琴检测,  只有在真正弹奏环节，才启动钢琴处理逻辑*/
@@ -121,7 +123,8 @@ public class VideoActivity extends BaseActivity {
     /* 课程资源索引 */
     private int music_num = 1;
     /* 当前课程id */
-    private String course_id = "0";
+    private String course_id = "-1";
+    private String jiekeId = "-1";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -292,7 +295,7 @@ public class VideoActivity extends BaseActivity {
         String[] ac = str.split("\\|");
 
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
-            //视频状态
+            //-----------------------------------------------------------------------视频状态
 
             //判断是否投大屏，以及是否计算成绩
             boolean isDaPing = false;
@@ -335,7 +338,7 @@ public class VideoActivity extends BaseActivity {
             }
 
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
-            //画谱状态
+            //-----------------------------------------------------------------------画谱状态
 
             Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
 
@@ -381,6 +384,9 @@ public class VideoActivity extends BaseActivity {
         isScore = false;
         isPianoActive = false;
 
+        if(scoreWindow!=null){
+            scoreWindow.dismiss();
+        }
     }
     //============================================================================通讯逻辑
 
@@ -616,6 +622,13 @@ public class VideoActivity extends BaseActivity {
                 public void onCompletion(MediaPlayer mp) {
                     // 在播放完毕被回调
                     isMediaPlaying = false;
+
+                    //视频播放完毕，弹出成绩界面，并上传成绩
+                    if(isScore) {
+                        showScore();
+                        postAccount(VideoActivity.this);
+                    }
+
                 }
             });
 
@@ -686,7 +699,7 @@ public class VideoActivity extends BaseActivity {
 
     }
 
-    protected void dialog7() {
+    protected void showScore() {
 
         int starNum = 1;
         float ratio_yg = 0.1f;
@@ -695,19 +708,6 @@ public class VideoActivity extends BaseActivity {
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);
-
-        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
-        PopupWindow window = new PopupWindow(layout, 1221, 1134);
-        // TODO: 2016/5/17 设置背景颜色
-        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
-        // TODO: 2016/5/17 设置可以获取焦点
-        window.setFocusable(true);
-        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
-        window.setOutsideTouchable(true);
-        // TODO：更新popupwindow的状态
-        window.update();
-        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
-        window.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
         //星星
         ImageView ivBG = (ImageView) layout.findViewById(R.id.imageView);
@@ -748,6 +748,19 @@ public class VideoActivity extends BaseActivity {
         ViewGroup.LayoutParams params2 = iv_3.getLayoutParams();
         params2.width = getIntFromDimens(350*ratio_sz);
         iv_3.setLayoutParams(params2);
+
+        // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度 1221, 1134  733  680
+        scoreWindow = new PopupWindow(layout, 1221, 1134);
+        // TODO: 2016/5/17 设置背景颜色
+        scoreWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
+        // TODO: 2016/5/17 设置可以获取焦点
+        scoreWindow.setFocusable(true);
+        // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
+        scoreWindow.setOutsideTouchable(true);
+        // TODO：更新popupwindow的状态
+        scoreWindow.update();
+        // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
+        scoreWindow.showAtLocation(findViewById(R.id.activity_video), Gravity.CENTER, 0, 0);
 
     }
 
@@ -1063,8 +1076,8 @@ public class VideoActivity extends BaseActivity {
      */
     public void postAccount(final Context mContext) {
 
-        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"");
-        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"");
+        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"-1");
+        String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"-1");
 
         String machineCode = Utils.getDeviceId(mContext);
         OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
@@ -1078,6 +1091,7 @@ public class VideoActivity extends BaseActivity {
                         .addParam("jiezouScore", "80")
                         .addParam("shizhiScore", "80")
                         .addParam("lessonId", course_id)
+                        .addParam("jiekeId", jiekeId)
                         .addParam("stuId", stuId)
                         .addParam("cid", cid)
                         .build(),
