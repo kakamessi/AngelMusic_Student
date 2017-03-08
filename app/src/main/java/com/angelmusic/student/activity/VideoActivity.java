@@ -116,6 +116,8 @@ public class VideoActivity extends BaseActivity {
     private ArrayList<String> notes = new ArrayList<String>();
     /*是否进行钢琴检测,  只有在真正弹奏环节，才启动钢琴处理逻辑*/
     private boolean isPianoActive = false;
+    /*是否开启成绩计算*/
+    private boolean isScore = false;
     /* 课程资源索引 */
     private int music_num = 1;
     /* 当前课程id */
@@ -128,8 +130,11 @@ public class VideoActivity extends BaseActivity {
             switch (msg.what) {
                 case 1:
                     if(isPianoActive) {
+
                         String str = (String) msg.obj;
-                        //notes.add(str);
+                        if(isScore) {
+                            notes.add(str);
+                        }
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
                         handlerNote(str);
                     }
@@ -267,7 +272,17 @@ public class VideoActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
-    //============================================================================通讯逻辑
+    /**
+     * //============================================================================通讯逻辑
+     *
+     *  1，播放视频
+     *
+     *  2，画谱界面
+     *
+     *  3，暂停or播放
+     *
+     * @param msg
+     */
     @Override
     protected void handleMsg(Message msg) {
 
@@ -276,17 +291,26 @@ public class VideoActivity extends BaseActivity {
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
 
-        isPianoActive = false;
-        //播放，切换视频
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
+            //视频状态
 
-            if (ac[1].equals("0")) {
+            //判断是否投大屏，以及是否计算成绩
+            boolean isDaPing = false;
+            String[] playParams = ac[1].split("&");
+            if("0".equals(playParams[0])){
+                isDaPing = true;
+            }
+            if("1".equals(playParams[1])){
+                isScore = true;
+            }
+
+            if (isDaPing) {
                 Log.e("kaka","--AV handleMsg--"+  "qing kan da ping mu");
                 //请看大屏幕
                 stop();
                 setLayoutStyle(1);
 
-            } else if(ac[1].equals("1")){
+            } else {
 
                 Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
                 //学生端播放视频，会带有附加逻辑~~~~~~
@@ -310,8 +334,20 @@ public class VideoActivity extends BaseActivity {
 
             }
 
-            //暂停继续播放视频
-        } else if (ActionType.ACTION_PAUSE_RESUME.equals(ac[0])) {
+        } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
+            //画谱状态
+
+            Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
+
+            isPianoActive = true;
+            stop();
+            //小学2 培训 幼儿园
+            music_num = Integer.parseInt(course_id);
+
+            setLayoutStyle(2);
+
+        }else if (ActionType.ACTION_PAUSE_RESUME.equals(ac[0])) {
+            //暂停or继续
 
             if (ac[1].equals("2")) {
                 Log.e("kaka","--AV handleMsg--"+  "xia ke ");
@@ -324,31 +360,26 @@ public class VideoActivity extends BaseActivity {
             }
 
 
-        } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
-
-            Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
-
-            isPianoActive = true;
-            stop();
-            //小学2 培训 幼儿园
-            music_num = Integer.parseInt(course_id);
-
-            setLayoutStyle(2);
-
         }
 
     }
 
+    /* 各种状态重置 */
     private void resetStatus() {
 
         //熄灭所有亮灯
         MusicNote.setPianoAction(this,MusicNote.close_djy);
         MusicNote.closeAllLight(this);
+
         //关闭之前跟灯
         if(gzThread!=null){
             gzThread.interrupt();
             gzThread = null;
         }
+
+        //默认不统计成绩
+        isScore = false;
+        isPianoActive = false;
 
     }
     //============================================================================通讯逻辑
@@ -1088,7 +1119,7 @@ public class VideoActivity extends BaseActivity {
      *
      */
     private ArrayList<ImageView> noteList = null;
-    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor，, int keyIndex, int keyColor){
+    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor, int keyIndex, int keyColor){
 
         getNotes(vg);
 
