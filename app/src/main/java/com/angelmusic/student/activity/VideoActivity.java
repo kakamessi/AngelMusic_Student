@@ -1014,10 +1014,10 @@ public class VideoActivity extends BaseActivity {
 
     protected void showScore() {
 
-        int starNum = 1;
-        float ratio_yg = 0.1f;
-        float ratio_jz = 0.2f;
-        float ratio_sz = 0.3f;
+        int starNum = sd.getScore();
+        float ratio_yg = sd.getYingaoScore();
+        float ratio_jz = sd.getJiezouScore();
+        float ratio_sz = sd.getShizhiScore();
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.dialog_score, null);

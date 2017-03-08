@@ -14,7 +14,10 @@ public class MusicUtils {
 
         ScoreData sd = new ScoreData();
 
-
+        sd.setScore(3);
+        sd.setJiezouScore(1);
+        sd.setShizhiScore(1);
+        sd.setYingaoScore(1);
 
         return sd;
 

@@ -7,9 +7,9 @@ package com.angelmusic.student.infobean;
 public class ScoreData {
 
     private int score = 3;
-    private int yingaoScore = 100;
-    private int jiezouScore = 100;
-    private int shizhiScore = 100;
+    private float yingaoScore = 1;
+    private float jiezouScore = 1;
+    private float shizhiScore = 1;
 
     public int getScore() {
         return score;
@@ -19,28 +19,27 @@ public class ScoreData {
         this.score = score;
     }
 
-    public int getYingaoScore() {
+    public float getYingaoScore() {
         return yingaoScore;
     }
 
-    public void setYingaoScore(int yingaoScore) {
+    public void setYingaoScore(float yingaoScore) {
         this.yingaoScore = yingaoScore;
     }
 
-    public int getJiezouScore() {
+    public float getJiezouScore() {
         return jiezouScore;
     }
 
-    public void setJiezouScore(int jiezouScore) {
+    public void setJiezouScore(float jiezouScore) {
         this.jiezouScore = jiezouScore;
     }
 
-    public int getShizhiScore() {
+    public float getShizhiScore() {
         return shizhiScore;
     }
 
-    public void setShizhiScore(int shizhiScore) {
+    public void setShizhiScore(float shizhiScore) {
         this.shizhiScore = shizhiScore;
     }
-
 }
