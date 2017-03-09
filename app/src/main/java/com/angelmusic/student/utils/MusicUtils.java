@@ -17,7 +17,7 @@ public class MusicUtils {
 
     public static ScoreData getScore(ArrayList<String> notes,String course_id,String gendeng_id){
 
-        String[] noteIndex = (String[]) notes.toArray();
+        String[] noteIndex = (String[])notes.toArray(new String[0]);
         int[] correctIndexs = null;
 
         int[] a = new int[0];
@@ -43,6 +43,9 @@ public class MusicUtils {
             }
         }
         correctIndexs = a;
+        if(correctIndexs.length == 0){
+            return null;
+        }
 
         int correctNoteCount = 0;
         int totalCount = correctIndexs.length;

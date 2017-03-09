@@ -148,7 +148,13 @@ public class VideoActivity extends BaseActivity {
                     }
 
                     if(isScore) {
-                        notes.add(str);
+                        if (str.endsWith("0 ")) {
+                            //获取钢琴弹奏音符
+                            String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+                            int key = Integer.parseInt(myDatas[2], 16) - 21;
+                            notes.add(key+"");
+                        }
+
                     }
 
                     break;
@@ -317,18 +323,19 @@ public class VideoActivity extends BaseActivity {
             String[] scoreStr = playParams[1].split("-");
             String[] gendengStr = playParams[3].split("-");
 
+            lesson_id = scoreStr[1];
+            gendeng_id = gendengStr[1];
+
             if("0".equals(playParams[0])){
                 isDaPing = true;
             }
             if("1".equals(scoreStr[0])){
-                lesson_id = scoreStr[1];
                 isScore = true;
             }
             if("1".equals(playParams[2])){
                 isDajiYue = true;
             }
             if("1".equals(gendengStr[0])){
-                gendeng_id = gendengStr[1];
                 isGenDeng = true;
             }
 
@@ -653,9 +660,11 @@ public class VideoActivity extends BaseActivity {
                     //视频播放完毕，弹出成绩界面，并上传成绩
                     if(isScore) {
 
-                        sd = MusicUtils.getScore(notes,course_id,gendeng_id);
-                        showScore();
-                        postAccount(VideoActivity.this);
+                        sd = MusicUtils.getScore(notes,course_id,(Integer.parseInt(gendeng_id)-1)+"");
+                        if(sd!=null) {
+                            showScore();
+                            postAccount(VideoActivity.this);
+                        }
 
                     }
 
