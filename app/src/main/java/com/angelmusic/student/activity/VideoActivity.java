@@ -128,7 +128,9 @@ public class VideoActivity extends BaseActivity {
     private int music_num = 1;
     /* 当前课程id */
     private String course_id = "-1";
+    /* 上传成绩参数 */
     private String lesson_id = "-1";
+    /* 选择跟灯资源 */
     private String gendeng_id = "-1";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/

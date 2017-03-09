@@ -6,7 +6,8 @@ package com.angelmusic.student.infobean;
 
 public class ScoreData {
 
-    private int score = 3;
+    /* 最高一百分 */
+    private int score = 100;
     private float yingaoScore = 1;
     private float jiezouScore = 1;
     private float shizhiScore = 1;
