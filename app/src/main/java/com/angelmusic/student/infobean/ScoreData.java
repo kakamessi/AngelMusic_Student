@@ -7,6 +7,7 @@ package com.angelmusic.student.infobean;
 public class ScoreData {
 
     /* 最高一百分 */
+    private int starNum = 3;
     private int score = 100;
     private float yingaoScore = 1;
     private float jiezouScore = 1;
@@ -42,5 +43,23 @@ public class ScoreData {
 
     public void setShizhiScore(float shizhiScore) {
         this.shizhiScore = shizhiScore;
+    }
+
+    public int getStarNum() {
+
+        if(score>0 && score<=30){
+            starNum = 1;
+        }else if(score>30 && score<=70){
+            starNum = 2;
+        }else if(score>70){
+            starNum = 3;
+        }else if(score==0){
+            starNum = 0;
+        }
+        return starNum;
+    }
+
+    public void setStarNum(int starNum) {
+        this.starNum = starNum;
     }
 }
