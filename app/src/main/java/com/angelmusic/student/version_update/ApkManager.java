@@ -72,9 +72,17 @@ public class ApkManager {
                         if (info.isSuccessful()) {
                             apkVersionInfo = GsonUtil.jsonToObject(jsonResult, ApkVersionInfo.class);//Gson解析
                             if (apkVersionInfo.getCode() == 200) {
-                                if (!apkVersionInfo.getDetail().getCode().equals(ApkUtil.getVersionCode(mContext))) {
+
+                                int serverCode = Integer.parseInt(apkVersionInfo.getDetail().getCode());
+                                int versionCode = Integer.parseInt(ApkUtil.getVersionCode(mContext));
+                                if(serverCode>versionCode){
                                     showUpdateDialog(apkVersionInfo);
                                 }
+
+//                                if (!apkVersionInfo.getDetail().getCode().equals(ApkUtil.getVersionCode(mContext))) {
+//                                    showUpdateDialog(apkVersionInfo);
+//                                }
+
                             } else {
                                 Toast.makeText(mContext, apkVersionInfo.getDescription(), Toast.LENGTH_LONG).show();
                             }
