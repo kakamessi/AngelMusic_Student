@@ -18,8 +18,8 @@ public class Constant {
     public static final String CACHE_STUDENT_ID = "CACHE_STUDENT_ID";
 
     //跟灯类型
-    public static final String RHYTHM_DEMONSTRATE = "6";           //节奏连连看 示范奏
-    public static final String RHYTHM_COMPLETE = "5";              //节奏连连看 完整奏
+    public static final String RHYTHM_DEMONSTRATE = "5";           //节奏连连看 示范奏
+    public static final String RHYTHM_COMPLETE = "6";              //节奏连连看 完整奏
     public static final String PLAY_TOGHTER_DEMONSTRATE = "11";    //一起弹奏吧 示范奏
     public static final String PLAY_TOGHTER_FOLLOW_ONE = "12";     //一起弹奏吧 跟奏1
     public static final String PLAY_TOGHTER_FOLLOW_TWO = "13";     //一起弹奏吧 跟奏2
