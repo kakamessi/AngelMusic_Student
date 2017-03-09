@@ -15,11 +15,12 @@ import java.util.Random;
 
 public class MusicUtils {
 
-    public static ScoreData getScore(ArrayList<String> noteIndex,String course_id,String gendeng_id){
+    public static ScoreData getScore(ArrayList<String> notes,String course_id,String gendeng_id){
 
-        List<Integer> correctIndexs = null;
-        Integer[] a = new Integer[0];
+        String[] noteIndex = (String[]) notes.toArray();
+        int[] correctIndexs = null;
 
+        int[] a = new int[0];
         if(course_id.equals("1") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay1.length;i++){
                   a = concat(a, MusicNote.index1);
@@ -41,15 +42,15 @@ public class MusicUtils {
                 a = concat(a, MusicNote.index5);
             }
         }
-        correctIndexs = Arrays.asList(a);
+        correctIndexs = a;
 
         int correctNoteCount = 0;
-        int totalCount = correctIndexs.size();
+        int totalCount = correctIndexs.length;
         ScoreData sd = new ScoreData();
 
         /* 循环比对 */
-        for(int i=0; i<noteIndex.size(); i++){
-            if(noteIndex.get(i).equals(correctIndexs.get(i)+"")){
+        for(int i=0; i<noteIndex.length; i++){
+            if(noteIndex[i].equals(correctIndexs[i]+"")){
                 correctNoteCount++;
             }
         }
