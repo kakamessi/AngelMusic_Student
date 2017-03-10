@@ -59,6 +59,8 @@ public class MusicUtils {
         }
 
         Random random = new Random();
+        if(correctNoteCount==0)
+            correctNoteCount = 1;
         sd.setScore((correctNoteCount/totalCount)*100);
         sd.setJiezouScore(0.5f + random.nextFloat()/2);
         sd.setShizhiScore(0.5f + random.nextFloat()/2);
