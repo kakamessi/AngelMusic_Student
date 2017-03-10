@@ -306,13 +306,12 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void handleMsg(Message msg) {
 
-        resetStatus();
-
         String str = msg.obj.toString();
         String[] ac = str.split("\\|");
 
         if (ActionType.ACTION_PLAY.equals(ac[0])) {
             //-----------------------------------------------------------------------视频状态
+            resetStatus();
 
             //判断是否投大屏，以及是否计算成绩
             boolean isDaPing = false;
@@ -369,6 +368,8 @@ public class VideoActivity extends BaseActivity {
 
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
             //-----------------------------------------------------------------------画谱状态
+            resetStatus();
+
 
             Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
 
@@ -392,6 +393,10 @@ public class VideoActivity extends BaseActivity {
                 pause();
             }
 
+
+        }else if(ActionType.ACTION_POST_SCORE.equals(ac[0])){
+            //重新上传成绩
+            postAccount(this);
 
         }
 
@@ -1114,6 +1119,10 @@ public class VideoActivity extends BaseActivity {
      * @param mContext
      */
     public void postAccount(final Context mContext) {
+
+        if(sd==null){
+            return;
+        }
 
         String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"-1");
         String cid = SharedPreferencesUtil.getString(Constant.CACHE_CLASS_ID,"-1");

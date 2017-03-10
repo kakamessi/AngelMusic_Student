@@ -25,6 +25,8 @@ public class ActionType {
 
     public static final String ACTION_GET_CLASS = "8";
 
+    public static final String ACTION_POST_SCORE = "9";
+
     public static String getMsg(){
 
         String result = "";

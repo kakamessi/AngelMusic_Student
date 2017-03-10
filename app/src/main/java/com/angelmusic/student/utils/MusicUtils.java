@@ -43,21 +43,26 @@ public class MusicUtils {
             }
         }
         correctIndexs = a;
+
+        ScoreData sd = new ScoreData();
+
         if(correctIndexs.length == 0){
-            return null;
+            //没有找到评分资源  按零分计算
+            sd.setScore(0);
+            sd.setJiezouScore(0);
+            sd.setShizhiScore(0);
+            sd.setYingaoScore(0);
+            return sd;
         }
 
         int correctNoteCount = 0;
         int totalCount = correctIndexs.length;
-        ScoreData sd = new ScoreData();
-
         /* 循环比对 */
         for(int i=0; i<noteIndex.length; i++){
             if(noteIndex[i].equals(correctIndexs[i]+"")){
                 correctNoteCount++;
             }
         }
-
         Random random = new Random();
         if(correctNoteCount==0)
             correctNoteCount = 1;
