@@ -101,6 +101,8 @@ public class VideoActivity extends BaseActivity {
     LinearLayout whiteKeyLl4;
     @BindView(R.id.yuepu_group_ll)
     LinearLayout yuepuGroupLl;
+    @BindView(R.id.ll_yuepu)
+    LinearLayout llYuepu;
 
     //定时任务
     private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
@@ -252,7 +254,7 @@ public class VideoActivity extends BaseActivity {
 
     private void initView() {
 
-        yuepuGroupLl.setVisibility(View.INVISIBLE);
+        //yuepuGroupLl.setVisibility(View.INVISIBLE);
 
         blackTv.setText("准备中");
         blackTv.setVisibility(View.VISIBLE);
@@ -1160,6 +1162,18 @@ public class VideoActivity extends BaseActivity {
 //    setLayoutStyle(2);
 //    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
 //    setNoteAndKey(yuepuGroupLl,0,0);
+
+    private void setNewLayout(boolean isNew){
+
+        if(isNew) {
+            yuepuGroupLl.setVisibility(View.GONE);
+            llYuepu.setVisibility(View.VISIBLE);
+        }else{
+            yuepuGroupLl.setVisibility(View.VISIBLE);
+            llYuepu.setVisibility(View.GONE);
+        }
+
+    }
 
     /**
      * 替换view
