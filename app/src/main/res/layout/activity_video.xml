@@ -28,7 +28,7 @@
         android:id="@+id/ll_yuepu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:orientation="vertical">
 
     </LinearLayout>
@@ -37,6 +37,7 @@
         android:id="@+id/yuepu_group_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <include

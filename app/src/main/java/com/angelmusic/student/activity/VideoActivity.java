@@ -254,8 +254,6 @@ public class VideoActivity extends BaseActivity {
 
     private void initView() {
 
-        //yuepuGroupLl.setVisibility(View.INVISIBLE);
-
         blackTv.setText("准备中");
         blackTv.setVisibility(View.VISIBLE);
 
@@ -502,13 +500,15 @@ public class VideoActivity extends BaseActivity {
             //请看大屏幕
             blackTv.setVisibility(View.VISIBLE);
             blackTv.setText("请看大屏幕");
-            yuepuGroupLl.setVisibility(View.INVISIBLE);
+            //yuepuGroupLl.setVisibility(View.INVISIBLE);
+            setPuzi(0);
 
         } else if (type == 2) {
             //乐谱跟奏
 
             blackTv.setVisibility(View.INVISIBLE);
-            yuepuGroupLl.setVisibility(View.VISIBLE);
+            //yuepuGroupLl.setVisibility(View.VISIBLE);
+            setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
             if (music_num == 1) {
@@ -527,16 +527,16 @@ public class VideoActivity extends BaseActivity {
                 MusicNote.openLight(VideoActivity.this,39,true);
 
             } else{
-
                 //处理画谱新逻辑
-
+                setPuzi(2);
 
             }
 
         } else if (type == 3) {
             //播放视频
             blackTv.setVisibility(View.INVISIBLE);
-            yuepuGroupLl.setVisibility(View.INVISIBLE);
+            //yuepuGroupLl.setVisibility(View.INVISIBLE);
+            setPuzi(0);
 
         }
 
@@ -1163,16 +1163,17 @@ public class VideoActivity extends BaseActivity {
 //    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
 //    setNoteAndKey(yuepuGroupLl,0,0);
 
-    private void setNewLayout(boolean isNew){
-
-        if(isNew) {
+    private void setPuzi(int type){
+        if(type==0) {
             yuepuGroupLl.setVisibility(View.GONE);
-            llYuepu.setVisibility(View.VISIBLE);
-        }else{
+            llYuepu.setVisibility(View.GONE);
+        }else if(type==1){
             yuepuGroupLl.setVisibility(View.VISIBLE);
             llYuepu.setVisibility(View.GONE);
+        }else if(type==2){
+            yuepuGroupLl.setVisibility(View.GONE);
+            llYuepu.setVisibility(View.VISIBLE);
         }
-
     }
 
     /**
