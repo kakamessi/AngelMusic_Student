@@ -198,7 +198,7 @@ public class VideoActivity extends BaseActivity {
             }else{
 
                 //由于UI实现逻辑变更，需要重新处理新课程曲谱
-
+                setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
             }
 
@@ -529,6 +529,7 @@ public class VideoActivity extends BaseActivity {
             } else{
                 //处理画谱新逻辑
                 setPuzi(2);
+                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
 
             }
 
@@ -1163,6 +1164,10 @@ public class VideoActivity extends BaseActivity {
 //    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
 //    setNoteAndKey(yuepuGroupLl,0,0);
 
+    /**
+     * UI切换
+     * @param type
+     */
     private void setPuzi(int type){
         if(type==0) {
             yuepuGroupLl.setVisibility(View.GONE);
