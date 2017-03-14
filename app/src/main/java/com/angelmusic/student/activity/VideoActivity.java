@@ -495,7 +495,7 @@ public class VideoActivity extends BaseActivity {
 //        return result;
 //    }
 
-    //-----------------------------------------------------------------判断是否启动跟奏亮灯
+    //-----------------------------------------------------------------初始化哪个模式界面
 
     private void setLayoutStyle(int type) {
 

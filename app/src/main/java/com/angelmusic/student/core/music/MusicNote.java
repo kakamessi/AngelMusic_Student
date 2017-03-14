@@ -89,6 +89,10 @@ public class MusicNote {
      */
     public static ArrayList<NoteInfo> getNoteList(int courseId){
 
+        if(courseId-1 > note_1ist.length -1){
+            return null;
+        }
+
         ArrayList<NoteInfo> result = note_1ist[courseId-1];
 
         return result;
