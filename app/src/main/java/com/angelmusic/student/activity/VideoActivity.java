@@ -172,8 +172,11 @@ public class VideoActivity extends BaseActivity {
     private int index_new = 0;
     private void handlerNote(String str){
 
-        //确认选谱  1培训 2小学 3幼儿园
-        ArrayList<NoteInfo> al = MusicNote.note_1ist[music_num-1];
+        //课程选谱
+        ArrayList<NoteInfo> al = MusicNote.getNoteList(music_num);
+        if(al==null){
+            return;
+        }
 
         //获取钢琴弹奏音符
         String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");

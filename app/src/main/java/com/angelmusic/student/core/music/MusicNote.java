@@ -6,6 +6,8 @@ import com.angelmusic.stu.usb.UsbDeviceInfo;
 
 import java.util.ArrayList;
 
+import static android.R.attr.id;
+
 /**
  * Created by DELL on 2017/2/1
  */
@@ -28,7 +30,8 @@ public class MusicNote {
     public static final ArrayList<NoteInfo> note_1 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_2 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_3 = new ArrayList<>();
-    /*乐谱合集*/
+
+    /*--------------------------------------------------------------------------------------------------------乐谱合集*/
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
 
     static{
@@ -76,6 +79,19 @@ public class MusicNote {
         note_3.add(ni5);note_3.add(ni6);note_3.add(ni7);note_3.add(ni8);
         note_3.add(ni9);note_3.add(ni10);note_3.add(ni11);note_3.add(ni12);
 
+
+    }
+
+    /**
+     * 根据课程id 获取对应的 乐谱合集
+     * //确认选谱  1培训 2小学 3幼儿园
+     * @return
+     */
+    public static ArrayList<NoteInfo> getNoteList(int courseId){
+
+        ArrayList<NoteInfo> result = note_1ist[courseId-1];
+
+        return result;
 
     }
 
