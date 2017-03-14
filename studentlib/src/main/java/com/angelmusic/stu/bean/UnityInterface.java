@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
@@ -16,11 +14,6 @@ import com.angelmusic.stu.utils.SendDataUtil;
 import com.angelmusic.stu.utils.Util;
 import com.unity3d.player.UnityPlayerActivity;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class UnityInterface extends UnityPlayerActivity {
 	private final String TAG = "UnityInterface";
@@ -31,6 +24,7 @@ public class UnityInterface extends UnityPlayerActivity {
 	public static String cameraName;
 	// -------------------------------------------------------------------------------
 	protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
+	private String usbPath = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +37,14 @@ public class UnityInterface extends UnityPlayerActivity {
 		filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
 		filter.addAction(ACTION_USB_PERMISSION);
 		registerReceiver(mUsbReceiver, filter);
+
+		IntentFilter filter1 = new IntentFilter();
+		filter1.addAction(Intent.ACTION_MEDIA_EJECT);
+		filter1.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
+		filter1.addAction(Intent.ACTION_MEDIA_MOUNTED);
+		filter1.addDataScheme("file");
+		registerReceiver(mUsbReceiver, filter1);
+
 		updateDevice();
 		connectDevice();
 	}
@@ -117,38 +119,7 @@ public class UnityInterface extends UnityPlayerActivity {
 	//获取usb设备路径
 	public String getUsbPath(){
 
-		String dir = new String();
-		try {
-			Runtime runtime = Runtime.getRuntime();
-			Process proc = runtime.exec("mount");
-			InputStream is = proc.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-			String line;
-			BufferedReader br = new BufferedReader(isr);
-			while ((line = br.readLine()) != null) {
-				if (line.contains("secure")) continue;
-				if (line.contains("asec")) continue;
-
-				if (line.contains("fat")) {
-					String columns[] = line.split(" ");
-					if (columns != null && columns.length > 1) {
-						dir = dir.concat(columns[1] + "\n");
-					}
-				} else if (line.contains("fuse")) {
-					String columns[] = line.split(" ");
-					if (columns != null && columns.length > 1) {
-						dir = dir.concat(columns[1] + "\n");
-					}
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return dir;
+		return usbPath;
 
 	}
 
@@ -210,7 +181,14 @@ public class UnityInterface extends UnityPlayerActivity {
 				}
 				status = isconnect ? "link-success" : "link-fail";
 				break;
+
+			case Intent.ACTION_MEDIA_MOUNTED:
+				String path = intent.getDataString();
+				usbPath = path.split("file://")[1];
+				break;
+
 			}
+
 			if (status != null) {
 				// 发送状态到unity
 				SendDataUtil.sendDataToUnity(UnityInterface.cameraName,

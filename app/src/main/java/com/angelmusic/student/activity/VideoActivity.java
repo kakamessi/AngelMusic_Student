@@ -198,7 +198,7 @@ public class VideoActivity extends BaseActivity {
             }else{
 
                 //由于UI实现逻辑变更，需要重新处理新课程曲谱
-                setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+                //setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
             }
 
@@ -528,8 +528,8 @@ public class VideoActivity extends BaseActivity {
 
             } else{
                 //处理画谱新逻辑
-                setPuzi(2);
-                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+//                setPuzi(2);
+//                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
 
             }
 
@@ -1223,7 +1223,7 @@ public class VideoActivity extends BaseActivity {
             if(vg.getChildAt(i) instanceof ViewGroup){
                 getNotes((ViewGroup) vg.getChildAt(i));
             }else{
-                if(!TextUtils.isEmpty(vg.getChildAt(i).getTag().toString())){
+                if(vg.getChildAt(i).getTag()!=null && !TextUtils.isEmpty(vg.getChildAt(i).getTag().toString())){
                     noteList.add((ImageView) vg.getChildAt(i));
                 }
             }
