@@ -30,4 +30,9 @@ public class Constant {
     public static final String REVIEW_PLAY_COMPLETE_ONE = "24";    //回课       完整奏1
     public static final String REVIEW_PLAY_COMPLETE_TWO = "25";    //回课       完整奏2
 
+    //课程id类型
+    public static final int COURSE_1 = 1;
+    public static final int COURSE_2 = 669;
+    public static final int COURSE_3 = 3;
+
 }

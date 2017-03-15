@@ -3,6 +3,7 @@ package com.angelmusic.student.core.music;
 import android.content.Context;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;
 
@@ -89,11 +90,19 @@ public class MusicNote {
      */
     public static ArrayList<NoteInfo> getNoteList(int courseId){
 
-        if(courseId-1 > note_1ist.length -1){
-            return null;
+        ArrayList<NoteInfo> result = null;
+        switch(courseId)
+        {
+            case Constant.COURSE_1:
+                result = note_1ist[0];
+                break;
+            case Constant.COURSE_2:
+                result = note_1ist[1];
+                break;
+            case Constant.COURSE_3:
+                result = note_1ist[2];
+                break;
         }
-
-        ArrayList<NoteInfo> result = note_1ist[courseId-1];
 
         return result;
 

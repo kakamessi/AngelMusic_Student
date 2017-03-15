@@ -188,15 +188,15 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //处理显示正确音符和钢琴键逻辑
-            if (music_num == 1) {
+            if (music_num == Constant.COURSE_1) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-            } else if (music_num == 2) {
+            } else if (music_num == Constant.COURSE_2) {
                 if (nextInfo.getNoteIndex() < 13) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 } else {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
-            } else if (music_num == 3) {
+            } else if (music_num == Constant.COURSE_3) {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }else{
 
@@ -514,17 +514,17 @@ public class VideoActivity extends BaseActivity {
             setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (music_num == 1) {
+            if (music_num == Constant.COURSE_1) {
                 //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
 
-            } else if (music_num == 2) {
+            } else if (music_num == Constant.COURSE_2) {
                 //小学
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
                 MusicNote.openLight(VideoActivity.this,39,false);
 
-            } else if (music_num == 3) {
+            } else if (music_num == Constant.COURSE_3) {
                 //幼儿园
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
