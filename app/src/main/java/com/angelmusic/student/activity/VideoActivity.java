@@ -126,10 +126,8 @@ public class VideoActivity extends BaseActivity {
     private boolean isPianoActive = false;
     /*是否开启成绩计算*/
     private boolean isScore = false;
-    /* 课程资源索引 */
-    private int music_num = 1;
     /* 当前课程id */
-    private String course_id = "-1";
+    private int course_id = -1;
     /* 上传成绩参数 */
     private String lesson_id = "-1";
     /* 选择跟灯资源 */
@@ -173,7 +171,7 @@ public class VideoActivity extends BaseActivity {
     private void handlerNote(String str){
 
         //课程选谱
-        ArrayList<NoteInfo> al = MusicNote.getNoteList(music_num);
+        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id);
         if(al==null){
             return;
         }
@@ -188,15 +186,15 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //处理显示正确音符和钢琴键逻辑
-            if (music_num == Constant.COURSE_1) {
+            if (course_id == Constant.COURSE_1) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-            } else if (music_num == Constant.COURSE_2) {
+            } else if (course_id == Constant.COURSE_2) {
                 if (nextInfo.getNoteIndex() < 13) {
                     setViewStyle(2, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 } else {
                     setViewStyle(3, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
                 }
-            } else if (music_num == Constant.COURSE_3) {
+            } else if (course_id == Constant.COURSE_3) {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }else{
 
@@ -246,7 +244,7 @@ public class VideoActivity extends BaseActivity {
     private void initData() {
 
         cd = App.getApplication().getCd();
-        course_id = cd.getCourse_Id();
+        course_id = Integer.parseInt(cd.getCourse_Id());
 
         //初始化钢琴
         initPiano();
@@ -379,7 +377,6 @@ public class VideoActivity extends BaseActivity {
             isPianoActive = true;
             stop();
             //小学2 培训 幼儿园
-            music_num = Integer.parseInt(course_id);
 
             setLayoutStyle(2);
 
@@ -434,15 +431,15 @@ public class VideoActivity extends BaseActivity {
     private void checkGZ2(boolean isGd) {
         if(isGd){
             isPianoActive = true;
-            if(course_id.equals("1") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            if(course_id==Constant.COURSE_1 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
-            }else if(course_id.equals("1") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_1 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
-            }else if(course_id.equals("2") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_2 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
-            }else if(course_id.equals("2") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_2 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
-            }else if(course_id.equals("3") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_3 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
             }
 
@@ -514,17 +511,17 @@ public class VideoActivity extends BaseActivity {
             setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (music_num == Constant.COURSE_1) {
+            if (course_id == Constant.COURSE_1) {
                 //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
 
-            } else if (music_num == Constant.COURSE_2) {
+            } else if (course_id == Constant.COURSE_2) {
                 //小学
                 setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
                 MusicNote.openLight(VideoActivity.this,39,false);
 
-            } else if (music_num == Constant.COURSE_3) {
+            } else if (course_id == Constant.COURSE_3) {
                 //幼儿园
                 setViewStyle(4, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
@@ -1145,7 +1142,7 @@ public class VideoActivity extends BaseActivity {
                         .addParam("jiezouScore", sd.getJiezouScore()+"")
                         .addParam("shizhiScore", sd.getShizhiScore()+"")
                         .addParam("lessonId", lesson_id)
-                        .addParam("jiekeId", course_id)
+                        .addParam("jiekeId", course_id+"")
                         .addParam("stuId", stuId)
                         .addParam("cid", cid)
                         .build(),
@@ -1162,7 +1159,6 @@ public class VideoActivity extends BaseActivity {
 
     //--------------------------------------------设置音符，琴键----------------------------------------------------------
 
-//    music_num = 2;
 //    setLayoutStyle(2);
 //    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
 //    setNoteAndKey(yuepuGroupLl,0,0);

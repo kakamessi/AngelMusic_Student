@@ -15,29 +15,29 @@ import java.util.Random;
 
 public class MusicUtils {
 
-    public static ScoreData getScore(ArrayList<String> notes,String course_id,String gendeng_id){
+    public static ScoreData getScore(ArrayList<String> notes,int course_id,String gendeng_id){
 
         String[] noteIndex = (String[])notes.toArray(new String[0]);
         int[] correctIndexs = null;
 
         int[] a = new int[0];
-        if(course_id.equals("1") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+        if(course_id==Constant.COURSE_1 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay1.length;i++){
                   a = concat(a, MusicNote.index1);
             }
-        }else if(course_id.equals("1") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+        }else if(course_id==Constant.COURSE_1 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay2.length;i++){
                 a = concat(a, MusicNote.index2);
             }
-        }else if(course_id.equals("2") && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+        }else if(course_id==Constant.COURSE_2 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay3.length;i++){
                 a = concat(a, MusicNote.index3);
             }
-        }else if(course_id.equals("2") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+        }else if(course_id==Constant.COURSE_2 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay4.length;i++){
                 a = concat(a, MusicNote.index4);
             }
-        }else if(course_id.equals("3") && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+        }else if(course_id==Constant.COURSE_3 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
             for(int i= 0; i<MusicNote.delay5.length;i++){
                 a = concat(a, MusicNote.index5);
             }
