@@ -7,8 +7,6 @@ import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;
 
-import static android.R.attr.id;
-
 /**
  * Created by DELL on 2017/2/1
  */
