@@ -233,6 +233,8 @@ public class VideoActivity extends BaseActivity {
         resetStatus();
         // 关闭视频播放
         stop();
+        //重置handler
+        mBaseApp.setVideoHandler(null);
 
     }
 
@@ -241,6 +243,7 @@ public class VideoActivity extends BaseActivity {
         cd = App.getApplication().getCd();
         course_id = Integer.parseInt(cd.getCourse_Id());
 
+        mBaseApp.setVideoHandler(pianoHandler);
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
 
