@@ -154,6 +154,10 @@ public class UsbDeviceConnect {
 				myUsbManager.requestPermission(device, mPermissionIntent);
 			} else {
 				boolean isconnect = connectDevice(device, myUsbManager);
+
+				//新增逻辑，回调钢琴连接状态
+				callbackInterface.onConnect(isconnect);
+
 				// 发送状态到unity
 				SendDataUtil.sendDataToUnity(UnityInterface.cameraName,
 						UnityInterface.sendStatusAddress,
