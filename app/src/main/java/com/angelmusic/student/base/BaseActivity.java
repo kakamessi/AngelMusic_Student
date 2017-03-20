@@ -46,12 +46,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     };
     private ImageView ivLoading;
+    protected App mBaseApp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setScreen();
         setContentView(setContentViewId());
+        mBaseApp = App.getApplication();
         ButterKnife.bind(this);
         setTAG();
         ActionDispatcher.getInstance().register(TAG, actionHandler);

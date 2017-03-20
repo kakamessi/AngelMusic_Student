@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -38,6 +39,7 @@ public class App extends Application {
     private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
     public static OkHttpUtil.Builder init;
+    private Handler VideoHandler = null;
 
     public static App getApplication(){
         if (myApplication == null){
@@ -53,26 +55,25 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         myApplication = this;
         initCrash();
         initService();
         LogUtil.isDebug = true;//设置是否打印Log日志
         initOkHttp();//初始化网络框架
-        initHotfix();//热修复的初始化
-        downAndSetPatch();//下载补丁并安装补丁
         SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);//初始化
 
-        String sdDir = Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + "/avva/";
+        String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
+        File filePath = new File(sdDir);
+        File file = new File(sdDir);
+        // if file doesnt exists, then create it
+        if (!filePath.exists()) {
+            boolean s = filePath.mkdir();
+            Log.e("App", "创建目录-->" + s);
+        }
 
-            File filePath = new File(sdDir);
-            File file = new File(sdDir);
-            // if file doesnt exists, then create it
-            if (!filePath.exists()) {
-
-                boolean s = filePath.mkdir();
-                Log.e("SaveData", "创建目录-->" + s);
-            }
+//        initHotfix();//热修复的初始化
+//        downAndSetPatch();//下载补丁并安装补丁
 
     }
 
@@ -164,6 +165,13 @@ public class App extends Application {
 
     public void setCd(CourseData cd) {
         this.cd = cd;
+    }
+
+    public Handler getVideoHandler() {
+        return VideoHandler;
+    }
+    public void setVideoHandler(Handler videoHandler) {
+        VideoHandler = videoHandler;
     }
 
 }

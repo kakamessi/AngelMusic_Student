@@ -31,7 +31,9 @@ import android.widget.Toast;
 
 import com.angelmusic.stu.bean.UnityInterface;
 import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
+import com.angelmusic.stu.usb.UsbDeviceConnect;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.stu.usb.callback.CallbackInterface;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
 import com.angelmusic.student.R;
@@ -139,8 +141,10 @@ public class MainActivity extends BaseActivity {
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         filter.addAction(ACTION_USB_PERMISSION);
         registerReceiver(mUsbReceiver, filter);
-        updateDevice();
-        connectDevice();
+
+//        updateDevice();
+//        connectDevice();
+        setPiano();
     }
 
     // 更新设备列表
@@ -338,10 +342,8 @@ public class MainActivity extends BaseActivity {
                 case UsbManager.ACTION_USB_DEVICE_ATTACHED:
                     status = "usb-insert";
                     //Log.i(TAG, "检测到有USB插口接入-->" + action);
-                    Toast.makeText(context, "检测到有USB插口接入", Toast.LENGTH_SHORT)
-                            .show();
-                    updateDevice();
-                    connectDevice();
+                    Toast.makeText(context, "检测到有USB插口接入", Toast.LENGTH_SHORT).show();
+                    setPiano();
                     // updateDeviceList();
                     if (updateListener != null) {
                         updateListener.onUpdate();
@@ -383,6 +385,34 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
+
+    private void setPiano() {
+
+        UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
+            @Override
+            public void onReadCallback(String str) {
+                Message msg = Message.obtain();
+                msg.what = 1;
+                msg.obj = str;
+                if(mBaseApp.getVideoHandler()!=null){
+                    mBaseApp.getVideoHandler().sendMessage(msg);
+                }
+            }
+            @Override
+            public void onSendCallback(boolean isSend) {
+            }
+            @Override
+            public void onConnect(boolean isConnected) {
+                if(isConnected){
+
+                }
+            }
+
+        });
+        updateDevice();
+        connectDevice();
+
+    }
 
     private boolean islacksOfPermission(String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

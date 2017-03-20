@@ -221,8 +221,6 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        closePiano();
-
         initView();
         initData();
     }
@@ -235,8 +233,6 @@ public class VideoActivity extends BaseActivity {
         resetStatus();
         // 关闭视频播放
         stop();
-        // 关闭钢琴连接
-        closePiano();
 
     }
 
@@ -245,8 +241,6 @@ public class VideoActivity extends BaseActivity {
         cd = App.getApplication().getCd();
         course_id = Integer.parseInt(cd.getCourse_Id());
 
-        //初始化钢琴
-        initPiano();
         // 为SurfaceHolder添加回调
         surfaceView.getHolder().addCallback(callback);
 
@@ -267,29 +261,6 @@ public class VideoActivity extends BaseActivity {
     @Override
     protected void setTAG() {
         TAG = "VideoActivity";
-    }
-
-    private void initPiano() {
-
-        UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
-            @Override
-            public void onReadCallback(String str) {
-                Message msg = Message.obtain();
-                msg.what = 1;
-                msg.obj = str;
-                pianoHandler.sendMessage(msg);
-            }
-            @Override
-            public void onSendCallback(boolean isSend) {
-            }
-        });
-        UsbDeviceInfo.getUsbDeviceInfo(this).update();
-        UsbDeviceInfo.getUsbDeviceInfo(this).connect();
-
-    }
-
-    private void closePiano() {
-        UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
     }
 
     /**
@@ -1268,6 +1239,37 @@ public class VideoActivity extends BaseActivity {
     }
 
     //--------------------------------------------跟灯----------------------------------------------------------
+
+
+//    private void initPiano() {
+//
+//        UsbDeviceConnect.setCallbackInterface(new CallbackInterface() {
+//            @Override
+//            public void onReadCallback(String str) {
+//                Message msg = Message.obtain();
+//                msg.what = 1;
+//                msg.obj = str;
+//                pianoHandler.sendMessage(msg);
+//            }
+//            @Override
+//            public void onSendCallback(boolean isSend) {
+//            }
+//            @Override
+//            public void onConnect(boolean isConnected) {
+//                if(isConnected){
+//
+//                }
+//            }
+//
+//        });
+//        UsbDeviceInfo.getUsbDeviceInfo(this).update();
+//        UsbDeviceInfo.getUsbDeviceInfo(this).connect();
+//
+//    }
+//
+//    private void closePiano() {
+//        UsbDeviceInfo.getUsbDeviceInfo(this).stopConnect();
+//    }
 
 
 }
