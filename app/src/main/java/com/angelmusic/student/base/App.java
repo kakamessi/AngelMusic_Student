@@ -18,6 +18,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.cookie.PersistentCookieJar;
 import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
 import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.utils.MyCrashHandler;
+import com.angelmusic.student.core.ActionDispatcher;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
@@ -26,6 +27,8 @@ import com.angelmusic.student.utils.SharedPreferencesUtil;
 import java.io.File;
 import java.io.IOException;
 
+import static android.content.ContentValues.TAG;
+
 
 /**
  * Created by DELL on 2016/12/6.
@@ -33,6 +36,7 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    public static final String TAG = App.class.getSimpleName();
     //当前课程信息
     private CourseData cd = new CourseData();
     //视频节目handler
@@ -91,6 +95,7 @@ public class App extends Application {
                 }
             }
         };
+        ActionDispatcher.getInstance().register(TAG, appHandler);
 
         String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
         File filePath = new File(sdDir);
@@ -199,5 +204,7 @@ public class App extends Application {
     public void setVideoHandler(Handler videoHandler) {
         VideoHandler = videoHandler;
     }
-
+    public Handler getAppHandler() {
+        return appHandler;
+    }
 }
