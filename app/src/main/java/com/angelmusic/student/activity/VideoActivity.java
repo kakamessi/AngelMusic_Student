@@ -114,7 +114,6 @@ public class VideoActivity extends BaseActivity {
     private MediaPlayer mediaPlayer;
     private int currentPosition = 0;
     private boolean isMediaPlaying = false;
-    private int swich = 0;
 
     /* 弹奏评分 */
     private ScoreData sd = null;
