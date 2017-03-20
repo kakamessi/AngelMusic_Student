@@ -13,24 +13,26 @@ import java.util.ArrayList;
 
 public class MusicNote {
 
-
     /*亮灯*/
-    public static byte ON_COLOR = 0x01;
-    public static int ON_INDEX = 39;
     public static byte ON_RED = 0x01;
     public static byte ON_BLUE = 0x11;
 
     /*灭灯*/
-    public static byte OFF_COLOR = 0x00;
-    public static int OFF_INDEX = 39;
     public static byte OFF_RED = 0x00;
     public static byte OFF_BLUE = 0x10;
 
+    /*开启打击乐*/
+    public static byte[] open_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x01, 0x06, 0x00, 0x00, (byte)0xf7 };
+    /*关闭打击乐*/
+    public static byte[] close_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x00, 0x06, 0x00, 0x00, (byte)0xf7 };
+
+
+
+    /*--------------------------------------------------------------------------------------------------------乐谱合集*/
     public static final ArrayList<NoteInfo> note_1 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_2 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_3 = new ArrayList<>();
 
-    /*--------------------------------------------------------------------------------------------------------乐谱合集*/
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
 
     static{
@@ -80,6 +82,7 @@ public class MusicNote {
 
 
     }
+/*--------------------------------------------------------------------------------------------------------乐谱合集*/
 
     /**
      * 根据课程id 获取对应的 乐谱合集
@@ -107,20 +110,6 @@ public class MusicNote {
     }
 
     //--------------------------------------------------------------钢琴指令---------------------------------------------------------------
-
-    /*开启打击乐*/
-    public static byte[] open_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x01, 0x06, 0x00, 0x00, (byte)0xf7 };
-
-    /*关闭打击乐*/
-    public static byte[] close_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x00, 0x06, 0x00, 0x00, (byte)0xf7 };
-
-    /*亮灯指令*/
-    public static byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
-            0x4c, 0x45, (byte) (ON_INDEX+21), 0x06, ON_COLOR, 0x0,
-            (byte) 0xf7 };
-    /* 熄灯指令 */
-    public static byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
-            (byte)(OFF_INDEX+21), 0x06, OFF_COLOR, 0x0, (byte) 0xf7 };
 
     /* 设置钢琴动作指令 */
     public static void setPianoAction(Context context,byte[] data){
@@ -311,35 +300,6 @@ public class MusicNote {
         }
     }
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                for(int n = 0; n<idur.length;n++){
-//
-//                    if(iindex[n]!=-1){
-//                        if(icolor[n]==1) {
-//                            beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
-//                        }else if(icolor[n]==0){
-//                            beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
-//                        }
-//                        try {
-//                            Thread.sleep((long)(idur[4]*1000));
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }else{
-//
-//                        try {
-//                            Thread.sleep((long)(idur[4]*1000));
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }).start();
 
     /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
 
