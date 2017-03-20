@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void setTAG() {
-        TAG = "==MainActivity==";
+        TAG = "MainActivity";
     }
 
     @Override

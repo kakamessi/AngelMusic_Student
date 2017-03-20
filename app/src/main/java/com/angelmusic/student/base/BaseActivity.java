@@ -75,37 +75,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //****处理通信命令
     protected void handleMsg(Message msg) {
-
-        String str = msg.obj.toString();
-        String[] ac = str.split("\\|");
-
-//        if (ActionType.ACTION_PREPARE.equals(ac[0])) {
-//
-//            //开始进行常规课
-//            String[] names = ac[2].split("&");
-//            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
-//            for(String name: names){
-//                App.getApplication().getCd().getFiles().put(name,sdDir + name);
-//                Log.e(TAG,"filepath: " + sdDir + name);
-//            }
-//
-//            App.getApplication().getPi().setCourse_Id(ac[1]);
-//            startActivity(new Intent(this, VideoActivity.class));
-//
-//        }else if(ActionType.ACTION_LOGIN.equals(ac[0])){
-//
-//            //登录操作
-//            login();
-//
-//        }else if(ActionType.ACTION_GET_CLASS.equals(ac[0])){
-//
-//            //保存班级id
-//            SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID,ac[1]);
-//            Toast.makeText(App.getApplication(),"保存班级成功",0).show();
-//
-//        }
-
-
     }
 
     protected void login(String classId){

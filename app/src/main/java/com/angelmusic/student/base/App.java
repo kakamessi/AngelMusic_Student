@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -32,15 +33,21 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    //当前课程信息
     private CourseData cd = new CourseData();
-    private static App myApplication = null;
+    //视频节目handler
+    private Handler VideoHandler = null;
+    //App全局handler
+    private Handler appHandler = null;
+    //http请求类
+    public static OkHttpUtil.Builder init;
+    //热修复
     public static PatchManager mPatchManager;
     private final String PATCH_URL = "";//下载补丁的地址
     private String PATCH_PATH;//补丁的本地存储地址
     private final String PATCH_NAME = "hotfix.apatch";//补丁的命名
-    public static OkHttpUtil.Builder init;
-    private Handler VideoHandler = null;
-
+    //单例
+    private static App myApplication = null;
     public static App getApplication(){
         if (myApplication == null){
             myApplication = new App();
@@ -63,6 +70,28 @@ public class App extends Application {
         initOkHttp();//初始化网络框架
         SharedPreferencesUtil.setContextAndInit(this, "ANGEL_MUSIC", MODE_PRIVATE);//初始化
 
+        initHandler();
+//        initHotfix();//热修复的初始化
+//        downAndSetPatch();//下载补丁并安装补丁
+
+    }
+
+    //处理全局信息的handler
+    private void initHandler() {
+        appHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+
+                String str = (String) msg.obj;
+                switch (msg.what) {
+                    case 1:
+                        //发送tcp在线消息
+
+                        break;
+                }
+            }
+        };
+
         String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
         File filePath = new File(sdDir);
         File file = new File(sdDir);
@@ -71,9 +100,6 @@ public class App extends Application {
             boolean s = filePath.mkdir();
             Log.e("App", "创建目录-->" + s);
         }
-
-//        initHotfix();//热修复的初始化
-//        downAndSetPatch();//下载补丁并安装补丁
 
     }
 
