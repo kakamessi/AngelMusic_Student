@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
+import com.angelmusic.stu.network.u3d.AndroidDispatcher;
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
@@ -18,7 +19,10 @@ import com.angelmusic.stu.u3ddownload.okhttp.cookie.PersistentCookieJar;
 import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
 import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.utils.MyCrashHandler;
+import com.angelmusic.student.activity.MainActivity;
+import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionDispatcher;
+import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
@@ -86,15 +90,29 @@ public class App extends Application {
             @Override
             public void handleMessage(Message msg) {
 
-                String str = (String) msg.obj;
-                switch (msg.what) {
-                    case 1:
-                        //发送tcp在线消息
+                String str = msg.obj.toString();
+                String[] strs = str.split("\\|");
+                String action1 = strs[0];
+                String action2 = strs[1];
 
+                switch (action1) {
+                    case "10":
+                        //发送tcp在线消息
+                        String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"-1");
+                        AndroidDispatcher.getInstance().sendMsg("2|" + stuId);
+                        break;
+
+                    case "11":
+                        if("0".equals(action2)){
+                            MusicNote.setPianoAction(App.this,MusicNote.ACTION_MUTE);
+                        }else{
+                            MusicNote.setPianoAction(App.this,MusicNote.ACTION_UNMUTE);
+                        }
                         break;
                 }
             }
         };
+
         ActionDispatcher.getInstance().register(TAG, appHandler);
 
         String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";

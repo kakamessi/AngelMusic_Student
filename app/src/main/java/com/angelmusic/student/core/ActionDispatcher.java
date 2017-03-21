@@ -3,6 +3,7 @@ package com.angelmusic.student.core;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.angelmusic.student.base.App;
@@ -39,7 +40,10 @@ public class ActionDispatcher implements IActionDispatcher {
 
         for (String key : mapHandler.keySet()) {
             Log.e("angel_music", "Key = " + key);
-            if("".equals(action) && key.equals(App.class.getSimpleName())){
+            if((ActionType.ACTION_MUTE.equals(action) && key.equals(App.class.getSimpleName()))
+                    || (ActionType.ACTION_RSP_ONLINE.equals(action) && key.equals(App.class.getSimpleName())){
+
+                Toast.makeText(App.getApplication(),"APp Msg",0).show();
                 sendHandlerMsg(mapHandler.get(App.class.getSimpleName()),actionType);
                 return;
             }

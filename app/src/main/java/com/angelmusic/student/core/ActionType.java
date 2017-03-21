@@ -24,8 +24,12 @@ public class ActionType {
     public static final String ACTION_LOGIN = "7";
 
     public static final String ACTION_GET_CLASS = "8";
-
+    //上传成绩
     public static final String ACTION_POST_SCORE = "9";
+    //在线确认消息
+    public static final String ACTION_RSP_ONLINE = "10";
+    //静音
+    public static final String ACTION_MUTE = "11";
 
     public static String getMsg(){
 

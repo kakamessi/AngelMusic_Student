@@ -1,8 +1,10 @@
 package com.angelmusic.student.core.music;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.student.activity.MainActivity;
 import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;
@@ -26,7 +28,10 @@ public class MusicNote {
     /*关闭打击乐*/
     public static byte[] close_djy = { 0x04, (byte)0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x53, 0x00, 0x06, 0x00, 0x00, (byte)0xf7 };
 
-
+    //开启静音协议
+    public static byte[] ACTION_MUTE ={ 0x1b, (byte)0xbF, 0x07, 0x00};
+    //关闭静音
+    public static byte[] ACTION_UNMUTE = { 0x1b, (byte)0xbF, 0x07, 0x7f };
 
     /*--------------------------------------------------------------------------------------------------------乐谱合集*/
     public static final ArrayList<NoteInfo> note_1 = new ArrayList<>();

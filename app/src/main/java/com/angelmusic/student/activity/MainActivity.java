@@ -42,6 +42,7 @@ import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionType;
+import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.infobean.SeatDataInfo;
 import com.angelmusic.student.utils.NetworkUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -103,6 +104,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        MusicNote.setPianoAction(MainActivity.this,MusicNote.ACTION_UNMUTE);
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).colse();
     }
 
@@ -404,7 +406,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onConnect(boolean isConnected) {
                 if(isConnected){
-
+                    MusicNote.setPianoAction(MainActivity.this,MusicNote.ACTION_MUTE);
                 }
             }
 
