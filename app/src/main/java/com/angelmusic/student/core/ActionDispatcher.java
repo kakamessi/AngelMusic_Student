@@ -41,7 +41,7 @@ public class ActionDispatcher implements IActionDispatcher {
         for (String key : mapHandler.keySet()) {
             Log.e("angel_music", "Key = " + key);
             if((ActionType.ACTION_MUTE.equals(action) && key.equals(App.class.getSimpleName()))
-                    || (ActionType.ACTION_RSP_ONLINE.equals(action) && key.equals(App.class.getSimpleName())){
+                    || (ActionType.ACTION_RSP_ONLINE.equals(action) && key.equals(App.class.getSimpleName())) ){
 
                 Toast.makeText(App.getApplication(),"APp Msg",0).show();
                 sendHandlerMsg(mapHandler.get(App.class.getSimpleName()),actionType);
@@ -55,9 +55,9 @@ public class ActionDispatcher implements IActionDispatcher {
 
     }
 
-    private void sendHandlerMsg(Handler hander,String msg){
+    private void sendHandlerMsg(Handler hander,String str){
         Message msg = Message.obtain();
-        msg.obj = msg;
+        msg.obj = str;
         hander.sendMessage(msg);
     }
 
