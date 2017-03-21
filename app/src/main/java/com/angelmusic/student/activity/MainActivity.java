@@ -378,6 +378,10 @@ public class MainActivity extends BaseActivity {
                         //Log.i(TAG, "连接权限被取消-->" + action);
                     }
                     status = isconnect ? "link-success" : "link-fail";
+
+                    //连上钢琴 开启静音模式
+                    MusicNote.setPianoAction(MainActivity.this,MusicNote.ACTION_MUTE);
+
                     break;
             }
             if (status != null) {
