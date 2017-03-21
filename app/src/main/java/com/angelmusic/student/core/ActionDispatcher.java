@@ -55,7 +55,6 @@ public class ActionDispatcher implements IActionDispatcher {
 
             Handler mh = mapHandler.get(App.TAG);
             if(mh!=null) {
-                Toast.makeText(App.getApplication(), "APp Msg", 0).show();
                 sendHandlerMsg(mh, actionType);
             }
             return;

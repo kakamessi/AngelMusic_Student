@@ -22,6 +22,7 @@ import com.angelmusic.stu.utils.MyCrashHandler;
 import com.angelmusic.student.activity.MainActivity;
 import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.core.ActionDispatcher;
+import com.angelmusic.student.core.ActionType;
 import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.service.StudentService;
@@ -96,13 +97,13 @@ public class App extends Application {
                 String action2 = strs[1];
 
                 switch (action1) {
-                    case "10":
+                    case ActionType.ACTION_RSP_ONLINE:
                         //发送tcp在线消息
                         String stuId = SharedPreferencesUtil.getString(Constant.CACHE_STUDENT_ID,"-1");
                         AndroidDispatcher.getInstance().sendMsg("2|" + stuId);
                         break;
 
-                    case "11":
+                    case ActionType.ACTION_MUTE:
                         if("0".equals(action2)){
                             MusicNote.setPianoAction(App.this,MusicNote.ACTION_MUTE);
                         }else{
