@@ -1,10 +1,8 @@
 package com.angelmusic.student.core.music;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
-import com.angelmusic.student.activity.MainActivity;
 import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;

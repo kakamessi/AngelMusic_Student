@@ -165,7 +165,12 @@ public class VideoActivity extends BaseActivity {
         }
     };
 
-    /* 音符位置索引 */
+    /**
+     *  确认选谱
+     *  获取钢琴返回音符index
+     *  比对是否正确
+     *  UI显示下一个音符
+     */
     private int index_new = 0;
     private void handlerNote(String str){
 
