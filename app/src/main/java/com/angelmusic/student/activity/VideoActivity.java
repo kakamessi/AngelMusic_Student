@@ -506,8 +506,8 @@ public class VideoActivity extends BaseActivity {
 
             } else{
                 //处理画谱新逻辑
-//                setPuzi(2);
-//                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                setPuzi(2);
+                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
 
             }
 
@@ -1147,19 +1147,23 @@ public class VideoActivity extends BaseActivity {
      */
     private void setPuzi(int type){
         if(type==0) {
+            //都隐藏
             yuepuGroupLl.setVisibility(View.GONE);
             llYuepu.setVisibility(View.GONE);
         }else if(type==1){
+            //显示旧的
             yuepuGroupLl.setVisibility(View.VISIBLE);
             llYuepu.setVisibility(View.GONE);
         }else if(type==2){
+            //显示新的
             yuepuGroupLl.setVisibility(View.GONE);
             llYuepu.setVisibility(View.VISIBLE);
         }
     }
 
     /**
-     * 替换view
+     *
+     * 根据课程动态选择 布局文件
      * @param fu
      * @param zi
      */
@@ -1171,6 +1175,8 @@ public class VideoActivity extends BaseActivity {
     }
 
     /**
+     *      动态操作UI元素
+     *
      *      根据跟奏[数据] 设置对应的音符，琴键界面变化
      *      音符位置，音符颜色
      *
