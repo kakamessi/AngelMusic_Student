@@ -203,7 +203,7 @@ public class VideoActivity extends BaseActivity {
             }else{
 
                 //由于UI实现逻辑变更，需要重新处理新课程曲谱
-                //setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+                setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
             }
 
