@@ -206,7 +206,7 @@ public class VideoActivity extends BaseActivity {
             }else{
 
                 //由于UI实现逻辑变更，需要重新处理新课程曲谱
-                setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+                //setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
 
 
@@ -421,6 +421,57 @@ public class VideoActivity extends BaseActivity {
 
     }
 
+
+    //-----------------------------------------------------------------初始化哪个模式界面
+    private void setLayoutStyle(int type) {
+
+        if (type == 1) {
+            //请看大屏幕
+            blackTv.setVisibility(View.VISIBLE);
+            blackTv.setText("请看大屏幕");
+            //yuepuGroupLl.setVisibility(View.INVISIBLE);
+            setPuzi(0);
+
+        } else if (type == 2) {
+            //乐谱跟奏
+
+            blackTv.setVisibility(View.INVISIBLE);
+            //yuepuGroupLl.setVisibility(View.VISIBLE);
+            setPuzi(1);
+
+            /* 初始化界面显示的时候 默认高亮音符信息 */
+            if (course_id == Constant.COURSE_1) {
+                //培训
+                setViewStyle(1, 1, Color.RED, 8, Color.RED);
+                MusicNote.openLight(VideoActivity.this,39,true);
+
+            } else if (course_id == Constant.COURSE_2) {
+                //小学
+                setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
+                MusicNote.openLight(VideoActivity.this,39,false);
+
+            } else if (course_id == Constant.COURSE_3) {
+                //幼儿园
+                setViewStyle(4, 1, Color.RED, 8, Color.RED);
+                MusicNote.openLight(VideoActivity.this,39,true);
+
+            } else{
+                //处理画谱新逻辑
+                setPuzi(2);
+                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+
+            }
+
+        } else if (type == 3) {
+            //播放视频
+            blackTv.setVisibility(View.INVISIBLE);
+            //yuepuGroupLl.setVisibility(View.INVISIBLE);
+            setPuzi(0);
+
+        }
+
+    }
+
     /* 各种状态重置 */
     private void resetStatus() {
 
@@ -510,57 +561,6 @@ public class VideoActivity extends BaseActivity {
 //
 //        return result;
 //    }
-
-    //-----------------------------------------------------------------初始化哪个模式界面
-
-    private void setLayoutStyle(int type) {
-
-        if (type == 1) {
-            //请看大屏幕
-            blackTv.setVisibility(View.VISIBLE);
-            blackTv.setText("请看大屏幕");
-            //yuepuGroupLl.setVisibility(View.INVISIBLE);
-            setPuzi(0);
-
-        } else if (type == 2) {
-            //乐谱跟奏
-
-            blackTv.setVisibility(View.INVISIBLE);
-            //yuepuGroupLl.setVisibility(View.VISIBLE);
-            setPuzi(1);
-
-            /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (course_id == Constant.COURSE_1) {
-                //培训
-                setViewStyle(1, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this,39,true);
-
-            } else if (course_id == Constant.COURSE_2) {
-                //小学
-                setViewStyle(2, 1, Color.BLUE, 8, Color.BLUE);
-                MusicNote.openLight(VideoActivity.this,39,false);
-
-            } else if (course_id == Constant.COURSE_3) {
-                //幼儿园
-                setViewStyle(4, 1, Color.RED, 8, Color.RED);
-                MusicNote.openLight(VideoActivity.this,39,true);
-
-            } else{
-                //处理画谱新逻辑
-                setPuzi(2);
-                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
-
-            }
-
-        } else if (type == 3) {
-            //播放视频
-            blackTv.setVisibility(View.INVISIBLE);
-            //yuepuGroupLl.setVisibility(View.INVISIBLE);
-            setPuzi(0);
-
-        }
-
-    }
 
     @OnClick({R.id.black_tv})
     public void onClick(View view) {
