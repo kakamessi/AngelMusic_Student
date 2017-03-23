@@ -143,7 +143,7 @@ public class VideoActivity extends BaseActivity {
 
                     if(isPianoActive) {
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-                        handlerNote(str);
+                        handlerNote1(str);
                     }
 
                     if(isScore) {
@@ -166,6 +166,9 @@ public class VideoActivity extends BaseActivity {
     };
 
     /**
+     *
+     *  夏津课程
+     *
      *  确认选谱
      *  获取钢琴返回音符index
      *  比对是否正确
@@ -205,12 +208,50 @@ public class VideoActivity extends BaseActivity {
                 //由于UI实现逻辑变更，需要重新处理新课程曲谱
                 setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
 
+
+
             }
 
             if (str.endsWith("0 ")) {
                 //处理亮灯逻辑
                 MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
 
+                //处理循环
+                if (index_new == al.size() - 1) {
+                    index_new = -1;
+                }
+                index_new++;
+            }
+        }
+
+    }
+
+    /**
+     *
+     * 丰台一小课程
+     * @param str
+     */
+    private void handlerNote1(String str){
+
+        //课程选谱
+        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id);
+        if(al==null){
+            return;
+        }
+        //获取钢琴弹奏音符
+        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+        int key = Integer.parseInt(myDatas[2], 16) - 21;
+        //处理输出
+        NoteInfo ni = al.get(index_new);
+        NoteInfo nextInfo = index_new + 1 > al.size() - 1 ? al.get(0) : al.get(index_new + 1);
+        if (key == ni.getNoteNum()) {
+
+            //由于UI实现逻辑变更，需要重新处理新课程曲谱
+            setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+
+            if (str.endsWith("0 ")) {
+                //处理亮灯逻辑
+                MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
                 //处理循环
                 if (index_new == al.size() - 1) {
                     index_new = -1;
