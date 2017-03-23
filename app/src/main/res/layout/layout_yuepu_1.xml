@@ -19,7 +19,7 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:src="@mipmap/kc_yuepu_c11_1"/>
+            android:src="@mipmap/kc_yuepu_2b04t2_1"/>
         <!--上行音符遮盖图-->
         <LinearLayout
             android:id="@+id/iv_yinfu_bg_ll_up_2"

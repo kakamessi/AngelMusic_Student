@@ -490,6 +490,9 @@ public class VideoActivity extends BaseActivity {
         isPianoActive = false;
         notes.clear();
 
+        //弹奏音符index重置
+        index_new = 0;
+
         if(scoreWindow!=null){
             scoreWindow.dismiss();
         }
