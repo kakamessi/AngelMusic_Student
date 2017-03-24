@@ -12,7 +12,7 @@ public class CourseData {
     private Map<String, String> files = new HashMap<>();
 
     /* 当前上课课程id */
-    private String Course_Id = "";
+    private String Course_Id = "-1";
 
     public Map<String, String> getFiles() {
         return files;
