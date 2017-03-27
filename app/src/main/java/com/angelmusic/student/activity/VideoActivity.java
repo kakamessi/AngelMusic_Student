@@ -247,7 +247,14 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
-            setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
+            if(course_id == -1) {
+                if(index_new>12) {
+                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_sqtwt1);
+                }else{
+                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_sqtwt1);
+                }
+            }
+            setNoteAndKey(llYuepu, nextInfo.getNoteIndex(), nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
 
             if (str.endsWith("0 ")) {
                 //处理亮灯逻辑
@@ -269,6 +276,11 @@ public class VideoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         initView();
         initData();
+
+        //测试画谱
+//        setLayoutStyle(2);
+//        replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_sqtwt1);
+//        setNoteAndKey(yuepuGroupLl,0,true,0,true);
     }
 
     @Override
@@ -457,8 +469,8 @@ public class VideoActivity extends BaseActivity {
 
             } else{
                 //处理画谱新逻辑
-                setPuzi(2);
-                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                //setPuzi(2);
+                //replaceLayout(llYuepu,R.layout.layout_yuepu_1);
 
             }
 
@@ -1224,18 +1236,30 @@ public class VideoActivity extends BaseActivity {
      *      根据跟奏[数据] 设置对应的音符，琴键界面变化
      *      音符位置，音符颜色
      *
-     *      音符从左至右升序排列 1 - 10  上下都有的序号相同
+     *      音符Tag从左至右升序排列 0 - 10  上下都有的序号相同
+     *
+     *
+     *      音符蓝色背景 R.mipmap.kc_blue_puzi_bg 无背景 0
+     *
      *
      */
     private ArrayList<ImageView> noteList = null;
-    private void setNoteAndKey(ViewGroup vg,int noteIndex, int noteColor, int keyIndex, int keyColor){
+    private void setNoteAndKey(ViewGroup vg,int noteIndex, boolean isNoteRed, int keyIndex, boolean isKeyRed){
 
         getNotes(vg);
 
-        //开始设置颜色，位置等UI信息
+        //设置对应位置的颜色
         for(ImageView iv : noteList){
-
-            iv.setBackgroundResource(R.mipmap.kc_red_puzi_bg);
+            String index = (String) iv.getTag();
+            if(index.equals(noteIndex + "")) {
+                if(isNoteRed){
+                    iv.setBackgroundResource(R.mipmap.kc_red_puzi_bg);
+                }else{
+                    iv.setBackgroundResource(R.mipmap.kc_blue_puzi_bg);
+                }
+            }else{
+                iv.setBackgroundResource(0);
+            }
 
         }
 

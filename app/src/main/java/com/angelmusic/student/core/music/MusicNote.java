@@ -48,6 +48,7 @@ public class MusicNote {
     public static final ArrayList<NoteInfo> fd_9 = new ArrayList<>();
 
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
+    public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3};
 
     static{
 
@@ -97,7 +98,7 @@ public class MusicNote {
         /*--丰台一小-----------------------------------*/
         /* 第二节课 第一 */
         for(int i=0; i<24;i++){
-            NoteInfo fd_1n = new NoteInfo(39,i+1,8,true);
+            NoteInfo fd_1n = new NoteInfo(39,i,8,true);
             fd_1.add(fd_1n);
         }
 
@@ -135,7 +136,7 @@ public class MusicNote {
         fd_2.add(fd_1_17n);fd_2.add(fd_1_18n);fd_2.add(fd_1_19n);fd_2.add(fd_1_20n);
         fd_2.add(fd_1_21n);fd_2.add(fd_1_22n);fd_2.add(fd_1_23n);fd_2.add(fd_1_24n);
 
-        /* 第三节课 第二 */
+        /* 第三节课 */
         NoteInfo fd_3_1n = new NoteInfo(39,0,8,true);
         NoteInfo fd_3_2n = new NoteInfo(41,1,9,true);
         NoteInfo fd_3_3n = new NoteInfo(39,2,10,false);
