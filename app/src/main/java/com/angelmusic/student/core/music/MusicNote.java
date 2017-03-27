@@ -36,6 +36,17 @@ public class MusicNote {
     public static final ArrayList<NoteInfo> note_2 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_3 = new ArrayList<>();
 
+    /*  丰台一小谱子  */
+    public static final ArrayList<NoteInfo> fd_1 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_2 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_3 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_4 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_5 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_6 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_7 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_8 = new ArrayList<>();
+    public static final ArrayList<NoteInfo> fd_9 = new ArrayList<>();
+
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
 
     static{
@@ -84,10 +95,81 @@ public class MusicNote {
         note_3.add(ni9);note_3.add(ni10);note_3.add(ni11);note_3.add(ni12);
 
         /*--丰台一小-----------------------------------*/
+        /* 第二节课 第一 */
+        for(int i=0; i<24;i++){
+            NoteInfo fd_1n = new NoteInfo(39,i+1,8,true);
+            fd_1.add(fd_1n);
+        }
 
+        /* 第二节课 第二 */
+        NoteInfo fd_1_1n = new NoteInfo(39,0,8,false);
+        NoteInfo fd_1_2n = new NoteInfo(39,1,9,false);
+        NoteInfo fd_1_3n = new NoteInfo(39,2,10,false);
+        NoteInfo fd_1_4n = new NoteInfo(39,3,8,true);
+        NoteInfo fd_1_5n = new NoteInfo(39,4,9,true);
+        NoteInfo fd_1_6n = new NoteInfo(39,5,10,true);
+        NoteInfo fd_1_7n = new NoteInfo(39,6,10,false);
+        NoteInfo fd_1_8n = new NoteInfo(39,7,9,false);
+        NoteInfo fd_1_9n = new NoteInfo(39,8,9,false);
+        NoteInfo fd_1_10n = new NoteInfo(39,9,9,true);
+        NoteInfo fd_1_11n = new NoteInfo(39,10,9,true);
+        NoteInfo fd_1_12n = new NoteInfo(39,11,9,true);
 
+        NoteInfo fd_1_13n = new NoteInfo(39,12,8,false);
+        NoteInfo fd_1_14n = new NoteInfo(39,13,9,false);
+        NoteInfo fd_1_15n = new NoteInfo(39,14,10,false);
+        NoteInfo fd_1_16n = new NoteInfo(39,15,8,true);
+        NoteInfo fd_1_17n = new NoteInfo(39,16,9,true);
+        NoteInfo fd_1_18n = new NoteInfo(39,17,10,true);
+        NoteInfo fd_1_19n = new NoteInfo(39,18,10,false);
+        NoteInfo fd_1_20n = new NoteInfo(39,19,9,false);
+        NoteInfo fd_1_21n = new NoteInfo(39,20,9,false);
+        NoteInfo fd_1_22n = new NoteInfo(39,21,9,true);
+        NoteInfo fd_1_23n = new NoteInfo(39,22,9,true);
+        NoteInfo fd_1_24n = new NoteInfo(39,23,9,true);
 
+        fd_2.add(fd_1_1n);fd_2.add(fd_1_2n);fd_2.add(fd_1_3n);fd_2.add(fd_1_4n);
+        fd_2.add(fd_1_5n);fd_2.add(fd_1_6n);fd_2.add(fd_1_7n);fd_2.add(fd_1_8n);
+        fd_2.add(fd_1_9n);fd_2.add(fd_1_10n);fd_2.add(fd_1_11n);fd_2.add(fd_1_12n);
+        fd_2.add(fd_1_13n);fd_2.add(fd_1_14n);fd_2.add(fd_1_15n);fd_2.add(fd_1_16n);
+        fd_2.add(fd_1_17n);fd_2.add(fd_1_18n);fd_2.add(fd_1_19n);fd_2.add(fd_1_20n);
+        fd_2.add(fd_1_21n);fd_2.add(fd_1_22n);fd_2.add(fd_1_23n);fd_2.add(fd_1_24n);
 
+        /* 第三节课 第二 */
+        NoteInfo fd_3_1n = new NoteInfo(39,0,8,true);
+        NoteInfo fd_3_2n = new NoteInfo(41,1,9,true);
+        NoteInfo fd_3_3n = new NoteInfo(39,2,10,false);
+        NoteInfo fd_3_4n = new NoteInfo(39,3,8,false);
+
+        NoteInfo fd_3_5n = new NoteInfo(39,4,9,false);
+        NoteInfo fd_3_6n = new NoteInfo(41,5,10,true);
+        NoteInfo fd_3_7n = new NoteInfo(43,6,10,true);
+        NoteInfo fd_3_8n = new NoteInfo(39,7,9,false);
+
+        NoteInfo fd_3_9n = new NoteInfo(39,8,9,false);
+        NoteInfo fd_3_10n = new NoteInfo(39,9,9,false);
+        NoteInfo fd_3_11n = new NoteInfo(39,10,9,true);
+        NoteInfo fd_3_12n = new NoteInfo(41,11,9,true);
+
+        NoteInfo fd_3_13n = new NoteInfo(39,12,8,false);
+        NoteInfo fd_3_14n = new NoteInfo(39,13,9,false);
+        NoteInfo fd_3_15n = new NoteInfo(39,14,10,false);
+        NoteInfo fd_3_16n = new NoteInfo(41,15,8,true);
+
+        NoteInfo fd_3_17n = new NoteInfo(41,16,9,true);
+        NoteInfo fd_3_18n = new NoteInfo(43,17,10,true);
+        NoteInfo fd_3_19n = new NoteInfo(43,18,10,true);
+        NoteInfo fd_3_20n = new NoteInfo(39,19,9,false);
+
+        NoteInfo fd_3_21n = new NoteInfo(39,20,9,false);
+        NoteInfo fd_3_22n = new NoteInfo(39,21,9,false);
+
+        fd_3.add(fd_3_1n);fd_3.add(fd_3_2n);fd_3.add(fd_3_3n);fd_3.add(fd_3_4n);
+        fd_3.add(fd_3_5n);fd_3.add(fd_3_6n);fd_3.add(fd_3_7n);fd_3.add(fd_3_8n);
+        fd_3.add(fd_3_9n);fd_3.add(fd_3_10n);fd_3.add(fd_3_11n);fd_3.add(fd_3_12n);
+        fd_3.add(fd_3_13n);fd_3.add(fd_3_14n);fd_3.add(fd_3_15n);fd_3.add(fd_3_16n);
+        fd_3.add(fd_3_17n);fd_3.add(fd_3_18n);fd_3.add(fd_3_19n);fd_3.add(fd_3_20n);
+        fd_3.add(fd_3_21n);fd_3.add(fd_3_22n);
 
 
     }
@@ -252,6 +334,12 @@ public class MusicNote {
 
 
     /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
+    /**
+     * delay1  亮灯时间点
+     * dur1    亮灯时长
+     * color1   亮灯颜色    c下蓝 g上红
+     * index1   亮灯位置
+     */
     //1
     public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
     public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
