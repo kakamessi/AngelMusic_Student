@@ -205,11 +205,6 @@ public class VideoActivity extends BaseActivity {
                 setViewStyle(4, nextInfo.getNoteIndex() + 1, nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             }else{
 
-                //由于UI实现逻辑变更，需要重新处理新课程曲谱
-                //setNoteAndKey(llYuepu,nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
-
-
-
             }
 
             if (str.endsWith("0 ")) {
