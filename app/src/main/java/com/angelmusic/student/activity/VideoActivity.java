@@ -248,7 +248,7 @@ public class VideoActivity extends BaseActivity {
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
             if(course_id == -1) {
-                if(index_new>11) {
+                if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_2);
@@ -278,9 +278,9 @@ public class VideoActivity extends BaseActivity {
         initData();
 
         //测试画谱
-//        setLayoutStyle(2);
-//        isPianoActive = true;
-
+        setLayoutStyle(2);
+        isPianoActive = true;
+        //setNoteAndKey(llYuepu, 12, true, 1, true);
     }
 
     @Override

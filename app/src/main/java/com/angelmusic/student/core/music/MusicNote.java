@@ -197,6 +197,9 @@ public class MusicNote {
             case Constant.COURSE_3:
                 result = note_1ist[2];
                 break;
+            case -1:
+                result = fengtai_1ist[0];
+                break;
         }
 
         return result;
