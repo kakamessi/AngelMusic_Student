@@ -248,13 +248,13 @@ public class VideoActivity extends BaseActivity {
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
             if(course_id == -1) {
-                if(index_new>12) {
-                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_sqtwt1);
+                if(index_new>11) {
+                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_1);
                 }else{
-                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_sqtwt1);
+                    replaceLayout(yuepuGroupLl,R.layout.layout_yuepu_2);
                 }
             }
-            setNoteAndKey(llYuepu, nextInfo.getNoteIndex(), nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
+            setNoteAndKey(llYuepu, nextInfo.getNoteIndex()+1, nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
 
             if (str.endsWith("0 ")) {
                 //处理亮灯逻辑
@@ -469,8 +469,8 @@ public class VideoActivity extends BaseActivity {
 
             } else{
                 //处理画谱新逻辑
-                //setPuzi(2);
-                //replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                setPuzi(2);
+                replaceLayout(llYuepu,R.layout.layout_yuepu_1);
 
             }
 
