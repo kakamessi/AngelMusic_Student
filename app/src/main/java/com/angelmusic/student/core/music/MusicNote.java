@@ -344,6 +344,61 @@ public class MusicNote {
      * color1   亮灯颜色    c下蓝 g上红
      * index1   亮灯位置
      */
+
+    //丰台一小 第二课一
+    public static float[] delay_ft_2_1 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_2_1 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_2_1 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_2_1 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第二课二
+    public static float[] delay_ft_2_2 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_2_2 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_2_2 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_2_2 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第三课
+    public static float[] delay_ft_3 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_3 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_3 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_3 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第五课
+    public static float[] delay_ft_5 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_5 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_5 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_5 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第六课
+    public static float[] delay_ft_6 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_6 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_6 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_6 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第八课
+    public static float[] delay_ft_8 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_8 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_8 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_8 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第九课
+    public static float[] delay_ft_9 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_9 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_9 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_9 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第十一课
+    public static float[] delay_ft_11 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_11 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_11 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_11 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第十二课
+    public static float[] delay_ft_12 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_12 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_12 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_12 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
     //1
     public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
     public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
