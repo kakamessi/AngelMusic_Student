@@ -278,8 +278,8 @@ public class VideoActivity extends BaseActivity {
         initData();
 
         //测试画谱
-        setLayoutStyle(2);
-        isPianoActive = true;
+        //setLayoutStyle(2);
+        //isPianoActive = true;
         //setNoteAndKey(llYuepu, 12, true, 1, true);
     }
 
