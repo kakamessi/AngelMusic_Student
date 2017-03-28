@@ -29,7 +29,8 @@
             android:layout_alignEnd="@+id/iv_puzi"
             android:layout_marginRight="336dp"
             android:layout_marginEnd="336dp"
-            android:layout_marginBottom="90dp" />
+            android:layout_marginBottom="90dp"
+            android:tag="23" />
 
         <ImageView
             android:id="@+id/id9"
@@ -38,7 +39,8 @@
             android:layout_toLeftOf="@+id/id10"
             android:layout_toStartOf="@+id/id10"
             android:layout_marginRight="22dp"
-            android:layout_marginEnd="22dp" />
+            android:layout_marginEnd="22dp"
+            android:tag="22" />
 
         <ImageView
             android:id="@+id/id8"
@@ -48,7 +50,8 @@
             android:layout_toStartOf="@+id/id9"
             android:layout_marginRight="22dp"
             android:layout_marginEnd="22dp"
-            android:layout_marginBottom="18dp" />
+            android:layout_marginBottom="18dp"
+            android:tag="21" />
 
         <ImageView
             android:id="@+id/id7"
@@ -57,7 +60,8 @@
             android:layout_toLeftOf="@+id/id8"
             android:layout_toStartOf="@+id/id8"
             android:layout_marginRight="19dp"
-            android:layout_marginEnd="19dp" />
+            android:layout_marginEnd="19dp"
+            android:tag="20" />
 
         <ImageView
             android:id="@+id/id6"
@@ -67,7 +71,8 @@
             android:layout_toStartOf="@+id/id7"
             android:layout_marginRight="107dp"
             android:layout_marginEnd="107dp"
-            android:layout_marginBottom="71dp" />
+            android:layout_marginBottom="71dp"
+            android:tag="19" />
 
         <ImageView
             android:id="@+id/id1"
@@ -76,7 +81,8 @@
             android:layout_toLeftOf="@+id/id6"
             android:layout_toStartOf="@+id/id6"
             android:layout_marginRight="84dp"
-            android:layout_marginEnd="84dp" />
+            android:layout_marginEnd="84dp"
+            android:tag="18" />
 
         <ImageView
             android:id="@+id/id2"
@@ -85,7 +91,8 @@
             android:layout_toLeftOf="@+id/id1"
             android:layout_toStartOf="@+id/id1"
             android:layout_marginRight="60dp"
-            android:layout_marginEnd="60dp" />
+            android:layout_marginEnd="60dp"
+            android:tag="17" />
 
         <ImageView
             android:id="@+id/id3"
@@ -94,7 +101,8 @@
             android:layout_toLeftOf="@+id/id2"
             android:layout_toStartOf="@+id/id2"
             android:layout_marginRight="21dp"
-            android:layout_marginEnd="21dp" />
+            android:layout_marginEnd="21dp"
+            android:tag="16" />
 
         <ImageView
             android:id="@+id/id4"
@@ -104,7 +112,8 @@
             android:layout_toStartOf="@+id/id3"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:tag="15" />
 
         <ImageView
             android:id="@+id/id5"
@@ -114,7 +123,8 @@
             android:layout_toStartOf="@+id/id4"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="11dp"
+            android:tag="14" />
 
 
     </RelativeLayout>
