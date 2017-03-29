@@ -323,7 +323,7 @@ public class MusicNote {
 
     public static void closeAllLight(Context context){
 
-        for(int i=15;i<50;i++){
+        for(int i=27;i<50;i++){
             UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, true));
             UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, false));
         }
