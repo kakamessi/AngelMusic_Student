@@ -104,30 +104,30 @@ public class MusicNote {
 
         /* 第二节课 第二 */
         NoteInfo fd_1_1n = new NoteInfo(39,0,8,false);
-        NoteInfo fd_1_2n = new NoteInfo(39,1,9,false);
-        NoteInfo fd_1_3n = new NoteInfo(39,2,10,false);
+        NoteInfo fd_1_2n = new NoteInfo(39,1,8,false);
+        NoteInfo fd_1_3n = new NoteInfo(39,2,8,false);
         NoteInfo fd_1_4n = new NoteInfo(39,3,8,true);
-        NoteInfo fd_1_5n = new NoteInfo(39,4,9,true);
-        NoteInfo fd_1_6n = new NoteInfo(39,5,10,true);
-        NoteInfo fd_1_7n = new NoteInfo(39,6,10,false);
-        NoteInfo fd_1_8n = new NoteInfo(39,7,9,false);
-        NoteInfo fd_1_9n = new NoteInfo(39,8,9,false);
-        NoteInfo fd_1_10n = new NoteInfo(39,9,9,true);
-        NoteInfo fd_1_11n = new NoteInfo(39,10,9,true);
-        NoteInfo fd_1_12n = new NoteInfo(39,11,9,true);
+        NoteInfo fd_1_5n = new NoteInfo(39,4,8,true);
+        NoteInfo fd_1_6n = new NoteInfo(39,5,8,true);
+        NoteInfo fd_1_7n = new NoteInfo(39,6,8,false);
+        NoteInfo fd_1_8n = new NoteInfo(39,7,8,false);
+        NoteInfo fd_1_9n = new NoteInfo(39,8,8,false);
+        NoteInfo fd_1_10n = new NoteInfo(39,9,8,true);
+        NoteInfo fd_1_11n = new NoteInfo(39,10,8,true);
+        NoteInfo fd_1_12n = new NoteInfo(39,11,8,true);
 
         NoteInfo fd_1_13n = new NoteInfo(39,12,8,false);
-        NoteInfo fd_1_14n = new NoteInfo(39,13,9,false);
-        NoteInfo fd_1_15n = new NoteInfo(39,14,10,false);
+        NoteInfo fd_1_14n = new NoteInfo(39,13,8,false);
+        NoteInfo fd_1_15n = new NoteInfo(39,14,8,false);
         NoteInfo fd_1_16n = new NoteInfo(39,15,8,true);
-        NoteInfo fd_1_17n = new NoteInfo(39,16,9,true);
-        NoteInfo fd_1_18n = new NoteInfo(39,17,10,true);
-        NoteInfo fd_1_19n = new NoteInfo(39,18,10,false);
-        NoteInfo fd_1_20n = new NoteInfo(39,19,9,false);
-        NoteInfo fd_1_21n = new NoteInfo(39,20,9,false);
-        NoteInfo fd_1_22n = new NoteInfo(39,21,9,true);
-        NoteInfo fd_1_23n = new NoteInfo(39,22,9,true);
-        NoteInfo fd_1_24n = new NoteInfo(39,23,9,true);
+        NoteInfo fd_1_17n = new NoteInfo(39,16,8,true);
+        NoteInfo fd_1_18n = new NoteInfo(39,17,8,true);
+        NoteInfo fd_1_19n = new NoteInfo(39,18,8,false);
+        NoteInfo fd_1_20n = new NoteInfo(39,19,8,false);
+        NoteInfo fd_1_21n = new NoteInfo(39,20,8,false);
+        NoteInfo fd_1_22n = new NoteInfo(39,21,8,true);
+        NoteInfo fd_1_23n = new NoteInfo(39,22,8,true);
+        NoteInfo fd_1_24n = new NoteInfo(39,23,8,true);
 
         fd_2.add(fd_1_1n);fd_2.add(fd_1_2n);fd_2.add(fd_1_3n);fd_2.add(fd_1_4n);
         fd_2.add(fd_1_5n);fd_2.add(fd_1_6n);fd_2.add(fd_1_7n);fd_2.add(fd_1_8n);
@@ -138,32 +138,32 @@ public class MusicNote {
 
         /* 第三节课 */
         NoteInfo fd_3_1n = new NoteInfo(39,0,8,true);
-        NoteInfo fd_3_2n = new NoteInfo(41,1,9,true);
-        NoteInfo fd_3_3n = new NoteInfo(39,2,10,false);
+        NoteInfo fd_3_2n = new NoteInfo(41,1,10,true);
+        NoteInfo fd_3_3n = new NoteInfo(39,2,8,false);
         NoteInfo fd_3_4n = new NoteInfo(39,3,8,false);
 
-        NoteInfo fd_3_5n = new NoteInfo(39,4,9,false);
+        NoteInfo fd_3_5n = new NoteInfo(39,4,8,false);
         NoteInfo fd_3_6n = new NoteInfo(41,5,10,true);
-        NoteInfo fd_3_7n = new NoteInfo(43,6,10,true);
-        NoteInfo fd_3_8n = new NoteInfo(39,7,9,false);
+        NoteInfo fd_3_7n = new NoteInfo(43,6,12,true);
+        NoteInfo fd_3_8n = new NoteInfo(39,7,8,false);
 
-        NoteInfo fd_3_9n = new NoteInfo(39,8,9,false);
-        NoteInfo fd_3_10n = new NoteInfo(39,9,9,false);
-        NoteInfo fd_3_11n = new NoteInfo(39,10,9,true);
-        NoteInfo fd_3_12n = new NoteInfo(41,11,9,true);
+        NoteInfo fd_3_9n = new NoteInfo(39,8,8,false);
+        NoteInfo fd_3_10n = new NoteInfo(39,9,8,false);
+        NoteInfo fd_3_11n = new NoteInfo(39,10,8,true);
+        NoteInfo fd_3_12n = new NoteInfo(41,11,10,true);
 
         NoteInfo fd_3_13n = new NoteInfo(39,12,8,false);
-        NoteInfo fd_3_14n = new NoteInfo(39,13,9,false);
-        NoteInfo fd_3_15n = new NoteInfo(39,14,10,false);
-        NoteInfo fd_3_16n = new NoteInfo(41,15,8,true);
+        NoteInfo fd_3_14n = new NoteInfo(39,13,8,false);
+        NoteInfo fd_3_15n = new NoteInfo(39,14,8,false);
+        NoteInfo fd_3_16n = new NoteInfo(41,15,10,true);
 
-        NoteInfo fd_3_17n = new NoteInfo(41,16,9,true);
-        NoteInfo fd_3_18n = new NoteInfo(43,17,10,true);
-        NoteInfo fd_3_19n = new NoteInfo(43,18,10,true);
-        NoteInfo fd_3_20n = new NoteInfo(39,19,9,false);
+        NoteInfo fd_3_17n = new NoteInfo(41,16,10,true);
+        NoteInfo fd_3_18n = new NoteInfo(43,17,12,true);
+        NoteInfo fd_3_19n = new NoteInfo(43,18,12,true);
+        NoteInfo fd_3_20n = new NoteInfo(39,19,8,false);
 
-        NoteInfo fd_3_21n = new NoteInfo(39,20,9,false);
-        NoteInfo fd_3_22n = new NoteInfo(39,21,9,false);
+        NoteInfo fd_3_21n = new NoteInfo(39,20,8,false);
+        NoteInfo fd_3_22n = new NoteInfo(39,21,8,false);
 
         fd_3.add(fd_3_1n);fd_3.add(fd_3_2n);fd_3.add(fd_3_3n);fd_3.add(fd_3_4n);
         fd_3.add(fd_3_5n);fd_3.add(fd_3_6n);fd_3.add(fd_3_7n);fd_3.add(fd_3_8n);
