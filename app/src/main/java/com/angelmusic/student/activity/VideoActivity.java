@@ -527,11 +527,35 @@ public class VideoActivity extends BaseActivity {
             } else{
                 //处理画谱新逻辑
                 setPuzi(2);
-                if(course_id == -1){
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                //设置乐谱的第一个颜色
+                if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
+                        setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                    setNoteAndKey(llYuepu,1,false,0,true);
+                }else if(course_id == Constant.COURSE_3_ft){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
                     setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_5){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg1);
+                    setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_6){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_yycb1);
+                    setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_8){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr1);
+                    setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_9){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_kadj1);
+                    setNoteAndKey(llYuepu,1,false,0,true);
+                }else if(course_id == Constant.COURSE_11){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz1);
+                    setNoteAndKey(llYuepu,1,true,0,true);
+                }else if(course_id == Constant.COURSE_12){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
+                    setNoteAndKey(llYuepu,1,false,0,true);
                 }
-
             }
 
         } else if (type == 3) {
