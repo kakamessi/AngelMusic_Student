@@ -296,13 +296,18 @@ public class MusicNote {
 
     public static void closeAllLight(Context context){
 
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, true));
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, true));
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, true));
+        for(int i=15;i<50;i++){
+            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, true));
+            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, false));
+        }
 
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, false));
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, false));
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, false));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, true));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, true));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, true));
+//
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, false));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, false));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, false));
 
     }
 
