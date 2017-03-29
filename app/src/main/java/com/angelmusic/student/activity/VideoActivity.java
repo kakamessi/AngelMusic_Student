@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -131,6 +132,8 @@ public class VideoActivity extends BaseActivity {
     private String lesson_id = "-1";
     /* 选择跟灯资源 */
     private String gendeng_id = "-1";
+    /* 选谱资源索引 */
+    private String yuepu_tag = "-1";
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -178,7 +181,7 @@ public class VideoActivity extends BaseActivity {
     private void handlerNote(String str){
 
         //课程选谱
-        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id);
+        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id,yuepu_tag);
         if(al==null){
             return;
         }
@@ -229,7 +232,7 @@ public class VideoActivity extends BaseActivity {
     private void handlerNote1(String str){
 
         //课程选谱
-        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id);
+        ArrayList<NoteInfo> al = MusicNote.getNoteList(course_id,yuepu_tag);
         if(al==null){
             return;
         }
@@ -272,10 +275,22 @@ public class VideoActivity extends BaseActivity {
         initView();
         initData();
 
-        //测试画谱
-        //setLayoutStyle(2);
-        //isPianoActive = true;
-        //setNoteAndKey(llYuepu, 12, true, 1, true);
+//        测试画谱
+//        setLayoutStyle(2);
+//        isPianoActive = true;
+//        setNoteAndKey(llYuepu, 12, true, 1, true);
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    MusicNote.followTempo(VideoActivity.this,MusicNote.delay_ft_11,MusicNote.dur1_ft_11,MusicNote.color1_ft_11,MusicNote.index1_ft_11);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+
     }
 
     @Override
@@ -396,10 +411,9 @@ public class VideoActivity extends BaseActivity {
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
             //-----------------------------------------------------------------------画谱状态
             resetStatus();
-
-
             Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
 
+            yuepu_tag = ac[1];
             isPianoActive = true;
             stop();
             //小学2 培训 幼儿园
@@ -502,6 +516,8 @@ public class VideoActivity extends BaseActivity {
 
         //弹奏音符index重置
         index_new = 0;
+        //选谱参数重置
+        yuepu_tag = "-1";
 
         if(scoreWindow!=null){
             scoreWindow.dismiss();

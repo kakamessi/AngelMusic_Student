@@ -183,7 +183,7 @@ public class MusicNote {
      * //确认选谱  1培训 2小学 3幼儿园
      * @return
      */
-    public static ArrayList<NoteInfo> getNoteList(int courseId){
+    public static ArrayList<NoteInfo> getNoteList(int courseId, String tag){
 
         ArrayList<NoteInfo> result = null;
         switch(courseId)
