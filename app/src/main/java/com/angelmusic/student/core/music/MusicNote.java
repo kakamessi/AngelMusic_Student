@@ -247,26 +247,6 @@ public class MusicNote {
     }
 
     //闪烁一次灯
-    public static void beat(final Context context, final int index, final boolean isRed){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
-
-            }
-        }).start();
-
-    }
-
-    //闪烁一次灯
     public static void beat(final Context context,final int index,final boolean isRed,final long time){
 
         new Thread(new Runnable() {
@@ -283,6 +263,19 @@ public class MusicNote {
 
             }
         }).start();
+
+    }
+
+    //闪烁一次灯
+    public static void beatSync(final Context context,final int index,final boolean isRed,final long time){
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
 
     }
 
