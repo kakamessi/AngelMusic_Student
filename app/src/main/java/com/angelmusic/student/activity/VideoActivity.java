@@ -245,11 +245,59 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
-            if(course_id == -1) {
+            if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) {
+                if(index_new<11) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_2);
+                }
+            }else if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)){
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_2);
+                }
+            }else if(course_id == Constant.COURSE_3_ft){
+                if(index_new<9) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt2);
+                }
+            }else if(course_id == Constant.COURSE_5){
+                if(index_new<10) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg2);
+                }
+            }else if(course_id == Constant.COURSE_6){
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_yycb1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_yycb2);
+                }
+            }else if(course_id == Constant.COURSE_8){
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr2);
+                }
+            }else if(course_id == Constant.COURSE_9){
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_kadj1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_kadj2);
+                }
+            }else if(course_id == Constant.COURSE_11){
+                if(index_new<13) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz2);
+                }
+            }else if(course_id == Constant.COURSE_12){
+                if(index_new<9) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx2);
                 }
             }
             setNoteAndKey(llYuepu, nextInfo.getNoteIndex()+1, nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());

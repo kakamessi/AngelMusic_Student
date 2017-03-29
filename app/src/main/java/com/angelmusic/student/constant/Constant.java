@@ -43,4 +43,13 @@ public class Constant {
     public static final int COURSE_2 = 669;
     public static final int COURSE_3 = 3;
 
+    public static final int COURSE_2_ft = 786;
+    public static final int COURSE_3_ft = 690;
+    public static final int COURSE_5 = 706;
+    public static final int COURSE_6 = 720;
+    public static final int COURSE_8 = 735;
+    public static final int COURSE_9 = 747;
+    public static final int COURSE_11 = 762;
+    public static final int COURSE_12 = 774;
+
 }

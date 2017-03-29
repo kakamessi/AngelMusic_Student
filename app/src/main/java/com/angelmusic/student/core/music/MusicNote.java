@@ -48,7 +48,7 @@ public class MusicNote {
     public static final ArrayList<NoteInfo> fd_9 = new ArrayList<>();
 
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
-    public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3};
+    public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3,fd_4,fd_5,fd_6,fd_7,fd_8,fd_9};
 
     static{
 
@@ -197,8 +197,35 @@ public class MusicNote {
             case Constant.COURSE_3:
                 result = note_1ist[2];
                 break;
-            case -1:
-                result = fengtai_1ist[0];
+
+            //丰台一小
+            case Constant.COURSE_2_ft:
+                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
+                    result = fengtai_1ist[0];
+                }else{
+                    result = fengtai_1ist[1];
+                }
+                break;
+            case Constant.COURSE_3_ft:
+                result = fengtai_1ist[2];
+                break;
+            case Constant.COURSE_5:
+                result = fengtai_1ist[3];
+                break;
+            case Constant.COURSE_6:
+                result = fengtai_1ist[4];
+                break;
+            case Constant.COURSE_8:
+                result = fengtai_1ist[5];
+                break;
+            case Constant.COURSE_9:
+                result = fengtai_1ist[6];
+                break;
+            case Constant.COURSE_11:
+                result = fengtai_1ist[7];
+                break;
+            case Constant.COURSE_12:
+                result = fengtai_1ist[8];
                 break;
         }
 
