@@ -1327,6 +1327,10 @@ public class VideoActivity extends BaseActivity {
      *
      *      音符蓝色背景 R.mipmap.kc_blue_puzi_bg 无背景 0
      *
+     *  ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+     ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+     ((ImageView) whiteKeyLl2.getChildAt(i - 1)).setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+     *
      *
      */
     private ArrayList<ImageView> noteList = null;
@@ -1347,6 +1351,20 @@ public class VideoActivity extends BaseActivity {
                 iv.setBackgroundResource(0);
             }
 
+        }
+
+        LinearLayout gg = (LinearLayout) vg.findViewById(R.id.white_keys);
+        for(int i=0;i<gg.getChildCount(); i++){
+            ImageView iv = (ImageView) gg.getChildAt(i);
+            if(keyIndex == i){
+                if(isKeyRed){
+                    iv.setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFFFB5555));
+                }else{
+                    iv.setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, 0xFF34B4FF));
+                }
+            }else{
+                iv.setImageDrawable(getTintPic(this, R.mipmap.kc_white_key, Color.WHITE));
+            }
         }
 
         noteList = null;
