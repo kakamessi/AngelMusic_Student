@@ -327,12 +327,12 @@ public class VideoActivity extends BaseActivity {
         initData();
 
 //        测试画谱
-        setLayoutStyle(2);
-        isPianoActive = true;
-        course_id = 690;
-        yuepu_tag = "12";
-        replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
-        setNoteAndKey(llYuepu, 1, true, 1, false);
+//        setLayoutStyle(2);
+//        isPianoActive = true;
+//        course_id = 762;
+//        yuepu_tag = "12";
+//        replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz1);
+//        setNoteAndKey(llYuepu, 1, true, 1, false);
 
 //        new Thread(new Runnable() {
 //            @Override
