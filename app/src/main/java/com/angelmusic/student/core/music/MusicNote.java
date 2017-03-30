@@ -208,6 +208,87 @@ public class MusicNote {
         fd_5.add(fd_5_17n);fd_5.add(fd_5_18n);fd_5.add(fd_5_19n);fd_5.add(fd_5_20n);
         fd_5.add(fd_5_21n);fd_5.add(fd_5_22n);
 
+
+   /* 第六节课 */
+        NoteInfo fd_6_1n = new NoteInfo(39,0,getKeyIndex(39),true);
+        NoteInfo fd_6_2n = new NoteInfo(41,1,getKeyIndex(41),true);
+        NoteInfo fd_6_3n = new NoteInfo(43,2,getKeyIndex(43),true);
+        NoteInfo fd_6_4n = new NoteInfo(44,3,getKeyIndex(44),true);
+
+        NoteInfo fd_6_5n = new NoteInfo(46,4,getKeyIndex(46),true);
+        NoteInfo fd_6_6n = new NoteInfo(46,5,getKeyIndex(46),true);
+        NoteInfo fd_6_7n = new NoteInfo(39,6,getKeyIndex(39),false);
+        NoteInfo fd_6_8n = new NoteInfo(38,7,getKeyIndex(38),false);
+
+        NoteInfo fd_6_9n = new NoteInfo(36,8,getKeyIndex(36),false);
+        NoteInfo fd_6_10n = new NoteInfo(38,9,getKeyIndex(38),false);
+        NoteInfo fd_6_11n = new NoteInfo(39,10,getKeyIndex(39),false);
+        NoteInfo fd_6_12n = new NoteInfo(39,11,getKeyIndex(39),false);
+
+        NoteInfo fd_6_13n = new NoteInfo(39,12,getKeyIndex(39),false);
+        NoteInfo fd_6_14n = new NoteInfo(39,13,getKeyIndex(39),true);
+        NoteInfo fd_6_15n = new NoteInfo(41,14,getKeyIndex(41),true);
+        NoteInfo fd_6_16n = new NoteInfo(43,15,getKeyIndex(43),true);
+
+        NoteInfo fd_6_17n = new NoteInfo(44,16,getKeyIndex(44),true);
+        NoteInfo fd_6_18n = new NoteInfo(46,17,getKeyIndex(46),true);
+        NoteInfo fd_6_19n = new NoteInfo(46,18,getKeyIndex(46),true);
+        NoteInfo fd_6_20n = new NoteInfo(46,19,getKeyIndex(46),true);
+
+        NoteInfo fd_6_21n = new NoteInfo(39,20,getKeyIndex(39),false);
+        NoteInfo fd_6_22n = new NoteInfo(38,21,getKeyIndex(38),false);
+        NoteInfo fd_6_23n = new NoteInfo(36,22,getKeyIndex(36),false);
+        NoteInfo fd_6_24n = new NoteInfo(38,23,getKeyIndex(38),false);
+
+        NoteInfo fd_6_25n = new NoteInfo(39,24,getKeyIndex(39),false);
+        NoteInfo fd_6_26n = new NoteInfo(39,25,getKeyIndex(39),false);
+
+        fd_6.add(fd_6_1n);fd_6.add(fd_6_2n);fd_6.add(fd_6_3n);fd_6.add(fd_6_4n);
+        fd_6.add(fd_6_5n);fd_6.add(fd_6_6n);fd_6.add(fd_6_7n);fd_6.add(fd_6_8n);
+        fd_6.add(fd_6_9n);fd_6.add(fd_6_10n);fd_6.add(fd_6_11n);fd_6.add(fd_6_12n);
+        fd_6.add(fd_6_13n);fd_6.add(fd_6_14n);fd_6.add(fd_6_15n);fd_6.add(fd_6_16n);
+        fd_6.add(fd_6_17n);fd_6.add(fd_6_18n);fd_6.add(fd_6_19n);fd_6.add(fd_6_20n);
+        fd_6.add(fd_6_21n);fd_6.add(fd_6_22n);fd_6.add(fd_6_23n);fd_6.add(fd_6_24n);
+        fd_6.add(fd_6_25n);fd_6.add(fd_6_26n);
+
+
+   /* 第八节课 */
+        NoteInfo fd_8_1n = new NoteInfo(46,0,getKeyIndex(46),true);
+        NoteInfo fd_8_2n = new NoteInfo(44,1,getKeyIndex(44),true);
+        NoteInfo fd_8_3n = new NoteInfo(43,2,getKeyIndex(43),true);
+        NoteInfo fd_8_4n = new NoteInfo(41,3,getKeyIndex(41),true);
+
+        NoteInfo fd_8_5n = new NoteInfo(39,4,getKeyIndex(39),true);
+        NoteInfo fd_8_6n = new NoteInfo(39,5,getKeyIndex(39),true);
+        NoteInfo fd_8_7n = new NoteInfo(32,6,getKeyIndex(32),false);
+        NoteInfo fd_8_8n = new NoteInfo(34,7,getKeyIndex(34),false);
+
+        NoteInfo fd_8_9n = new NoteInfo(36,8,getKeyIndex(36),false);
+        NoteInfo fd_8_10n = new NoteInfo(38,9,getKeyIndex(38),false);
+        NoteInfo fd_8_11n = new NoteInfo(39,10,getKeyIndex(39),false);
+        NoteInfo fd_8_12n = new NoteInfo(39,11,getKeyIndex(39),false);
+
+        NoteInfo fd_8_13n = new NoteInfo(39,12,getKeyIndex(39),false);
+        NoteInfo fd_8_14n = new NoteInfo(46,13,getKeyIndex(46),true);
+        NoteInfo fd_8_15n = new NoteInfo(44,14,getKeyIndex(44),true);
+        NoteInfo fd_8_16n = new NoteInfo(43,15,getKeyIndex(43),true);
+
+        NoteInfo fd_8_17n = new NoteInfo(41,16,getKeyIndex(41),true);
+        NoteInfo fd_8_18n = new NoteInfo(39,17,getKeyIndex(39),true);
+        NoteInfo fd_8_19n = new NoteInfo(39,18,getKeyIndex(39),true);
+        NoteInfo fd_8_20n = new NoteInfo(32,19,getKeyIndex(32),false);
+
+        NoteInfo fd_8_21n = new NoteInfo(34,20,getKeyIndex(34),false);
+        NoteInfo fd_8_22n = new NoteInfo(36,21,getKeyIndex(36),false);
+        NoteInfo fd_8_23n = new NoteInfo(38,22,getKeyIndex(38),false);
+        NoteInfo fd_8_24n = new NoteInfo(39,23,getKeyIndex(39),false);
+
+        fd_8.add(fd_8_1n);fd_8.add(fd_8_2n);fd_8.add(fd_8_3n);fd_8.add(fd_8_4n);
+        fd_8.add(fd_8_5n);fd_8.add(fd_8_6n);fd_8.add(fd_8_7n);fd_8.add(fd_8_8n);
+        fd_8.add(fd_8_9n);fd_8.add(fd_8_10n);fd_8.add(fd_8_11n);fd_8.add(fd_8_12n);
+        fd_8.add(fd_8_13n);fd_8.add(fd_8_14n);fd_8.add(fd_8_15n);fd_8.add(fd_8_16n);
+        fd_8.add(fd_8_17n);fd_8.add(fd_8_18n);fd_8.add(fd_8_19n);fd_8.add(fd_8_20n);
+        fd_8.add(fd_8_21n);fd_8.add(fd_8_22n);fd_8.add(fd_8_23n);fd_8.add(fd_8_24n);
     }
 
 
