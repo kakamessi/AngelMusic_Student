@@ -638,6 +638,32 @@ public class VideoActivity extends BaseActivity {
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
             }
 
+            else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.delay_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
+
+            }else if(course_id==Constant.COURSE_3 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
+
+            }else if(course_id==Constant.COURSE_5&& Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_5,MusicNote.dur1_ft_5,MusicNote.color1_ft_5,MusicNote.index1_ft_5));
+
+            }else if(course_id==Constant.COURSE_6 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_6,MusicNote.dur1_ft_6,MusicNote.color1_ft_6,MusicNote.index1_ft_6));
+
+            }else if(course_id==Constant.COURSE_8 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_8,MusicNote.dur1_ft_8,MusicNote.color1_ft_8,MusicNote.index1_ft_8));
+
+            }else if(course_id==Constant.COURSE_9 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_9,MusicNote.dur1_ft_9,MusicNote.color1_ft_9,MusicNote.index1_ft_9));
+
+            }else if(course_id==Constant.COURSE_11 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_11,MusicNote.dur1_ft_11,MusicNote.color1_ft_11,MusicNote.index1_ft_11));
+
+            }else if(course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_12,MusicNote.dur1_ft_12,MusicNote.color1_ft_12,MusicNote.index1_ft_12));
+
+            }
+
             if(gzThread!=null){
                 gzThread.start();
             }
