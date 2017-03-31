@@ -641,7 +641,7 @@ public class VideoActivity extends BaseActivity {
             else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.delay_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
 
-            }else if(course_id==Constant.COURSE_3 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
 
             }else if(course_id==Constant.COURSE_5&& Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
