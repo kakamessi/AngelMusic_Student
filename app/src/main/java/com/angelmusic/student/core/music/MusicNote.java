@@ -175,27 +175,27 @@ public class MusicNote {
    /* 第五节课 */
         NoteInfo fd_5_1n = new NoteInfo(39,0,getKeyIndex(39),true);
         NoteInfo fd_5_2n = new NoteInfo(41,1,getKeyIndex(41),true);
-        NoteInfo fd_5_3n = new NoteInfo(43,2,getKeyIndex(43),false);
-        NoteInfo fd_5_4n = new NoteInfo(43,3,getKeyIndex(43),false);
+        NoteInfo fd_5_3n = new NoteInfo(43,2,getKeyIndex(43),true);
+        NoteInfo fd_5_4n = new NoteInfo(43,3,getKeyIndex(43),true);
 
-        NoteInfo fd_5_5n = new NoteInfo(39,4,getKeyIndex(39),false);
+        NoteInfo fd_5_5n = new NoteInfo(39,4,getKeyIndex(39),true);
         NoteInfo fd_5_6n = new NoteInfo(39,5,getKeyIndex(39),true);
         NoteInfo fd_5_7n = new NoteInfo(41,6,getKeyIndex(41),true);
-        NoteInfo fd_5_8n = new NoteInfo(41,7,getKeyIndex(41),false);
+        NoteInfo fd_5_8n = new NoteInfo(41,7,getKeyIndex(41),true);
 
-        NoteInfo fd_5_9n = new NoteInfo(43,8,getKeyIndex(43),false);
-        NoteInfo fd_5_10n = new NoteInfo(43,9,getKeyIndex(43),false);
+        NoteInfo fd_5_9n = new NoteInfo(43,8,getKeyIndex(43),true);
+        NoteInfo fd_5_10n = new NoteInfo(43,9,getKeyIndex(43),true);
         NoteInfo fd_5_11n = new NoteInfo(43,10,getKeyIndex(43),true);
-        NoteInfo fd_5_12n = new NoteInfo(39,11,getKeyIndex(39),true);
+        NoteInfo fd_5_12n = new NoteInfo(39,11,getKeyIndex(39),false);
 
         NoteInfo fd_5_13n = new NoteInfo(38,12,getKeyIndex(38),false);
         NoteInfo fd_5_14n = new NoteInfo(36,13,getKeyIndex(36),false);
         NoteInfo fd_5_15n = new NoteInfo(36,14,getKeyIndex(36),false);
-        NoteInfo fd_5_16n = new NoteInfo(39,15,getKeyIndex(39),true);
+        NoteInfo fd_5_16n = new NoteInfo(39,15,getKeyIndex(39),false);
 
-        NoteInfo fd_5_17n = new NoteInfo(39,16,getKeyIndex(39),true);
-        NoteInfo fd_5_18n = new NoteInfo(38,17,getKeyIndex(38),true);
-        NoteInfo fd_5_19n = new NoteInfo(38,18,getKeyIndex(38),true);
+        NoteInfo fd_5_17n = new NoteInfo(39,16,getKeyIndex(39),false);
+        NoteInfo fd_5_18n = new NoteInfo(38,17,getKeyIndex(38),false);
+        NoteInfo fd_5_19n = new NoteInfo(38,18,getKeyIndex(38),false);
         NoteInfo fd_5_20n = new NoteInfo(36,19,getKeyIndex(36),false);
 
         NoteInfo fd_5_21n = new NoteInfo(36,20,getKeyIndex(36),false);
