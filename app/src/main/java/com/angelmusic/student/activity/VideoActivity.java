@@ -673,7 +673,7 @@ public class VideoActivity extends BaseActivity {
             }
 
             else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
-                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.delay_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.dur1_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
 
             }else if(course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
@@ -697,13 +697,13 @@ public class VideoActivity extends BaseActivity {
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_12,MusicNote.dur1_ft_12,MusicNote.color1_ft_12,MusicNote.index1_ft_12));
 
             }else if(course_id == Constant.COURSE_1020){
-                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.delay_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.dur1_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
 
             }else if(course_id == Constant.COURSE_1039){
-                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_2,MusicNote.delay_ft_2_2,MusicNote.color1_ft_2_2,MusicNote.index1_ft_2_2));
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_2,MusicNote.dur1_ft_2_2,MusicNote.color1_ft_2_2,MusicNote.index1_ft_2_2));
 
             }else if(course_id == Constant.COURSE_1059){
-                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.delay_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
 
             }
 
