@@ -712,7 +712,7 @@ public class VideoActivity extends BaseActivity {
             }
         }
     }
-    
+
     @OnClick({R.id.black_tv})
     public void onClick(View view) {
         switch (view.getId()) {
