@@ -52,4 +52,8 @@ public class Constant {
     public static final int COURSE_11 = 762;
     public static final int COURSE_12 = 774;
 
+    public static final int COURSE_1020 = 1020;
+    public static final int COURSE_1039 = 1039;
+    public static final int COURSE_1059 = 1059;
+
 }

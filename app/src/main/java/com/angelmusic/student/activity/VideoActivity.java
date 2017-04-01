@@ -311,7 +311,26 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx2);
                 }
+            }else if(course_id == Constant.COURSE_1020){
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_2);
+                }
+            }else if(course_id == Constant.COURSE_1039){
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_2);
+                }
+            }else if(course_id == Constant.COURSE_1059){
+                if(index_new<10) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt2);
+                }
             }
+
             setNoteAndKey(llYuepu, nextInfo.getNoteIndex()+1, nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
 
         }
@@ -579,6 +598,21 @@ public class VideoActivity extends BaseActivity {
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(34),true);
                     MusicNote.openLight(VideoActivity.this,34,false);
 
+                }else if(course_id == Constant.COURSE_1020){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
+                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
+                    MusicNote.openLight(VideoActivity.this,39,true);
+
+                }else if(course_id == Constant.COURSE_1039){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),true);
+                    MusicNote.openLight(VideoActivity.this,39,false);
+
+                }else if(course_id == Constant.COURSE_1059){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
+                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
+                    MusicNote.openLight(VideoActivity.this,39,true);
+
                 }
             }
 
@@ -662,6 +696,15 @@ public class VideoActivity extends BaseActivity {
             }else if(course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_12,MusicNote.dur1_ft_12,MusicNote.color1_ft_12,MusicNote.index1_ft_12));
 
+            }else if(course_id == Constant.COURSE_1020){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.delay_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
+
+            }else if(course_id == Constant.COURSE_1039){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_2,MusicNote.delay_ft_2_2,MusicNote.color1_ft_2_2,MusicNote.index1_ft_2_2));
+
+            }else if(course_id == Constant.COURSE_1059){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.delay_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
+
             }
 
             if(gzThread!=null){
@@ -669,50 +712,7 @@ public class VideoActivity extends BaseActivity {
             }
         }
     }
-//
-//    private int checkGZ2(String[] strs) {
-//
-//        int result = -1;
-//        if(course_id.equals("1") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
-//            isPianoActive = true;
-//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
-//            result = 1;
-//        }
-//
-//        if(course_id.equals("1") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-//            isPianoActive = true;
-//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
-//            result = 2;
-//
-//        }
-//
-//        if(course_id.equals("2") && strs[0].equals("一起弹奏吧1") && strs[1].equals("完整奏1")){
-//            isPianoActive = true;
-//            gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
-//            result = 3;
-//        }
-//
-//        if(course_id.equals("2") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-//            isPianoActive = true;
-//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
-//
-//            result = 4;
-//        }
-//
-//        if(course_id.equals("3") && strs[0].equals("节奏连连看") && strs[1].equals("完整奏")){
-//            isPianoActive = true;
-//            gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
-//
-//            result = 5;
-//        }
-//
-//        if(gzThread!=null){
-//            gzThread.start();
-//        }
-//
-//        return result;
-//    }
-
+    
     @OnClick({R.id.black_tv})
     public void onClick(View view) {
         switch (view.getId()) {
