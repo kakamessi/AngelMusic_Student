@@ -196,7 +196,7 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //处理显示正确音符和钢琴键逻辑
-            if (course_id == Constant.COURSE_1) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             } else if (course_id == Constant.COURSE_2) {
                 if (nextInfo.getNoteIndex() < 13) {
@@ -534,7 +534,7 @@ public class VideoActivity extends BaseActivity {
             setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (course_id == Constant.COURSE_1) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187) {
                 //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
@@ -670,6 +670,8 @@ public class VideoActivity extends BaseActivity {
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay4,MusicNote.dur4,MusicNote.color4,MusicNote.index4));
             }else if(course_id==Constant.COURSE_3 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay5,MusicNote.dur5,MusicNote.color5,MusicNote.index5));
+            }else if(course_id==Constant.COURSE_187){
+                gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
             }
 
             else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){

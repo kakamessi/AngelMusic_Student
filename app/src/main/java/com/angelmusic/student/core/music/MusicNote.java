@@ -421,6 +421,9 @@ public class MusicNote {
             case Constant.COURSE_1:
                 result = note_1ist[0];
                 break;
+            case Constant.COURSE_187:
+                result = note_1ist[0];
+                break;
             case Constant.COURSE_2:
                 result = note_1ist[1];
                 break;
