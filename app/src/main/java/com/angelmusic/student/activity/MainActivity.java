@@ -297,7 +297,9 @@ public class MainActivity extends BaseActivity {
 
             //整合视频资源
             String[] names = ac[2].split("&");
-            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
+            //String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/avva/";
+            String sdDir = this.getFilesDir().getAbsolutePath() + "/video/";
+
             App.getApplication().getCd().getFiles().clear();
             for (String name : names) {
                 App.getApplication().getCd().getFiles().put(name, sdDir + name);
