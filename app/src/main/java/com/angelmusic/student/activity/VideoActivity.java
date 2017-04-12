@@ -564,7 +564,7 @@ public class VideoActivity extends BaseActivity {
 
                 }else if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_1);
-                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),true);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
                 }else if(course_id == Constant.COURSE_3_ft){
@@ -589,7 +589,7 @@ public class VideoActivity extends BaseActivity {
 
                 }else if(course_id == Constant.COURSE_9){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_kadj1);
-                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(32),true);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(32),false);
                     MusicNote.openLight(VideoActivity.this,32,false);
 
                 }else if(course_id == Constant.COURSE_11){
@@ -599,7 +599,7 @@ public class VideoActivity extends BaseActivity {
 
                 }else if(course_id == Constant.COURSE_12){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
-                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(34),true);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(34),false);
                     MusicNote.openLight(VideoActivity.this,34,false);
 
                 }else if(course_id == Constant.COURSE_1020){
@@ -609,7 +609,7 @@ public class VideoActivity extends BaseActivity {
 
                 }else if(course_id == Constant.COURSE_1039){
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1);
-                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),true);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
                 }else if(course_id == Constant.COURSE_1059){
