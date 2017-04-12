@@ -116,7 +116,7 @@ public class App extends Application {
 
         ActionDispatcher.getInstance().register(TAG, appHandler);
 
-        String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/angle123/";
+        String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/anglefile/";
         File filePath = new File(sdDir);
         File file = new File(sdDir);
         // if file doesnt exists, then create it

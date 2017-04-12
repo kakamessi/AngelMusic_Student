@@ -297,7 +297,7 @@ public class MainActivity extends BaseActivity {
 
             //整合视频资源
             String[] names = ac[2].split("&");
-            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/angle123/";
+            String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/anglefile/";
             //String sdDir = this.getFilesDir().getAbsolutePath() + "/video/";
 
             App.getApplication().getCd().getFiles().clear();

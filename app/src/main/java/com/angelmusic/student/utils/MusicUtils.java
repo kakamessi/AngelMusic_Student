@@ -96,4 +96,12 @@ public class MusicUtils {
 
     }
 
+    public static boolean isXiaJingCourse(int course_id){
+        boolean result = false;
+        if(course_id==Constant.COURSE_1 || course_id==Constant.COURSE_2 || course_id==Constant.COURSE_3 || course_id==Constant.COURSE_187){
+            result = true;
+        }
+        return result;
+    }
+
 }

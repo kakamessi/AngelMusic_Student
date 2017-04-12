@@ -146,7 +146,11 @@ public class VideoActivity extends BaseActivity {
 
                     if(isPianoActive) {
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
-                        handlerNote1(str);
+                        if(MusicUtils.isXiaJingCourse(course_id)){
+                            handlerNote(str);
+                        }else {
+                            handlerNote1(str);
+                        }
                     }
 
                     if(isScore) {
