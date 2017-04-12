@@ -653,6 +653,7 @@ public class VideoActivity extends BaseActivity {
         //选谱参数重置
         yuepu_tag = "-1";
 
+        //关闭弹窗
         if(scoreWindow!=null){
             scoreWindow.dismiss();
         }
