@@ -40,7 +40,6 @@ public class UDPServerRecThread extends Thread{
                 socket.receive(packet);
 
                 String quest_ip = packet.getAddress().toString().substring(1);
-                Log.e("UDPRec1Thread", "udp rec ip: " + quest_ip);
 
                 ucc.sendSycMsg();
 
@@ -48,7 +47,6 @@ public class UDPServerRecThread extends Thread{
 
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("UDPRec1Thread", "udp loop failes: " + e.getMessage());
         }
 
     }
