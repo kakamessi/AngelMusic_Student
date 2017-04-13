@@ -104,7 +104,7 @@ public class SSocket {
             dins.readFully(data);
             String msg = new String(data);
             receiver.receive(data);
-
+            Log.e("kaka","Connection200       read msg OK");
         }
 
     }

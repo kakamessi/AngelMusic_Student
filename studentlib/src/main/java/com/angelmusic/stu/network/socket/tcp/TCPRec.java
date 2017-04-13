@@ -38,6 +38,7 @@ public class TCPRec implements Runnable{
         try {
 
             socket.connect(host,port);
+            Log.e("kaka","Connection200       connect OK");
             socket.read(receiver);
 
 
@@ -45,7 +46,7 @@ public class TCPRec implements Runnable{
 
             //e可能为null 教师端删除进程 学生端崩溃
             e.printStackTrace();
-            Log.e("kaka","connect or read error");
+            Log.e("kaka","Connection404       connect or read Exception");
 
         }
 
