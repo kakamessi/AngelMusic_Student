@@ -100,7 +100,6 @@ public class Ssocket {
             dins.readFully(data);
             String msg = new String(data);
             receiver.receive(data);
-            Log.e("SSocket","tcp read :  " + msg);
         }
 
     }

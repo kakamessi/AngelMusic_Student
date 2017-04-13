@@ -40,7 +40,7 @@ public class TCPRec implements Runnable{
             socket.connect(host,port);
             socket.read(receiver);
 
-            Log.e("kaka","11111111111111学生端初始化连接成功");
+
         } catch (Exception e) {
 
             //e可能为null 教师端删除进程 学生端崩溃

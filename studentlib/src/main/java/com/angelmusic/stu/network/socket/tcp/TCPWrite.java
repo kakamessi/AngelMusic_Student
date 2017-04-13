@@ -35,7 +35,6 @@ public class TCPWrite {
 
                 } catch (Exception e) {
 
-                    Log.e("kaka","000000000000学生端发送消息失败: " + e.getMessage().toString());
                 }
 
             }
@@ -54,8 +53,6 @@ public class TCPWrite {
                     ss.write(bytes);
 
                 } catch (Exception e) {
-
-                    Log.e("kaka","学生端发送消息失败: " + e.getMessage().toString());
 
 //                    try {
 //                        AndroidDispatcher.getInstance().reConnect(true);
