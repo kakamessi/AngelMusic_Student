@@ -458,14 +458,14 @@ public class VideoActivity extends BaseActivity {
             }
 
             if (isDaPing) {
-                Log.e("kaka","--AV handleMsg--"+  "qing kan da ping mu");
+
                 //请看大屏幕
                 stop();
                 setLayoutStyle(1);
 
             } else {
 
-                Log.e("kaka","--AV handleMsg--"+  "bo fang shi ping");
+
                 //学生端播放视频，会带有附加逻辑~~~~~~
 
                 setLayoutStyle(3);
@@ -488,7 +488,7 @@ public class VideoActivity extends BaseActivity {
         } else if (ActionType.ACTION_GZ_ONE.equals(ac[0])) {
             //-----------------------------------------------------------------------画谱状态
             resetStatus();
-            Log.e("kaka","--AV handleMsg--"+  " geng deng hua pu ");
+
 
             yuepu_tag = ac[1];
             isPianoActive = true;
@@ -501,12 +501,11 @@ public class VideoActivity extends BaseActivity {
             //暂停or继续
 
             if (ac[1].equals("2")) {
-                Log.e("kaka","--AV handleMsg--"+  "xia ke ");
+
                 this.finish();
 
             } else {
 
-                Log.e("kaka","--AV handleMsg--"+  "bo fang or zan ting" + isMediaPlaying);
                 pause();
             }
 
