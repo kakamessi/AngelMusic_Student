@@ -718,6 +718,9 @@ public class MusicNote {
         ArrayList<NoteInfo> result = null;
         switch(courseId)
         {
+            case Constant.COURSE_1076:
+                result = note_1ist[0];
+                break;
             case Constant.COURSE_1:
                 result = note_1ist[0];
                 break;
@@ -739,27 +742,108 @@ public class MusicNote {
                     result = fengtai_1ist[1];
                 }
                 break;
+            case Constant.COURSE_1339:
+                result = fengtai_1ist[2];
+                break;
             case Constant.COURSE_3_ft:
                 result = fengtai_1ist[2];
+                break;
+            case Constant.COURSE_1360:
+                result = fengtai_1ist[3];
+                break;
+            case Constant.COURSE_1380:
+                result = fengtai_1ist[3];
                 break;
             case Constant.COURSE_5:
                 result = fengtai_1ist[3];
                 break;
+            case Constant.COURSE_1403:
+                result = fengtai_1ist[4];
+                break;
+            case Constant.COURSE_1422:
+                result = fengtai_1ist[4];
+                break;
             case Constant.COURSE_6:
                 result = fengtai_1ist[4];
+                break;
+            case Constant.COURSE_1443:
+                result = fengtai_1ist[5];
+                break;
+            case Constant.COURSE_1462:
+                result = fengtai_1ist[5];
                 break;
             case Constant.COURSE_8:
                 result = fengtai_1ist[5];
                 break;
+            case Constant.COURSE_1482:
+                result = fengtai_1ist[6];
+                break;
+            case Constant.COURSE_1499:
+                result = fengtai_1ist[6];
+                break;
             case Constant.COURSE_9:
                 result = fengtai_1ist[6];
+                break;
+            case Constant.COURSE_1518:
+                result = fengtai_1ist[7];
+                break;
+            case Constant.COURSE_1536:
+                result = fengtai_1ist[7];
                 break;
             case Constant.COURSE_11:
                 result = fengtai_1ist[7];
                 break;
+            case Constant.COURSE_1554:
+                result = fengtai_1ist[8];
+                break;
+            case Constant.COURSE_1572:
+                result = fengtai_1ist[8];
+                break;
             case Constant.COURSE_12:
                 result = fengtai_1ist[8];
                 break;
+
+            //c版本
+            case Constant.COURSE_950:
+                result = c_1ist[1];
+                break;
+            case Constant.COURSE_1116:
+                result = c_1ist[1];
+                break;
+            case Constant.COURSE_1099:
+                result = c_1ist[2];
+                break;
+            case Constant.COURSE_1157:
+                result = c_1ist[2];
+                break;
+            case Constant.COURSE_1140:
+                result = c_1ist[3];
+                break;
+            case Constant.COURSE_1196:
+                result = c_1ist[3];
+                break;
+            case Constant.COURSE_1180:
+                result = c_1ist[4];
+                break;
+            case Constant.COURSE_1237:
+                result = c_1ist[4];
+                break;
+            case Constant.COURSE_1219:
+                result = c_1ist[5];
+                break;
+            case Constant.COURSE_1277:
+                result = c_1ist[5];
+                break;
+            case Constant.COURSE_1261:
+                result = c_1ist[6];
+                break;
+            case Constant.COURSE_1316:
+                result = c_1ist[6];
+                break;
+            case Constant.COURSE_1300:
+                result = c_1ist[7];
+                break;
+
         }
 
         return result;
@@ -1027,7 +1111,7 @@ public class MusicNote {
     public static float[] duration_c_3 = { 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f};
     //string[] celf = { "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "" };
     public static int[] color1_c_3 ={1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
-    public static int[] note_c_3 = { 39, 41, 43, -1, 39, 41, 43, -1, 43, 41, 39, -1, 43, 41, 39 -1};
+    public static int[] note_c_3 = { 39, 41, 43, -1, 39, 41, 43, -1, 43, 41, 39, -1, 43, 41, 39, -1};
 
     //C社培及幼儿园上学期乐谱  第4课
     public static float[] time_c_4 = { 14.54f, 43.63f };
