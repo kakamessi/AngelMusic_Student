@@ -767,10 +767,16 @@ public class VideoActivity extends BaseActivity {
     private void checkGZ2(boolean isGd) {
         if(isGd){
             isPianoActive = true;
-            if(course_id==Constant.COURSE_1 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076 ) && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
-            }else if(course_id==Constant.COURSE_1 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+
+
+
+            }else if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076 )&& Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
+
+
+
             }else if(course_id==Constant.COURSE_2 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread =  new Thread(new VideoRun(-1,MusicNote.delay3,MusicNote.dur3,MusicNote.color3,MusicNote.index3));
             }else if(course_id==Constant.COURSE_2 && Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
