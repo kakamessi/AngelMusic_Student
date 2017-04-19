@@ -200,7 +200,7 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //处理显示正确音符和钢琴键逻辑
-            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             } else if (course_id == Constant.COURSE_2) {
                 if (nextInfo.getNoteIndex() < 13) {
@@ -597,7 +597,7 @@ public class VideoActivity extends BaseActivity {
             setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076) {
                 //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
