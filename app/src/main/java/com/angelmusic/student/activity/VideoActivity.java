@@ -333,7 +333,67 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt2);
                 }
+            }else if(course_id == Constant.COURSE_950 || course_id == Constant.COURSE_1116){
+                //C3
+                replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
+
+            }else if(course_id == Constant.COURSE_1099 || course_id == Constant.COURSE_1157){
+                //C4
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_2);
+                }
+
+            }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
+                //C5
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_2);
+                }
+
+            }else if(course_id == Constant.COURSE_1180 || course_id == Constant.COURSE_1237){
+                //C6
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_2);
+                }
+
+            }else if(course_id == Constant.COURSE_1219 || course_id == Constant.COURSE_1277){
+                //C7
+                if(index_new<8) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
+                }else if(index_new<16){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_2);
+                }else if(index_new<28){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_3);
+                }else if{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
+                }
+
+            }else if(course_id == Constant.COURSE_1261 || course_id == Constant.COURSE_1316){
+                //C8
+                if(index_new<13) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_2);
+                }
+
+            }else if(course_id == Constant.COURSE_1300){
+                //C9
+                if(index_new<12) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
+                }else if(index_new<23){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_2);
+                }else if(index_new<33){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_3);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
+                }
             }
+
 
             setNoteAndKey(llYuepu, nextInfo.getNoteIndex()+1, nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
 

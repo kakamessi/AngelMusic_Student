@@ -83,6 +83,26 @@
             android:layout_toRightOf="@+id/iv_5"
             android:layout_toEndOf="@+id/iv_5" />
 
+        <ImageView
+            android:id="@+id/iv_1_2"
+            style="@style/puziyinfu_bg_02"
+            android:tag="7"
+            android:layout_marginLeft="110dp"
+            android:layout_marginStart="110dp"
+            android:layout_alignTop="@+id/iv_1"
+            android:layout_toRightOf="@+id/iv_1"
+            android:layout_toEndOf="@+id/iv_1" />
+
+        <ImageView
+            android:id="@+id/iv_1_1"
+            style="@style/puziyinfu_bg_02"
+            android:tag="8"
+            android:layout_marginRight="206dp"
+            android:layout_marginEnd="206dp"
+            android:layout_alignTop="@+id/iv_1_2"
+            android:layout_alignRight="@+id/iv_puzi"
+            android:layout_alignEnd="@+id/iv_puzi" />
+
 
     </RelativeLayout>
 

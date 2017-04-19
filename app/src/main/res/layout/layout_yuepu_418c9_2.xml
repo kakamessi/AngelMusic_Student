@@ -124,6 +124,16 @@
             android:layout_alignTop="@+id/iv_3"
             android:layout_alignLeft="@+id/iv_puzi"
             android:layout_alignStart="@+id/iv_puzi" />
+
+        <ImageView
+            android:id="@+id/iv_9_1"
+            style="@style/puziyinfu_bg_02"
+            android:tag="23"
+            android:layout_alignTop="@+id/iv_1"
+            android:layout_toRightOf="@+id/iv_9"
+            android:layout_toEndOf="@+id/iv_9"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp" />
     </RelativeLayout>
 
     <RelativeLayout

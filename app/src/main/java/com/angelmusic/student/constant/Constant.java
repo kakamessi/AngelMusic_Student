@@ -45,6 +45,7 @@ public class Constant {
     public static final int COURSE_2 = 669;
     public static final int COURSE_3 = 3;
     public static final int COURSE_187 = 187;
+    public static final int COURSE_915 = 915;
 
     public static final int COURSE_2_ft = 786;
     public static final int COURSE_3_ft = 690;
@@ -75,7 +76,28 @@ public class Constant {
     public static final int COURSE_1536 = 1536;
     public static final int COURSE_1572 = 1572;
 
-
+    //C2
+    public static final int COURSE_1076 = 1076;
+    //C3
+    public static final int COURSE_950 = 950;
+    public static final int COURSE_1116 = 1116;
+    //c4
+    public static final int COURSE_1099 = 1099;
+    public static final int COURSE_1157 = 1157;
+    //C5
+    public static final int COURSE_1140 = 1140;
+    public static final int COURSE_1196 = 1196;
+    //C6
+    public static final int COURSE_1180 = 1180;
+    public static final int COURSE_1237 = 1237;
+    //C7
+    public static final int COURSE_1219 = 1219;
+    public static final int COURSE_1277 = 1277;
+    //C8
+    public static final int COURSE_1261 = 1261;
+    public static final int COURSE_1316 = 1316;
+    //C9
+    public static final int COURSE_1300 = 1300;
 
 
 }
