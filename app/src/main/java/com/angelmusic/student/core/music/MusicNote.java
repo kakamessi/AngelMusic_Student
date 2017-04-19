@@ -718,6 +718,9 @@ public class MusicNote {
         ArrayList<NoteInfo> result = null;
         switch(courseId)
         {
+            case Constant.COURSE_915:
+                result = note_1ist[0];
+                break;
             case Constant.COURSE_1076:
                 result = note_1ist[0];
                 break;
@@ -727,6 +730,8 @@ public class MusicNote {
             case Constant.COURSE_187:
                 result = note_1ist[0];
                 break;
+
+
             case Constant.COURSE_2:
                 result = note_1ist[1];
                 break;
@@ -742,12 +747,32 @@ public class MusicNote {
                     result = fengtai_1ist[1];
                 }
                 break;
+
+            case Constant.COURSE_1020:
+                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
+                    result = fengtai_1ist[0];
+                }else{
+                    result = fengtai_1ist[1];
+                }
+                break;
+            case Constant.COURSE_1039:
+                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
+                    result = fengtai_1ist[0];
+                }else{
+                    result = fengtai_1ist[1];
+                }
+                break;
+
             case Constant.COURSE_1339:
+                result = fengtai_1ist[2];
+                break;
+            case Constant.COURSE_1059:
                 result = fengtai_1ist[2];
                 break;
             case Constant.COURSE_3_ft:
                 result = fengtai_1ist[2];
                 break;
+
             case Constant.COURSE_1360:
                 result = fengtai_1ist[3];
                 break;
@@ -757,6 +782,7 @@ public class MusicNote {
             case Constant.COURSE_5:
                 result = fengtai_1ist[3];
                 break;
+
             case Constant.COURSE_1403:
                 result = fengtai_1ist[4];
                 break;
@@ -766,6 +792,7 @@ public class MusicNote {
             case Constant.COURSE_6:
                 result = fengtai_1ist[4];
                 break;
+
             case Constant.COURSE_1443:
                 result = fengtai_1ist[5];
                 break;
@@ -775,6 +802,7 @@ public class MusicNote {
             case Constant.COURSE_8:
                 result = fengtai_1ist[5];
                 break;
+
             case Constant.COURSE_1482:
                 result = fengtai_1ist[6];
                 break;
@@ -784,6 +812,7 @@ public class MusicNote {
             case Constant.COURSE_9:
                 result = fengtai_1ist[6];
                 break;
+
             case Constant.COURSE_1518:
                 result = fengtai_1ist[7];
                 break;
@@ -793,6 +822,7 @@ public class MusicNote {
             case Constant.COURSE_11:
                 result = fengtai_1ist[7];
                 break;
+
             case Constant.COURSE_1554:
                 result = fengtai_1ist[8];
                 break;
@@ -810,36 +840,42 @@ public class MusicNote {
             case Constant.COURSE_1116:
                 result = c_1ist[1];
                 break;
+
             case Constant.COURSE_1099:
                 result = c_1ist[2];
                 break;
             case Constant.COURSE_1157:
                 result = c_1ist[2];
                 break;
+
             case Constant.COURSE_1140:
                 result = c_1ist[3];
                 break;
             case Constant.COURSE_1196:
                 result = c_1ist[3];
                 break;
+
             case Constant.COURSE_1180:
                 result = c_1ist[4];
                 break;
             case Constant.COURSE_1237:
                 result = c_1ist[4];
                 break;
+
             case Constant.COURSE_1219:
                 result = c_1ist[5];
                 break;
             case Constant.COURSE_1277:
                 result = c_1ist[5];
                 break;
+
             case Constant.COURSE_1261:
                 result = c_1ist[6];
                 break;
             case Constant.COURSE_1316:
                 result = c_1ist[6];
                 break;
+
             case Constant.COURSE_1300:
                 result = c_1ist[7];
                 break;
