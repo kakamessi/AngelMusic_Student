@@ -369,7 +369,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_2);
                 }else if(index_new<28){
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_3);
-                }else if{
+                }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
                 }
 
