@@ -749,18 +749,12 @@ public class MusicNote {
                 break;
 
             case Constant.COURSE_1020:
-                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
-                    result = fengtai_1ist[0];
-                }else{
-                    result = fengtai_1ist[1];
-                }
+                 result = fengtai_1ist[0];
+
                 break;
             case Constant.COURSE_1039:
-                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
-                    result = fengtai_1ist[0];
-                }else{
-                    result = fengtai_1ist[1];
-                }
+                 result = fengtai_1ist[1];
+
                 break;
 
             case Constant.COURSE_1339:
