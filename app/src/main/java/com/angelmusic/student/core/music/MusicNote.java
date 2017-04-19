@@ -430,13 +430,13 @@ public class MusicNote {
 
         NoteInfo c_3_5n = new NoteInfo(41,4,getKeyIndex(41),true);
         NoteInfo c_3_6n = new NoteInfo(43,5,getKeyIndex(43),true);
-        NoteInfo c_3_7n = new NoteInfo(43,6,getKeyIndex(43),false);
-        NoteInfo c_3_8n = new NoteInfo(41,7,getKeyIndex(41),false);
+        NoteInfo c_3_7n = new NoteInfo(43,6,getKeyIndex(43),true);
+        NoteInfo c_3_8n = new NoteInfo(41,7,getKeyIndex(41),true);
 
-        NoteInfo c_3_9n = new NoteInfo(39,8,getKeyIndex(39),false);
-        NoteInfo c_3_10n = new NoteInfo(43,9,getKeyIndex(43),false);
-        NoteInfo c_3_11n = new NoteInfo(41,10,getKeyIndex(41),false);
-        NoteInfo c_3_12n = new NoteInfo(39,11,getKeyIndex(39),false);
+        NoteInfo c_3_9n = new NoteInfo(39,8,getKeyIndex(39),true);
+        NoteInfo c_3_10n = new NoteInfo(43,9,getKeyIndex(43),true);
+        NoteInfo c_3_11n = new NoteInfo(41,10,getKeyIndex(41),true);
+        NoteInfo c_3_12n = new NoteInfo(39,11,getKeyIndex(39),true);
 
         c_3.add(c_3_1n);c_3.add(c_3_2n);c_3.add(c_3_3n);c_3.add(c_3_4n);
         c_3.add(c_3_5n);c_3.add(c_3_6n);c_3.add(c_3_7n);c_3.add(c_3_8n);
@@ -449,13 +449,13 @@ public class MusicNote {
         NoteInfo c_4_4n = new NoteInfo(39,3,getKeyIndex(39),true);
         NoteInfo c_4_5n = new NoteInfo(41,4,getKeyIndex(41),true);
         NoteInfo c_4_6n = new NoteInfo(41,5,getKeyIndex(41),true);
-        NoteInfo c_4_7n = new NoteInfo(43,6,getKeyIndex(43),false);
-        NoteInfo c_4_8n = new NoteInfo(39,7,getKeyIndex(39),false);
+        NoteInfo c_4_7n = new NoteInfo(43,6,getKeyIndex(43),true);
+        NoteInfo c_4_8n = new NoteInfo(39,7,getKeyIndex(39),true);
 
-        NoteInfo c_4_9n = new NoteInfo(41,8,getKeyIndex(41),false);
-        NoteInfo c_4_10n = new NoteInfo(41,9,getKeyIndex(41),false);
-        NoteInfo c_4_11n = new NoteInfo(39,10,getKeyIndex(39),false);
-        NoteInfo c_4_12n = new NoteInfo(39,11,getKeyIndex(39),false);
+        NoteInfo c_4_9n = new NoteInfo(41,8,getKeyIndex(41),true);
+        NoteInfo c_4_10n = new NoteInfo(41,9,getKeyIndex(41),true);
+        NoteInfo c_4_11n = new NoteInfo(39,10,getKeyIndex(39),true);
+        NoteInfo c_4_12n = new NoteInfo(39,11,getKeyIndex(39),true);
         NoteInfo c_4_13n = new NoteInfo(39,12,getKeyIndex(39),true);
         NoteInfo c_4_14n = new NoteInfo(41,13,getKeyIndex(41),true);
         NoteInfo c_4_15n = new NoteInfo(43,14,getKeyIndex(43),true);
@@ -463,12 +463,12 @@ public class MusicNote {
 
         NoteInfo c_4_17n = new NoteInfo(41,16,getKeyIndex(41),true);
         NoteInfo c_4_18n = new NoteInfo(41,17,getKeyIndex(41),true);
-        NoteInfo c_4_19n = new NoteInfo(43,18,getKeyIndex(43),false);
-        NoteInfo c_4_20n = new NoteInfo(41,19,getKeyIndex(41),false);
-        NoteInfo c_4_21n = new NoteInfo(39,20,getKeyIndex(39),false);
-        NoteInfo c_4_22n = new NoteInfo(41,21,getKeyIndex(41),false);
-        NoteInfo c_4_23n = new NoteInfo(39,22,getKeyIndex(39),false);
-        NoteInfo c_4_24n = new NoteInfo(39,23,getKeyIndex(39),false);
+        NoteInfo c_4_19n = new NoteInfo(43,18,getKeyIndex(43),true);
+        NoteInfo c_4_20n = new NoteInfo(41,19,getKeyIndex(41),true);
+        NoteInfo c_4_21n = new NoteInfo(39,20,getKeyIndex(39),true);
+        NoteInfo c_4_22n = new NoteInfo(41,21,getKeyIndex(41),true);
+        NoteInfo c_4_23n = new NoteInfo(39,22,getKeyIndex(39),true);
+        NoteInfo c_4_24n = new NoteInfo(39,23,getKeyIndex(39),true);
 
         c_4.add(c_4_1n);c_4.add(c_4_2n);c_4.add(c_4_3n);c_4.add(c_4_4n);
         c_4.add(c_4_5n);c_4.add(c_4_6n);c_4.add(c_4_7n);c_4.add(c_4_8n);
@@ -478,12 +478,12 @@ public class MusicNote {
         c_4.add(c_4_21n);c_4.add(c_4_22n);c_4.add(c_4_23n);c_4.add(c_4_24n);
 
         /* 第5课  { 36, 36, 38, 38, 36, 36, 36, 36,     38, 38, 39, 39, 39, 39, 38, 38,     39, 39, 39, 39, 38, 38, 36, 36 }*/
-        NoteInfo c_5_1n = new NoteInfo(36,0,getKeyIndex(36),true);
-        NoteInfo c_5_2n = new NoteInfo(36,1,getKeyIndex(36),true);
-        NoteInfo c_5_3n = new NoteInfo(38,2,getKeyIndex(38),true);
-        NoteInfo c_5_4n = new NoteInfo(38,3,getKeyIndex(38),true);
-        NoteInfo c_5_5n = new NoteInfo(36,4,getKeyIndex(36),true);
-        NoteInfo c_5_6n = new NoteInfo(36,5,getKeyIndex(36),true);
+        NoteInfo c_5_1n = new NoteInfo(36,0,getKeyIndex(36),false);
+        NoteInfo c_5_2n = new NoteInfo(36,1,getKeyIndex(36),false);
+        NoteInfo c_5_3n = new NoteInfo(38,2,getKeyIndex(38),false);
+        NoteInfo c_5_4n = new NoteInfo(38,3,getKeyIndex(38),false);
+        NoteInfo c_5_5n = new NoteInfo(36,4,getKeyIndex(36),false);
+        NoteInfo c_5_6n = new NoteInfo(36,5,getKeyIndex(36),false);
         NoteInfo c_5_7n = new NoteInfo(36,6,getKeyIndex(36),false);
         NoteInfo c_5_8n = new NoteInfo(36,7,getKeyIndex(36),false);
 
@@ -491,13 +491,13 @@ public class MusicNote {
         NoteInfo c_5_10n = new NoteInfo(38,9,getKeyIndex(38),false);
         NoteInfo c_5_11n = new NoteInfo(39,10,getKeyIndex(39),false);
         NoteInfo c_5_12n = new NoteInfo(39,11,getKeyIndex(39),false);
-        NoteInfo c_5_13n = new NoteInfo(39,12,getKeyIndex(39),true);
-        NoteInfo c_5_14n = new NoteInfo(39,13,getKeyIndex(39),true);
-        NoteInfo c_5_15n = new NoteInfo(38,14,getKeyIndex(38),true);
-        NoteInfo c_5_16n = new NoteInfo(38,15,getKeyIndex(38),true);
+        NoteInfo c_5_13n = new NoteInfo(39,12,getKeyIndex(39),false);
+        NoteInfo c_5_14n = new NoteInfo(39,13,getKeyIndex(39),false);
+        NoteInfo c_5_15n = new NoteInfo(38,14,getKeyIndex(38),false);
+        NoteInfo c_5_16n = new NoteInfo(38,15,getKeyIndex(38),false);
 
-        NoteInfo c_5_17n = new NoteInfo(39,16,getKeyIndex(39),true);
-        NoteInfo c_5_18n = new NoteInfo(39,17,getKeyIndex(39),true);
+        NoteInfo c_5_17n = new NoteInfo(39,16,getKeyIndex(39),false);
+        NoteInfo c_5_18n = new NoteInfo(39,17,getKeyIndex(39),false);
         NoteInfo c_5_19n = new NoteInfo(39,18,getKeyIndex(39),false);
         NoteInfo c_5_20n = new NoteInfo(39,19,getKeyIndex(39),false);
         NoteInfo c_5_21n = new NoteInfo(38,20,getKeyIndex(38),false);
@@ -513,12 +513,12 @@ public class MusicNote {
         c_5.add(c_5_21n);c_5.add(c_5_22n);c_5.add(c_5_23n);c_5.add(c_5_24n);
 
         /* 第6课   { 39, 39, 36, -1,39, 39, 36,-1, 39, 38,      36, 38, 39, 36, 39, 43, 41,-1, 39,     43, 41,-1, 43, 39, 41, 43, 39, 39 }*/
-        NoteInfo c_6_1n = new NoteInfo(39,0,getKeyIndex(39),true);
-        NoteInfo c_6_2n = new NoteInfo(39,1,getKeyIndex(39),true);
-        NoteInfo c_6_3n = new NoteInfo(36,2,getKeyIndex(36),true);
-        NoteInfo c_6_4n = new NoteInfo(39,3,getKeyIndex(39),true);
-        NoteInfo c_6_5n = new NoteInfo(39,4,getKeyIndex(39),true);
-        NoteInfo c_6_6n = new NoteInfo(36,5,getKeyIndex(36),true);
+        NoteInfo c_6_1n = new NoteInfo(39,0,getKeyIndex(39),false);
+        NoteInfo c_6_2n = new NoteInfo(39,1,getKeyIndex(39),false);
+        NoteInfo c_6_3n = new NoteInfo(36,2,getKeyIndex(36),false);
+        NoteInfo c_6_4n = new NoteInfo(39,3,getKeyIndex(39),false);
+        NoteInfo c_6_5n = new NoteInfo(39,4,getKeyIndex(39),false);
+        NoteInfo c_6_6n = new NoteInfo(36,5,getKeyIndex(36),false);
         NoteInfo c_6_7n = new NoteInfo(39,6,getKeyIndex(39),false);
         NoteInfo c_6_8n = new NoteInfo(38,7,getKeyIndex(38),false);
 
@@ -533,12 +533,12 @@ public class MusicNote {
 
         NoteInfo c_6_17n = new NoteInfo(43,16,getKeyIndex(43),true);
         NoteInfo c_6_18n = new NoteInfo(41,17,getKeyIndex(41),true);
-        NoteInfo c_6_19n = new NoteInfo(43,18,getKeyIndex(43),false);
-        NoteInfo c_6_20n = new NoteInfo(39,19,getKeyIndex(39),false);
-        NoteInfo c_6_21n = new NoteInfo(41,20,getKeyIndex(41),false);
-        NoteInfo c_6_22n = new NoteInfo(43,21,getKeyIndex(43),false);
-        NoteInfo c_6_23n = new NoteInfo(39,22,getKeyIndex(39),false);
-        NoteInfo c_6_24n = new NoteInfo(39,23,getKeyIndex(39),false);
+        NoteInfo c_6_19n = new NoteInfo(43,18,getKeyIndex(43),true);
+        NoteInfo c_6_20n = new NoteInfo(39,19,getKeyIndex(39),true);
+        NoteInfo c_6_21n = new NoteInfo(41,20,getKeyIndex(41),true);
+        NoteInfo c_6_22n = new NoteInfo(43,21,getKeyIndex(43),true);
+        NoteInfo c_6_23n = new NoteInfo(39,22,getKeyIndex(39),true);
+        NoteInfo c_6_24n = new NoteInfo(39,23,getKeyIndex(39),true);
 
         c_6.add(c_6_1n);c_6.add(c_6_2n);c_6.add(c_6_3n);c_6.add(c_6_4n);
         c_6.add(c_6_5n);c_6.add(c_6_6n);c_6.add(c_6_7n);c_6.add(c_6_8n);
@@ -554,40 +554,40 @@ public class MusicNote {
         NoteInfo c_7_4n = new NoteInfo(43,3,getKeyIndex(43),true);
         NoteInfo c_7_5n = new NoteInfo(41,4,getKeyIndex(41),true);
         NoteInfo c_7_6n = new NoteInfo(39,5,getKeyIndex(39),true);
-        NoteInfo c_7_7n = new NoteInfo(41,6,getKeyIndex(41),false);
-        NoteInfo c_7_8n = new NoteInfo(41,7,getKeyIndex(41),false);
+        NoteInfo c_7_7n = new NoteInfo(41,6,getKeyIndex(41),true);
+        NoteInfo c_7_8n = new NoteInfo(41,7,getKeyIndex(41),true);
 
         NoteInfo c_7_9n = new NoteInfo(39,8,getKeyIndex(39),false);
         NoteInfo c_7_10n = new NoteInfo(39,9,getKeyIndex(39),false);
         NoteInfo c_7_11n = new NoteInfo(38,10,getKeyIndex(38),false);
         NoteInfo c_7_12n = new NoteInfo(36,11,getKeyIndex(36),false);
-        NoteInfo c_7_13n = new NoteInfo(38,12,getKeyIndex(38),true);
-        NoteInfo c_7_14n = new NoteInfo(39,13,getKeyIndex(49),true);
-        NoteInfo c_7_15n = new NoteInfo(38,14,getKeyIndex(38),true);
-        NoteInfo c_7_16n = new NoteInfo(38,15,getKeyIndex(38),true);
+        NoteInfo c_7_13n = new NoteInfo(38,12,getKeyIndex(38),false);
+        NoteInfo c_7_14n = new NoteInfo(39,13,getKeyIndex(49),false);
+        NoteInfo c_7_15n = new NoteInfo(38,14,getKeyIndex(38),false);
+        NoteInfo c_7_16n = new NoteInfo(38,15,getKeyIndex(38),false);
 
         NoteInfo c_7_17n = new NoteInfo(39,16,getKeyIndex(39),true);
         NoteInfo c_7_18n = new NoteInfo(39,17,getKeyIndex(39),true);
-        NoteInfo c_7_19n = new NoteInfo(41,18,getKeyIndex(41),false);
-        NoteInfo c_7_20n = new NoteInfo(43,19,getKeyIndex(43),false);
-        NoteInfo c_7_21n = new NoteInfo(41,20,getKeyIndex(41),false);
-        NoteInfo c_7_22n = new NoteInfo(39,21,getKeyIndex(39),false);
-        NoteInfo c_7_23n = new NoteInfo(39,22,getKeyIndex(39),false);
-        NoteInfo c_7_24n = new NoteInfo(39,23,getKeyIndex(39),false);
+        NoteInfo c_7_19n = new NoteInfo(41,18,getKeyIndex(41),true);
+        NoteInfo c_7_20n = new NoteInfo(43,19,getKeyIndex(43),true);
+        NoteInfo c_7_21n = new NoteInfo(41,20,getKeyIndex(41),true);
+        NoteInfo c_7_22n = new NoteInfo(39,21,getKeyIndex(39),true);
+        NoteInfo c_7_23n = new NoteInfo(39,22,getKeyIndex(39),true);
+        NoteInfo c_7_24n = new NoteInfo(39,23,getKeyIndex(39),true);
 
         NoteInfo c_7_25n = new NoteInfo(41,24,getKeyIndex(41),true);
         NoteInfo c_7_26n = new NoteInfo(43,25,getKeyIndex(43),true);
-        NoteInfo c_7_27n = new NoteInfo(41,26,getKeyIndex(41),false);
-        NoteInfo c_7_28n = new NoteInfo(39,27,getKeyIndex(39),false);
-        NoteInfo c_7_29n = new NoteInfo(43,28,getKeyIndex(43),false);
-        NoteInfo c_7_30n = new NoteInfo(43,29,getKeyIndex(43),false);
-        NoteInfo c_7_31n = new NoteInfo(41,30,getKeyIndex(41),false);
-        NoteInfo c_7_32n = new NoteInfo(39,31,getKeyIndex(39),false);
+        NoteInfo c_7_27n = new NoteInfo(41,26,getKeyIndex(41),true);
+        NoteInfo c_7_28n = new NoteInfo(39,27,getKeyIndex(39),true);
+        NoteInfo c_7_29n = new NoteInfo(43,28,getKeyIndex(43),true);
+        NoteInfo c_7_30n = new NoteInfo(43,29,getKeyIndex(43),true);
+        NoteInfo c_7_31n = new NoteInfo(41,30,getKeyIndex(41),true);
+        NoteInfo c_7_32n = new NoteInfo(39,31,getKeyIndex(39),true);
 
-        NoteInfo c_7_33n = new NoteInfo(41,32,getKeyIndex(41),false);
+        NoteInfo c_7_33n = new NoteInfo(41,32,getKeyIndex(41),true);
         NoteInfo c_7_34n = new NoteInfo(38,33,getKeyIndex(38),false);
         NoteInfo c_7_35n = new NoteInfo(39,34,getKeyIndex(39),false);
-        NoteInfo c_7_36n = new NoteInfo(39,35,getKeyIndex(39),false);
+        NoteInfo c_7_36n = new NoteInfo(39,35,getKeyIndex(39),true);
 
         c_7.add(c_7_1n);c_7.add(c_7_2n);c_7.add(c_7_3n);c_7.add(c_7_4n);
         c_7.add(c_7_5n);c_7.add(c_7_6n);c_7.add(c_7_7n);c_7.add(c_7_8n);
@@ -606,22 +606,22 @@ public class MusicNote {
         NoteInfo c_8_4n = new NoteInfo(39,3,getKeyIndex(39),true);
         NoteInfo c_8_5n = new NoteInfo(39,4,getKeyIndex(39),true);
         NoteInfo c_8_6n = new NoteInfo(36,5,getKeyIndex(36),true);
-        NoteInfo c_8_7n = new NoteInfo(39,6,getKeyIndex(39),false);
-        NoteInfo c_8_8n = new NoteInfo(38,7,getKeyIndex(38),false);
+        NoteInfo c_8_7n = new NoteInfo(39,6,getKeyIndex(39),true);
+        NoteInfo c_8_8n = new NoteInfo(38,7,getKeyIndex(38),true);
 
-        NoteInfo c_8_9n = new NoteInfo(36,8,getKeyIndex(36),false);
-        NoteInfo c_8_10n = new NoteInfo(38,9,getKeyIndex(38),false);
-        NoteInfo c_8_11n = new NoteInfo(39,10,getKeyIndex(39),false);
-        NoteInfo c_8_12n = new NoteInfo(36,11,getKeyIndex(36),false);
-        NoteInfo c_8_13n = new NoteInfo(39,12,getKeyIndex(39),true);
+        NoteInfo c_8_9n = new NoteInfo(36,8,getKeyIndex(36),true);
+        NoteInfo c_8_10n = new NoteInfo(38,9,getKeyIndex(38),true);
+        NoteInfo c_8_11n = new NoteInfo(39,10,getKeyIndex(39),true);
+        NoteInfo c_8_12n = new NoteInfo(36,11,getKeyIndex(36),true);
+        NoteInfo c_8_13n = new NoteInfo(39,12,getKeyIndex(39),false);
         NoteInfo c_8_14n = new NoteInfo(43,13,getKeyIndex(43),true);
         NoteInfo c_8_15n = new NoteInfo(41,14,getKeyIndex(41),true);
         NoteInfo c_8_16n = new NoteInfo(39,15,getKeyIndex(39),true);
 
         NoteInfo c_8_17n = new NoteInfo(43,16,getKeyIndex(43),true);
         NoteInfo c_8_18n = new NoteInfo(41,17,getKeyIndex(41),true);
-        NoteInfo c_8_19n = new NoteInfo(43,18,getKeyIndex(43),false);
-        NoteInfo c_8_20n = new NoteInfo(39,19,getKeyIndex(39),false);
+        NoteInfo c_8_19n = new NoteInfo(43,18,getKeyIndex(43),true);
+        NoteInfo c_8_20n = new NoteInfo(39,19,getKeyIndex(39),true);
         NoteInfo c_8_21n = new NoteInfo(41,20,getKeyIndex(41),false);
         NoteInfo c_8_22n = new NoteInfo(43,21,getKeyIndex(43),false);
         NoteInfo c_8_23n = new NoteInfo(39,22,getKeyIndex(39),false);
@@ -648,13 +648,13 @@ public class MusicNote {
         NoteInfo c_9_4n = new NoteInfo(46,3,getKeyIndex(43),true);
         NoteInfo c_9_5n = new NoteInfo(39,4,getKeyIndex(41),true);
         NoteInfo c_9_6n = new NoteInfo(39,5,getKeyIndex(39),true);
-        NoteInfo c_9_7n = new NoteInfo(41,6,getKeyIndex(41),false);
-        NoteInfo c_9_8n = new NoteInfo(43,7,getKeyIndex(41),false);
+        NoteInfo c_9_7n = new NoteInfo(41,6,getKeyIndex(41),true);
+        NoteInfo c_9_8n = new NoteInfo(43,7,getKeyIndex(41),true);
 
-        NoteInfo c_9_9n = new NoteInfo(44,8,getKeyIndex(39),false);
-        NoteInfo c_9_10n = new NoteInfo(41,9,getKeyIndex(39),false);
-        NoteInfo c_9_11n = new NoteInfo(43,10,getKeyIndex(38),false);
-        NoteInfo c_9_12n = new NoteInfo(39,11,getKeyIndex(36),false);
+        NoteInfo c_9_9n = new NoteInfo(44,8,getKeyIndex(39),true);
+        NoteInfo c_9_10n = new NoteInfo(41,9,getKeyIndex(39),true);
+        NoteInfo c_9_11n = new NoteInfo(43,10,getKeyIndex(38),true);
+        NoteInfo c_9_12n = new NoteInfo(39,11,getKeyIndex(36),true);
         NoteInfo c_9_13n = new NoteInfo(39,12,getKeyIndex(38),true);
         NoteInfo c_9_14n = new NoteInfo(39,13,getKeyIndex(49),true);
         NoteInfo c_9_15n = new NoteInfo(43,14,getKeyIndex(38),true);
@@ -662,34 +662,34 @@ public class MusicNote {
 
         NoteInfo c_9_17n = new NoteInfo(39,16,getKeyIndex(39),true);
         NoteInfo c_9_18n = new NoteInfo(39,17,getKeyIndex(39),true);
-        NoteInfo c_9_19n = new NoteInfo(41,18,getKeyIndex(41),false);
-        NoteInfo c_9_20n = new NoteInfo(43,19,getKeyIndex(43),false);
-        NoteInfo c_9_21n = new NoteInfo(44,20,getKeyIndex(44),false);
-        NoteInfo c_9_22n = new NoteInfo(41,21,getKeyIndex(41),false);
-        NoteInfo c_9_23n = new NoteInfo(39,22,getKeyIndex(39),false);
-        NoteInfo c_9_24n = new NoteInfo(44,23,getKeyIndex(44),false);
+        NoteInfo c_9_19n = new NoteInfo(41,18,getKeyIndex(41),true);
+        NoteInfo c_9_20n = new NoteInfo(43,19,getKeyIndex(43),true);
+        NoteInfo c_9_21n = new NoteInfo(44,20,getKeyIndex(44),true);
+        NoteInfo c_9_22n = new NoteInfo(41,21,getKeyIndex(41),true);
+        NoteInfo c_9_23n = new NoteInfo(39,22,getKeyIndex(39),true);
+        NoteInfo c_9_24n = new NoteInfo(44,23,getKeyIndex(44),true);
 
         NoteInfo c_9_25n = new NoteInfo(41,24,getKeyIndex(41),true);
         NoteInfo c_9_26n = new NoteInfo(41,25,getKeyIndex(41),true);
-        NoteInfo c_9_27n = new NoteInfo(43,26,getKeyIndex(44),false);
-        NoteInfo c_9_28n = new NoteInfo(39,27,getKeyIndex(39),false);
-        NoteInfo c_9_29n = new NoteInfo(39,28,getKeyIndex(39),false);
+        NoteInfo c_9_27n = new NoteInfo(43,26,getKeyIndex(44),true);
+        NoteInfo c_9_28n = new NoteInfo(39,27,getKeyIndex(39),true);
+        NoteInfo c_9_29n = new NoteInfo(39,28,getKeyIndex(39),true);
         NoteInfo c_9_30n = new NoteInfo(36,29,getKeyIndex(36),false);
         NoteInfo c_9_31n = new NoteInfo(38,30,getKeyIndex(38),false);
         NoteInfo c_9_32n = new NoteInfo(39,31,getKeyIndex(39),false);
 
-        NoteInfo c_9_33n = new NoteInfo(41,32,getKeyIndex(41),false);
-        NoteInfo c_9_34n = new NoteInfo(39,33,getKeyIndex(38),false);
-        NoteInfo c_9_35n = new NoteInfo(39,34,getKeyIndex(39),false);
-        NoteInfo c_9_36n = new NoteInfo(43,35,getKeyIndex(43),false);
-        NoteInfo c_9_37n = new NoteInfo(46,36,getKeyIndex(46),false);
+        NoteInfo c_9_33n = new NoteInfo(41,32,getKeyIndex(41),true);
+        NoteInfo c_9_34n = new NoteInfo(39,33,getKeyIndex(38),true);
+        NoteInfo c_9_35n = new NoteInfo(39,34,getKeyIndex(39),true);
+        NoteInfo c_9_36n = new NoteInfo(43,35,getKeyIndex(43),true);
+        NoteInfo c_9_37n = new NoteInfo(46,36,getKeyIndex(46),true);
         NoteInfo c_9_38n = new NoteInfo(39,37,getKeyIndex(39),false);
         NoteInfo c_9_39n = new NoteInfo(38,38,getKeyIndex(38),false);
         NoteInfo c_9_40n = new NoteInfo(39,39,getKeyIndex(39),false);
 
-        NoteInfo c_9_41n = new NoteInfo(41,40,getKeyIndex(41),false);
-        NoteInfo c_9_42n = new NoteInfo(41,41,getKeyIndex(41),false);
-        NoteInfo c_9_43n = new NoteInfo(39,42,getKeyIndex(39),false);
+        NoteInfo c_9_41n = new NoteInfo(41,40,getKeyIndex(41),true);
+        NoteInfo c_9_42n = new NoteInfo(41,41,getKeyIndex(41),true);
+        NoteInfo c_9_43n = new NoteInfo(39,42,getKeyIndex(39),true);
 
         c_9.add(c_9_1n);c_9.add(c_9_2n);c_9.add(c_9_3n);c_9.add(c_9_4n);
         c_9.add(c_9_5n);c_9.add(c_9_6n);c_9.add(c_9_7n);c_9.add(c_9_8n);
@@ -750,7 +750,6 @@ public class MusicNote {
 
             case Constant.COURSE_1020:
                  result = fengtai_1ist[0];
-
                 break;
             case Constant.COURSE_1039:
                  result = fengtai_1ist[1];
