@@ -273,43 +273,43 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_2);
                 }
-            }else if(course_id == Constant.COURSE_3_ft){
+            }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339){
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt2);
                 }
-            }else if(course_id == Constant.COURSE_5){
+            }else if(course_id == Constant.COURSE_5 || course_id == Constant.COURSE_1360 || course_id == Constant.COURSE_1380){
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg2);
                 }
-            }else if(course_id == Constant.COURSE_6){
+            }else if(course_id == Constant.COURSE_6 || course_id == Constant.COURSE_1403 || course_id == Constant.COURSE_1422){
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_yycb1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_yycb2);
                 }
-            }else if(course_id == Constant.COURSE_8){
+            }else if(course_id == Constant.COURSE_8 || course_id == Constant.COURSE_1443 || course_id == Constant.COURSE_1462){
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr2);
                 }
-            }else if(course_id == Constant.COURSE_9){
+            }else if(course_id == Constant.COURSE_9 || course_id == Constant.COURSE_1482 || course_id == Constant.COURSE_1499){
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_kadj1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_kadj2);
                 }
-            }else if(course_id == Constant.COURSE_11){
+            }else if(course_id == Constant.COURSE_11 || course_id == Constant.COURSE_1518 || course_id == Constant.COURSE_1536){
                 if(index_new<14) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz2);
                 }
-            }else if(course_id == Constant.COURSE_12){
+            }else if(course_id == Constant.COURSE_12 || course_id == Constant.COURSE_1554 || course_id == Constant.COURSE_1572){
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
                 }else{
@@ -566,37 +566,37 @@ public class VideoActivity extends BaseActivity {
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
-                }else if(course_id == Constant.COURSE_3_ft){
+                }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_5){
+                }else if(course_id == Constant.COURSE_5 || course_id == Constant.COURSE_1360 || course_id == Constant.COURSE_1380){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_slzzg1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_6){
+                }else if(course_id == Constant.COURSE_6 || course_id == Constant.COURSE_1403 || course_id == Constant.COURSE_1422){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_yycb1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_8){
+                }else if(course_id == Constant.COURSE_8 || course_id == Constant.COURSE_1443 || course_id == Constant.COURSE_1462){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_sddjr1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
 
-                }else if(course_id == Constant.COURSE_9){
+                }else if(course_id == Constant.COURSE_9 || course_id == Constant.COURSE_1482 || course_id == Constant.COURSE_1499){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_kadj1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(32),false);
                     MusicNote.openLight(VideoActivity.this,32,false);
 
-                }else if(course_id == Constant.COURSE_11){
+                }else if(course_id == Constant.COURSE_11 || course_id == Constant.COURSE_1518 || course_id == Constant.COURSE_1536){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_jnxz1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
 
-                }else if(course_id == Constant.COURSE_12){
+                }else if(course_id == Constant.COURSE_12 || course_id == Constant.COURSE_1554 || course_id == Constant.COURSE_1572){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(34),false);
                     MusicNote.openLight(VideoActivity.this,34,false);
@@ -681,25 +681,31 @@ public class VideoActivity extends BaseActivity {
             else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.dur1_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
 
-            }else if(course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id) || course_id == Constant.COURSE_1339){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
 
-            }else if(course_id==Constant.COURSE_5&& Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_5 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1360  || course_id == Constant.COURSE_1380){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_5,MusicNote.dur1_ft_5,MusicNote.color1_ft_5,MusicNote.index1_ft_5));
 
-            }else if(course_id==Constant.COURSE_6 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_6 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1403 || course_id == Constant.COURSE_1422){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_6,MusicNote.dur1_ft_6,MusicNote.color1_ft_6,MusicNote.index1_ft_6));
 
-            }else if(course_id==Constant.COURSE_8 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_8 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1443 || course_id == Constant.COURSE_1462){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_8,MusicNote.dur1_ft_8,MusicNote.color1_ft_8,MusicNote.index1_ft_8));
 
-            }else if(course_id==Constant.COURSE_9 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_9 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1482 || course_id == Constant.COURSE_1499){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_9,MusicNote.dur1_ft_9,MusicNote.color1_ft_9,MusicNote.index1_ft_9));
 
-            }else if(course_id==Constant.COURSE_11 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_11 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1518 || course_id == Constant.COURSE_1536){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_11,MusicNote.dur1_ft_11,MusicNote.color1_ft_11,MusicNote.index1_ft_11));
 
-            }else if(course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            }else if(course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+                    || course_id == Constant.COURSE_1554 || course_id == Constant.COURSE_1572){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_12,MusicNote.dur1_ft_12,MusicNote.color1_ft_12,MusicNote.index1_ft_12));
 
             }else if(course_id == Constant.COURSE_1020){

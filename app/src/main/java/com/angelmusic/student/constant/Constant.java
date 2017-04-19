@@ -59,4 +59,23 @@ public class Constant {
     public static final int COURSE_1039 = 1039;
     public static final int COURSE_1059 = 1059;
 
+    public static final int COURSE_1360 = 1360;
+    public static final int COURSE_1403 = 1403;
+    public static final int COURSE_1443 = 1443;
+
+    public static final int COURSE_1482 = 1482;
+    public static final int COURSE_1518 = 1518;
+    public static final int COURSE_1554 = 1554;
+
+    public static final int COURSE_1339 = 1339;
+    public static final int COURSE_1380 = 1380;
+    public static final int COURSE_1422 = 1422;
+    public static final int COURSE_1462 = 1462;
+    public static final int COURSE_1499 = 1499;
+    public static final int COURSE_1536 = 1536;
+    public static final int COURSE_1572 = 1572;
+
+
+
+
 }
