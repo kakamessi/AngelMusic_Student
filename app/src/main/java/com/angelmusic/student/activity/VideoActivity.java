@@ -681,30 +681,31 @@ public class VideoActivity extends BaseActivity {
             else if(course_id==Constant.COURSE_2_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_2_1,MusicNote.dur1_ft_2_1,MusicNote.color1_ft_2_1,MusicNote.index1_ft_2_1));
 
-            }else if(course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id) || course_id == Constant.COURSE_1339){
+            }else if((course_id==Constant.COURSE_3_ft && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
+                    || course_id == Constant.COURSE_1339){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_3,MusicNote.dur1_ft_3,MusicNote.color1_ft_3,MusicNote.index1_ft_3));
 
-            }else if(course_id==Constant.COURSE_5 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_5 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1360  || course_id == Constant.COURSE_1380){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_5,MusicNote.dur1_ft_5,MusicNote.color1_ft_5,MusicNote.index1_ft_5));
 
-            }else if(course_id==Constant.COURSE_6 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_6 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1403 || course_id == Constant.COURSE_1422){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_6,MusicNote.dur1_ft_6,MusicNote.color1_ft_6,MusicNote.index1_ft_6));
 
-            }else if(course_id==Constant.COURSE_8 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_8 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1443 || course_id == Constant.COURSE_1462){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_8,MusicNote.dur1_ft_8,MusicNote.color1_ft_8,MusicNote.index1_ft_8));
 
-            }else if(course_id==Constant.COURSE_9 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_9 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1482 || course_id == Constant.COURSE_1499){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_9,MusicNote.dur1_ft_9,MusicNote.color1_ft_9,MusicNote.index1_ft_9));
 
-            }else if(course_id==Constant.COURSE_11 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_11 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1518 || course_id == Constant.COURSE_1536){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_11,MusicNote.dur1_ft_11,MusicNote.color1_ft_11,MusicNote.index1_ft_11));
 
-            }else if(course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)
+            }else if((course_id==Constant.COURSE_12 && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id))
                     || course_id == Constant.COURSE_1554 || course_id == Constant.COURSE_1572){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay_ft_12,MusicNote.dur1_ft_12,MusicNote.color1_ft_12,MusicNote.index1_ft_12));
 
