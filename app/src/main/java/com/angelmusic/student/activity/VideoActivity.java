@@ -693,13 +693,13 @@ public class VideoActivity extends BaseActivity {
                 }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
                     //C5
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
-                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(36),false);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(36),false);
                     MusicNote.openLight(VideoActivity.this,36,false);
 
                 }else if(course_id == Constant.COURSE_1180 || course_id == Constant.COURSE_1237){
                     //C6
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
-                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),false);
+                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
                 }else if(course_id == Constant.COURSE_1219 || course_id == Constant.COURSE_1277){
