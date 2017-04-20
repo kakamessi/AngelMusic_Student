@@ -1213,6 +1213,27 @@ public class MusicNote {
     public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
     public static int[] color5 = { 1,1,-1,1,-1,1,-1};
     public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
+    
+    /**
+     * 生成 跟奏 需要的乐谱
+     * @param color
+     * @param note
+     * @return
+     */
+    public ArrayList<NoteInfo> getNoteList(int[] color, int[] note){
+
+        ArrayList<NoteInfo> al = new ArrayList<NoteInfo>();
+        for(int i=0; i<color.length;i++){
+            NoteInfo ni = new NoteInfo();
+            ni.setNoteNum(note[i]);
+            ni.setNoteIndex(i+1);
+            ni.setKeyIndex(getKeyIndex(note[i]));
+            ni.setRed(color[i]==1?true:false);
+            al.add(ni);
+        }
+
+        return al;
+    }
 
     public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) throws InterruptedException {
 

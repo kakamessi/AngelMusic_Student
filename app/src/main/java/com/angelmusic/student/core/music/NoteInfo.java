@@ -11,6 +11,9 @@ public class NoteInfo {
     private int noteIndex;
     private boolean Red;
 
+    public NoteInfo() {
+    }
+
     public NoteInfo(int noteNum, int noteIndex,int keyIndex, boolean red) {
         NoteNum = noteNum;
         this.keyIndex = keyIndex;
