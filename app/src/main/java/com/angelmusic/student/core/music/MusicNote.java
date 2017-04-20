@@ -1237,9 +1237,14 @@ public class MusicNote {
 
         ArrayList<NoteInfo> al = new ArrayList<NoteInfo>();
         for(int i=0; i<color.length;i++){
+
+            if(note[i]==-1){
+                continue;
+            }
+
             NoteInfo ni = new NoteInfo();
             ni.setNoteNum(note[i]);
-            ni.setNoteIndex(i+1);
+            ni.setNoteIndex(i);
             ni.setKeyIndex(getKeyIndex(note[i]));
             ni.setRed(color[i]==1?true:false);
             al.add(ni);
