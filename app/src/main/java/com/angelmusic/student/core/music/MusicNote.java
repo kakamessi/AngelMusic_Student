@@ -15,6 +15,151 @@ import static android.R.attr.tag;
 
 public class MusicNote {
 
+
+    /**
+     * delay1  亮灯时间点
+     * dur1    亮灯时长
+     * color1   亮灯颜色    c==0下蓝 g==1上红
+     * index1   亮灯位置
+     */
+
+    //丰台一小 第二课一
+    public static float[] delay_ft_2_1 = {07.000f,19.125f,30.875f,43.000f};
+    public static float[] dur1_ft_2_1 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
+    public static int[] color1_ft_2_1 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] index1_ft_2_1 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第二课二
+    public static float[] delay_ft_2_2 = {7.18f,19.1f,31.13f,43.1f};
+    public static float[] dur1_ft_2_2 = { 0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f};
+    public static int[] color1_ft_2_2 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1};
+    public static int[] index1_ft_2_2 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
+
+    //丰台一小 第三课
+    public static float[] delay_ft_3 = {12.764f,41.000f};
+    public static float[] dur1_ft_3 = { 1.42f,1.42f,0.71f,0.71f,1.42f,1.42f,1.42f,0.71f,0.71f,1.42f,1.42f,1.42f,0.71f,0.71f,1.42f,0.71f,0.71f,0.71f,0.71f,0.71f,0.71f,1.42f};
+    public static int[] color1_ft_3 = { 1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,1,1,0,0,0};
+    public static int[] index1_ft_3 = { 39,41,39,39,39,41,43,39,39,39,39,41,39,39,39,41,41,43,43,39,39,39};
+
+    //丰台一小 第五课
+    public static float[] delay_ft_5 = {12.000f,44.000f};
+    public static float[] dur1_ft_5 = {1.34f,1.34f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,1.34f,1.34f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f};
+    public static int[] color1_ft_5 = { 1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0};
+    public static int[] index1_ft_5 = { 39,41,43,43,39,39,41,41,43,43,43,39,38,36,36,39,39,38,38,36,36,36};
+
+    //丰台一小 第六课
+    public static float[] delay_ft_6 = {09.472f,41.051f};
+    public static float[] dur1_ft_6 = {0.79f,0.79f,0.79f,0.79f,1.58f,1.58f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,1.58f,0.79f,0.79f,0.79f,0.79f,1.58f,0.79f,0.79f};
+    public static int[] color1_ft_6 = { 1,1,1,1,1,1,0,0,0,0,0,0,0,-1,1,1,1,1,1,1,1,0,0,0,0,0,0,-1};
+    public static int[] index1_ft_6 = { 39,41,43,44,46,46,39,38,36,38,39,39,39,-1,39,41,43,44,46,46,46,39,38,36,38,39,39,-1};
+
+    //丰台一小 第八课
+    public static float[] delay_ft_8 = {14.110f,55.229f};
+    public static float[] dur1_ft_8 = {0.79f,0.79f,0.79f,0.79f,1.58f,1.58f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,3.16f};
+    public static int[] color1_ft_8 = {1,1,1,1,1,1,0,0,0,0,0,0,0,-1,1,1,1,1,1,-1,1,-1,0,0,0,0,0};
+    public static int[] index1_ft_8 = {46,44,43,41,39,39,32,34,36,38,39,39,39,-1,46,44,43,41,39,-1,39,-1,32,34,36,38,39};
+
+    //丰台一小 第九课
+    public static float[] delay_ft_9 = {10.000f,34.000f};
+    public static float[] dur1_ft_9 = {0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,2.00f};
+    public static int[] color1_ft_9 = { 0,0,0,0,1,-1,1,-1,1,1,1,1,1,1,1,-1,0,0,0,0,1,-1,1,-1,0,0,0,0,0};
+    public static int[] index1_ft_9 = { 32,32,36,39,44,-1,44,-1,43,44,43,41,39,39,39,-1,32,32,36,39,44,-1,44,-1,39,39,36,36,32};
+
+    //丰台一小 第十一课
+    public static float[] delay_ft_11 = {22.833f,65.333f};
+    public static float[] dur1_ft_11 = {0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,2.68f};
+    public static int[] color1_ft_11 = { 1,1,1,1,1,1,1,-1,0,0,0,0,0,0,0,-1,1,1,1,1,1,1,0,0,0,0,0};
+    public static int[] index1_ft_11 = { 46,44,43,41,39,41,43,-1,34,32,31,29,27,29,31,-1,41,43,44,46,39,39,29,31,32,34,27};
+
+    //丰台一小 第十二课
+    public static float[] delay_ft_12 = {06.583f,33.333f};
+    public static float[] dur1_ft_12 = {1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,2.68f};
+    public static int[] color1_ft_12 = { 0,0,-1,0,0,-1,0,0,0,0,0,0,-1,1,1,-1,1,1,-1,1,1,1,1,1};
+    public static int[] index1_ft_12 = { 34,31,-1,34,31,-1,29,29,29,32,31,34,-1,46,43,-1,46,43,-1,41,44,43,41,39 };
+
+
+    //C社培及幼儿园上学期乐谱  第2课
+
+    //C社培及幼儿园上学期乐谱  第3课
+    public static float[] time_c_3 = { 19.69f, 41.88f };
+    public static float[] duration_c_3 = { 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f};
+    //string[] celf = { "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "" };
+    public static int[] color1_c_3 ={1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
+    public static int[] note_c_3 = { 39, 41, 43, -1, 39, 41, 43, -1, 43, 41, 39, -1, 43, 41, 39, -1};
+
+    //C社培及幼儿园上学期乐谱  第4课
+    public static float[] time_c_4 = { 14.54f, 43.63f };
+    public static float[] duration_c_4 = { 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f};
+    //string[] celf = { "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", };
+    public static int[] color1_c_4 ={1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1};
+    public static int[] note_c_4 = { 39, 41, 43, 39, 41, 41, 43, 39, 41, 41, 39, 39, 39, 41, 43, 39, 41, 41, 43, 41, 39, 41, 39, 39 };
+
+    //C社培及幼儿园上学期乐谱  第5课
+    public static float[] time_c_5 = { 13.75f, 53.75f };
+    public static float[] duration_c_5 = { 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f };
+    //string[] celf = { "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", };
+    public static int[] color1_c_5 ={0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0};
+    public static int[] note_c_5 = { 36, 36, 38, 38, 36, 36, 36, 36, 38, 38, 39, 39, 39, 39, 38, 38, 39, 39, 39, 39, 38, 38, 36, 36 };
+
+    //C社培及幼儿园上学期乐谱  第6课
+    public static float[] time_c_6 = { 11.58f ,45.26f };
+    public static float[] duration_c_6 = { 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 1.06f, 1.06f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 1.06f, 1.06f};
+    //string[] celf = { "c", "c", "c", "", "c", "c", "c", "", "c", "c", "c", "c", "c", "c", "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "g", "g", "g", };
+    public static int[] color1_c_6 ={0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,1,1,1,-1,1,1,1,-1,1,1,1,1,1,1};
+    public static int[] note_c_6 = { 39, 39, 36, -1,39, 39, 36,-1, 39, 38, 36, 38, 39, 36, 39, 43, 41,-1, 39, 43, 41,-1, 43, 39, 41, 43, 39, 39 };
+
+    //C社培及幼儿园上学期乐谱  第7课
+    public static float[] time_c_7 = {10.00f};
+    public static float[] duration_c_7 = {0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f};
+    //string[] celf = {g,g,g,g,g,g,g,g,c,c,c,c,c,c,c,c,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,c,c,g};
+    public static int[] color1_c_7 ={1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1};
+    public static int[] note_c_7 = {39,39,41,43,41,39,41,41,39,39,38,36,38,39,38,38,39,39,41,43,41,39,39,39,41,43,41,39,43,43,41,39,41,38,39,39} ;
+
+    //C社培及幼儿园上学期乐谱  第8课
+    public static float[] time_c_8 = {16.55f,52.45f};
+    public static float[] duration_c_8 = {0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,0.75f,0.75f,0.75f,0.75f,3.0f};
+    //string[] celf = {g,g,g,g,g,g,g,g,g,g,g,g,c,g,g,g,g,g,g,g,c,c,c,c,c};
+    public static int[] color1_c_8 ={1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0};
+    public static int[] note_c_8 = {39,39,41,41,43,44,46,39,39,41,41,39,38,39,39,41,41,43,44,46,39,38,36,38,39}  ;
+
+    //C社培及幼儿园上学期乐谱  第9课
+    public static float[] time_c_9 = {15.00f};
+    public static float[] duration_c_9 = {0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,3.0f,0.75f,0.75f,1.5f,0.75f,0.75f,1.5f,0.75f,0.75f,1.5f,3.0f,0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,1.5f,3.0f};
+    //string[] celf = {g,g,g,g,g,g,g,g,  g,g,g,g,g,g,g,g,  g,g,g,g,g,g,g,g,  g,g,g,g,g,c,c,c,   g,g,g,g,g,c,c,c,  g,g,g};
+    public static int[] color1_c_9 ={1,1,1,1,1,1,1,1,  1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1, 1,1,1,1,1,0,0,0,  1,1,1,1,1,0,0,0, 1,1,1};
+    public static int[] note_c_9 = {39,39,43,46,39,39,41,43,44,41,43,39,39,39,43,46,39,39,41,43,44,41,39,44,41,41,43,39,39,36,38,39,41,39,39,43,46,39,38,39,41,41,39};
+
+
+    //1
+    public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
+    public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
+    public static int[] color1 = { 1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index1 = { 39, 39, 39, 39, 39, 39, 39, 39 };
+
+    public static  float[] delay2= { 6.54f, 15.09f, 23.59f, 32.16f };
+    public static float[] dur2 = { 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f };
+    public static int[] color2 = {1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index2 = { 21, 21, 21, 21, 21, 21, 21, 21 };
+    //2
+    public static float[] delay3 = { 7.18f, 19.1f, 31.13f, 43.1f };
+    public static float[] dur3 = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, };
+    public static int[] color3 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1 };
+    public static int[] index3 = { 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1 };
+
+    public static float[] delay4 = { 11.2f, 21.2f, 31.33f, 41.31f };
+    //public static float[] dur4 = { 1.764f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static float[] dur4 = { 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static int[] color4 = { 1,1,1,1,-1,1,-1};
+    public static int[] index4 = { 3, 3, 3, 3, -1, 3, -1};
+
+    //3
+    public static float[] delay5 = { 11.01f, 21.01f, 30.76f, 40.46f };
+    //public static float[] dur5 = { 1.836f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static int[] color5 = { 1,1,-1,1,-1,1,-1};
+    public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
+
+
     /*亮灯*/
     public static byte ON_RED = 0x01;
     public static byte ON_BLUE = 0x11;
@@ -34,36 +179,46 @@ public class MusicNote {
     public static byte[] ACTION_UNMUTE = { 0x1b, (byte)0xbF, 0x07, 0x7f };
 
     /*--------------------------------------------------------------------------------------------------------乐谱合集*/
+    /* 夏津 */
     public static final ArrayList<NoteInfo> note_1 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_2 = new ArrayList<>();
     public static final ArrayList<NoteInfo> note_3 = new ArrayList<>();
 
     /*  丰台一小谱子  */
-    public static final ArrayList<NoteInfo> fd_1 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_2 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_3 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_5= new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_6 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_8 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_9 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_11 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> fd_12 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_1 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_2 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_3 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_5= new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_6 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_8 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_9 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_11 = new ArrayList<>();
+    public static  ArrayList<NoteInfo> fd_12 = new ArrayList<>();
 
     /* C社培及幼儿园上学期乐谱 */
-    public static final ArrayList<NoteInfo> c_2 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_3 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_4 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_5 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_6 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_7 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_8 = new ArrayList<>();
-    public static final ArrayList<NoteInfo> c_9 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_2 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_3 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_4 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_5 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_6 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_7 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_8 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_9 = new ArrayList<>();
 
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
     public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3,fd_5,fd_6,fd_8,fd_9,fd_11,fd_12};
     public static final ArrayList[] c_1ist = {c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9};
 
     static{
+
+        c_3 = setNoteList(color1_c_3,note_c_3);
+        c_4 = setNoteList(color1_c_4,note_c_4);
+        c_5 = setNoteList(color1_c_5,note_c_5);
+        c_6 = setNoteList(color1_c_6,note_c_6);
+        c_7 = setNoteList(color1_c_7,note_c_7);
+        c_8 = setNoteList(color1_c_8,note_c_8);
+        c_9 = setNoteList(color1_c_9,note_c_9);
+
 
         /*----第一张谱子---- 培训 第一个*/
         for(int i=0; i<8;i++){
@@ -1071,156 +1226,14 @@ public class MusicNote {
 
 
     /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
-    /**
-     * delay1  亮灯时间点
-     * dur1    亮灯时长
-     * color1   亮灯颜色    c==0下蓝 g==1上红
-     * index1   亮灯位置
-     */
 
-    //丰台一小 第二课一
-    public static float[] delay_ft_2_1 = {07.000f,19.125f,30.875f,43.000f};
-    public static float[] dur1_ft_2_1 = { 0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f,0.50f};
-    public static int[] color1_ft_2_1 = { 1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
-    public static int[] index1_ft_2_1 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
-
-    //丰台一小 第二课二
-    public static float[] delay_ft_2_2 = {7.18f,19.1f,31.13f,43.1f};
-    public static float[] dur1_ft_2_2 = { 0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f};
-    public static int[] color1_ft_2_2 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1};
-    public static int[] index1_ft_2_2 = { 39,39,39,-1,39,39,39,-1,39,39,39,-1,39,39,39,-1};
-
-    //丰台一小 第三课
-    public static float[] delay_ft_3 = {12.764f,41.000f};
-    public static float[] dur1_ft_3 = { 1.42f,1.42f,0.71f,0.71f,1.42f,1.42f,1.42f,0.71f,0.71f,1.42f,1.42f,1.42f,0.71f,0.71f,1.42f,0.71f,0.71f,0.71f,0.71f,0.71f,0.71f,1.42f};
-    public static int[] color1_ft_3 = { 1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,1,1,0,0,0};
-    public static int[] index1_ft_3 = { 39,41,39,39,39,41,43,39,39,39,39,41,39,39,39,41,41,43,43,39,39,39};
-
-    //丰台一小 第五课
-    public static float[] delay_ft_5 = {12.000f,44.000f};
-    public static float[] dur1_ft_5 = {1.34f,1.34f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,1.34f,1.34f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f};
-    public static int[] color1_ft_5 = { 1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0};
-    public static int[] index1_ft_5 = { 39,41,43,43,39,39,41,41,43,43,43,39,38,36,36,39,39,38,38,36,36,36};
-
-    //丰台一小 第六课
-    public static float[] delay_ft_6 = {09.472f,41.051f};
-    public static float[] dur1_ft_6 = {0.79f,0.79f,0.79f,0.79f,1.58f,1.58f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,1.58f,0.79f,0.79f,0.79f,0.79f,1.58f,0.79f,0.79f};
-    public static int[] color1_ft_6 = { 1,1,1,1,1,1,0,0,0,0,0,0,0,-1,1,1,1,1,1,1,1,0,0,0,0,0,0,-1};
-    public static int[] index1_ft_6 = { 39,41,43,44,46,46,39,38,36,38,39,39,39,-1,39,41,43,44,46,46,46,39,38,36,38,39,39,-1};
-
-    //丰台一小 第八课
-    public static float[] delay_ft_8 = {14.110f,55.229f};
-    public static float[] dur1_ft_8 = {0.79f,0.79f,0.79f,0.79f,1.58f,1.58f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,0.79f,3.16f};
-    public static int[] color1_ft_8 = {1,1,1,1,1,1,0,0,0,0,0,0,0,-1,1,1,1,1,1,-1,1,-1,0,0,0,0,0};
-    public static int[] index1_ft_8 = {46,44,43,41,39,39,32,34,36,38,39,39,39,-1,46,44,43,41,39,-1,39,-1,32,34,36,38,39};
-
-    //丰台一小 第九课
-    public static float[] delay_ft_9 = {10.000f,34.000f};
-    public static float[] dur1_ft_9 = {0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,2.00f};
-    public static int[] color1_ft_9 = { 0,0,0,0,1,-1,1,-1,1,1,1,1,1,1,1,-1,0,0,0,0,1,-1,1,-1,0,0,0,0,0};
-    public static int[] index1_ft_9 = { 32,32,36,39,44,-1,44,-1,43,44,43,41,39,39,39,-1,32,32,36,39,44,-1,44,-1,39,39,36,36,32};
-
-    //丰台一小 第十一课
-    public static float[] delay_ft_11 = {22.833f,65.333f};
-    public static float[] dur1_ft_11 = {0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,1.34f,0.67f,0.67f,0.67f,0.67f,2.68f};
-    public static int[] color1_ft_11 = { 1,1,1,1,1,1,1,-1,0,0,0,0,0,0,0,-1,1,1,1,1,1,1,0,0,0,0,0};
-    public static int[] index1_ft_11 = { 46,44,43,41,39,41,43,-1,34,32,31,29,27,29,31,-1,41,43,44,46,39,39,29,31,32,34,27};
-
-    //丰台一小 第十二课
-    public static float[] delay_ft_12 = {06.583f,33.333f};
-    public static float[] dur1_ft_12 = {1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,1.34f,0.67f,0.67f,0.67f,0.67f,0.67f,0.67f,2.68f};
-    public static int[] color1_ft_12 = { 0,0,-1,0,0,-1,0,0,0,0,0,0,-1,1,1,-1,1,1,-1,1,1,1,1,1};
-    public static int[] index1_ft_12 = { 34,31,-1,34,31,-1,29,29,29,32,31,34,-1,46,43,-1,46,43,-1,41,44,43,41,39 };
-
-
-    //C社培及幼儿园上学期乐谱  第2课
-
-    //C社培及幼儿园上学期乐谱  第3课
-    public static float[] time_c_3 = { 19.69f, 41.88f };
-    public static float[] duration_c_3 = { 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f, 0.92f};
-    //string[] celf = { "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "" };
-    public static int[] color1_c_3 ={1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1};
-    public static int[] note_c_3 = { 39, 41, 43, -1, 39, 41, 43, -1, 43, 41, 39, -1, 43, 41, 39, -1};
-
-    //C社培及幼儿园上学期乐谱  第4课
-    public static float[] time_c_4 = { 14.54f, 43.63f };
-    public static float[] duration_c_4 = { 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f, 0.61f, 0.61f, 0.61f, 0.61f, 1.22f, 1.22f};
-    //string[] celf = { "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", };
-    public static int[] color1_c_4 ={1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1};
-    public static int[] note_c_4 = { 39, 41, 43, 39, 41, 41, 43, 39, 41, 41, 39, 39, 39, 41, 43, 39, 41, 41, 43, 41, 39, 41, 39, 39 };
-
-    //C社培及幼儿园上学期乐谱  第5课
-    public static float[] time_c_5 = { 13.75f, 53.75f };
-    public static float[] duration_c_5 = { 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f, 0.63f, 0.63f, 0.63f, 0.63f, 1.26f, 1.26f };
-    //string[] celf = { "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", "c", };
-    public static int[] color1_c_5 ={0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0};
-    public static int[] note_c_5 = { 36, 36, 38, 38, 36, 36, 36, 36, 38, 38, 39, 39, 39, 39, 38, 38, 39, 39, 39, 39, 38, 38, 36, 36 };
-
-    //C社培及幼儿园上学期乐谱  第6课
-    public static float[] time_c_6 = { 11.58f ,45.26f };
-    public static float[] duration_c_6 = { 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 1.06f, 1.06f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 0.53f, 1.06f, 1.06f};
-    //string[] celf = { "c", "c", "c", "", "c", "c", "c", "", "c", "c", "c", "c", "c", "c", "g", "g", "g", "", "g", "g", "g", "", "g", "g", "g", "g", "g", "g", };
-    public static int[] color1_c_6 ={0,0,0,-1,0,0,0,-1,0,0,0,0,0,0,1,1,1,-1,1,1,1,-1,1,1,1,1,1,1};
-    public static int[] note_c_6 = { 39, 39, 36, -1,39, 39, 36,-1, 39, 38, 36, 38, 39, 36, 39, 43, 41,-1, 39, 43, 41,-1, 43, 39, 41, 43, 39, 39 };
-
-    //C社培及幼儿园上学期乐谱  第7课
-    public static float[] time_c_7 = {10.00f};
-    public static float[] duration_c_7 = {0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,0.5f,0.5f,0.5f,0.5f,1.0f,1.0f,2.0f,2.0f};
-    //string[] celf = {g,g,g,g,g,g,g,g,c,c,c,c,c,c,c,c,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,c,c,g};
-    public static int[] color1_c_7 ={1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1};
-    public static int[] note_c_7 = {39,39,41,43,41,39,41,41,39,39,38,36,38,39,38,38,39,39,41,43,41,39,39,39,41,43,41,39,43,43,41,39,41,38,39,39} ;
-
-    //C社培及幼儿园上学期乐谱  第8课
-    public static float[] time_c_8 = {16.55f,52.45f};
-    public static float[] duration_c_8 = {0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,0.75f,0.75f,0.75f,0.75f,3.0f};
-    //string[] celf = {g,g,g,g,g,g,g,g,g,g,g,g,c,g,g,g,g,g,g,g,c,c,c,c,c};
-    public static int[] color1_c_8 ={1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0};
-    public static int[] note_c_8 = {39,39,41,41,43,44,46,39,39,41,41,39,38,39,39,41,41,43,44,46,39,38,36,38,39}  ;
-
-    //C社培及幼儿园上学期乐谱  第9课
-    public static float[] time_c_9 = {15.00f};
-    public static float[] duration_c_9 = {0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,0.75f,0.75f,0.75f,0.75f,3.0f,0.75f,0.75f,1.5f,0.75f,0.75f,1.5f,0.75f,0.75f,1.5f,3.0f,0.75f,0.75f,0.75f,0.75f,0.75f,0.75f,1.5f,1.5f,1.5f,3.0f};
-    //string[] celf = {g,g,g,g,g,g,g,g,  g,g,g,g,g,g,g,g,  g,g,g,g,g,g,g,g,  g,g,g,g,g,c,c,c,   g,g,g,g,g,c,c,c,  g,g,g};
-    public static int[] color1_c_9 ={1,1,1,1,1,1,1,1,  1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1, 1,1,1,1,1,0,0,0,  1,1,1,1,1,0,0,0, 1,1,1};
-    public static int[] note_c_9 = {39,39,43,46,39,39,41,43,44,41,43,39,39,39,43,46,39,39,41,43,44,41,39,44,41,41,43,39,39,36,38,39,41,39,39,43,46,39,38,39,41,41,39};
-
-
-    //1
-    public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
-    public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
-    public static int[] color1 = { 1, 1, 1, 1, 1, 1, 1, 1};
-    public static int[] index1 = { 39, 39, 39, 39, 39, 39, 39, 39 };
-
-    public static  float[] delay2= { 6.54f, 15.09f, 23.59f, 32.16f };
-    public static float[] dur2 = { 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f };
-    public static int[] color2 = {1, 1, 1, 1, 1, 1, 1, 1};
-    public static int[] index2 = { 21, 21, 21, 21, 21, 21, 21, 21 };
-    //2
-    public static float[] delay3 = { 7.18f, 19.1f, 31.13f, 43.1f };
-    public static float[] dur3 = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, };
-    public static int[] color3 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1 };
-    public static int[] index3 = { 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1 };
-
-    public static float[] delay4 = { 11.2f, 21.2f, 31.33f, 41.31f };
-    //public static float[] dur4 = { 1.764f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
-    public static float[] dur4 = { 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
-    public static int[] color4 = { 1,1,1,1,-1,1,-1};
-    public static int[] index4 = { 3, 3, 3, 3, -1, 3, -1};
-
-    //3
-    public static float[] delay5 = { 11.01f, 21.01f, 30.76f, 40.46f };
-    //public static float[] dur5 = { 1.836f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
-    public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
-    public static int[] color5 = { 1,1,-1,1,-1,1,-1};
-    public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
-    
     /**
      * 生成 跟奏 需要的乐谱
      * @param color
      * @param note
      * @return
      */
-    public ArrayList<NoteInfo> getNoteList(int[] color, int[] note){
+    public static ArrayList<NoteInfo> setNoteList(int[] color, int[] note){
 
         ArrayList<NoteInfo> al = new ArrayList<NoteInfo>();
         for(int i=0; i<color.length;i++){
