@@ -1229,16 +1229,16 @@ public class MusicNote {
 
             if(iindex[n]!=-1){
                 if(icolor[n]==1) {
-                    beat(icontext, iindex[n], true,(long) (idur[0]*1000)/2);
+                    beat(icontext, iindex[n], true,(long) (idur[n]*1000)/2);// 0 0 4 4 
                 }else if(icolor[n]==0){
-                    beat(icontext, iindex[n], false,(long) (idur[0]*1000)/2);
+                    beat(icontext, iindex[n], false,(long) (idur[n]*1000)/2);
                 }
 
-                Thread.sleep((long)(idur[4]*1000));
+                Thread.sleep((long)(idur[n]*1000));
 
             }else{
 
-                Thread.sleep((long)(idur[4]*1000));
+                Thread.sleep((long)(idur[n]*1000));
 
             }
         }
