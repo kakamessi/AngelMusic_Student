@@ -836,7 +836,7 @@ public class VideoActivity extends BaseActivity {
 
             }else if(course_id == Constant.COURSE_1099 || course_id == Constant.COURSE_1157){
                 //C4
-                gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_3,MusicNote.duration_c_4,MusicNote.color1_c_4,MusicNote.note_c_4));
+                gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_4,MusicNote.duration_c_4,MusicNote.color1_c_4,MusicNote.note_c_4));
 
             }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
                 //C5
