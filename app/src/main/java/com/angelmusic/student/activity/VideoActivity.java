@@ -134,6 +134,8 @@ public class VideoActivity extends BaseActivity {
     private String gendeng_id = "-1";
     /* 选谱资源索引 */
     private String yuepu_tag = "-1";
+    /* 是否抬起按键 */
+    private boolean isUp = false;
 
     /*------------------------------------------------------------------------------收到钢琴消息handler*/
     private Handler pianoHandler = new Handler() {
@@ -144,7 +146,9 @@ public class VideoActivity extends BaseActivity {
             switch (msg.what) {
                 case 1:
 
-                    if(isPianoActive) {
+                    isUp=isUp==false?true:false;
+
+                    if(isPianoActive && isUp == false) {
                         //根据钢琴输出是否正确，来显示界面音符变化，亮灯操作
                         if(MusicUtils.isXiaJingCourse(course_id)){
                             handlerNote(str);
@@ -153,14 +157,11 @@ public class VideoActivity extends BaseActivity {
                         }
                     }
 
-                    if(isScore) {
-                        if (str.endsWith("0 ")) {
-                            //获取钢琴弹奏音符
-                            String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
-                            int key = Integer.parseInt(myDatas[2], 16) - 21;
-                            notes.add(key+"");
-                        }
-
+                    if(isScore && isUp == false) {
+                        //获取钢琴弹奏音符
+                        String[] myDatas = str.substring(str.indexOf("=") + 1).split(" ");
+                        int key = Integer.parseInt(myDatas[2], 16) - 21;
+                        notes.add(key+"");
                     }
 
                     break;
@@ -214,16 +215,14 @@ public class VideoActivity extends BaseActivity {
 
             }
 
-            if (str.endsWith("0 ")) {
                 //处理亮灯逻辑
                 MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
-
                 //处理循环
                 if (index_new == al.size() - 1) {
                     index_new = -1;
                 }
                 index_new++;
-            }
+
         }
 
     }
@@ -250,15 +249,13 @@ public class VideoActivity extends BaseActivity {
 
         if (key == ni.getNoteNum()) {
 
-            if (str.endsWith("0 ")) {
-                //处理亮灯逻辑
-                MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
-                //处理循环
-                if (index_new == al.size() - 1) {
-                    index_new = -1;
-                }
-                index_new++;
+            //处理亮灯逻辑
+            MusicNote.closeAndOpenNext(VideoActivity.this,ni.getNoteNum(),ni.isRed(),nextInfo.getNoteNum(),nextInfo.isRed());
+            //处理循环
+            if (index_new == al.size() - 1) {
+                index_new = -1;
             }
+            index_new++;
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
             if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) {
