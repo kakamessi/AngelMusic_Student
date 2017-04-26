@@ -277,6 +277,391 @@ public class MusicNote {
         note_3.add(ni9);note_3.add(ni10);note_3.add(ni11);note_3.add(ni12);
 
 
+    }
+
+
+/*--------------------------------------------------------------------------------------------------------乐谱合集*/
+
+    /**
+     * 根据课程id 获取对应的 乐谱合集
+     * //确认选谱  1培训 2小学 3幼儿园
+     * @return
+     */
+    public static ArrayList<NoteInfo> getNoteList(int courseId, String tag){
+
+        ArrayList<NoteInfo> result = null;
+        switch(courseId)
+        {
+            case Constant.COURSE_915:
+            case Constant.COURSE_1076:
+            case Constant.COURSE_1:
+            case Constant.COURSE_187:
+                result = note_1ist[0];
+                break;
+
+            case Constant.COURSE_2:
+                result = note_1ist[1];
+                break;
+            case Constant.COURSE_3:
+                result = note_1ist[2];
+                break;
+
+            //丰台一小
+            case Constant.COURSE_2_ft:
+                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
+                    result = fengtai_1ist[0];
+                }else{
+                    result = fengtai_1ist[1];
+                }
+                break;
+
+            case Constant.COURSE_1020:
+                 result = fengtai_1ist[0];
+                break;
+            case Constant.COURSE_1039:
+                 result = fengtai_1ist[1];
+
+                break;
+
+            case Constant.COURSE_1339:
+            case Constant.COURSE_1059:
+            case Constant.COURSE_3_ft:
+                result = fengtai_1ist[2];
+                break;
+
+            case Constant.COURSE_1360:
+            case Constant.COURSE_1380:
+            case Constant.COURSE_5:
+                result = fengtai_1ist[3];
+                break;
+
+            case Constant.COURSE_1403:
+            case Constant.COURSE_1422:
+            case Constant.COURSE_6:
+                result = fengtai_1ist[4];
+                break;
+
+            case Constant.COURSE_1443:
+            case Constant.COURSE_1462:
+            case Constant.COURSE_8:
+                result = fengtai_1ist[5];
+                break;
+
+            case Constant.COURSE_1482:
+            case Constant.COURSE_1499:
+            case Constant.COURSE_9:
+                result = fengtai_1ist[6];
+                break;
+
+            case Constant.COURSE_1518:
+            case Constant.COURSE_1536:
+            case Constant.COURSE_11:
+                result = fengtai_1ist[7];
+                break;
+
+            case Constant.COURSE_1554:
+            case Constant.COURSE_1572:
+            case Constant.COURSE_12:
+                result = fengtai_1ist[8];
+                break;
+
+            //c版本
+            case Constant.COURSE_950:
+            case Constant.COURSE_1116:
+                result = c_1ist[1];
+                break;
+
+            case Constant.COURSE_1099:
+            case Constant.COURSE_1157:
+                result = c_1ist[2];
+                break;
+
+            case Constant.COURSE_1140:
+            case Constant.COURSE_1196:
+                result = c_1ist[3];
+                break;
+
+            case Constant.COURSE_1180:
+            case Constant.COURSE_1237:
+                result = c_1ist[4];
+                break;
+
+            case Constant.COURSE_1219:
+            case Constant.COURSE_1277:
+                result = c_1ist[5];
+                break;
+
+            case Constant.COURSE_1261:
+            case Constant.COURSE_1316:
+                result = c_1ist[6];
+                break;
+
+            case Constant.COURSE_1300:
+                result = c_1ist[7];
+                break;
+
+        }
+
+        return result;
+
+    }
+
+    //根据音符index获取琴键index
+    public static int getKeyIndex(int noteIndex){
+        int result  = -1;
+        switch(noteIndex) {
+            case 27:
+                result = 1;
+                break;
+            case 29:
+                result = 2;
+                break;
+            case 31:
+                result = 3;
+                break;
+            case 32:
+                result = 4;
+                break;
+            case 34:
+                result = 5;
+                break;
+            case 36:
+                result = 6;
+                break;
+            case 38:
+                result = 7;
+                break;
+            case 39:
+                result = 8;
+                break;
+            case 41:
+                result = 9;
+                break;
+            case 43:
+                result = 10;
+                break;
+            case 44:
+                result = 11;
+                break;
+            case 46:
+                result = 12;
+                break;
+            case 48:
+                result = 13;
+                break;
+            case 50:
+                result = 14;
+                break;
+
+        }
+
+        return result;
+    }
+
+    //--------------------------------------------------------------钢琴指令---------------------------------------------------------------
+
+    /* 设置钢琴动作指令 */
+    public static void setPianoAction(Context context,byte[] data){
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(data);
+
+    }
+
+    //获取开灯指令集
+    public static byte[] getLightbytes(int index,boolean isRed){
+        byte on_color = 0x01;
+        if(isRed){
+            on_color = ON_RED;
+        }else{
+            on_color = ON_BLUE;
+        }
+        byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
+                0x4c, 0x45, (byte) (index+21), 0x06, on_color, 0x0,
+                (byte) 0xf7 };
+
+        return ON_DATA;
+    }
+
+    //获取关灯指令集
+    public static byte[] getCloseBytes(int index,boolean isRed){
+        byte off_color = 0x01;
+
+        if(isRed){
+            off_color = OFF_RED;
+        }else{
+            off_color = OFF_BLUE;
+        }
+
+        byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
+                (byte)(index+21), 0x06, off_color, 0x0, (byte) 0xf7 };
+
+        return OFF_DATA;
+    }
+
+    //闪烁一次灯
+    public static void beat(final Context context,final int index,final boolean isRed,final long time){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+            }
+        }).start();
+
+    }
+
+    //闪烁一次灯
+    public static void beatSync(final Context context,final int index,final boolean isRed,final long time){
+
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+    }
+
+    //闪烁一次灯
+    public static void beat2(final Context context,final int index,final boolean isRed,final long time) throws InterruptedException {
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+        Thread.sleep(time);
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
+
+    }
+
+    public static void openLight(final Context context, final int index, final boolean isRed){
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
+
+    }
+
+    public static void closeAllLight(Context context){
+
+        for(int i=27;i<50;i++){
+            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, true));
+            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, false));
+        }
+
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, true));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, true));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, true));
+//
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, false));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, false));
+//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, false));
+
+    }
+
+    public static void closeAndOpenNext(final Context context,final int closeIndex, final boolean closeRed, final int openIndex, final boolean openRed){
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(closeIndex,closeRed));
+//
+//                try {
+//                    Thread.sleep(300);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(openIndex,openRed));
+//
+//            }
+//        }).start();
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(closeIndex,closeRed));
+
+        try {
+            Thread.sleep(150);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(openIndex,openRed));
+
+    }
+
+
+
+
+    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
+
+    /**
+     * 生成 跟奏 需要的乐谱
+     * @param color
+     * @param note
+     * @return
+     */
+    public static ArrayList<NoteInfo> setNoteList(int[] color, int[] note){
+
+        ArrayList<NoteInfo> al = new ArrayList<NoteInfo>();
+        for(int i=0,m=0; i<color.length;i++){
+
+            if(note[i]==-1){
+                continue;
+            }
+
+            NoteInfo ni = new NoteInfo();
+            ni.setNoteNum(note[i]);
+            ni.setNoteIndex(m);
+            ni.setKeyIndex(getKeyIndex(note[i]));
+            ni.setRed(color[i]==1?true:false);
+            al.add(ni);
+
+            m++;
+        }
+
+        return al;
+    }
+
+    public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) throws InterruptedException {
+
+        final Context icontext = context;
+        final float[] idelay = delay;  //每次延迟时间， 循环次数依据
+        final float[] idur = dur;      //音符间隔       音符个数
+        final int[] icolor = color;   //色值判断
+        final int[] iindex = index;  //亮灯位置
+
+        for(int n = 0; n<idur.length;n++){
+
+            /* 立即打断循环 */
+            Thread.sleep(2);
+
+            if(iindex[n]!=-1){
+                if(icolor[n]==1) {
+                    beat(icontext, iindex[n], true,(long) (idur[n]*1000)/2);// 0 0 4 4 
+                }else if(icolor[n]==0){
+                    beat(icontext, iindex[n], false,(long) (idur[n]*1000)/2);
+                }
+
+                Thread.sleep((long)(idur[n]*1000));
+
+            }else{
+
+                Thread.sleep((long)(idur[n]*1000));
+
+            }
+        }
+    }
+
+
+    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
+
+
+
 //                /*--丰台一小-----------------------------------*/
 //        /* 第二节课 第一 */
 //        for(int i=0; i<24;i++){
@@ -871,392 +1256,6 @@ public class MusicNote {
 //        c_9.add(c_9_33n);c_9.add(c_9_34n);c_9.add(c_9_35n);c_9.add(c_9_36n);
 //        c_9.add(c_9_37n);c_9.add(c_9_38n);c_9.add(c_9_39n);c_9.add(c_9_40n);
 //        c_9.add(c_9_41n);c_9.add(c_9_42n);c_9.add(c_9_43n);
-
-    }
-
-
-/*--------------------------------------------------------------------------------------------------------乐谱合集*/
-
-    /**
-     * 根据课程id 获取对应的 乐谱合集
-     * //确认选谱  1培训 2小学 3幼儿园
-     * @return
-     */
-    public static ArrayList<NoteInfo> getNoteList(int courseId, String tag){
-
-        ArrayList<NoteInfo> result = null;
-        switch(courseId)
-        {
-            case Constant.COURSE_915:
-            case Constant.COURSE_1076:
-            case Constant.COURSE_1:
-            case Constant.COURSE_187:
-                result = note_1ist[0];
-                break;
-
-            case Constant.COURSE_2:
-                result = note_1ist[1];
-                break;
-            case Constant.COURSE_3:
-                result = note_1ist[2];
-                break;
-
-            //丰台一小
-            case Constant.COURSE_2_ft:
-                if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
-                    result = fengtai_1ist[0];
-                }else{
-                    result = fengtai_1ist[1];
-                }
-                break;
-
-            case Constant.COURSE_1020:
-                 result = fengtai_1ist[0];
-                break;
-            case Constant.COURSE_1039:
-                 result = fengtai_1ist[1];
-
-                break;
-
-            case Constant.COURSE_1339:
-            case Constant.COURSE_1059:
-            case Constant.COURSE_3_ft:
-                result = fengtai_1ist[2];
-                break;
-
-            case Constant.COURSE_1360:
-            case Constant.COURSE_1380:
-            case Constant.COURSE_5:
-                result = fengtai_1ist[3];
-                break;
-
-            case Constant.COURSE_1403:
-            case Constant.COURSE_1422:
-            case Constant.COURSE_6:
-                result = fengtai_1ist[4];
-                break;
-
-            case Constant.COURSE_1443:
-            case Constant.COURSE_1462:
-            case Constant.COURSE_8:
-                result = fengtai_1ist[5];
-                break;
-
-            case Constant.COURSE_1482:
-            case Constant.COURSE_1499:
-            case Constant.COURSE_9:
-                result = fengtai_1ist[6];
-                break;
-
-            case Constant.COURSE_1518:
-            case Constant.COURSE_1536:
-            case Constant.COURSE_11:
-                result = fengtai_1ist[7];
-                break;
-
-            case Constant.COURSE_1554:
-            case Constant.COURSE_1572:
-            case Constant.COURSE_12:
-                result = fengtai_1ist[8];
-                break;
-
-            //c版本
-            case Constant.COURSE_950:
-            case Constant.COURSE_1116:
-                result = c_1ist[1];
-                break;
-
-            case Constant.COURSE_1099:
-            case Constant.COURSE_1157:
-                result = c_1ist[2];
-                break;
-
-            case Constant.COURSE_1140:
-            case Constant.COURSE_1196:
-                result = c_1ist[3];
-                break;
-
-            case Constant.COURSE_1180:
-            case Constant.COURSE_1237:
-                result = c_1ist[4];
-                break;
-
-            case Constant.COURSE_1219:
-            case Constant.COURSE_1277:
-                result = c_1ist[5];
-                break;
-
-            case Constant.COURSE_1261:
-            case Constant.COURSE_1316:
-                result = c_1ist[6];
-                break;
-
-            case Constant.COURSE_1300:
-                result = c_1ist[7];
-                break;
-
-        }
-
-        return result;
-
-    }
-
-    //根据音符index获取琴键index
-    public static int getKeyIndex(int noteIndex){
-        int result  = -1;
-        switch(noteIndex) {
-            case 27:
-                result = 1;
-                break;
-            case 29:
-                result = 2;
-                break;
-            case 31:
-                result = 3;
-                break;
-            case 32:
-                result = 4;
-                break;
-            case 34:
-                result = 5;
-                break;
-            case 36:
-                result = 6;
-                break;
-            case 38:
-                result = 7;
-                break;
-            case 39:
-                result = 8;
-                break;
-            case 41:
-                result = 9;
-                break;
-            case 43:
-                result = 10;
-                break;
-            case 44:
-                result = 11;
-                break;
-            case 46:
-                result = 12;
-                break;
-            case 48:
-                result = 13;
-                break;
-            case 50:
-                result = 14;
-                break;
-
-        }
-
-        return result;
-    }
-
-    //--------------------------------------------------------------钢琴指令---------------------------------------------------------------
-
-    /* 设置钢琴动作指令 */
-    public static void setPianoAction(Context context,byte[] data){
-
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(data);
-
-    }
-
-    //获取开灯指令集
-    public static byte[] getLightbytes(int index,boolean isRed){
-        byte on_color = 0x01;
-        if(isRed){
-            on_color = ON_RED;
-        }else{
-            on_color = ON_BLUE;
-        }
-        byte[] ON_DATA ={0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04,
-                0x4c, 0x45, (byte) (index+21), 0x06, on_color, 0x0,
-                (byte) 0xf7 };
-
-        return ON_DATA;
-    }
-
-    //获取关灯指令集
-    public static byte[] getCloseBytes(int index,boolean isRed){
-        byte off_color = 0x01;
-
-        if(isRed){
-            off_color = OFF_RED;
-        }else{
-            off_color = OFF_BLUE;
-        }
-
-        byte[] OFF_DATA = {0x04, (byte) 0xf0, 0x4d, 0x4c, 0x04, 0x4c, 0x45,
-                (byte)(index+21), 0x06, off_color, 0x0, (byte) 0xf7 };
-
-        return OFF_DATA;
-    }
-
-    //闪烁一次灯
-    public static void beat(final Context context,final int index,final boolean isRed,final long time){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-                try {
-                    Thread.sleep(time);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
-
-            }
-        }).start();
-
-    }
-
-    //闪烁一次灯
-    public static void beatSync(final Context context,final int index,final boolean isRed,final long time){
-
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-                try {
-                    Thread.sleep(time);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
-
-    }
-
-    //闪烁一次灯
-    public static void beat2(final Context context,final int index,final boolean isRed,final long time) throws InterruptedException {
-
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-        Thread.sleep(time);
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(index,isRed));
-
-    }
-
-    public static void openLight(final Context context, final int index, final boolean isRed){
-
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(index,isRed));
-
-    }
-
-    public static void closeAllLight(Context context){
-
-        for(int i=27;i<50;i++){
-            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, true));
-            UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(i, false));
-        }
-
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, true));
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, true));
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, true));
-//
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(39, false));
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(41, false));
-//        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(43, false));
-
-    }
-
-    public static void closeAndOpenNext(final Context context,final int closeIndex, final boolean closeRed, final int openIndex, final boolean openRed){
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(closeIndex,closeRed));
-//
-//                try {
-//                    Thread.sleep(300);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(openIndex,openRed));
-//
-//            }
-//        }).start();
-
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getCloseBytes(closeIndex,closeRed));
-
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        UsbDeviceInfo.getUsbDeviceInfo(context).setData(getLightbytes(openIndex,openRed));
-
-    }
-
-
-
-
-    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
-
-    /**
-     * 生成 跟奏 需要的乐谱
-     * @param color
-     * @param note
-     * @return
-     */
-    public static ArrayList<NoteInfo> setNoteList(int[] color, int[] note){
-
-        ArrayList<NoteInfo> al = new ArrayList<NoteInfo>();
-        for(int i=0,m=0; i<color.length;i++){
-
-            if(note[i]==-1){
-                continue;
-            }
-
-            NoteInfo ni = new NoteInfo();
-            ni.setNoteNum(note[i]);
-            ni.setNoteIndex(m);
-            ni.setKeyIndex(getKeyIndex(note[i]));
-            ni.setRed(color[i]==1?true:false);
-            al.add(ni);
-
-            m++;
-        }
-
-        return al;
-    }
-
-    public static void followTempo(Context context,float[] delay,float[] dur,int[] color,int[] index) throws InterruptedException {
-
-        final Context icontext = context;
-        final float[] idelay = delay;  //每次延迟时间， 循环次数依据
-        final float[] idur = dur;      //音符间隔       音符个数
-        final int[] icolor = color;   //色值判断
-        final int[] iindex = index;  //亮灯位置
-
-        for(int n = 0; n<idur.length;n++){
-
-            /* 立即打断循环 */
-            Thread.sleep(2);
-
-            if(iindex[n]!=-1){
-                if(icolor[n]==1) {
-                    beat(icontext, iindex[n], true,(long) (idur[n]*1000)/2);// 0 0 4 4 
-                }else if(icolor[n]==0){
-                    beat(icontext, iindex[n], false,(long) (idur[n]*1000)/2);
-                }
-
-                Thread.sleep((long)(idur[n]*1000));
-
-            }else{
-
-                Thread.sleep((long)(idur[n]*1000));
-
-            }
-        }
-    }
-
-
-    /* ----------------------------自动跟灯逻辑 ----------------------------------------------   */
-
-
-
 
 
 
