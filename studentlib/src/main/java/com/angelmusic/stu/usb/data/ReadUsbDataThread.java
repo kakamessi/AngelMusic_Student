@@ -53,7 +53,7 @@ public class ReadUsbDataThread extends Thread {
 	 * 
 	 * */
 	public void _receiveMessageFormPiano() {
-		byte[] buffer = new byte[4];
+		byte[] buffer = new byte[8];
 		try {
 			if (conn == null || epBulkIn == null) {
 				Log.i(TAG, "===conn==null||epBulkIn==null===");
