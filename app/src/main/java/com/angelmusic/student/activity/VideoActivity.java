@@ -14,7 +14,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -33,9 +32,6 @@ import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
-import com.angelmusic.stu.usb.UsbDeviceConnect;
-import com.angelmusic.stu.usb.UsbDeviceInfo;
-import com.angelmusic.stu.usb.callback.CallbackInterface;
 import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
@@ -581,6 +577,7 @@ public class VideoActivity extends BaseActivity {
 
         if (type == 1) {
             //请看大屏幕
+            surfaceView.setVisibility(View.INVISIBLE);
             blackTv.setVisibility(View.VISIBLE);
             blackTv.setText("请看大屏幕");
             //yuepuGroupLl.setVisibility(View.INVISIBLE);
@@ -590,6 +587,7 @@ public class VideoActivity extends BaseActivity {
             //乐谱跟奏
 
             blackTv.setVisibility(View.INVISIBLE);
+            surfaceView.setVisibility(View.INVISIBLE);
             //yuepuGroupLl.setVisibility(View.VISIBLE);
             setPuzi(1);
 
@@ -721,6 +719,7 @@ public class VideoActivity extends BaseActivity {
 
         } else if (type == 3) {
             //播放视频
+            surfaceView.setVisibility(View.VISIBLE);
             blackTv.setVisibility(View.INVISIBLE);
             //yuepuGroupLl.setVisibility(View.INVISIBLE);
             setPuzi(0);
