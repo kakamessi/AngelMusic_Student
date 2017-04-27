@@ -511,16 +511,11 @@ public class VideoActivity extends BaseActivity {
             }
 
             if (isDaPing) {
-
                 //请看大屏幕
                 stop();
                 setLayoutStyle(1);
-
             } else {
-
-
                 //学生端播放视频，会带有附加逻辑~~~~~~
-
                 setLayoutStyle(3);
 
                 String path = cd.getFiles().get(ac[2]);
