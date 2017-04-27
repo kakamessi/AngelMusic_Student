@@ -49,7 +49,7 @@ public class Constant {
     //C2
     public static final int COURSE_1076 = 1076;
 
-
+    //丰台
     public static final int COURSE_2_ft = 786;
     public static final int COURSE_3_ft = 690;
     public static final int COURSE_5 = 706;
@@ -59,6 +59,7 @@ public class Constant {
     public static final int COURSE_11 = 762;
     public static final int COURSE_12 = 774;
 
+    //新增
     public static final int COURSE_1020 = 1020;
     public static final int COURSE_1039 = 1039;
     public static final int COURSE_1059 = 1059;
