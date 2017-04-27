@@ -254,19 +254,24 @@ public class VideoActivity extends BaseActivity {
             index_new++;
 
             //由于UI实现逻辑变更，需要重新处理新课程曲谱
-            if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) {
+            if((course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ||
+                    (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ) {
+
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1_2);
                 }
-            }else if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)){
+            }else if((course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)) ||
+                     (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)) ||
+                      course_id == Constant.COURSE_1039 ){
+
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_2);
                 }
-            }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339){
+            }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339 || course_id == Constant.COURSE_1059){
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
                 }else{
@@ -307,24 +312,6 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx2);
-                }
-            }else if(course_id == Constant.COURSE_1020){
-                if(index_new<12) {
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
-                }else{
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_2);
-                }
-            }else if(course_id == Constant.COURSE_1039){
-                if(index_new<12) {
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
-                }else{
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_2);
-                }
-            }else if(course_id == Constant.COURSE_1059){
-                if(index_new<10) {
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
-                }else{
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt2);
                 }
             }else if(course_id == Constant.COURSE_950 || course_id == Constant.COURSE_1116){
                 //C3
@@ -606,17 +593,20 @@ public class VideoActivity extends BaseActivity {
                 //处理画谱新逻辑
                 setPuzi(2);
                 //设置乐谱的第一个颜色
-                if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) {
+                if((course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ||
+                        (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)){
-                        replaceLayout(llYuepu,R.layout.layout_yuepu_1);
+                }else if((course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)) ||
+                         (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ||
+                          course_id == Constant.COURSE_1039 ){
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
-                }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339){
+                }else if(course_id == Constant.COURSE_3_ft || course_id == Constant.COURSE_1339 || course_id == Constant.COURSE_1059){
                         replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
@@ -650,21 +640,6 @@ public class VideoActivity extends BaseActivity {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(34),false);
                     MusicNote.openLight(VideoActivity.this,34,false);
-
-                }else if(course_id == Constant.COURSE_1020){
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1_1);
-                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
-                    MusicNote.openLight(VideoActivity.this,39,true);
-
-                }else if(course_id == Constant.COURSE_1039){
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_1);
-                    setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
-                    MusicNote.openLight(VideoActivity.this,39,false);
-
-                }else if(course_id == Constant.COURSE_1059){
-                    replaceLayout(llYuepu,R.layout.layout_yuepu_sqtwt1);
-                    setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
-                    MusicNote.openLight(VideoActivity.this,39,true);
 
                 }
 
