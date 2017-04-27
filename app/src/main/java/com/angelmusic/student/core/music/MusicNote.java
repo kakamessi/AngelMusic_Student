@@ -298,7 +298,6 @@ public class MusicNote {
             case Constant.COURSE_187:
                 result = note_1ist[0];
                 break;
-
             case Constant.COURSE_2:
                 result = note_1ist[1];
                 break;
@@ -308,6 +307,7 @@ public class MusicNote {
 
             //丰台一小
             case Constant.COURSE_2_ft:
+            case Constant.COURSE_1020:
                 if(Constant.PLAY_TOGHTER_FOLLOW_ONE.equals(tag)){
                     result = fengtai_1ist[0];
                 }else{
@@ -315,12 +315,8 @@ public class MusicNote {
                 }
                 break;
 
-            case Constant.COURSE_1020:
-                 result = fengtai_1ist[0];
-                break;
             case Constant.COURSE_1039:
                  result = fengtai_1ist[1];
-
                 break;
 
             case Constant.COURSE_1339:

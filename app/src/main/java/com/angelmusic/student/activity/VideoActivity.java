@@ -600,7 +600,7 @@ public class VideoActivity extends BaseActivity {
                     MusicNote.openLight(VideoActivity.this,39,true);
 
                 }else if((course_id == Constant.COURSE_2_ft && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)) ||
-                         (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)) ||
+                         (course_id == Constant.COURSE_1020 && yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE_TWO)) ||
                           course_id == Constant.COURSE_1039 ){
                     replaceLayout(llYuepu,R.layout.layout_yuepu_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
