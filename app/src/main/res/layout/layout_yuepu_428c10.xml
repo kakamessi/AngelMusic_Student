@@ -22,9 +22,46 @@
             android:src="@mipmap/kc_yuepu_428c11_1"/>
 
         <ImageView
-        android:id="@+id/iv_1"
-        style="@style/puziyinfu_bg_02"
-        android:tag="39" />
+            android:id="@+id/iv_1"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_2"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_3"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_4"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_5"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_6"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_7"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_8"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_9"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+        <ImageView
+            android:id="@+id/iv_10"
+            style="@style/puziyinfu_bg_02"
+            android:tag="39" />
+
 
     </RelativeLayout>
 
