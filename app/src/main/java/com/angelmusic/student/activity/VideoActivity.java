@@ -372,63 +372,63 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
                 }
-            }else if(course_id == Constant.COURSE_h18_1598 || course_id == Constant.COURSE_h18_1616){
+            }else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
                 //后18
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1637 || course_id == Constant.COURSE_h18_1655){
+            }else if(course_id == Constant.COURSE_h18_3140 || course_id == Constant.COURSE_h18_3157){
                 //后18
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c12_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c12_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1666 || course_id == Constant.COURSE_h18_1683){
+            }else if(course_id == Constant.COURSE_h18_3180 || course_id == Constant.COURSE_h18_3190){
                 //后18
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1706 || course_id == Constant.COURSE_h18_1722){
+            }else if(course_id == Constant.COURSE_h18_3218 || course_id == Constant.COURSE_h18_3232){
                 //后18
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1744 || course_id == Constant.COURSE_h18_1758){
+            }else if(course_id == Constant.COURSE_h18_3256 || course_id == Constant.COURSE_h18_3271){
                 //后18
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1782 || course_id == Constant.COURSE_h18_1797){
+            }else if(course_id == Constant.COURSE_h18_3292 || course_id == Constant.COURSE_h18_3309){
                 //后18
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1818 || course_id == Constant.COURSE_h18_1835){
+            }else if(course_id == Constant.COURSE_h18_3330 || course_id == Constant.COURSE_h18_3352){
                 //后18
                 if(index_new<8) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1856 || course_id == Constant.COURSE_h18_1878){
+            }else if(course_id == Constant.COURSE_h18_3379 || course_id == Constant.COURSE_h18_3395){
                 //后18
                 if(index_new<8) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_2);
                 }
-            }else if(course_id == Constant.COURSE_h18_1905 || course_id == Constant.COURSE_h18_1921){
+            }else if(course_id == Constant.COURSE_h18_3423 || course_id == Constant.COURSE_h18_3441){
                 //后18
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
@@ -749,47 +749,47 @@ public class VideoActivity extends BaseActivity {
                     MusicNote.openLight(VideoActivity.this,39,true);
                 }
 
-                else if(course_id == Constant.COURSE_h18_1598 || course_id == Constant.COURSE_h18_1616){
+                else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
-                }else if(course_id == Constant.COURSE_h18_1637 || course_id == Constant.COURSE_h18_1655){
+                }else if(course_id == Constant.COURSE_h18_3140 || course_id == Constant.COURSE_h18_3157){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c12_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
-                }else if(course_id == Constant.COURSE_h18_1666 || course_id == Constant.COURSE_h18_1683){
+                }else if(course_id == Constant.COURSE_h18_3180 || course_id == Constant.COURSE_h18_3190){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                     MusicNote.openLight(VideoActivity.this,27,false);
-                }else if(course_id == Constant.COURSE_h18_1706 || course_id == Constant.COURSE_h18_1722){
+                }else if(course_id == Constant.COURSE_h18_3218 || course_id == Constant.COURSE_h18_3232){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                     MusicNote.openLight(VideoActivity.this,27,false);
-                }else if(course_id == Constant.COURSE_h18_1744 || course_id == Constant.COURSE_h18_1758){
+                }else if(course_id == Constant.COURSE_h18_3256 || course_id == Constant.COURSE_h18_3271){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
-                }else if(course_id == Constant.COURSE_h18_1782 || course_id == Constant.COURSE_h18_1797){
+                }else if(course_id == Constant.COURSE_h18_3292 || course_id == Constant.COURSE_h18_3309){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
-                }else if(course_id == Constant.COURSE_h18_1818 || course_id == Constant.COURSE_h18_1835){
+                }else if(course_id == Constant.COURSE_h18_3330 || course_id == Constant.COURSE_h18_3352){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                     MusicNote.openLight(VideoActivity.this,46,true);
-                }else if(course_id == Constant.COURSE_h18_1856 || course_id == Constant.COURSE_h18_1878){
+                }else if(course_id == Constant.COURSE_h18_3379 || course_id == Constant.COURSE_h18_3395){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                     MusicNote.openLight(VideoActivity.this,27,false);
-                }else if(course_id == Constant.COURSE_h18_1905 || course_id == Constant.COURSE_h18_1921){
+                }else if(course_id == Constant.COURSE_h18_3423 || course_id == Constant.COURSE_h18_3441){
                     //后18
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
@@ -936,31 +936,31 @@ public class VideoActivity extends BaseActivity {
 
             }
 
-            else if(course_id == Constant.COURSE_h18_1598 || course_id == Constant.COURSE_h18_1616){
+            else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
-            }else if(course_id == Constant.COURSE_h18_1637 || course_id == Constant.COURSE_h18_1655){
+            }else if(course_id == Constant.COURSE_h18_3140 || course_id == Constant.COURSE_h18_3157){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_12,MusicNote.duration_c_12,MusicNote.color1_c_12,MusicNote.note_c_12));
-            }else if(course_id == Constant.COURSE_h18_1666 || course_id == Constant.COURSE_h18_1683){
+            }else if(course_id == Constant.COURSE_h18_3180 || course_id == Constant.COURSE_h18_3190){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_13,MusicNote.duration_c_13,MusicNote.color1_c_13,MusicNote.note_c_13));
-            }else if(course_id == Constant.COURSE_h18_1706 || course_id == Constant.COURSE_h18_1722){
+            }else if(course_id == Constant.COURSE_h18_3218 || course_id == Constant.COURSE_h18_3232){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_14,MusicNote.duration_c_14,MusicNote.color1_c_14,MusicNote.note_c_14));
-            }else if(course_id == Constant.COURSE_h18_1744 || course_id == Constant.COURSE_h18_1758){
+            }else if(course_id == Constant.COURSE_h18_3256 || course_id == Constant.COURSE_h18_3271){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_15,MusicNote.duration_c_15,MusicNote.color1_c_15,MusicNote.note_c_15));
-            }else if(course_id == Constant.COURSE_h18_1782 || course_id == Constant.COURSE_h18_1797){
+            }else if(course_id == Constant.COURSE_h18_3292 || course_id == Constant.COURSE_h18_3309){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_16,MusicNote.duration_c_16,MusicNote.color1_c_16,MusicNote.note_c_16));
-            }else if(course_id == Constant.COURSE_h18_1818 || course_id == Constant.COURSE_h18_1835){
+            }else if(course_id == Constant.COURSE_h18_3330 || course_id == Constant.COURSE_h18_3352){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_17,MusicNote.duration_c_17,MusicNote.color1_c_17,MusicNote.note_c_17));
-            }else if(course_id == Constant.COURSE_h18_1856 || course_id == Constant.COURSE_h18_1878){
+            }else if(course_id == Constant.COURSE_h18_3379 || course_id == Constant.COURSE_h18_3395){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_18,MusicNote.duration_c_18,MusicNote.color1_c_18,MusicNote.note_c_18));
-            }else if(course_id == Constant.COURSE_h18_1905 || course_id == Constant.COURSE_h18_1921){
+            }else if(course_id == Constant.COURSE_h18_3423 || course_id == Constant.COURSE_h18_3441){
                 //后18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_19,MusicNote.duration_c_19,MusicNote.color1_c_19,MusicNote.note_c_19));
             }

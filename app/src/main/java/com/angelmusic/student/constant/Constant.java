@@ -102,26 +102,31 @@ public class Constant {
     public static final int COURSE_1300 = 1300;
 
     //后18节课(11 - 19)
-    public static final int COURSE_h18_1598 = 1598;
-    public static final int COURSE_h18_1616 = 1616;
-    public static final int COURSE_h18_1637 = 1637;
-    public static final int COURSE_h18_1655 = 1655;
-    public static final int COURSE_h18_1666 = 1666;
-
-    public static final int COURSE_h18_1683 = 1683;
-    public static final int COURSE_h18_1706 = 1706;
-    public static final int COURSE_h18_1722 = 1722;
-    public static final int COURSE_h18_1744 = 1744;
-    public static final int COURSE_h18_1758 = 1758;
-
-    public static final int COURSE_h18_1782 = 1782;
-    public static final int COURSE_h18_1797 = 1797;
-    public static final int COURSE_h18_1818= 1818;
-    public static final int COURSE_h18_1835 = 1835;
-    public static final int COURSE_h18_1856 = 1856;
-
-    public static final int COURSE_h18_1878 = 1878;
-    public static final int COURSE_h18_1905 = 1905;
-    public static final int COURSE_h18_1921 = 1921;
+    //11
+    public static final int COURSE_h18_3111 = 3111;
+    public static final int COURSE_h18_3129 = 3129;
+    //12
+    public static final int COURSE_h18_3140 = 3140;
+    public static final int COURSE_h18_3157 = 3157;
+    //13
+    public static final int COURSE_h18_3180 = 3180;
+    public static final int COURSE_h18_3190 = 3190;
+    //14
+    public static final int COURSE_h18_3218 = 3218;
+    public static final int COURSE_h18_3232 = 3232;
+    //15
+    public static final int COURSE_h18_3256 = 3256;
+    public static final int COURSE_h18_3271 = 3271;
+    //16
+    public static final int COURSE_h18_3292 = 3292;
+    public static final int COURSE_h18_3309 = 3309;
+    //17
+    public static final int COURSE_h18_3330 = 3330;
+    public static final int COURSE_h18_3352 = 3352;
+    //18
+    public static final int COURSE_h18_3379 = 3379;
+    public static final int COURSE_h18_3395 = 3395;
+    public static final int COURSE_h18_3423 = 3423;
+    public static final int COURSE_h18_3441 = 3441;
 
 }
