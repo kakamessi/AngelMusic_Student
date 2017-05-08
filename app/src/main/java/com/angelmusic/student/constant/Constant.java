@@ -101,5 +101,27 @@ public class Constant {
     //C9
     public static final int COURSE_1300 = 1300;
 
+    //后18节课(11 - 19)
+    public static final int COURSE_h18_1598 = 1598;
+    public static final int COURSE_h18_1616 = 1616;
+    public static final int COURSE_h18_1637 = 1637;
+    public static final int COURSE_h18_1655 = 1655;
+    public static final int COURSE_h18_1666 = 1666;
+
+    public static final int COURSE_h18_1683 = 1683;
+    public static final int COURSE_h18_1706 = 1706;
+    public static final int COURSE_h18_1722 = 1722;
+    public static final int COURSE_h18_1744 = 1744;
+    public static final int COURSE_h18_1758 = 1758;
+
+    public static final int COURSE_h18_1782 = 1782;
+    public static final int COURSE_h18_1797 = 1797;
+    public static final int COURSE_h18_1818= 1818;
+    public static final int COURSE_h18_1835 = 1835;
+    public static final int COURSE_h18_1856 = 1856;
+
+    public static final int COURSE_h18_1878 = 1878;
+    public static final int COURSE_h18_1905 = 1905;
+    public static final int COURSE_h18_1921 = 1921;
 
 }
