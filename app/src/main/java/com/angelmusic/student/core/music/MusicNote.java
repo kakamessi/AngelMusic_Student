@@ -206,7 +206,7 @@ public class MusicNote {
     public static float[] time_c_17 = {20.250f,47.250f};
     public static float[] duration_c_17 = {0.750f,0.750f,0.750f,0.750f,0.750f,0.750f,2.250f,2.250f,2.250f,2.250f,0.750f,0.750f,0.750f,0.750f,0.750f,0.750f,2.250f,2.250f,2.250f,2.250f,};
     //string[] celf = {g,g,g,g,g,  g,g,c,g,c,  g,g,g,g,g,  g,g,c,g,c,};
-    public static int[] color1_c_17 ={1,1,1,1,1, 1,1,0,1,0, 1,1,1,1,1 1,1,0,1,0};
+    public static int[] color1_c_17 ={1,1,1,1,1, 1,1,0,1,0, 1,1,1,1,1, 1,1,0,1,0};
     public static int[] note_c_17 = {46,46,46,44,44,44,44,34,43,2743,43,43,41,41,41,41,34,39,27};
 
     //后18  第18课
