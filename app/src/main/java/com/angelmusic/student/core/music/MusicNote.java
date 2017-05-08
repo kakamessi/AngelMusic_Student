@@ -163,64 +163,64 @@ public class MusicNote {
     //后18  第11课
     public static float[] time_c_11 = {10.799f,39.599f};
     public static float[] duration_c_11 = {1.200f,1.200f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,2.400f,1.200f,1.200f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,2.400f};
-    //string[] celf = {g,g,g,g,g,g,g,g,g,g,c,c,c,c,c,c,c,c,c,c};
-    public static int[] color1_c_11 ={};
+    //string[] celf = {g,g,g,g,g,  g,g,g,g,g,  c,c,c,c,c,  c,c,c,c,c};
+    public static int[] color1_c_11 ={1,1,1,1,1,  1,1,1,1,1, 0,0,0,0,0,  0,0,0,0,0};
     public static int[] note_c_11 = {39,41,63,44,46,46,46,44,44,43,39,38,36,34,32,32,34,36,38,39};
 
     //后18  第12课
     public static float[] time_c_12 = {13.200f,42.000f};
     public static float[] duration_c_12 = {1.200f,0.600f,0.600f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f};
-    //string[] celf = {g,g,g,g,g,g,g,g,g,g,g,g,,c,c,c,c,c,c,c,c,c,c,c,c,c,,};
-    public static int[] color1_c_12 ={};
+    //string[] celf = {g,g,g,g,g,  g,g,g,g,g,  g,g,,c,c,   c,c,c,c,c,  c,c,c,c,c,  c,,};
+    public static int[] color1_c_12 ={1,1,1,1,1, 1,1,1,1,1, 1,1,-1,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,-1};
     public static int[] note_c_12 = {46,43,43,44,44,43,41,41,39,41,43,43,43,-1,32,36,36,34,34,36,38,38,36,38,39,39,39,-1};
 
     //后18  第13课
     public static float[] time_c_13 = {8.436f,29.061f};
     public static float[] duration_c_13 = {1.875f,1.875f,0.9375f,0.9375f,1.875f,0.9375f,0.9375f,0.9375f,0.9375f,1.875f,0.9375f,0.9375f,1.875f,1.875f,0.9375f,0.9375f,1.875f,0.9375f,0.9375f,0.9375f,0.9375f,0.9375f,0.9375f,0.9375f,0.9375f,};
-    //string[] celf = {c,c,c,c,c,c,c,c,c,c,c,,g,g,g,g,g,g,g,g,g,g,g,g,,};
-    public static int[] color1_c_13 ={};
+    //string[] celf = {c,c,c,c,c,  c,c,c,c,c,  c,,g,g,g,  g,g,g,g,g,  g,g,g,g,,};
+    public static int[] color1_c_13 ={0,0,0,0,0, 0,0,0,0,0, 0,-1,1,1,1, 1,1,1,1,1, 1,1,1,1,-1};
     public static int[] note_c_13 = {27,29,31,31,31,34,34,32,32,31,31,-1,46,44,43,43,43,41,41,43,41,39,39,39,-1};
 
     //后18  第14课
     public static float[] time_c_14 = {12.272f,45.000f};
     public static float[] duration_c_14 = {0.682f,0.682f,1.362f,0.682f,0.682f,1.362f,1.362f,0.682f,0.682f,2.727f,0.682f,0.682f,1.362f,0.682f,0.682f,1.362f,0.682f,0.682f,0.682f,0.682f,0.682f,0.682f,0.682f,0.682f,};
-    //string[] celf = {c,c,c,c,c,c,c,c,c,c,g,g,g,g,g,g,g,g,g,g,g,g,,};
-    public static int[] color1_c_14 ={};
+    //string[] celf = {c,c,c,c,c,  c,c,c,c,c,  g,g,g,g,g,  g,g,g,g,g,  g,g,,};
+    public static int[] color1_c_14 ={0,0,0,0,0, 0,0,0,0,0, 1,1,1,1,1, 1,1,1,1,1, 1,1,-1};
     public static int[] note_c_14 = {27,27,34,34,34,27,29,31,32,31,27,27,34,34,34,27,32,32,31,29,27,27,27,-1,};
 
     //后18  第15课
     public static float[] time_c_15 = {13.500f,49.500f};
     public static float[] duration_c_15 = {1.500f,0.750f,0.750f,0.750f,0.750f,1.500f,1.500f,0.750f,0.750f,1.500f,1.500f,1.500f,0.750f,0.750f,0.750f,0.750f,1.500f,0.750f,0.750f,0.750f,0.750f,3.000f,};
-    //string[] celf = {g,g,g,g,g,g,c,c,c,c,c,g,g,g,g,g,g,c,c,c,c,c,};
-    public static int[] color1_c_15 ={};
+    //string[] celf = {g,g,g,g,g,  g,c,c,c,c,  c,g,g,g,g,  g,g,c,c,c, c,c,};
+    public static int[] color1_c_15 ={1,1,1,1,1, 1,0,0,0,0, 0,1,1,1,1, 1,1,0,0,0, 0,0};
     public static int[] note_c_15 = {46,46,44,43,41,39,31,31,32,34,34,46,46,44,43,41,39,34,32,31,29,27,};
 
     //后18  第16课
     public static float[] time_c_16 = {12.000f,40.800f};
     public static float[] duration_c_16 = {0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,1.200f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,0.600f,2.400f,};
-    //string[] celf = {g,g,g,,g,g,g,,g,g,g,g,g,g,g,c,c,c,,c,c,c,,c,c,c,c,c,};
-    public static int[] color1_c_16 ={};
+    //string[] celf = {g,g,g,,g,  g,g,,g,g,  g,g,g,g,g,  c,c,c,,c,  c,c,,c,c,  c,c,c,};
+    public static int[] color1_c_16 ={1,1,1,-1,1, 1,1,-1,1,1, 1,1,1,1,1, 0,0,0,-1,0, 0,0,0,-1,0, 0,0,0};
     public static int[] note_c_16 = {46,43,43,-1,44,41,41,-1,39,41,43,44,46,46,46,34,31,31,-1,32,29,29,27,31,34,34,27,};
 
     //后18  第17课
     public static float[] time_c_17 = {20.250f,47.250f};
     public static float[] duration_c_17 = {0.750f,0.750f,0.750f,0.750f,0.750f,0.750f,2.250f,2.250f,2.250f,2.250f,0.750f,0.750f,0.750f,0.750f,0.750f,0.750f,2.250f,2.250f,2.250f,2.250f,};
-    //string[] celf = {g,g,g,g,g,g,g,c,g,c,g,g,g,g,g,g,g,c,g,c,};
-    public static int[] color1_c_17 ={};
+    //string[] celf = {g,g,g,g,g,  g,g,c,g,c,  g,g,g,g,g,  g,g,c,g,c,};
+    public static int[] color1_c_17 ={1,1,1,1,1, 1,1,0,1,0, 1,1,1,1,1 1,1,0,1,0};
     public static int[] note_c_17 = {46,46,46,44,44,44,44,34,43,2743,43,43,41,41,41,41,34,39,27};
 
     //后18  第18课
     public static float[] time_c_18 = {18.409f,42.954f};
     public static float[] duration_c_18 = {0.681f, 0.681f, 0.681f, 0.681f, 0.681f, 0.681f,2.045f,2.045f,2.045f,2.045f,0.681f, 0.681f, 0.681f, 0.681f, 0.681f, 0.681f,2.045f,2.045f,2.045f,2.045f,};
-    //string[] celf = {c,c,c,g,g,g,g,c,g,c,g,g,g,c,c,c,g,c,g,c,};
-    public static int[] color1_c_18 ={};
+    //string[] celf = {c,c,c,g,g,  g,g,c,g,c,  g,g,g,c,c,  c,g,c,g,c,};
+    public static int[] color1_c_18 ={0,0,0,1,1, 1,1,0,1,0, 1,1,1,0,0, 0,1,0,1,0,};
     public static int[] note_c_18 = {27,31,34,39,43,46,44,32,43,27,46,43,39,34,31,27,41,34,39,27,};
 
     //后18  第19课
     public static float[] time_c_19 = {16.421f,56.842f};
     public static float[] duration_c_19 = {0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,1.263f,0.631f,0.631f,1.263f,0.631f,2.526f,2.526f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,0.631f,1.263f,0.631f,0.631f,1.263f,0.631f,2.526f,2.526f,};
-    //string[] celf = {g,g,g,g,g,g,,g,c,g,g,c,g,g,c,g,g,g,g,g,g,,g,c,g,g,c,g,g,c,};
-    public static int[] color1_c_19 ={};
+    //string[] celf = {g,g,g,g,g,  g,,g,c,g,  g,c,g,g,c,  g,g,g,g,g,  g,,g,c,g, g,c,g,g,c,};
+    public static int[] color1_c_19 ={1,1,1,1,1, 1,-1,10,1, 1,0,1,1,0, 1,1,1,1,1, 1,-1,1,0,1, 1,0,1,1,0};
     public static int[] note_c_19 = {39,39,43,43,46,46,43,-1,41,34,46,44,34,41,43,27,43,43,39,39,34,34,31,-1,41,34,43,44,34,41,39,27,};
 
     /*亮灯*/
