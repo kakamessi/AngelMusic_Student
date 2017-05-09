@@ -107,29 +107,54 @@ public class Constant {
     //c11
     public static final int COURSE_h18_3111 = 3111;
     public static final int COURSE_h18_3129 = 3129;
+    public static final int COURSE_h18_3480 = 3480;
+    public static final int COURSE_h18_3498 = 3498;
+
     //c12
     public static final int COURSE_h18_3140 = 3140;
     public static final int COURSE_h18_3157 = 3157;
+    public static final int COURSE_h18_3509 = 3509;
+    public static final int COURSE_h18_3526 = 3526;
+
     //c13
     public static final int COURSE_h18_3180 = 3180;
     public static final int COURSE_h18_3190 = 3190;
+    public static final int COURSE_h18_3549 = 3549;
+    public static final int COURSE_h18_3565 = 3565;
+
     //c14
     public static final int COURSE_h18_3218 = 3218;
     public static final int COURSE_h18_3232 = 3232;
+    public static final int COURSE_h18_3587 = 3587;
+    public static final int COURSE_h18_3601 = 3601;
     //c15
     public static final int COURSE_h18_3256 = 3256;
     public static final int COURSE_h18_3271 = 3271;
+    public static final int COURSE_h18_3625 = 3625;
+    public static final int COURSE_h18_3640 = 3640;
+
     //c16
     public static final int COURSE_h18_3292 = 3292;
     public static final int COURSE_h18_3309 = 3309;
+    public static final int COURSE_h18_3661 = 3661;
+    public static final int COURSE_h18_3678 = 3678;
+
     //c17
     public static final int COURSE_h18_3330 = 3330;
     public static final int COURSE_h18_3352 = 3352;
+    public static final int COURSE_h18_3699 = 3699;
+    public static final int COURSE_h18_3721 = 3721;
+
     //c18
     public static final int COURSE_h18_3379 = 3379;
     public static final int COURSE_h18_3395 = 3395;
+    public static final int COURSE_h18_3748 = 3748;
+    public static final int COURSE_h18_3764 = 3764;
+
     //c19
     public static final int COURSE_h18_3423 = 3423;
     public static final int COURSE_h18_3441 = 3441;
+    public static final int COURSE_h18_3792 = 3792;
+    public static final int COURSE_h18_3810 = 3810;
 
 }

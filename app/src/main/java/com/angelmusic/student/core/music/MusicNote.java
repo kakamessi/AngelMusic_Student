@@ -3,6 +3,7 @@ package com.angelmusic.student.core.music;
 import android.content.Context;
 
 import com.angelmusic.stu.usb.UsbDeviceInfo;
+import com.angelmusic.student.R;
 import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;
@@ -526,6 +527,53 @@ public class MusicNote {
 
         return result;
 
+    }
+
+    //匹配课程id c11 - c19
+    public static boolean filterCourse(int course_id, String course){
+        boolean result = true;
+
+        if(course.equals("c11") && (course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129
+                || course_id == Constant.COURSE_h18_3480 || course_id == Constant.COURSE_h18_3498)){
+            //后18 c11
+
+        }else if(course.equals("c12") && (course_id == Constant.COURSE_h18_3140 || course_id == Constant.COURSE_h18_3157
+                || course_id == Constant.COURSE_h18_3509 || course_id == Constant.COURSE_h18_3526)){
+            //后18 c12
+
+        }else if(course.equals("c13") && (course_id == Constant.COURSE_h18_3180 || course_id == Constant.COURSE_h18_3190
+                || course_id == Constant.COURSE_h18_3549 || course_id == Constant.COURSE_h18_3565)){
+            //后18 c13
+
+        }else if(course.equals("c14") && (course_id == Constant.COURSE_h18_3218 || course_id == Constant.COURSE_h18_3232
+                || course_id == Constant.COURSE_h18_3587 || course_id == Constant.COURSE_h18_3601)){
+            //后18 c14
+
+        }else if(course.equals("c15") && (course_id == Constant.COURSE_h18_3256 || course_id == Constant.COURSE_h18_3271
+                || course_id == Constant.COURSE_h18_3625 || course_id == Constant.COURSE_h18_3640)){
+            //后18 c15
+
+        }else if(course.equals("c16") && (course_id == Constant.COURSE_h18_3292 || course_id == Constant.COURSE_h18_3309
+                || course_id == Constant.COURSE_h18_3661 || course_id == Constant.COURSE_h18_3678)){
+            //后18 c16
+
+        }else if(course.equals("c17") && (course_id == Constant.COURSE_h18_3330 || course_id == Constant.COURSE_h18_3352
+                || course_id == Constant.COURSE_h18_3699 || course_id == Constant.COURSE_h18_3721)){
+            //后18 c17
+
+        }else if(course.equals("c18") && (course_id == Constant.COURSE_h18_3379 || course_id == Constant.COURSE_h18_3395
+                || course_id == Constant.COURSE_h18_3748 || course_id == Constant.COURSE_h18_3764)){
+            //后18 c18
+
+        }else if(course.equals("c19") && (course_id == Constant.COURSE_h18_3423 || course_id == Constant.COURSE_h18_3441
+                || course_id == Constant.COURSE_h18_3792 || course_id == Constant.COURSE_h18_3810)){
+            //后18 c19
+
+        }else{
+            result = false;
+        }
+
+        return result;
     }
 
     //根据音符index获取琴键index
