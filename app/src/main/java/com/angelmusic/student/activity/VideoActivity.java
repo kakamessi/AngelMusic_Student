@@ -373,63 +373,63 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
                 }
             }else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
-                //后18
+                //后18 c11
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3140 || course_id == Constant.COURSE_h18_3157){
-                //后18
+                //后18 c12
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c12_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c12_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3180 || course_id == Constant.COURSE_h18_3190){
-                //后18
+                //后18 c13
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3218 || course_id == Constant.COURSE_h18_3232){
-                //后18
+                //后18 c14
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3256 || course_id == Constant.COURSE_h18_3271){
-                //后18
+                //后18 c15
                 if(index_new<11) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3292 || course_id == Constant.COURSE_h18_3309){
-                //后18
+                //后18 c16
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3330 || course_id == Constant.COURSE_h18_3352){
-                //后18
+                //后18 c17
                 if(index_new<8) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3379 || course_id == Constant.COURSE_h18_3395){
-                //后18
+                //后18 c18
                 if(index_new<8) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_2);
                 }
             }else if(course_id == Constant.COURSE_h18_3423 || course_id == Constant.COURSE_h18_3441){
-                //后18
+                //后18 c19
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
                 }else{

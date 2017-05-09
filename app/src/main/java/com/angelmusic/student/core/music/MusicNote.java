@@ -268,9 +268,21 @@ public class MusicNote {
     public static ArrayList<NoteInfo> c_8 = new ArrayList<>();
     public static ArrayList<NoteInfo> c_9 = new ArrayList<>();
 
+    /* 后18节课 */
+    public static ArrayList<NoteInfo> c_11 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_12 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_13 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_14 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_15 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_16 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_17 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_18 = new ArrayList<>();
+    public static ArrayList<NoteInfo> c_19 = new ArrayList<>();
+
     public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
     public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3,fd_5,fd_6,fd_8,fd_9,fd_11,fd_12};
     public static final ArrayList[] c_1ist = {c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9};
+    public static final ArrayList[] h18_1ist = {c_11,c_12,c_13,c_14,c_15,c_16,c_17,c_18,c_19};
 
     static{
 
@@ -294,6 +306,16 @@ public class MusicNote {
         c_8.addAll(setNoteList(color1_c_8,note_c_8));
         c_9.addAll(setNoteList(color1_c_9,note_c_9));
 
+        /*后18*/
+        c_11.addAll(setNoteList(color1_c_11,note_c_11));
+        c_12.addAll(setNoteList(color1_c_12,note_c_12));
+        c_13.addAll(setNoteList(color1_c_13,note_c_13));
+        c_14.addAll(setNoteList(color1_c_14,note_c_14));
+        c_15.addAll(setNoteList(color1_c_15,note_c_15));
+        c_16.addAll(setNoteList(color1_c_16,note_c_16));
+        c_17.addAll(setNoteList(color1_c_17,note_c_17));
+        c_18.addAll(setNoteList(color1_c_18,note_c_18));
+        c_19.addAll(setNoteList(color1_c_19,note_c_19));
 
         /*----第一张谱子---- 培训 第一个*/
         for(int i=0; i<8;i++){
@@ -458,6 +480,51 @@ public class MusicNote {
                 result = c_1ist[7];
                 break;
 
+            //C11
+            case Constant.COURSE_h18_3111:
+            case Constant.COURSE_h18_3129:
+                result = h18_1ist[0];
+                break;
+            //C12
+            case Constant.COURSE_h18_3140:
+            case Constant.COURSE_h18_3157:
+                result = h18_1ist[1];
+                break;
+            //C13
+            case Constant.COURSE_h18_3180:
+            case Constant.COURSE_h18_3190:
+                result = h18_1ist[2];
+                break;
+            //C14
+            case Constant.COURSE_h18_3218:
+            case Constant.COURSE_h18_3232:
+                result = h18_1ist[3];
+                break;
+            //C15
+            case Constant.COURSE_h18_3256:
+            case Constant.COURSE_h18_3271:
+                result = h18_1ist[4];
+                break;
+            //C16
+            case Constant.COURSE_h18_3292:
+            case Constant.COURSE_h18_3309:
+                result = h18_1ist[5];
+                break;
+            //C17
+            case Constant.COURSE_h18_3330:
+            case Constant.COURSE_h18_3352:
+                result = h18_1ist[6];
+                break;
+            //C18
+            case Constant.COURSE_h18_3379:
+            case Constant.COURSE_h18_3395:
+                result = h18_1ist[7];
+                break;
+            //C19
+            case Constant.COURSE_h18_3423:
+            case Constant.COURSE_h18_3441:
+                result = h18_1ist[8];
+                break;
         }
 
         return result;
