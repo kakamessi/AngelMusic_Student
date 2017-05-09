@@ -5,8 +5,6 @@ import com.angelmusic.student.core.music.MusicNote;
 import com.angelmusic.student.infobean.ScoreData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -99,7 +97,7 @@ public class MusicUtils {
     public static boolean isXiaJingCourse(int course_id){
         boolean result = false;
         if(course_id==Constant.COURSE_1 || course_id==Constant.COURSE_2 || course_id==Constant.COURSE_3 || course_id==Constant.COURSE_187
-                || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076){
+                || course_id==Constant.COURSE_2441 || course_id==Constant.COURSE_2458){
             result = true;
         }
         return result;

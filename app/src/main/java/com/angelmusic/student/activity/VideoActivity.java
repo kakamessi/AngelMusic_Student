@@ -197,7 +197,7 @@ public class VideoActivity extends BaseActivity {
         if (key == ni.getNoteNum()) {
 
             //处理显示正确音符和钢琴键逻辑
-            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_2441 || course_id==Constant.COURSE_2458) {
                 setViewStyle(1, nextInfo.getNoteIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE, nextInfo.getKeyIndex(), nextInfo.isRed() == true ? Color.RED : Color.BLUE);
             } else if (course_id == Constant.COURSE_2) {
                 if (nextInfo.getNoteIndex() < 13) {
@@ -313,11 +313,14 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_ydjjx2);
                 }
-            }else if(course_id == Constant.COURSE_950 || course_id == Constant.COURSE_1116){
+            }
+
+            //c3 - c9
+            else if(course_id == Constant.COURSE_2481 || course_id == Constant.COURSE_2497){
                 //C3
                 replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
 
-            }else if(course_id == Constant.COURSE_1099 || course_id == Constant.COURSE_1157){
+            }else if(course_id == Constant.COURSE_2520 || course_id == Constant.COURSE_2537){
                 //C4
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
@@ -325,7 +328,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_2);
                 }
 
-            }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
+            }else if(course_id == Constant.COURSE_2561 || course_id == Constant.COURSE_2578){
                 //C5
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
@@ -333,7 +336,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_2);
                 }
 
-            }else if(course_id == Constant.COURSE_1180 || course_id == Constant.COURSE_1237){
+            }else if(course_id == Constant.COURSE_2601 || course_id == Constant.COURSE_2617){
                 //C6
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
@@ -341,7 +344,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_2);
                 }
 
-            }else if(course_id == Constant.COURSE_1219 || course_id == Constant.COURSE_1277){
+            }else if(course_id == Constant.COURSE_2640 || course_id == Constant.COURSE_2658){
                 //C7
                 if(index_new<8) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
@@ -353,7 +356,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
                 }
 
-            }else if(course_id == Constant.COURSE_1261 || course_id == Constant.COURSE_1316){
+            }else if(course_id == Constant.COURSE_2682 || course_id == Constant.COURSE_2698){
                 //C8
                 if(index_new<13) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
@@ -361,7 +364,7 @@ public class VideoActivity extends BaseActivity {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_2);
                 }
 
-            }else if(course_id == Constant.COURSE_1300){
+            }else if(course_id == Constant.COURSE_2721 || course_id == Constant.COURSE_2737){
                 //C9
                 if(index_new<12) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
@@ -372,7 +375,10 @@ public class VideoActivity extends BaseActivity {
                 }else{
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
                 }
-            }else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
+            }
+
+            //c11 - c19
+            else if(course_id == Constant.COURSE_h18_3111 || course_id == Constant.COURSE_h18_3129){
                 //后18 c11
                 if(index_new<10) {
                     replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
@@ -637,7 +643,7 @@ public class VideoActivity extends BaseActivity {
             setPuzi(1);
 
             /* 初始化界面显示的时候 默认高亮音符信息 */
-            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076) {
+            if (course_id == Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_2441 || course_id==Constant.COURSE_2458) {
                 //培训
                 setViewStyle(1, 1, Color.RED, 8, Color.RED);
                 MusicNote.openLight(VideoActivity.this,39,true);
@@ -706,43 +712,43 @@ public class VideoActivity extends BaseActivity {
 
                 }
 
-                else if(course_id == Constant.COURSE_950 || course_id == Constant.COURSE_1116){
+                else if(course_id == Constant.COURSE_2481 || course_id == Constant.COURSE_2497){
                     //C3
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_1099 || course_id == Constant.COURSE_1157){
+                }else if(course_id == Constant.COURSE_2520 || course_id == Constant.COURSE_2537){
                     //C4
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
+                }else if(course_id == Constant.COURSE_2561 || course_id == Constant.COURSE_2578){
                     //C5
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(36),false);
                     MusicNote.openLight(VideoActivity.this,36,false);
 
-                }else if(course_id == Constant.COURSE_1180 || course_id == Constant.COURSE_1237){
+                }else if(course_id == Constant.COURSE_2601 || course_id == Constant.COURSE_2617){
                     //C6
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
                     setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                     MusicNote.openLight(VideoActivity.this,39,false);
 
-                }else if(course_id == Constant.COURSE_1219 || course_id == Constant.COURSE_1277){
+                }else if(course_id == Constant.COURSE_2640 || course_id == Constant.COURSE_2658){
                     //C7
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_1261 || course_id == Constant.COURSE_1316){
+                }else if(course_id == Constant.COURSE_2682 || course_id == Constant.COURSE_2698){
                     //C8
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                     MusicNote.openLight(VideoActivity.this,39,true);
 
-                }else if(course_id == Constant.COURSE_1300){
+                }else if(course_id == Constant.COURSE_2721  || course_id == Constant.COURSE_2737){
                     //C9
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
                     setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
@@ -843,12 +849,12 @@ public class VideoActivity extends BaseActivity {
     private void checkGZ2(boolean isGd) {
         if(isGd){
             isPianoActive = true;
-            if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076 ) && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
+            if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_2441 || course_id==Constant.COURSE_2458) && Constant.PLAY_TOGHTER_COMPLETE_ONE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay1,MusicNote.dur1,MusicNote.color1,MusicNote.index1));
 
 
 
-            }else if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_915 || course_id==Constant.COURSE_1076 )&& Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
+            }else if((course_id==Constant.COURSE_1 || course_id == Constant.COURSE_187 || course_id==Constant.COURSE_2441 || course_id==Constant.COURSE_2458)&& Constant.RHYTHM_COMPLETE.equals(gendeng_id)){
                 gzThread = new Thread(new VideoRun(-1,MusicNote.delay2,MusicNote.dur2,MusicNote.color2,MusicNote.index2));
 
 
@@ -906,31 +912,31 @@ public class VideoActivity extends BaseActivity {
             }
 
 
-            else if(course_id == Constant.COURSE_950 || course_id == Constant.COURSE_1116){
+            else if(course_id == Constant.COURSE_2481 || course_id == Constant.COURSE_2497){
                 //C3
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_3,MusicNote.duration_c_3,MusicNote.color1_c_3,MusicNote.note_c_3));
 
-            }else if(course_id == Constant.COURSE_1099 || course_id == Constant.COURSE_1157){
+            }else if(course_id == Constant.COURSE_2520 || course_id == Constant.COURSE_2537){
                 //C4
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_4,MusicNote.duration_c_4,MusicNote.color1_c_4,MusicNote.note_c_4));
 
-            }else if(course_id == Constant.COURSE_1140 || course_id == Constant.COURSE_1196){
+            }else if(course_id == Constant.COURSE_2561 || course_id == Constant.COURSE_2578){
                 //C5
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_5,MusicNote.duration_c_5,MusicNote.color1_c_5,MusicNote.note_c_5));
 
-            }else if(course_id == Constant.COURSE_1180 || course_id == Constant.COURSE_1237){
+            }else if(course_id == Constant.COURSE_2601 || course_id == Constant.COURSE_2617){
                 //C6
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_6,MusicNote.duration_c_6,MusicNote.color1_c_6,MusicNote.note_c_6));
 
-            }else if(course_id == Constant.COURSE_1219 || course_id == Constant.COURSE_1277){
+            }else if(course_id == Constant.COURSE_2640 || course_id == Constant.COURSE_2658){
                 //C7
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_7,MusicNote.duration_c_7,MusicNote.color1_c_7,MusicNote.note_c_7));
 
-            }else if(course_id == Constant.COURSE_1261 || course_id == Constant.COURSE_1316){
+            }else if(course_id == Constant.COURSE_2682 || course_id == Constant.COURSE_2698){
                 //C8
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_8,MusicNote.duration_c_8,MusicNote.color1_c_8,MusicNote.note_c_8));
 
-            }else if(course_id == Constant.COURSE_1300){
+            }else if(course_id == Constant.COURSE_2721  || course_id == Constant.COURSE_2737){
                 //C9
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_9,MusicNote.duration_c_9,MusicNote.color1_c_9,MusicNote.note_c_9));
 

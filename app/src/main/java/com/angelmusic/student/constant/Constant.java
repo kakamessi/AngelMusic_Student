@@ -45,9 +45,10 @@ public class Constant {
     public static final int COURSE_2 = 669;
     public static final int COURSE_3 = 3;
     public static final int COURSE_187 = 187;
-    public static final int COURSE_915 = 915;
+
+    public static final int COURSE_2441 = 2441;
     //C2
-    public static final int COURSE_1076 = 1076;
+    public static final int COURSE_2458 = 2458;
 
     //丰台
     public static final int COURSE_2_ft = 786;
@@ -81,51 +82,53 @@ public class Constant {
     public static final int COURSE_1572 = 1572;
 
     //C3
-    public static final int COURSE_950 = 950;
-    public static final int COURSE_1116 = 1116;
+    public static final int COURSE_2481 = 2481;
+    public static final int COURSE_2497 = 2497;
     //c4
-    public static final int COURSE_1099 = 1099;
-    public static final int COURSE_1157 = 1157;
+    public static final int COURSE_2520 = 2520;
+    public static final int COURSE_2537 = 2537;
     //C5
-    public static final int COURSE_1140 = 1140;
-    public static final int COURSE_1196 = 1196;
+    public static final int COURSE_2561 = 2561;
+    public static final int COURSE_2578 = 2578;
     //C6
-    public static final int COURSE_1180 = 1180;
-    public static final int COURSE_1237 = 1237;
+    public static final int COURSE_2601 = 2601;
+    public static final int COURSE_2617 = 2617;
     //C7
-    public static final int COURSE_1219 = 1219;
-    public static final int COURSE_1277 = 1277;
+    public static final int COURSE_2640 = 2640;
+    public static final int COURSE_2658 = 2658;
     //C8
-    public static final int COURSE_1261 = 1261;
-    public static final int COURSE_1316 = 1316;
+    public static final int COURSE_2682 = 2682;
+    public static final int COURSE_2698 = 2698;
     //C9
-    public static final int COURSE_1300 = 1300;
+    public static final int COURSE_2721 = 2721;
+    public static final int COURSE_2737 = 2737;
 
     //后18节课(11 - 19)
-    //11
+    //c11
     public static final int COURSE_h18_3111 = 3111;
     public static final int COURSE_h18_3129 = 3129;
-    //12
+    //c12
     public static final int COURSE_h18_3140 = 3140;
     public static final int COURSE_h18_3157 = 3157;
-    //13
+    //c13
     public static final int COURSE_h18_3180 = 3180;
     public static final int COURSE_h18_3190 = 3190;
-    //14
+    //c14
     public static final int COURSE_h18_3218 = 3218;
     public static final int COURSE_h18_3232 = 3232;
-    //15
+    //c15
     public static final int COURSE_h18_3256 = 3256;
     public static final int COURSE_h18_3271 = 3271;
-    //16
+    //c16
     public static final int COURSE_h18_3292 = 3292;
     public static final int COURSE_h18_3309 = 3309;
-    //17
+    //c17
     public static final int COURSE_h18_3330 = 3330;
     public static final int COURSE_h18_3352 = 3352;
-    //18
+    //c18
     public static final int COURSE_h18_3379 = 3379;
     public static final int COURSE_h18_3395 = 3395;
+    //c19
     public static final int COURSE_h18_3423 = 3423;
     public static final int COURSE_h18_3441 = 3441;
 

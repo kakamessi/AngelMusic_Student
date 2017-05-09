@@ -7,9 +7,6 @@ import com.angelmusic.student.constant.Constant;
 
 import java.util.ArrayList;
 
-import static android.R.attr.tag;
-import static com.squareup.javapoet.TypeName.INT;
-
 /**
  * Created by DELL on 2017/2/1
  */
@@ -376,8 +373,8 @@ public class MusicNote {
         ArrayList<NoteInfo> result = null;
         switch(courseId)
         {
-            case Constant.COURSE_915:
-            case Constant.COURSE_1076:
+            case Constant.COURSE_2441:
+            case Constant.COURSE_2458:
             case Constant.COURSE_1:
             case Constant.COURSE_187:
                 result = note_1ist[0];
@@ -446,37 +443,37 @@ public class MusicNote {
                 break;
 
             //c版本
-            case Constant.COURSE_950:
-            case Constant.COURSE_1116:
+            case Constant.COURSE_2481:
+            case Constant.COURSE_2497:
                 result = c_1ist[1];
                 break;
 
-            case Constant.COURSE_1099:
-            case Constant.COURSE_1157:
+            case Constant.COURSE_2520:
+            case Constant.COURSE_2537:
                 result = c_1ist[2];
                 break;
 
-            case Constant.COURSE_1140:
-            case Constant.COURSE_1196:
+            case Constant.COURSE_2561:
+            case Constant.COURSE_2578:
                 result = c_1ist[3];
                 break;
 
-            case Constant.COURSE_1180:
-            case Constant.COURSE_1237:
+            case Constant.COURSE_2601:
+            case Constant.COURSE_2617:
                 result = c_1ist[4];
                 break;
 
-            case Constant.COURSE_1219:
-            case Constant.COURSE_1277:
+            case Constant.COURSE_2640:
+            case Constant.COURSE_2658:
                 result = c_1ist[5];
                 break;
 
-            case Constant.COURSE_1261:
-            case Constant.COURSE_1316:
+            case Constant.COURSE_2682:
+            case Constant.COURSE_2698:
                 result = c_1ist[6];
                 break;
 
-            case Constant.COURSE_1300:
+            case Constant.COURSE_2721:
                 result = c_1ist[7];
                 break;
 
