@@ -3,7 +3,9 @@ package com.angelmusic.student.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.course_download.adapter.DownloadAdapter;
+import com.angelmusic.student.course_download.adapter.DownloadNewAdapter;
 import com.angelmusic.student.course_download.db.DAO2Impl;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
@@ -47,15 +50,17 @@ public class DownloadActivity extends BaseActivity {
     private String courseParentPath;//文件存放的路径
     private CourseInfo courseInfo;//网络下载封装成的课程信息总类
     private List<List<FileInfo>> fileInfoLists;//适配器需要传入的数据
-    private DownloadAdapter adapter;
+    private DownloadNewAdapter adapter;
     private String schoolId;//学校ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new DownloadAdapter(this);
+        adapter = new DownloadNewAdapter(this);
+        View vg = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
+        lvCourse.addHeaderView(vg);
         lvCourse.setAdapter(adapter);
-        initData();
+        //initData();
     }
 
     //网络请求数据
