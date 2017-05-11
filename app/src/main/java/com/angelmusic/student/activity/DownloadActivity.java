@@ -20,6 +20,7 @@ import com.angelmusic.student.course_download.adapter.DownloadAdapter;
 import com.angelmusic.student.course_download.adapter.DownloadNewAdapter;
 import com.angelmusic.student.course_download.db.DAO2Impl;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
+import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
@@ -53,13 +54,28 @@ public class DownloadActivity extends BaseActivity {
     private DownloadNewAdapter adapter;
     private String schoolId;//学校ID
 
+
+    //--------------------------------------------
+    private List<CourseItemInfo> ccourseList = null;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ccourseList = new ArrayList<CourseItemInfo>();
+        for(int i=0; i<20; i++){
+            CourseItemInfo c1 = new CourseItemInfo("id", 1, 1, 1, 1,null,0.5f);
+            ccourseList.add(c1);
+        }
+
+
         adapter = new DownloadNewAdapter(this);
         View vg = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
         lvCourse.addHeaderView(vg);
         lvCourse.setAdapter(adapter);
+        adapter.setData(ccourseList);
         //initData();
     }
 
@@ -86,7 +102,7 @@ public class DownloadActivity extends BaseActivity {
                                 //封装课程下载数据List<List<FileInfo>>
                                 List<List<FileInfo>> packageData = packageData(courseInfo.getDetail());
                                 if (packageData != null) {
-                                    adapter.setData(packageData);
+                                    //adapter.setData(packageData);
                                 }
                                 //强退后再进入时将所有下载中的按钮设置成暂停
                                 for (int i = 1; i < fileInfoLists.size(); i++) {

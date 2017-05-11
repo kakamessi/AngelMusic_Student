@@ -18,6 +18,7 @@ import com.angelmusic.student.R;
 import com.angelmusic.student.base.App;
 import com.angelmusic.student.course_download.db.DAO2Impl;
 import com.angelmusic.student.course_download.db.DAOImpl;
+import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.FileUtil;
@@ -35,7 +36,7 @@ import static com.angelmusic.student.R.id.circleProgress;
 
 public class DownloadNewAdapter extends BaseAdapter {
     private Context mContext;
-    private List courseDataList;
+    private List<CourseItemInfo> courseDataList;
     private LayoutInflater mInflater;
 
     public DownloadNewAdapter(Context mContext) {
@@ -45,14 +46,14 @@ public class DownloadNewAdapter extends BaseAdapter {
     }
 
     //可以先添加适配器然后在添加数据
-    public void setData(List courseDataList) {
+    public void setData(List<CourseItemInfo> courseDataList) {
         this.courseDataList = courseDataList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return 20;
+        return courseDataList.size();
     }
 
     @Override
@@ -68,6 +69,8 @@ public class DownloadNewAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
+        final CourseItemInfo ci = courseDataList.get(position);
+
         final ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -82,7 +85,17 @@ public class DownloadNewAdapter extends BaseAdapter {
         }
 
         holder.tvCourseName.setText("第一节课");
-        holder.tvProgress.setText(88 + "%");
+        holder.tvProgress.setText(ci.getProcess()*100 + "%");
+        if(ci.getIsActive()==1){
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击则变成下载状态
+        }else if(ci.getIsActive()==2){
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
+        }else if(ci.getIsActive()==3){
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成下载状态
+        }else if(ci.getIsActive()==4){
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.End);//点击则变成下载状态
+        }
+
 
         //设置点击监听事件
         holder.circleProgress.setOnClickListener(new View.OnClickListener() {
@@ -92,18 +105,22 @@ public class DownloadNewAdapter extends BaseAdapter {
                 if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Start) {//初始下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //下载
+                    ci.setIsActive(2);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {//下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
                     //暂停
+                    ci.setIsActive(3);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Pause) {//暂停状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //继续下载，同下载
+                    ci.setIsActive(2);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.End) {//下载全部完成状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击变成初始下载状态
                     //删除
+                    ci.setIsActive(1);
 
                 }
             }
@@ -166,4 +183,5 @@ public class DownloadNewAdapter extends BaseAdapter {
     public void refreshProgress() {
         notifyDataSetInvalidated();
     }
+
 }
