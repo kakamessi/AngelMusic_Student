@@ -28,6 +28,7 @@ import com.angelmusic.student.infobean.CourseData;
 import com.angelmusic.student.service.StudentService;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
+import com.angelmusic.student.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -140,7 +141,7 @@ public class App extends Application {
                 .setShowHttpLog(true)//显示请求日志
                 .setShowLifecycleLog(true)//显示Activity销毁日志
                 .setRetryOnConnectionFailure(false)//失败后不自动重连
-//                .setDownloadFileDir(String downloadFileDir)//文件下载保存目录(根据实际需求设置App.init.set...)
+                .setDownloadFileDir(Utils.getVideoPath())//文件下载保存目录(根据实际需求设置App.init.set...)
                 .addResultInterceptor(HttpInterceptor.ResultInterceptor)//请求结果拦截器
                 .addExceptionInterceptor(HttpInterceptor.ExceptionInterceptor)//请求链路异常拦截器
                 .setCookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(this)))//持久化cookie

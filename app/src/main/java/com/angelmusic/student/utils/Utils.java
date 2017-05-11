@@ -3,8 +3,11 @@ package com.angelmusic.student.utils;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Environment;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+
+import com.angelmusic.student.constant.Constant;
 
 /**
  * Created by DELL on 2017/1/16.
@@ -53,5 +56,8 @@ public class Utils {
 
     }
 
+    public static String getVideoPath(){
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FILE_PATH;
+    }
 
 }
