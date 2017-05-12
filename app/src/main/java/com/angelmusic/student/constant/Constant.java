@@ -157,4 +157,33 @@ public class Constant {
     public static final int COURSE_h18_3792 = 3792;
     public static final int COURSE_h18_3810 = 3810;
 
+
+    //社培 c3
+    public static final int COURSE_512_567 = 567;
+    public static final int COURSE_512_597 = 597;
+    public static final int COURSE_512_630 = 630;
+    public static final int COURSE_512_804 = 804;
+    public static final int COURSE_512_844 = 844 ;
+
+    public static final int COURSE_512_1949 = 1949;
+    public static final int COURSE_512_1987 = 1987;
+    public static final int COURSE_512_2028 = 2028;
+    public static final int COURSE_512_2066 = 2066;
+    public static final int COURSE_512_2104 = 2104;
+
+    public static final int COURSE_512_3831 = 3831;
+    public static final int COURSE_512_3870 = 3870;
+    public static final int COURSE_512_3907 = 3907;
+    public static final int COURSE_512_3944 = 3944;
+    public static final int COURSE_512_3979 = 3979;
+
+    public static final int COURSE_512_4016 = 4016;
+    public static final int COURSE_512_4064 = 4064 ;
+    public static final int COURSE_512_4107 = 4107;
+
+
 }
+
+
+
+

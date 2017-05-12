@@ -443,6 +443,276 @@ public class VideoActivity extends BaseActivity {
                 }
             }
 
+            //社培
+            else if(MusicNote.filterSP(course_id,"sp_1")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+
+                }
+
+            }else if(MusicNote.filterSP(course_id,"sp_2")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_3")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_4")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C4
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C3
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_5")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C5
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C4
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_6")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C6
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C5
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_7")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C7
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
+                    }else if(index_new<16){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_2);
+                    }else if(index_new<28){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_3);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C6
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_8")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C8
+                    if(index_new<13) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C7
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
+                    }else if(index_new<16){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_2);
+                    }else if(index_new<28){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_3);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_9")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //C9
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
+                    }else if(index_new<23){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_2);
+                    }else if(index_new<33){
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_3);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //C8
+                    if(index_new<13) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_10")){
+                //后18 c11
+                if(index_new<10) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_2);
+                }
+
+            }else if(MusicNote.filterSP(course_id,"sp_11")){
+                //后18 c11
+                if(index_new<10) {
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
+                }else{
+                    replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_2);
+                }
+
+            }else if(MusicNote.filterSP(course_id,"sp_12")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c13
+                    if(index_new<11) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c11
+                    if(index_new<10) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_13")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c14
+                    if(index_new<10) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c13
+                    if(index_new<11) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_14")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c15
+                    if(index_new<11) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c14
+                    if(index_new<10) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_15")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c16
+                    if(index_new<13) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c15
+                    if(index_new<11) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_16")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c17
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c16
+                    if(index_new<13) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_17")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c18
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c17
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_2);
+                    }
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_18")){
+                //c4,c3
+                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    //后18 c19
+                    if(index_new<12) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_2);
+                    }
+                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    //后18 c18
+                    if(index_new<8) {
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
+                    }else{
+                        replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_2);
+                    }
+                }
+            }
+
 
             setNoteAndKey(llYuepu, nextInfo.getNoteIndex()+1, nextInfo.isRed(), nextInfo.getKeyIndex(), nextInfo.isRed());
 

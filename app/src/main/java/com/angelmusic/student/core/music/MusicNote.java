@@ -569,6 +569,71 @@ public class MusicNote {
                 || course_id == Constant.COURSE_h18_3792 || course_id == Constant.COURSE_h18_3810)){
             //后18 c19
 
+        }else if(course.equals("c3") && (course_id == Constant.COURSE_2481 || course_id == Constant.COURSE_2497)){
+
+        }else if(course.equals("c4") && (course_id == Constant.COURSE_2520 || course_id == Constant.COURSE_2537)){
+
+        }else if(course.equals("c5") && (course_id == Constant.COURSE_2561 || course_id == Constant.COURSE_2578)){
+
+        }else if(course.equals("c6") && (course_id == Constant.COURSE_2601 || course_id == Constant.COURSE_2617)){
+
+        }else if(course.equals("c7") && (course_id == Constant.COURSE_2640 || course_id == Constant.COURSE_2658)){
+
+        }else if(course.equals("c8") && (course_id == Constant.COURSE_2682 || course_id == Constant.COURSE_2698)){
+
+        }else if(course.equals("c9") && (course_id == Constant.COURSE_2721  || course_id == Constant.COURSE_2737)){
+
+        }else{
+            result = false;
+        }
+
+        return result;
+    }
+
+    /**
+     * 社培id
+     *
+     *  sp1
+     */
+    public static boolean filterSP(int course_id, String course) {
+        boolean result = true;
+
+        if (course.equals("sp_1") && course_id == Constant.COURSE_512_567) {
+
+        }else if(course.equals("sp_2") && course_id == Constant.COURSE_512_597){
+
+        }else if(course.equals("sp_3") && course_id == Constant.COURSE_512_630){
+
+        }else if(course.equals("sp_4") && course_id == Constant.COURSE_512_804){
+
+        }else if(course.equals("sp_5") && course_id == Constant.COURSE_512_844){
+
+        }else if(course.equals("sp_6") && course_id == Constant.COURSE_512_1949){
+
+        }else if(course.equals("sp_7") && course_id == Constant.COURSE_512_1987){
+
+        }else if(course.equals("sp_8") && course_id == Constant.COURSE_512_2028){
+
+        }else if(course.equals("sp_9") && course_id == Constant.COURSE_512_2066){
+
+        }else if(course.equals("sp_10") && course_id == Constant.COURSE_512_2104){
+
+        }else if(course.equals("sp_11") && course_id == Constant.COURSE_512_3831){
+
+        }else if(course.equals("sp_12") && course_id == Constant.COURSE_512_3870){
+
+        }else if(course.equals("sp_13") && course_id == Constant.COURSE_512_3907){
+
+        }else if(course.equals("sp_14") && course_id == Constant.COURSE_512_3944){
+
+        }else if(course.equals("sp_15") && course_id == Constant.COURSE_512_3979){
+
+        }else if(course.equals("sp_16") && course_id == Constant.COURSE_512_4016){
+
+        }else if(course.equals("sp_17") && course_id == Constant.COURSE_512_4064){
+
+        }else if(course.equals("sp_18") && course_id == Constant.COURSE_512_4107){
+
         }else{
             result = false;
         }
