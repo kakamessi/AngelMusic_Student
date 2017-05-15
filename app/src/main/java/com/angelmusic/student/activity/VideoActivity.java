@@ -101,6 +101,12 @@ public class VideoActivity extends BaseActivity {
     @BindView(R.id.ll_yuepu)
     LinearLayout llYuepu;
 
+    private String Tag_GZ_1 = Constant.PLAY_TOGHTER_FOLLOW_ONE;
+    private String Tag_GZ_2 = Constant.REVIEW_PLAY_FOLLOW_ONE;
+
+    private String Tag_GD_1 = Constant.PLAY_TOGHTER_COMPLETE_ONE;
+    private String Tag_GD_2 = Constant.REVIEW_PLAY_COMPLETE_ONE;
+
     //定时任务
     private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
@@ -446,49 +452,49 @@ public class VideoActivity extends BaseActivity {
             //社培
             else if(MusicNote.filterSP(course_id,"sp_1")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
 
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                 }
 
             }else if(MusicNote.filterSP(course_id,"sp_2")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
 
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                 }
             }else if(MusicNote.filterSP(course_id,"sp_3")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
 
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                 }
             }else if(MusicNote.filterSP(course_id,"sp_4")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C4
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C3
                     replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
                 }
             }else if(MusicNote.filterSP(course_id,"sp_5")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C5
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C4
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
@@ -498,14 +504,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_6")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C6
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C5
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
@@ -515,7 +521,7 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_7")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C7
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
@@ -526,7 +532,7 @@ public class VideoActivity extends BaseActivity {
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_4);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C6
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
@@ -536,14 +542,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_8")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C8
                     if(index_new<13) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C7
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
@@ -557,7 +563,7 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_9")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //C9
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
@@ -568,7 +574,7 @@ public class VideoActivity extends BaseActivity {
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_4);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //C8
                     if(index_new<13) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
@@ -594,14 +600,14 @@ public class VideoActivity extends BaseActivity {
 
             }else if(MusicNote.filterSP(course_id,"sp_12")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c13
                     if(index_new<11) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c11
                     if(index_new<10) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
@@ -611,14 +617,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_13")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c14
                     if(index_new<10) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c13
                     if(index_new<11) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
@@ -628,14 +634,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_14")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c15
                     if(index_new<11) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c14
                     if(index_new<10) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
@@ -645,14 +651,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_15")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c16
                     if(index_new<13) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c15
                     if(index_new<11) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
@@ -662,14 +668,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_16")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c17
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c16
                     if(index_new<13) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
@@ -679,14 +685,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_17")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c18
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c17
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
@@ -696,14 +702,14 @@ public class VideoActivity extends BaseActivity {
                 }
             }else if(MusicNote.filterSP(course_id,"sp_18")){
                 //c4,c3
-                if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                if(yuepu_tag.equals(Tag_GZ_1)){
                     //后18 c19
                     if(index_new<12) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
                     }else{
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_2);
                     }
-                }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                }else if(yuepu_tag.equals(Tag_GZ_2)){
                     //后18 c18
                     if(index_new<8) {
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
@@ -1073,198 +1079,198 @@ public class VideoActivity extends BaseActivity {
                 }
 
                 else if(MusicNote.filterSP(course_id,"sp_1")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
 
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_2")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
 
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_3")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
 
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
 
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_4")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C4
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C3
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c3);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_5")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C5
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(36),false);
                         MusicNote.openLight(VideoActivity.this,36,false);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C4
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c4_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_6")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C6
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                         MusicNote.openLight(VideoActivity.this,39,false);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C5
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c5_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(36),false);
                         MusicNote.openLight(VideoActivity.this,36,false);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_7")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C7
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C6
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c6_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(39),false);
                         MusicNote.openLight(VideoActivity.this,39,false);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_8")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C8
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C7
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c7_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_9")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //C9
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c9_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //C8
                         replaceLayout(llYuepu,R.layout.layout_yuepu_418c8_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_10")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c11
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c11
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_11")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c11
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c11
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_12")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c13
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                         MusicNote.openLight(VideoActivity.this,27,false);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c11
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c11_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_13")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c14
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                         MusicNote.openLight(VideoActivity.this,27,false);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c13
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c13_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                         MusicNote.openLight(VideoActivity.this,27,false);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_14")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c15
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c14
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c14_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                         MusicNote.openLight(VideoActivity.this,27,false);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_15")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c16
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c15
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c15_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_16")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c17
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c16
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c16_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_17")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c18
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
                         MusicNote.openLight(VideoActivity.this,27,false);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c17
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c17_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(46),true);
                         MusicNote.openLight(VideoActivity.this,46,true);
                     }
                 }else if(MusicNote.filterSP(course_id,"sp_18")){
-                    if(yuepu_tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    if(yuepu_tag.equals(Tag_GZ_1)){
                         //c19
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c19_1);
                         setNoteAndKey(llYuepu,1,true,MusicNote.getKeyIndex(39),true);
                         MusicNote.openLight(VideoActivity.this,39,true);
-                    }else if(yuepu_tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    }else if(yuepu_tag.equals(Tag_GZ_2)){
                         //c18
                         replaceLayout(llYuepu,R.layout.layout_yuepu_428c18_1);
                         setNoteAndKey(llYuepu,1,false,MusicNote.getKeyIndex(27),false);
@@ -1415,39 +1421,213 @@ public class VideoActivity extends BaseActivity {
             }
 
             else if(MusicNote.filterCourse(course_id,"c11")){
-                //后18
+                //c11
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
             }else if(MusicNote.filterCourse(course_id,"c12")){
-                //后18
+                //c12
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_12,MusicNote.duration_c_12,MusicNote.color1_c_12,MusicNote.note_c_12));
             }else if(MusicNote.filterCourse(course_id,"c13")){
-                //后18
+                //c13
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_13,MusicNote.duration_c_13,MusicNote.color1_c_13,MusicNote.note_c_13));
             }else if(MusicNote.filterCourse(course_id,"c14")){
-                //后18
+                //c14
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_14,MusicNote.duration_c_14,MusicNote.color1_c_14,MusicNote.note_c_14));
             }else if(MusicNote.filterCourse(course_id,"c15")){
-                //后18
+                //c15
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_15,MusicNote.duration_c_15,MusicNote.color1_c_15,MusicNote.note_c_15));
             }else if(MusicNote.filterCourse(course_id,"c16")){
-                //后18
+                //c16
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_16,MusicNote.duration_c_16,MusicNote.color1_c_16,MusicNote.note_c_16));
             }else if(MusicNote.filterCourse(course_id,"c17")){
-                //后18
+                //c17
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_17,MusicNote.duration_c_17,MusicNote.color1_c_17,MusicNote.note_c_17));
             }else if(MusicNote.filterCourse(course_id,"c18")){
-                //后18
+                //c18
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_18,MusicNote.duration_c_18,MusicNote.color1_c_18,MusicNote.note_c_18));
             }else if(MusicNote.filterCourse(course_id,"c19")){
-                //后18
+                //c19
                 gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_19,MusicNote.duration_c_19,MusicNote.color1_c_19,MusicNote.note_c_19));
             }
+
+            //社培
+            else if(MusicNote.filterSP(course_id,"sp_1")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_2")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_3")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_4")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C4
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_4,MusicNote.duration_c_4,MusicNote.color1_c_4,MusicNote.note_c_4));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C3
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_3,MusicNote.duration_c_3,MusicNote.color1_c_3,MusicNote.note_c_3));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_5")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C5
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_5,MusicNote.duration_c_5,MusicNote.color1_c_5,MusicNote.note_c_5));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C4
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_4,MusicNote.duration_c_4,MusicNote.color1_c_4,MusicNote.note_c_4));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_6")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C6
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_6,MusicNote.duration_c_6,MusicNote.color1_c_6,MusicNote.note_c_6));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C5
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_5,MusicNote.duration_c_5,MusicNote.color1_c_5,MusicNote.note_c_5));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_7")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C7
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_7,MusicNote.duration_c_7,MusicNote.color1_c_7,MusicNote.note_c_7));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C6
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_6,MusicNote.duration_c_6,MusicNote.color1_c_6,MusicNote.note_c_6));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_8")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C8
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_8,MusicNote.duration_c_8,MusicNote.color1_c_8,MusicNote.note_c_8));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C7
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_7,MusicNote.duration_c_7,MusicNote.color1_c_7,MusicNote.note_c_7));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_9")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //C9
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_9,MusicNote.duration_c_9,MusicNote.color1_c_9,MusicNote.note_c_9));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //C8
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_8,MusicNote.duration_c_8,MusicNote.color1_c_8,MusicNote.note_c_8));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_10")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c11
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c11
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_11")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c11
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c11
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_12")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c13
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_13,MusicNote.duration_c_13,MusicNote.color1_c_13,MusicNote.note_c_13));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c11
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_11,MusicNote.duration_c_11,MusicNote.color1_c_11,MusicNote.note_c_11));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_13")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c14
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_14,MusicNote.duration_c_14,MusicNote.color1_c_14,MusicNote.note_c_14));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c13
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_13,MusicNote.duration_c_13,MusicNote.color1_c_13,MusicNote.note_c_13));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_14")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c15
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_15,MusicNote.duration_c_15,MusicNote.color1_c_15,MusicNote.note_c_15));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c14
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_14,MusicNote.duration_c_14,MusicNote.color1_c_14,MusicNote.note_c_14));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_15")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c16
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_16,MusicNote.duration_c_16,MusicNote.color1_c_16,MusicNote.note_c_16));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c15
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_15,MusicNote.duration_c_15,MusicNote.color1_c_15,MusicNote.note_c_15));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_16")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c17
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_17,MusicNote.duration_c_17,MusicNote.color1_c_17,MusicNote.note_c_17));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c16
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_16,MusicNote.duration_c_16,MusicNote.color1_c_16,MusicNote.note_c_16));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_17")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c18
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_18,MusicNote.duration_c_18,MusicNote.color1_c_18,MusicNote.note_c_18));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c17
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_17,MusicNote.duration_c_17,MusicNote.color1_c_17,MusicNote.note_c_17));
+
+                }
+            }else if(MusicNote.filterSP(course_id,"sp_18")){
+                if(yuepu_tag.equals(Tag_GD_1)){
+                    //c19
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_19,MusicNote.duration_c_19,MusicNote.color1_c_19,MusicNote.note_c_19));
+
+                }else if(yuepu_tag.equals(Tag_GD_2)){
+                    //c18
+                    gzThread = new Thread(new VideoRun(-1,MusicNote.time_c_18,MusicNote.duration_c_18,MusicNote.color1_c_18,MusicNote.note_c_18));
+
+                }
+            }
+
+
 
             if(gzThread!=null){
                 gzThread.start();
             }
         }
     }
+
 
     @OnClick({R.id.black_tv})
     public void onClick(View view) {
