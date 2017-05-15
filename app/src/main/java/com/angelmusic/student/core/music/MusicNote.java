@@ -528,8 +528,15 @@ public class MusicNote {
             case Constant.COURSE_512_567:
                 break;
             case Constant.COURSE_512_597:
+                result = note_1;
                 break;
             case Constant.COURSE_512_630:
+                //c3
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_3;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = note_1;
+                }
                 break;
             case Constant.COURSE_512_804:
                 if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
