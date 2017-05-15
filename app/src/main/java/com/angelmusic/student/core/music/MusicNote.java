@@ -523,6 +523,120 @@ public class MusicNote {
             case Constant.COURSE_h18_3441:
                 result = h18_1ist[8];
                 break;
+
+            //社培
+            case Constant.COURSE_512_567:
+                break;
+            case Constant.COURSE_512_597:
+                break;
+            case Constant.COURSE_512_630:
+                break;
+            case Constant.COURSE_512_804:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_4;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_3;
+                }
+                break;
+            case Constant.COURSE_512_844:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_5;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_4;
+                }
+                break;
+            case Constant.COURSE_512_1949:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_6;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_5;
+                }
+                break;
+            case Constant.COURSE_512_1987:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_7;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_6;
+                }
+                break;
+            case Constant.COURSE_512_2028:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_8;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_7;
+                }
+                break;
+            case Constant.COURSE_512_2066:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_9;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_8;
+                }
+                break;
+            case Constant.COURSE_512_2104:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_11;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_11;
+                }
+                break;
+            case Constant.COURSE_512_3831:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_11;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_11;
+                }
+                break;
+            case Constant.COURSE_512_3870:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_13;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_11;
+                }
+                break;
+            case Constant.COURSE_512_3907:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_14;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_13;
+                }
+                break;
+            case Constant.COURSE_512_3944:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_15;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_14;
+                }
+                break;
+            case Constant.COURSE_512_3979:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_16;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_15;
+                }
+                break;
+            case Constant.COURSE_512_4016:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_17;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_16;
+                }
+                break;
+            case Constant.COURSE_512_4064:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_18;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_17;
+                }
+                break;
+            case Constant.COURSE_512_4107:
+                if(tag.equals(Constant.PLAY_TOGHTER_FOLLOW_ONE)){
+                    result = c_19;
+                }else if(tag.equals(Constant.REVIEW_PLAY_FOLLOW_ONE)){
+                    result = c_18;
+                }
+                break;
+
         }
 
         return result;
