@@ -1,12 +1,10 @@
 package com.angelmusic.student.course_download.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,17 +13,14 @@ import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.student.R;
-import com.angelmusic.student.base.App;
-import com.angelmusic.student.course_download.db.DAO2Impl;
-import com.angelmusic.student.course_download.db.DAOImpl;
 import com.angelmusic.student.course_download.infobean.CourseItemInfo;
-import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
-import com.angelmusic.student.utils.FileUtil;
-import com.angelmusic.student.utils.LogUtil;
+import com.angelmusic.student.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.angelmusic.student.R.id.circleProgress;
 
@@ -106,6 +101,7 @@ public class DownloadNewAdapter extends BaseAdapter {
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //下载
                     ci.setIsActive(2);
+                    startDownLoadTask(ci);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {//下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
@@ -129,6 +125,36 @@ public class DownloadNewAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /*
+    *
+    *   批量下载
+    *
+    *   1，检测是否停止下载
+    *   2，检测文件是存在否
+    *
+    * */
+    private void startDownLoadTask(final CourseItemInfo ci) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                Map<String, String> map = ci.getResUrl();
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
+                    if(ci.getIsActive()!=3 && Utils.isFileExist(entry.getKey())){
+
+                        downloadFile(entry.getValue(),entry.getKey(),ci);
+
+                    }
+
+                }
+            }
+        }).start();
+
+    }
+
 
     // 其他Item数据封装
     static class ViewHolder {
@@ -140,21 +166,19 @@ public class DownloadNewAdapter extends BaseAdapter {
     /**
      * 单个文件的下载
      */
-    private void downloadFile(final FileInfo fileInfo) {
+    private void downloadFile(String url, String fileName, final CourseItemInfo ci) {
+
         refreshProgress();
-        final String fileParentPath = fileInfo.getFileParentPath();//文件的存储路径
-        final String fileName = fileInfo.getFileName();//文件名，带后缀
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
-        App.init.setDownloadFileDir(fileParentPath);//设置文件的下载路径
         final HttpInfo info = HttpInfo.Builder()
-                .addDownloadFile(fileInfo.getFileUrl(), fileNameCutSuffix, new ProgressCallback() {
+                .addDownloadFile(url, fileNameCutSuffix, new ProgressCallback() {
                     @Override
                     public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
 //                        LogUtil.e("----percent----", "=" + percent);
                         if (done) {
-                            //更新所有文件名为fileName的条目的下载状态
-                            DAOImpl.getInstance(mContext).updateDownloadState(fileName, "1");
                             //刷新界面
+                            ci.setDone_num(ci.getDone_num() + 1);
+                            ci.setIsActive(4);
                             refreshProgress();
                         }
                     }

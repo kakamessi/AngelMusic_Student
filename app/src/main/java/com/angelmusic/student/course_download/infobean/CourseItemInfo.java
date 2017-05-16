@@ -16,7 +16,11 @@ public class CourseItemInfo {
     private int done_num;
     //全部数量
     private int all_num;
-    //下载状态
+    /**
+     * 下载状态
+     * 默认 1准备下 2下载中 3暂停 4（下载完）删除
+     */
+    /
     private int isActive;
     //下载路径
     private Map<String,String> resUrl;

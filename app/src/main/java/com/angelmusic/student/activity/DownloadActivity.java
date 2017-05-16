@@ -56,7 +56,7 @@ public class DownloadActivity extends BaseActivity {
 
 
     //--------------------------------------------
-    private List<CourseItemInfo> ccourseList = null;
+    private List<CourseItemInfo> ccourseList = new ArrayList<CourseItemInfo>();
 
 
 
@@ -64,19 +64,14 @@ public class DownloadActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ccourseList = new ArrayList<CourseItemInfo>();
-        for(int i=0; i<20; i++){
-            CourseItemInfo c1 = new CourseItemInfo("id", 1, 1, 1, 1,null,0.5f);
-            ccourseList.add(c1);
-        }
-
+        CourseItemInfo c1 = new CourseItemInfo("id", 1, 1, 1, 1,null,0.5f);
 
         adapter = new DownloadNewAdapter(this);
         View vg = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
         lvCourse.addHeaderView(vg);
         lvCourse.setAdapter(adapter);
-        adapter.setData(ccourseList);
-        //initData();
+
+        initData();
     }
 
     //网络请求数据
@@ -95,70 +90,22 @@ public class DownloadActivity extends BaseActivity {
                 new CallbackOk() {
                     @Override
                     public void onResponse(HttpInfo info) throws IOException {
+
                         String jsonResult = info.getRetDetail();
                         if (info.isSuccessful()) {
                             courseInfo = GsonUtil.jsonToObject(jsonResult, CourseInfo.class);//Gson解析
                             if (courseInfo.getCode() == 200) {
-                                //封装课程下载数据List<List<FileInfo>>
-                                List<List<FileInfo>> packageData = packageData(courseInfo.getDetail());
-                                if (packageData != null) {
-                                    //adapter.setData(packageData);
-                                }
-                                //强退后再进入时将所有下载中的按钮设置成暂停
-                                for (int i = 1; i < fileInfoLists.size(); i++) {
-                                    String courseName = fileInfoLists.get(i).get(1).getCourseName();
-                                    if (DAO2Impl.getInstance(DownloadActivity.this).queryIsExist(courseName)) {
-                                        DAO2Impl.getInstance(DownloadActivity.this).updateLoadingState(courseName, "1");
-                                    }
-                                }
+                                //封装数据
+
+
+
                             } else {
                                 Toast.makeText(DownloadActivity.this, courseInfo.getDescription(), Toast.LENGTH_SHORT).show();
                             }
                         }
+
                     }
                 });
-    }
-
-    /**
-     * 封装适配器的数据
-     */
-    private List<List<FileInfo>> packageData(List<CourseInfo.DetailBean> detail) {
-        domainNameDownload = getResources().getString(R.string.domain_name_download);
-        fileInfoLists = new ArrayList<>();
-        fileInfoLists.add(null);//第一条数据设置为null,保证第一条item显示全部下载的那个界面
-        if (detail != null) {
-            for (CourseInfo.DetailBean detailBean : detail) {//遍历detail
-                List<FileInfo> listItem = new ArrayList<>();//每new一个listItem代表一节课
-                String courseName = detailBean.getName();//课程名：“第N节课”
-                List<CourseInfo.DetailBean.SonPartBeanX> sonPart1 = detailBean.getSonPart();//第一层sonPart
-                for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX1 : sonPart1) {//遍历第一层sonPart
-                    List<CourseInfo.DetailBean.SonPartBeanX> sonPart2 = sonPartBeanX1.getSonPart();//第二层sonPart
-                    for (CourseInfo.DetailBean.SonPartBeanX sonPartBeanX2 : sonPart2) {//遍历第二层sonPart
-                        String video_uploadPath = sonPartBeanX2.getVideo_uploadPath();//视频
-                        String png_uploadPath = sonPartBeanX2.getPng_uploadPath();//图片
-                        String xml_uploadPath = sonPartBeanX2.getXml_uploadPath();//xml文件
-                        if (!TextUtils.isEmpty(video_uploadPath)) {
-                            String fileName = video_uploadPath.substring(video_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
-                            String fileUrl = domainNameDownload + video_uploadPath;
-                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
-                        }
-                        if (!TextUtils.isEmpty(png_uploadPath)) {
-                            String fileName = png_uploadPath.substring(png_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
-                            String fileUrl = domainNameDownload + png_uploadPath;
-                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
-                        }
-                        if (!TextUtils.isEmpty(xml_uploadPath)) {
-                            String fileName = xml_uploadPath.substring(xml_uploadPath.lastIndexOf("/") + 1);//带后缀的文件名
-                            String fileUrl = domainNameDownload + xml_uploadPath;
-                            listItem.add(new FileInfo(courseName, fileName, fileUrl, courseParentPath, 0, 0));
-                        }
-                    }
-                }
-                if (listItem != null)
-                    fileInfoLists.add(listItem);
-            }
-        }
-        return fileInfoLists;
     }
 
     @Override
@@ -176,4 +123,6 @@ public class DownloadActivity extends BaseActivity {
         startActivity(new Intent(this, MainActivity.class));
         overridePendingTransition(R.anim.top_in, R.anim.top_out);
     }
+
+    
 }

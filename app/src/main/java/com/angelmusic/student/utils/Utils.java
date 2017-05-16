@@ -9,6 +9,10 @@ import android.telephony.TelephonyManager;
 
 import com.angelmusic.student.constant.Constant;
 
+import java.io.File;
+
+import static android.R.attr.path;
+
 /**
  * Created by DELL on 2017/1/16.
  */
@@ -59,5 +63,15 @@ public class Utils {
     public static String getVideoPath(){
         return Environment.getExternalStorageDirectory().getAbsolutePath() + Constant.FILE_PATH;
     }
+
+    public static boolean isFileExist(String filename){
+        boolean result = false;
+        File file = new File(getVideoPath() + filename);
+        if(file.exists()){
+            result = true;
+        }
+        return result;
+    }
+
 
 }
