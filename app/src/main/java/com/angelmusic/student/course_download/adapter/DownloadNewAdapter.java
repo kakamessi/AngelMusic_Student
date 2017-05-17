@@ -111,7 +111,9 @@ public class DownloadNewAdapter extends BaseAdapter {
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
                     //暂停
                     ci.setIsActive(3);
-                    OkHttpUtil.Builder().build().cancelRequest(ci.getCourse_name());
+                    for (Map.Entry<String, String> entry : ci.getResUrl().entrySet()) {
+                        OkHttpUtil.Builder().build().cancelRequest(entry.getKey());
+                    }
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Pause) {//暂停状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
@@ -177,19 +179,10 @@ public class DownloadNewAdapter extends BaseAdapter {
 
                         //下载异常中断，刷新UI界面状态
                         if(info.getRetCode()!=HttpInfo.SUCCESS){
-                            ci.setIsActive(1);
+                            ci.setIsActive(3);
                             refreshProgress();
                         }
 
-
-//                        String result = info.getRetDetail();
-//                        if ("网络地址错误".equals(result)) {
-//                            Toast.makeText(mContext, "请求地址错误:" + fileUrl, Toast.LENGTH_SHORT).show();
-//                        } else if ("网络中断".equals(result)) {
-//                            Toast.makeText(mContext, "网络中断", Toast.LENGTH_SHORT).show();
-//                        } else if ("请检查网络连接是否正常".equals(result)) {
-//                            Toast.makeText(mContext, "请检查网络连接是否正常" + fileUrl, Toast.LENGTH_SHORT).show();
-//                        }
                     }
                 })
                 .build();
@@ -224,7 +217,9 @@ public class DownloadNewAdapter extends BaseAdapter {
             }else{
                 if(cii.getIsActive()!=4) {
                     cii.setIsActive(3);
-                    OkHttpUtil.Builder().build().cancelRequest(cii.getCourse_name());
+                    for (Map.Entry<String, String> entry : cii.getResUrl().entrySet()) {
+                        OkHttpUtil.Builder().build().cancelRequest(entry.getKey());
+                    }
                 }
                 refreshProgress();
             }

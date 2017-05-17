@@ -176,9 +176,10 @@ public class DownloadActivity extends BaseActivity {
                                             cii.setCourse_name(lp.get(i).getName());
                                             cii.setAll_num(cii.getResUrl().size());
                                             cii.setDone_num(done_num);
-                                            cii.setIsActive(1);
                                             if(cii.getDone_num()==cii.getAll_num()){
                                                 cii.setIsActive(4);
+                                            }else{
+                                                cii.setIsActive(1);
                                             }
 
                                             ccourseList.add(cii);
