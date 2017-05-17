@@ -341,7 +341,8 @@ public class OkHttpUtil implements OkHttpUtilInterface {
         if (null == application)
             cacheType = FORCE_NETWORK;
         if (null == executorService)
-            executorService = Executors.newCachedThreadPool();
+            //executorService = Executors.newCachedThreadPool();
+            executorService = Executors.newFixedThreadPool(2);
         BaseActivityLifecycleCallbacks.setShowLifecycleLog(builder.showLifecycleLog);
     }
 

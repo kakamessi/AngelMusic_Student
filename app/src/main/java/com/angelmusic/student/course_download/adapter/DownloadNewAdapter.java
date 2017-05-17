@@ -15,6 +15,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.student.R;
 import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
+import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.Utils;
 
 import java.util.ArrayList;
@@ -79,14 +80,16 @@ public class DownloadNewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.tvCourseName.setText("第一节课");
-        holder.tvProgress.setText(ci.getProcess()*100 + "%");
+        holder.tvCourseName.setText(ci.getCourse_name());
+        holder.tvProgress.setText((int)((ci.getDone_num()/ci.getAll_num())*100) + "%");
+        holder.circleProgress.setProgress((int)((ci.getDone_num()/ci.getAll_num())*100));
+
         if(ci.getIsActive()==1){
-            holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击则变成下载状态
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击则变成准备下载状态
         }else if(ci.getIsActive()==2){
             holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
         }else if(ci.getIsActive()==3){
-            holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成下载状态
+            holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
         }else if(ci.getIsActive()==4){
             holder.circleProgress.setStatus(CustomCircleProgress.Status.End);//点击则变成下载状态
         }
@@ -101,7 +104,7 @@ public class DownloadNewAdapter extends BaseAdapter {
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //下载
                     ci.setIsActive(2);
-                    startDownLoadTask(ci);
+                    startDownLoadTask(ci,holder.circleProgress);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {//下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
@@ -126,47 +129,24 @@ public class DownloadNewAdapter extends BaseAdapter {
     }
 
     /*
-    *
     *   批量下载
-    *
     *   1，检测是否停止下载
     *   2，检测文件是存在否
-    *
     * */
-    private void startDownLoadTask(final CourseItemInfo ci) {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
+    private void startDownLoadTask(final CourseItemInfo ci, CustomCircleProgress circleProgress ) {
                 Map<String, String> map = ci.getResUrl();
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
-                    if(ci.getIsActive()!=3 && Utils.isFileExist(entry.getKey())){
-
-                        downloadFile(entry.getValue(),entry.getKey(),ci);
-
+                    if(ci.getIsActive()!=3 && !Utils.isFileExist(entry.getKey())){
+                        downloadFile(entry.getValue(),entry.getKey(),ci,circleProgress);
                     }
-
                 }
-            }
-        }).start();
-
-    }
-
-
-    // 其他Item数据封装
-    static class ViewHolder {
-        private LinearLayout linearLayout;
-        private TextView tvCourseName, tvProgress;
-        private CustomCircleProgress circleProgress;
     }
 
     /**
      * 单个文件的下载
      */
-    private void downloadFile(String url, String fileName, final CourseItemInfo ci) {
+    private void downloadFile(String url, String fileName, final CourseItemInfo ci,final CustomCircleProgress circleProgress) {
 
         refreshProgress();
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
@@ -178,22 +158,34 @@ public class DownloadNewAdapter extends BaseAdapter {
                         if (done) {
                             //刷新界面
                             ci.setDone_num(ci.getDone_num() + 1);
-                            ci.setIsActive(4);
+                            LogUtil.e("kaka_down", "ci.getDone_num()=" + ci.getDone_num());
+                            if(ci.getAll_num()==ci.getDone_num()) {
+                                ci.setIsActive(4);
+                            }
+
                             refreshProgress();
                         }
                     }
 
                     @Override
                     public void onResponseMain(String fileUrl, HttpInfo info) {
-//                        LogUtil.e("==getRetDetail==" + fileName, "下载结果：" + info.getRetDetail());
-                        String result = info.getRetDetail();
-                        if ("网络地址错误".equals(result)) {
-                            Toast.makeText(mContext, "请求地址错误:" + fileUrl, Toast.LENGTH_SHORT).show();
-                        } else if ("网络中断".equals(result)) {
-                            Toast.makeText(mContext, "网络中断", Toast.LENGTH_SHORT).show();
-                        } else if ("请检查网络连接是否正常".equals(result)) {
-                            Toast.makeText(mContext, "请检查网络连接是否正常" + fileUrl, Toast.LENGTH_SHORT).show();
+                        LogUtil.e("kaka_down", "下载结果：" + info.getRetDetail() + "   " + fileUrl);
+
+                        //下载异常中断，刷新UI界面状态
+                        if(info.getRetCode()!=HttpInfo.SUCCESS){
+                            ci.setIsActive(1);
+                            refreshProgress();
                         }
+
+
+//                        String result = info.getRetDetail();
+//                        if ("网络地址错误".equals(result)) {
+//                            Toast.makeText(mContext, "请求地址错误:" + fileUrl, Toast.LENGTH_SHORT).show();
+//                        } else if ("网络中断".equals(result)) {
+//                            Toast.makeText(mContext, "网络中断", Toast.LENGTH_SHORT).show();
+//                        } else if ("请检查网络连接是否正常".equals(result)) {
+//                            Toast.makeText(mContext, "请检查网络连接是否正常" + fileUrl, Toast.LENGTH_SHORT).show();
+//                        }
                     }
                 })
                 .build();
@@ -201,6 +193,13 @@ public class DownloadNewAdapter extends BaseAdapter {
                 .setReadTimeout(120)
                 .build(fileName)//绑定请求标识
                 .doDownloadFileAsync(info);
+    }
+
+    // 其他Item数据封装
+    static class ViewHolder {
+        private LinearLayout linearLayout;
+        private TextView tvCourseName, tvProgress;
+        private CustomCircleProgress circleProgress;
     }
 
     //可以随时更改数据后更新适配器

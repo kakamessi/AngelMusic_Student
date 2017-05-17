@@ -21,6 +21,8 @@
     <string name="course_info">/bm/admin/course/findCoursePartjson.json</string>
     <!--课件信息json接口-->
     <string name="course_info_json">/client/course/findCoursePart.json</string>
+    <!--课件信息新json接口-->
+    <string name="newcourse_info_json">/client/course/findCourseOnlyPath.json</string>
     <!--提交学生成绩接口-->
     <string name="account_submit">/client/score/addStuScore.json</string>
 </resources>

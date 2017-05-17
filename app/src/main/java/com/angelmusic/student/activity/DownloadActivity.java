@@ -2,10 +2,10 @@ package com.angelmusic.student.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,12 +16,13 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
-import com.angelmusic.student.course_download.adapter.DownloadAdapter;
 import com.angelmusic.student.course_download.adapter.DownloadNewAdapter;
-import com.angelmusic.student.course_download.db.DAO2Impl;
+import com.angelmusic.student.course_download.infobean.CourseBean;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.course_download.infobean.FileInfo;
+import com.angelmusic.student.course_download.infobean.NewCourseInfo;
+import com.angelmusic.student.course_download.infobean.PathBean;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
@@ -57,22 +58,98 @@ public class DownloadActivity extends BaseActivity {
 
     //--------------------------------------------
     private List<CourseItemInfo> ccourseList = new ArrayList<CourseItemInfo>();
+    private NewCourseInfo nci;//网络下载封装成的课程信息总类
 
+    private Handler myHandler = new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what){
+
+                case 1:
+                    adapter.setData(ccourseList);
+                    break;
+
+            }
+
+        }
+    };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CourseItemInfo c1 = new CourseItemInfo("id", 1, 1, 1, 1,null,0.5f);
-
         adapter = new DownloadNewAdapter(this);
         View vg = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
         lvCourse.addHeaderView(vg);
         lvCourse.setAdapter(adapter);
 
-        initData();
+        initCourse();
     }
+
+    /**
+     *
+     * 初始化课程信息
+     *
+     * 获取对应课程信息，与本地文件比对，初始化出已经下载信息
+     *
+     */
+    private void initCourse() {
+
+        String schoolId = SharedPreferencesUtil.getString("schoolId", "2");
+        String domainNameRequest = getResources().getString(R.string.domain_name_request);
+        String courseInfoJson = getResources().getString(R.string.newcourse_info_json);
+
+        OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
+                .setCacheLevel(FIRST_LEVEL)
+                .setConnectTimeout(25).build(this);
+        okHttpUtil.doGetAsync(
+                HttpInfo.Builder().setUrl(domainNameRequest + courseInfoJson).addParam
+                        ("schoolId", schoolId)//需要传入课程id参数
+                        .build(),
+                new CallbackOk() {
+                    @Override
+                    public void onResponse(HttpInfo info) throws IOException {
+
+                        final String jsonResult = info.getRetDetail();
+                        if (info.isSuccessful()) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    nci = GsonUtil.jsonToObject(jsonResult, NewCourseInfo.class);//Gson解析
+                                    if (nci.getCode() == 200) {
+                                        //封装数据
+                                        List<CourseBean> lp = nci.getDetail();
+                                        for(int i=0; i<lp.size(); i++){
+
+                                            List<PathBean> lb = lp.get(i).getPathList();
+                                            CourseItemInfo cii = new CourseItemInfo();
+
+                                            cii.setCourse_name(lp.get(i).getName());
+                                            cii.setIsActive(1);
+
+                                            for(PathBean pb : lb){
+                                                cii.getResUrl().put(pb.getVideoName(),
+                                                        getResources().getString(R.string.domain_name_download) + pb.getVideoPath());
+                                            }
+                                            cii.setAll_num(cii.getResUrl().size());
+                                            ccourseList.add(cii);
+                                        }
+
+                                        Message msg = Message.obtain();
+                                        msg.what =1;
+                                        myHandler.sendMessage(msg);
+
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+                });
+    }
+
 
     //网络请求数据
     private void initData() {
@@ -108,6 +185,7 @@ public class DownloadActivity extends BaseActivity {
                 });
     }
 
+
     @Override
     protected int setContentViewId() {
         return R.layout.activity_download;
@@ -124,5 +202,5 @@ public class DownloadActivity extends BaseActivity {
         overridePendingTransition(R.anim.top_in, R.anim.top_out);
     }
 
-    
+
 }

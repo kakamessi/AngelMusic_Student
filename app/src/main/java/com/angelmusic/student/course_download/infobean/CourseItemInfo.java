@@ -1,5 +1,6 @@
 package com.angelmusic.student.course_download.infobean;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,34 +11,36 @@ public class CourseItemInfo {
 
     //课程id
     private String course_id;
+    //课程名称
+    private String course_name;
     //列表索引
     private int item_index;
     //已下载
-    private int done_num;
+    private float done_num = 0;
     //全部数量
-    private int all_num;
+    private float all_num;
     /**
      * 下载状态
      * 默认 1准备下 2下载中 3暂停 4（下载完）删除
      */
-    /
     private int isActive;
     //下载路径
-    private Map<String,String> resUrl;
+    private Map<String,String> resUrl = new HashMap<>();
 
 
     //进度
     private float process;
 
+    public CourseItemInfo(){
 
-    public CourseItemInfo(String course_id, int item_index, int done_num, int all_num, int isActive, Map<String, String> resUrl, float process) {
-        this.course_id = course_id;
-        this.item_index = item_index;
-        this.done_num = done_num;
-        this.all_num = all_num;
-        this.isActive = isActive;
-        this.resUrl = resUrl;
-        this.process = process;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
     public String getCourse_id() {
@@ -56,19 +59,19 @@ public class CourseItemInfo {
         this.item_index = item_index;
     }
 
-    public int getDone_num() {
+    public float getDone_num() {
         return done_num;
     }
 
-    public void setDone_num(int done_num) {
+    public void setDone_num(float done_num) {
         this.done_num = done_num;
     }
 
-    public int getAll_num() {
+    public float getAll_num() {
         return all_num;
     }
 
-    public void setAll_num(int all_num) {
+    public void setAll_num(float all_num) {
         this.all_num = all_num;
     }
 
@@ -89,7 +92,7 @@ public class CourseItemInfo {
     }
 
     public float getProcess() {
-        return process;
+        return done_num/all_num;
     }
 
     public void setProcess(float process) {
