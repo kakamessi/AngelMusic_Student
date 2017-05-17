@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.string.no;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**
@@ -104,22 +105,25 @@ public class DownloadNewAdapter extends BaseAdapter {
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //下载
                     ci.setIsActive(2);
-                    startDownLoadTask(ci,holder.circleProgress);
+                    startDownLoadTask(ci);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Loading) {//下载状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Pause);//点击则变成暂停状态
                     //暂停
                     ci.setIsActive(3);
+                    OkHttpUtil.Builder().build().cancelRequest(ci.getCourse_name());
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.Pause) {//暂停状态
                     holder.circleProgress.setStatus(CustomCircleProgress.Status.Loading);//点击则变成下载状态
                     //继续下载，同下载
                     ci.setIsActive(2);
+                    startDownLoadTask(ci);
 
                 } else if (holder.circleProgress.getStatus() == CustomCircleProgress.Status.End) {//下载全部完成状态
-                    holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击变成初始下载状态
-                    //删除
-                    ci.setIsActive(1);
+
+//                    holder.circleProgress.setStatus(CustomCircleProgress.Status.Start);//点击变成初始下载状态
+//                    //删除
+//                    ci.setIsActive(1);
 
                 }
             }
@@ -133,12 +137,12 @@ public class DownloadNewAdapter extends BaseAdapter {
     *   1，检测是否停止下载
     *   2，检测文件是存在否
     * */
-    private void startDownLoadTask(final CourseItemInfo ci, CustomCircleProgress circleProgress ) {
+    private void startDownLoadTask(final CourseItemInfo ci) {
                 Map<String, String> map = ci.getResUrl();
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
                     if(ci.getIsActive()!=3 && !Utils.isFileExist(entry.getKey())){
-                        downloadFile(entry.getValue(),entry.getKey(),ci,circleProgress);
+                        downloadFile(entry.getValue(),entry.getKey(),ci);
                     }
                 }
     }
@@ -146,7 +150,7 @@ public class DownloadNewAdapter extends BaseAdapter {
     /**
      * 单个文件的下载
      */
-    private void downloadFile(String url, String fileName, final CourseItemInfo ci,final CustomCircleProgress circleProgress) {
+    private void downloadFile(String url, String fileName, final CourseItemInfo ci) {
 
         refreshProgress();
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
@@ -204,7 +208,29 @@ public class DownloadNewAdapter extends BaseAdapter {
 
     //可以随时更改数据后更新适配器
     public void refreshProgress() {
-        notifyDataSetInvalidated();
+        notifyDataSetChanged();
     }
+
+    //全部下载
+    public void downloadAll(boolean flag){
+
+        for(CourseItemInfo cii : courseDataList){
+
+            if(flag){
+                if(cii.getIsActive()!=4){
+                    cii.setIsActive(2);
+                }
+                startDownLoadTask(cii);
+            }else{
+                if(cii.getIsActive()!=4) {
+                    cii.setIsActive(3);
+                    OkHttpUtil.Builder().build().cancelRequest(cii.getCourse_name());
+                }
+                refreshProgress();
+            }
+        }
+
+    }
+
 
 }

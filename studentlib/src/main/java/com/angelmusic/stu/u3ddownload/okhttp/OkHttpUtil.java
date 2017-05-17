@@ -6,20 +6,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheType;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.RequestMethod;
 import com.angelmusic.stu.u3ddownload.okhttp.bean.DownloadFileInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.bean.UploadFileInfo;
+import com.angelmusic.stu.u3ddownload.okhttp.callback.BaseActivityLifecycleCallbacks;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.u3ddownload.okhttp.helper.HelperInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.helper.OkHttpHelper;
-import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheType;
-import com.angelmusic.stu.u3ddownload.okhttp.annotation.RequestMethod;
-import com.angelmusic.stu.u3ddownload.okhttp.bean.UploadFileInfo;
-import com.angelmusic.stu.u3ddownload.okhttp.callback.BaseActivityLifecycleCallbacks;
 import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ExceptionInterceptor;
 import com.angelmusic.stu.u3ddownload.okhttp.interceptor.ResultInterceptor;
-import com.angelmusic.stu.utils.MyCrashHandler;
 
 import java.io.File;
 import java.io.IOException;

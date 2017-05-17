@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,16 +27,20 @@ import com.angelmusic.student.course_download.infobean.PathBean;
 import com.angelmusic.student.utils.GsonUtil;
 import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
+import com.angelmusic.student.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.student.R.id.btn_dload_all;
+import static com.angelmusic.student.R.id.circleProgress;
 
 /**
  * 课程下载界面
@@ -59,6 +64,8 @@ public class DownloadActivity extends BaseActivity {
     //--------------------------------------------
     private List<CourseItemInfo> ccourseList = new ArrayList<CourseItemInfo>();
     private NewCourseInfo nci;//网络下载封装成的课程信息总类
+    private Button btn_dload_all;
+    private View headView;
 
     private Handler myHandler = new Handler(){
 
@@ -80,13 +87,35 @@ public class DownloadActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        initView();
+        initCourse();
+    }
+
+    private boolean isPause = true;
+    private void initView() {
 
         adapter = new DownloadNewAdapter(this);
-        View vg = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
-        lvCourse.addHeaderView(vg);
+
+        headView = LayoutInflater.from(this).inflate(R.layout.dload_first_item, null);
+        btn_dload_all = (Button) headView.findViewById(R.id.btn_dload_all);
+        btn_dload_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isPause){
+                    adapter.downloadAll(true);
+                    isPause = false;
+                    btn_dload_all.setText("全部暂停");
+                }else{
+                    adapter.downloadAll(false);
+                    isPause = true;
+                    btn_dload_all.setText("全部下载");
+                }
+            }
+        });
+
         lvCourse.setAdapter(adapter);
 
-        initCourse();
     }
 
     /**
@@ -115,6 +144,9 @@ public class DownloadActivity extends BaseActivity {
 
                         final String jsonResult = info.getRetDetail();
                         if (info.isSuccessful()) {
+
+                            lvCourse.addHeaderView(headView);
+
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -127,14 +159,28 @@ public class DownloadActivity extends BaseActivity {
                                             List<PathBean> lb = lp.get(i).getPathList();
                                             CourseItemInfo cii = new CourseItemInfo();
 
-                                            cii.setCourse_name(lp.get(i).getName());
-                                            cii.setIsActive(1);
+                                            int done_num = 0;
 
                                             for(PathBean pb : lb){
-                                                cii.getResUrl().put(pb.getVideoName(),
-                                                        getResources().getString(R.string.domain_name_download) + pb.getVideoPath());
+                                                cii.getResUrl().put(pb.getVideoName(), getResources().getString(R.string.domain_name_download) + pb.getVideoPath());
                                             }
+
+                                            //检测已下载文件数量
+                                            for (Map.Entry<String, String> entry : cii.getResUrl().entrySet()) {
+                                                //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                                                if(Utils.isFileExist(entry.getKey())){
+                                                    done_num++;
+                                                }
+                                            }
+
+                                            cii.setCourse_name(lp.get(i).getName());
                                             cii.setAll_num(cii.getResUrl().size());
+                                            cii.setDone_num(done_num);
+                                            cii.setIsActive(1);
+                                            if(cii.getDone_num()==cii.getAll_num()){
+                                                cii.setIsActive(4);
+                                            }
+
                                             ccourseList.add(cii);
                                         }
 
