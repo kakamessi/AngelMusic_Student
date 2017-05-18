@@ -115,12 +115,12 @@ public class DownloadActivity extends BaseActivity {
 
                 if(downLoadType==1){
                     adapter.downloadAll(true);
-                    btn_dload_all.setText("全部下载");
+                    btn_dload_all.setText("全部暂停");
                     downLoadType = 2;
 
                 }else if(downLoadType==2){
                     adapter.downloadAll(false);
-                    btn_dload_all.setText("全部暂停");
+                    btn_dload_all.setText("全部下载");
                     downLoadType = 3;
 
                 }else if(downLoadType == 3){
