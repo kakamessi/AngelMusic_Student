@@ -126,7 +126,7 @@ public class DownloadActivity extends BaseActivity {
                 }else if(downLoadType==2){
                     adapter.downloadAll(false);
                     btn_dload_all.setText("全部下载");
-                    downLoadType = 3;
+                    downLoadType = 1;
 
                 }else if(downLoadType == 3){
 
