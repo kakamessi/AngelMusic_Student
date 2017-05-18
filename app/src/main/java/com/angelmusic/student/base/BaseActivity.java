@@ -60,18 +60,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         LogUtil.setTAG(TAG);//给Log工具设置默认的TAG
     }
 
-    protected void showLoading(){
-
-            
-
-    }
-
-    protected void closeLoading(){
-
-
-
-    }
-
     @Override
     protected void onStart() {
         super.onStart();

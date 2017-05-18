@@ -77,6 +77,12 @@ public class DownloadActivity extends BaseActivity {
                 case 1:
                     adapter.setData(ccourseList);
                     initHeadView();
+
+                    break;
+
+                case 2:
+
+                    hideLoadingDialog();
                     break;
 
             }
@@ -148,6 +154,8 @@ public class DownloadActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //...To-do
+                        deleteAll();
+                        showLoadingDialog();
                     }
                 });
         normalDialog.setNegativeButton("取消",
@@ -160,6 +168,24 @@ public class DownloadActivity extends BaseActivity {
         // 显示
         normalDialog.show();
 
+
+    }
+
+    private void deleteAll() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                File file = new File(Utils.getVideoPath());
+                Utils.RecursionDeleteFile(file);
+
+                Message msg = Message.obtain();
+                msg.what =2;
+                myHandler.sendMessage(msg);
+
+            }
+        }).start();
 
     }
 
