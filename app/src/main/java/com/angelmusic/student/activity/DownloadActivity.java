@@ -1,5 +1,7 @@
 package com.angelmusic.student.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,8 +41,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
-import static com.angelmusic.student.R.id.btn_dload_all;
-import static com.angelmusic.student.R.id.circleProgress;
 
 /**
  * 课程下载界面
@@ -76,6 +76,7 @@ public class DownloadActivity extends BaseActivity {
 
                 case 1:
                     adapter.setData(ccourseList);
+                    initHeadView();
                     break;
 
             }
@@ -92,7 +93,10 @@ public class DownloadActivity extends BaseActivity {
         initCourse();
     }
 
-    private boolean isPause = true;
+    /**
+     *
+     * 1 下载， 2暂停 3删除
+     */
     private void initView() {
 
         adapter = new DownloadNewAdapter(this);
@@ -102,20 +106,96 @@ public class DownloadActivity extends BaseActivity {
         btn_dload_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isPause){
+
+                if(downLoadType==1){
                     adapter.downloadAll(true);
-                    isPause = false;
-                    btn_dload_all.setText("全部暂停");
-                }else{
-                    adapter.downloadAll(false);
-                    isPause = true;
                     btn_dload_all.setText("全部下载");
+                    downLoadType = 2;
+
+                }else if(downLoadType==2){
+                    adapter.downloadAll(false);
+                    btn_dload_all.setText("全部暂停");
+                    downLoadType = 3;
+
+                }else if(downLoadType == 3){
+
+                    showDeleteAll();
                 }
+
             }
         });
 
         lvCourse.setAdapter(adapter);
+        adapter.bindAty(this);
 
+    }
+
+    /**
+     * 确定删除全部弹窗
+     */
+    private void showDeleteAll() {
+
+                /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(DownloadActivity.this);
+        normalDialog.setTitle("提醒");
+        normalDialog.setMessage("确认删除全部课程资源?");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        normalDialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
+
+
+    }
+
+    private int downLoadType = -1;
+    public void initHeadView(){
+        float downNum = 0;
+        float allNum = 0;
+        for(CourseItemInfo cif : ccourseList){
+            downNum = downNum + cif.getDone_num();
+            allNum = allNum + cif.getAll_num();
+        }
+        if(downNum < allNum){
+            setHeadViewType(1);
+            downLoadType = 1;
+        }else if(downNum == allNum){
+            setHeadViewType(3);
+            downLoadType = 3;
+        }
+
+    }
+
+    /**
+     * 设置头View
+     */
+    public void setHeadViewType(int type){
+        switch (type){
+            case 1:
+                btn_dload_all.setText("全部下载");
+                break;
+            case 2:
+                btn_dload_all.setText("全部暂停");
+                break;
+            case 3:
+                btn_dload_all.setText("全部删除");
+                break;
+        }
     }
 
     /**

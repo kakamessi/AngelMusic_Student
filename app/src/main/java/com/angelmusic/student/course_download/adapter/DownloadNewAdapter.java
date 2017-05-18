@@ -7,23 +7,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
 import com.angelmusic.student.R;
+import com.angelmusic.student.activity.DownloadActivity;
 import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.customview.CustomCircleProgress;
 import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.R.string.no;
 import static com.angelmusic.student.R.id.circleProgress;
 
 /**
@@ -35,6 +33,7 @@ public class DownloadNewAdapter extends BaseAdapter {
     private Context mContext;
     private List<CourseItemInfo> courseDataList;
     private LayoutInflater mInflater;
+    private DownloadActivity context;
 
     public DownloadNewAdapter(Context mContext) {
         this.mContext = mContext;
@@ -46,6 +45,10 @@ public class DownloadNewAdapter extends BaseAdapter {
     public void setData(List<CourseItemInfo> courseDataList) {
         this.courseDataList = courseDataList;
         notifyDataSetChanged();
+    }
+
+    public void bindAty(DownloadActivity context){
+        this.context = context;
     }
 
     @Override
@@ -170,6 +173,7 @@ public class DownloadNewAdapter extends BaseAdapter {
                             }
 
                             refreshProgress();
+                            setHeadButton();
                         }
                     }
 
@@ -190,6 +194,25 @@ public class DownloadNewAdapter extends BaseAdapter {
                 .setReadTimeout(120)
                 .build(fileName)//绑定请求标识
                 .doDownloadFileAsync(info);
+    }
+
+    /**
+     *  设置按钮状态
+     */
+    private void setHeadButton() {
+
+        float downNum = 0;
+        float allNum = 0;
+
+        for(CourseItemInfo cif : courseDataList){
+            downNum = downNum + cif.getDone_num();
+            allNum = allNum + cif.getAll_num();
+        }
+
+        if(downNum == allNum){
+            context.setHeadViewType(3);
+        }
+
     }
 
     // 其他Item数据封装
