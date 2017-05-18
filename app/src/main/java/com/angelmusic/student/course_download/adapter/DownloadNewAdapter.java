@@ -157,7 +157,7 @@ public class DownloadNewAdapter extends BaseAdapter {
      */
     private void downloadFile(String url, String fileName, final CourseItemInfo ci) {
 
-        refreshProgress();
+        context.refreashAdapter();
         final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
         final HttpInfo info = HttpInfo.Builder()
                 .addDownloadFile(url, fileNameCutSuffix, new ProgressCallback() {
@@ -172,7 +172,7 @@ public class DownloadNewAdapter extends BaseAdapter {
                                 ci.setIsActive(4);
                             }
 
-                            refreshProgress();
+                            context.refreashAdapter();
                             setHeadButton();
                         }
                     }
@@ -236,25 +236,32 @@ public class DownloadNewAdapter extends BaseAdapter {
     }
 
     //全部下载
-    public void downloadAll(boolean flag){
+    public void downloadAll(final boolean flag){
 
-        for(CourseItemInfo cii : courseDataList){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-            if(flag){
-                if(cii.getIsActive()!=4){
-                    cii.setIsActive(2);
-                }
-                startDownLoadTask(cii);
-            }else{
-                if(cii.getIsActive()!=4) {
-                    cii.setIsActive(3);
-                    for (Map.Entry<String, String> entry : cii.getResUrl().entrySet()) {
-                        OkHttpUtil.Builder().build().cancelRequest(entry.getKey());
+                for(CourseItemInfo cii : courseDataList){
+
+                    if(flag){
+                        if(cii.getIsActive()!=4){
+                            cii.setIsActive(2);
+                        }
+                        startDownLoadTask(cii);
+                    }else{
+                        if(cii.getIsActive()!=4) {
+                            cii.setIsActive(3);
+                            for (Map.Entry<String, String> entry : cii.getResUrl().entrySet()) {
+                                OkHttpUtil.Builder().build().cancelRequest(entry.getKey());
+                            }
+                        }
+                        context.refreashAdapter();
                     }
                 }
-                refreshProgress();
+
             }
-        }
+        }).start();
 
     }
 

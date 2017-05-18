@@ -86,6 +86,10 @@ public class DownloadActivity extends BaseActivity {
                     adapter.setEmptyData();
                     break;
 
+                case 3:
+
+                    adapter.refreshProgress();
+                    break;
             }
 
         }
@@ -134,6 +138,14 @@ public class DownloadActivity extends BaseActivity {
 
         lvCourse.setAdapter(adapter);
         adapter.bindAty(this);
+
+    }
+
+    public void refreashAdapter(){
+
+        Message msg = Message.obtain();
+        msg.what =3;
+        myHandler.sendMessage(msg);
 
     }
 
