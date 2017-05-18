@@ -83,6 +83,7 @@ public class DownloadActivity extends BaseActivity {
                 case 2:
 
                     hideLoadingDialog();
+                    adapter.setEmptyData();
                     break;
 
             }
@@ -156,6 +157,7 @@ public class DownloadActivity extends BaseActivity {
                         //...To-do
                         deleteAll();
                         showLoadingDialog();
+
                     }
                 });
         normalDialog.setNegativeButton("取消",
@@ -220,6 +222,7 @@ public class DownloadActivity extends BaseActivity {
                 break;
             case 3:
                 btn_dload_all.setText("全部删除");
+                downLoadType = 3;
                 break;
         }
     }

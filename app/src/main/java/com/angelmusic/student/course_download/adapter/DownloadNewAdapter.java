@@ -222,6 +222,14 @@ public class DownloadNewAdapter extends BaseAdapter {
         private CustomCircleProgress circleProgress;
     }
 
+    public void setEmptyData(){
+        for(CourseItemInfo cii : courseDataList){
+                cii.setDone_num(0);
+                cii.setIsActive(1);
+        }
+        refreshProgress();
+    }
+
     //可以随时更改数据后更新适配器
     public void refreshProgress() {
         notifyDataSetChanged();
