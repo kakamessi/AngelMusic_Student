@@ -86,6 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 //保存学生id
                 SharedPreferencesUtil.setString(Constant.CACHE_STUDENT_ID,stuInfo.getDetail().getStuInfo().getId()+"");
                 SharedPreferencesUtil.setString(Constant.CACHE_CLASS_ID, stuInfo.getDetail().getStuInfo().getClassId() + "");
+                SharedPreferencesUtil.setString(Constant.CACHE_SCHOOL_ID, stuInfo.getDetail().getStuInfo().getSchoolId() + "");
                 Toast.makeText(App.getApplication(),"登录成功",0).show();
             }
 

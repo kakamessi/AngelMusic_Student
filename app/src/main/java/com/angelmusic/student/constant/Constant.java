@@ -14,6 +14,8 @@ public class Constant {
     public static final int UDP_PORT = 8000;
     public static final int TEACHER_UDP_PORT = 8001;
 
+    //学校id
+    public static final String CACHE_SCHOOL_ID = "CACHE_SCHOOL_ID";
     //班级id
     public static final String CACHE_CLASS_ID = "CACHE_CLASS_ID";
     //学生id
