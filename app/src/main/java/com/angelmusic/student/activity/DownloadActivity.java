@@ -52,7 +52,7 @@ public class DownloadActivity extends BaseActivity {
     @BindView(R.id.lv_course)
 
     //--------------------------------------------
-    private ListView lvCourse;
+    public ListView lvCourse;
     private DownloadNewAdapter adapter;
     //下载标识  1-显示全部下载，2,3
     private int downLoadType = -1;
