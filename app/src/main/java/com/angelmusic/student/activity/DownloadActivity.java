@@ -50,20 +50,16 @@ public class DownloadActivity extends BaseActivity {
     @BindView(R.id.ib_back)
     ImageButton ibBack;
     @BindView(R.id.lv_course)
-    ListView lvCourse;
-    private String domainNameRequest;//信息请求域名
-    private String domainNameDownload;//下载文件的域名
-    private String courseInfoJson;//获取课程信息json的接口
-    private String courseParentPath;//文件存放的路径
-    private CourseInfo courseInfo;//网络下载封装成的课程信息总类
-    private List<List<FileInfo>> fileInfoLists;//适配器需要传入的数据
-    private DownloadNewAdapter adapter;
-    private String schoolId;//学校ID
-
 
     //--------------------------------------------
+    private ListView lvCourse;
+    private DownloadNewAdapter adapter;
+    //下载标识  1-显示全部下载，2,3
+    private int downLoadType = -1;
+
     private List<CourseItemInfo> ccourseList = new ArrayList<CourseItemInfo>();
     private NewCourseInfo nci;//网络下载封装成的课程信息总类
+
     private Button btn_dload_all;
     private View headView;
 
@@ -84,6 +80,8 @@ public class DownloadActivity extends BaseActivity {
 
                     hideLoadingDialog();
                     adapter.setEmptyData();
+                    setHeadViewType(1);
+
                     break;
 
                 case 3:
@@ -94,7 +92,6 @@ public class DownloadActivity extends BaseActivity {
 
         }
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,13 +117,11 @@ public class DownloadActivity extends BaseActivity {
 
                 if(downLoadType==1){
                     adapter.downloadAll(true);
-                    btn_dload_all.setText("全部暂停");
-                    downLoadType = 2;
+                    setHeadViewType(2);
 
                 }else if(downLoadType==2){
                     adapter.downloadAll(false);
-                    btn_dload_all.setText("全部下载");
-                    downLoadType = 1;
+                    setHeadViewType(1);
 
                 }else if(downLoadType == 3){
 
@@ -138,6 +133,22 @@ public class DownloadActivity extends BaseActivity {
 
         lvCourse.setAdapter(adapter);
         adapter.bindAty(this);
+
+    }
+
+    public void initHeadView(){
+        float downNum = 0;
+        float allNum = 0;
+        for(CourseItemInfo cif : ccourseList){
+            downNum = downNum + cif.getDone_num();
+            allNum = allNum + cif.getAll_num();
+        }
+        if(downNum < allNum){
+            setHeadViewType(1);
+        }else if(downNum == allNum){
+            setHeadViewType(3);
+
+        }
 
     }
 
@@ -203,24 +214,6 @@ public class DownloadActivity extends BaseActivity {
 
     }
 
-    private int downLoadType = -1;
-    public void initHeadView(){
-        float downNum = 0;
-        float allNum = 0;
-        for(CourseItemInfo cif : ccourseList){
-            downNum = downNum + cif.getDone_num();
-            allNum = allNum + cif.getAll_num();
-        }
-        if(downNum < allNum){
-            setHeadViewType(1);
-            downLoadType = 1;
-        }else if(downNum == allNum){
-            setHeadViewType(3);
-            downLoadType = 3;
-        }
-
-    }
-
     /**
      * 设置头View
      */
@@ -228,9 +221,11 @@ public class DownloadActivity extends BaseActivity {
         switch (type){
             case 1:
                 btn_dload_all.setText("全部下载");
+                downLoadType = 1;
                 break;
             case 2:
                 btn_dload_all.setText("全部暂停");
+                downLoadType = 2;
                 break;
             case 3:
                 btn_dload_all.setText("全部删除");
@@ -317,42 +312,6 @@ public class DownloadActivity extends BaseActivity {
                     }
                 });
     }
-
-
-    //网络请求数据
-    private void initData() {
-        schoolId = SharedPreferencesUtil.getString("schoolId", "1");
-        domainNameRequest = getResources().getString(R.string.domain_name_request);
-        courseInfoJson = getResources().getString(R.string.course_info_json);
-        courseParentPath = SDCardUtil.getAppFilePath(this) + "course" + File.separator;
-        OkHttpUtilInterface okHttpUtil = OkHttpUtil.Builder()
-                .setCacheLevel(FIRST_LEVEL)
-                .setConnectTimeout(25).build(this);
-        okHttpUtil.doGetAsync(
-                HttpInfo.Builder().setUrl(domainNameRequest + courseInfoJson).addParam
-                        ("schoolId", schoolId)//需要传入课程id参数
-                        .build(),
-                new CallbackOk() {
-                    @Override
-                    public void onResponse(HttpInfo info) throws IOException {
-
-                        String jsonResult = info.getRetDetail();
-                        if (info.isSuccessful()) {
-                            courseInfo = GsonUtil.jsonToObject(jsonResult, CourseInfo.class);//Gson解析
-                            if (courseInfo.getCode() == 200) {
-                                //封装数据
-
-
-
-                            } else {
-                                Toast.makeText(DownloadActivity.this, courseInfo.getDescription(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    }
-                });
-    }
-
 
     @Override
     protected int setContentViewId() {

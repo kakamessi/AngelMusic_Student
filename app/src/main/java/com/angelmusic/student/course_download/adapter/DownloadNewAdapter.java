@@ -256,9 +256,9 @@ public class DownloadNewAdapter extends BaseAdapter {
                                 OkHttpUtil.Builder().build().cancelRequest(entry.getKey());
                             }
                         }
-                        context.refreashAdapter();
                     }
                 }
+                context.refreashAdapter();
 
             }
         }).start();
