@@ -1,7 +1,7 @@
 package com.angelmusic.stu.server.socket.udp;
 
 import com.angelmusic.stu.server.socket.constant.NetParams;
-import com.angelmusic.stu.server.socket.constant.U3dType;
+import com.angelmusic.stu.u3dInterface.U3dType;
 import com.unity3d.player.UnityPlayer;
 
 import java.net.DatagramPacket;

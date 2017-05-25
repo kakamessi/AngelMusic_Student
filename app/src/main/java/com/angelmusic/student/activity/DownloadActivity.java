@@ -71,6 +71,7 @@ public class DownloadActivity extends BaseActivity {
             switch (msg.what){
 
                 case 1:
+                    //更新adapter
                     adapter.setData(ccourseList);
                     initHeadView();
 
@@ -78,6 +79,7 @@ public class DownloadActivity extends BaseActivity {
 
                 case 2:
 
+                    //删除全部数据完成
                     hideLoadingDialog();
                     adapter.setEmptyData();
                     setHeadViewType(1);
@@ -86,6 +88,7 @@ public class DownloadActivity extends BaseActivity {
 
                 case 3:
 
+                    //刷新
                     adapter.refreshProgress();
                     break;
             }

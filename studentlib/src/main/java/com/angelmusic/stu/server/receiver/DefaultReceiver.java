@@ -2,8 +2,7 @@ package com.angelmusic.stu.server.receiver;
 
 import com.angelmusic.stu.server.socket.constant.Constant;
 import com.angelmusic.stu.server.socket.constant.NetParams;
-import com.angelmusic.stu.server.socket.constant.U3dType;
-import com.angelmusic.stu.utils.Log;
+import com.angelmusic.stu.u3dInterface.U3dType;
 import com.unity3d.player.UnityPlayer;
 
 /**
