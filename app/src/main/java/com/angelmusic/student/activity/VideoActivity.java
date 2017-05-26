@@ -1773,7 +1773,8 @@ public class VideoActivity extends BaseActivity {
                     //视频播放完毕，弹出成绩界面，并上传成绩
                     if(isScore) {
 
-                        sd = MusicUtils.getScore(notes,course_id,(Integer.parseInt(gendeng_id)-1)+"");
+                        //sd = MusicUtils.getScore(notes,course_id,(Integer.parseInt(gendeng_id)-1)+"");
+                        sd = MusicUtils.getScore(null,course_id,(Integer.parseInt(gendeng_id)-1)+"");
                         if(sd!=null) {
                             showScore();
                             postAccount(VideoActivity.this);

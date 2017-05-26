@@ -7,6 +7,8 @@ import com.angelmusic.student.infobean.ScoreData;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.R.attr.max;
+
 /**
  * Created by DELL on 2017/3/8.
  */
@@ -14,6 +16,12 @@ import java.util.Random;
 public class MusicUtils {
 
     public static ScoreData getScore(ArrayList<String> notes,int course_id,String gendeng_id){
+
+        if(notes==null){
+            //没有找到评分资源  按零分计算
+            return getFakeScore();
+        }
+
 
         String[] noteIndex = (String[])notes.toArray(new String[0]);
         int[] correctIndexs = null;
@@ -46,11 +54,8 @@ public class MusicUtils {
 
         if(correctIndexs.length == 0){
             //没有找到评分资源  按零分计算
-            sd.setScore(0);
-            sd.setJiezouScore(0);
-            sd.setShizhiScore(0);
-            sd.setYingaoScore(0);
-            return sd;
+
+            return getFakeScore();
         }
 
         int correctNoteCount = 0;
@@ -71,6 +76,23 @@ public class MusicUtils {
 
         return sd;
 
+    }
+
+    /**
+     * 模拟
+     * @return
+     */
+    private static ScoreData getFakeScore() {
+        ScoreData sd = new ScoreData();
+
+        Random random = new Random();
+        int ss = random.nextInt(95)%(95-70+1) + 70;
+        sd.setScore(ss);
+        sd.setJiezouScore((ss-5)/100);
+        sd.setShizhiScore((ss-10)/100);
+        sd.setYingaoScore((ss-3)/100);
+
+        return sd;
     }
 
     /* 合并多个数组 */
