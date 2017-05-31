@@ -277,10 +277,10 @@ public class MusicNote {
     public static ArrayList<NoteInfo> c_18 = new ArrayList<>();
     public static ArrayList<NoteInfo> c_19 = new ArrayList<>();
 
-    public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
     public static final ArrayList[] fengtai_1ist = {fd_1,fd_2,fd_3,fd_5,fd_6,fd_8,fd_9,fd_11,fd_12};
     public static final ArrayList[] c_1ist = {c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9};
     public static final ArrayList[] h18_1ist = {c_11,c_12,c_13,c_14,c_15,c_16,c_17,c_18,c_19};
+    public static final ArrayList[] note_1ist = {note_1,note_2,note_3};
 
     static{
 
