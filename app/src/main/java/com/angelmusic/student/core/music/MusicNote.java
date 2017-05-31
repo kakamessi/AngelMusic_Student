@@ -445,41 +445,48 @@ public class MusicNote {
                 result = fengtai_1ist[8];
                 break;
 
-            //c版本
+            //c版本 c3
             case Constant.COURSE_2481:
             case Constant.COURSE_2497:
                 result = c_1ist[1];
                 break;
 
+            //c4
             case Constant.COURSE_2520:
             case Constant.COURSE_2537:
                 result = c_1ist[2];
                 break;
 
+            //c5
             case Constant.COURSE_2561:
             case Constant.COURSE_2578:
                 result = c_1ist[3];
                 break;
 
+            //c6
             case Constant.COURSE_2601:
             case Constant.COURSE_2617:
                 result = c_1ist[4];
                 break;
 
+            //c7
             case Constant.COURSE_2640:
             case Constant.COURSE_2658:
                 result = c_1ist[5];
                 break;
 
+            //c8
             case Constant.COURSE_2682:
             case Constant.COURSE_2698:
                 result = c_1ist[6];
                 break;
 
+            //c9
             case Constant.COURSE_2721:
                 result = c_1ist[7];
                 break;
 
+            //  C11 - C19
             //C11
             case Constant.COURSE_h18_3111:
             case Constant.COURSE_h18_3129:
