@@ -281,7 +281,7 @@ public class DownloadActivity extends BaseActivity {
                                             int done_num = 0;
 
                                             for(PathBean pb : lb){
-                                                cii.getResUrl().put(pb.getVideoName(), getResources().getString(R.string.domain_name_download) + pb.getVideoPath());
+                                                cii.getResUrl().put(pb.getVideoName(), getResources().getString(R.string.apk_download) + pb.getVideoPath());
                                             }
 
                                             //检测已下载文件数量
