@@ -483,6 +483,7 @@ public class MusicNote {
 
             //c9
             case Constant.COURSE_2721:
+            case Constant.COURSE_2737:
                 result = c_1ist[7];
                 break;
 
