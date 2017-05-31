@@ -21,6 +21,36 @@ public class MusicNote {
      * color1   亮灯颜色    c==0下蓝 g==1上红
      * index1   亮灯位置
      */
+    //1
+    public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
+    public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
+    public static int[] color1 = { 1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index1 = { 39, 39, 39, 39, 39, 39, 39, 39 };
+
+    public static  float[] delay2= { 6.54f, 15.09f, 23.59f, 32.16f };
+    public static float[] dur2 = { 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f };
+    public static int[] color2 = {1, 1, 1, 1, 1, 1, 1, 1};
+    public static int[] index2 = { 21, 21, 21, 21, 21, 21, 21, 21 };
+    //2
+    public static float[] delay3 = { 7.18f, 19.1f, 31.13f, 43.1f };
+    public static float[] dur3 = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, };
+    public static int[] color3 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1 };
+    public static int[] index3 = { 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1 };
+
+    public static float[] delay4 = { 11.2f, 21.2f, 31.33f, 41.31f };
+    //public static float[] dur4 = { 1.764f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static float[] dur4 = { 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
+    public static int[] color4 = { 1,1,1,1,-1,1,-1};
+    public static int[] index4 = { 3, 3, 3, 3, -1, 3, -1};
+
+    //3
+    public static float[] delay5 = { 11.01f, 21.01f, 30.76f, 40.46f };
+    //public static float[] dur5 = { 1.836f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
+    public static int[] color5 = { 1,1,-1,1,-1,1,-1};
+    public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
+
+
 
     //丰台一小 第二课一
     public static float[] delay_ft_2_1 = {07.000f,19.125f,30.875f,43.000f};
@@ -129,34 +159,6 @@ public class MusicNote {
     public static int[] note_c_9 = {39,39,43,46,39,39,41,43,44,41,43,39,39,39,43,46,39,39,41,43,44,41,39,44,41,41,43,39,39,36,38,39,41,39,39,43,46,39,38,39,41,41,39};
 
 
-    //1
-    public static float[] delay1 = { 17.11f, 30.85f, 58.22f,72.02f };
-    public static float[] dur1 = { 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f, 0.816f };
-    public static int[] color1 = { 1, 1, 1, 1, 1, 1, 1, 1};
-    public static int[] index1 = { 39, 39, 39, 39, 39, 39, 39, 39 };
-
-    public static  float[] delay2= { 6.54f, 15.09f, 23.59f, 32.16f };
-    public static float[] dur2 = { 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f, 0.556f };
-    public static int[] color2 = {1, 1, 1, 1, 1, 1, 1, 1};
-    public static int[] index2 = { 21, 21, 21, 21, 21, 21, 21, 21 };
-    //2
-    public static float[] delay3 = { 7.18f, 19.1f, 31.13f, 43.1f };
-    public static float[] dur3 = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, };
-    public static int[] color3 = { 0,0,0,-1,1,1,1,-1,0,0,0,-1,1,1,1,-1 };
-    public static int[] index3 = { 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1, 39, 39, 39, -1 };
-
-    public static float[] delay4 = { 11.2f, 21.2f, 31.33f, 41.31f };
-    //public static float[] dur4 = { 1.764f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
-    public static float[] dur4 = { 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f, 0.588f };
-    public static int[] color4 = { 1,1,1,1,-1,1,-1};
-    public static int[] index4 = { 3, 3, 3, 3, -1, 3, -1};
-
-    //3
-    public static float[] delay5 = { 11.01f, 21.01f, 30.76f, 40.46f };
-    //public static float[] dur5 = { 1.836f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
-    public static float[] dur5 = { 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f, 0.612f };
-    public static int[] color5 = { 1,1,-1,1,-1,1,-1};
-    public static int[] index5 = { 3, 3, -1, 3, -1, 3, -1 };
 
     //后18  第11课
     public static float[] time_c_11 = {10.799f,39.599f};
