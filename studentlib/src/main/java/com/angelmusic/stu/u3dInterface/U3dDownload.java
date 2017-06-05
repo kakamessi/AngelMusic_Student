@@ -1,8 +1,16 @@
 package com.angelmusic.stu.u3dInterface;
 
+import android.content.Context;
+
+import com.angelmusic.stu.u3ddownload.HttpInterceptor;
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel;
+import com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheType;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.PersistentCookieJar;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.cache.SetCookieCache;
+import com.angelmusic.stu.u3ddownload.okhttp.cookie.persistence.SharedPrefsCookiePersistor;
 import com.angelmusic.stu.utils.SendDataUtil;
 
 /**
@@ -11,15 +19,35 @@ import com.angelmusic.stu.utils.SendDataUtil;
 
 public class U3dDownload {
 
+    private OkHttpUtil.Builder init;
+
+
     private static volatile U3dDownload singleton = null;
 
-    private U3dDownload(){}
+    private U3dDownload(Context context){
 
-    public static U3dDownload getSingleton(){
+        init = OkHttpUtil.init(context);
+        init.setConnectTimeout(30)//连接超时时间
+                .setWriteTimeout(30)//写超时时间
+                .setReadTimeout(30)//读超时时间
+                .setMaxCacheSize(10 * 1024 * 1024)//缓存空间大小
+                .setCacheLevel(CacheLevel.FIRST_LEVEL)//缓存等级
+                .setCacheType(CacheType.NETWORK_THEN_CACHE)//缓存类型
+                .setShowHttpLog(true)//显示请求日志
+                .setShowLifecycleLog(true)//显示Activity销毁日志
+                .setRetryOnConnectionFailure(false)//失败后不自动重连
+                //.setDownloadFileDir(Utils.getVideoPath())//文件下载保存目录(根据实际需求设置App.init.set...)
+                .addResultInterceptor(HttpInterceptor.ResultInterceptor)//请求结果拦截器
+                .addExceptionInterceptor(HttpInterceptor.ExceptionInterceptor)//请求链路异常拦截器
+                .setCookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(this)))//持久化cookie
+                .build();
+    }
+
+    public static U3dDownload getSingleton(Context context){
         if(singleton == null){
             synchronized (U3dDownload.class){
                 if(singleton == null){
-                    singleton = new U3dDownload();
+                    singleton = new U3dDownload(context);
                 }
             }
         }
