@@ -20,7 +20,7 @@ import com.angelmusic.stu.utils.SendDataUtil;
 public class U3dDownload {
 
     private OkHttpUtil.Builder init;
-
+    private String path;
 
     private static volatile U3dDownload singleton = null;
 
@@ -52,6 +52,10 @@ public class U3dDownload {
             }
         }
         return singleton;
+    }
+
+    public void setFilePath(String path){
+        init.setDownloadFileDir(path);
     }
 
     /**
