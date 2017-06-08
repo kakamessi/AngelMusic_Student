@@ -2,6 +2,7 @@ package com.angelmusic.student.activity;
 
 import android.app.Service;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -48,6 +49,7 @@ import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
@@ -1734,20 +1736,35 @@ public class VideoActivity extends BaseActivity {
         // 获取视频文件地址
         String path = currentPath;
 
+        //-------------播放sd卡资源
         File file = new File(path);
         if (!file.exists()) {
-            //Toast.makeText(this, "视频文件路径错误", Toast.LENGTH_LONG).show();
             return;
         }
+
+        //-------------assert资源
+/*        AssetFileDescriptor aFD = null;
+        try {
+            aFD = this.getAssets().openFd(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FileDescriptor fileDescriptor = aFD.getFileDescriptor();*/
 
         try {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
             // 设置播放的视频源
             mediaPlayer.setDataSource(file.getAbsolutePath());
+
+            //assert资源
+/*            mediaPlayer.setDataSource(fileDescriptor, aFD.getStartOffset(), aFD.getLength());
+            aFD.close();*/
+
             // 设置显示视频的SurfaceHolder
             mediaPlayer.setDisplay(surfaceView.getHolder());
-            LogUtil.e("开始装载:   " + file.getAbsolutePath());
+            //LogUtil.e("开始装载:   " + file.getAbsolutePath());
             mediaPlayer.prepareAsync();
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
