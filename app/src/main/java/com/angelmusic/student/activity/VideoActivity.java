@@ -1759,7 +1759,7 @@ public class VideoActivity extends BaseActivity {
             mediaPlayer.setDataSource(file.getAbsolutePath());
 
             //assert资源
-/*            mediaPlayer.setDataSource(fileDescriptor, aFD.getStartOffset(), aFD.getLength());
+/*          mediaPlayer.setDataSource(fileDescriptor, aFD.getStartOffset(), aFD.getLength());
             aFD.close();*/
 
             // 设置显示视频的SurfaceHolder
