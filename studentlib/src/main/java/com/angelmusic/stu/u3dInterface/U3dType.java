@@ -10,6 +10,12 @@ package com.angelmusic.stu.u3dInterface;
 public class U3dType {
 
     /**
+     *
+     * 分隔符
+     */
+    public static final String FLAG_CUT = "_anglem_";
+
+    /**
      * U3D绑定
      * cameraName
      */
