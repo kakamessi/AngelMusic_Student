@@ -146,7 +146,7 @@ public class DownloadNewAdapter extends BaseAdapter {
                 Map<String, String> map = ci.getResUrl();
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-                    if(ci.getIsActive()!=3){
+                    if(ci.getIsActive()!=3 && !Utils.isFileExist(entry.getKey()) ){
                         //!Utils.isFileExist(entry.getKey())
                         downloadFile(entry.getValue(), entry.getKey(), ci);
                     }
