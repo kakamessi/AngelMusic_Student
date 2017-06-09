@@ -19,6 +19,7 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.student.R;
 import com.angelmusic.student.base.BaseActivity;
+import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.course_download.adapter.DownloadNewAdapter;
 import com.angelmusic.student.course_download.infobean.CourseBean;
 import com.angelmusic.student.course_download.infobean.CourseInfo;
@@ -246,7 +247,10 @@ public class DownloadActivity extends BaseActivity {
      */
     private void initCourse() {
 
-        String schoolId = SharedPreferencesUtil.getString("schoolId", "2");
+        String schoolId = SharedPreferencesUtil.getString(Constant.CACHE_SCHOOL_ID, "2");
+        if(schoolId.equals("-1")){
+            return;
+        }
         String domainNameRequest = getResources().getString(R.string.domain_name_request);
         String courseInfoJson = getResources().getString(R.string.newcourse_info_json);
 
@@ -273,6 +277,9 @@ public class DownloadActivity extends BaseActivity {
                                     if (nci.getCode() == 200) {
                                         //封装数据
                                         List<CourseBean> lp = nci.getDetail();
+
+
+                                        //for循环生成bean
                                         for(int i=0; i<lp.size(); i++){
 
                                             List<PathBean> lb = lp.get(i).getPathList();
@@ -295,6 +302,8 @@ public class DownloadActivity extends BaseActivity {
                                             cii.setCourse_name(lp.get(i).getName());
                                             cii.setAll_num(cii.getResUrl().size());
                                             cii.setDone_num(done_num);
+
+                                            //根据文件下载进度  生成状态
                                             if(cii.getDone_num()==cii.getAll_num()){
                                                 cii.setIsActive(4);
                                             }else{
