@@ -147,17 +147,8 @@ public class DownloadNewAdapter extends BaseAdapter {
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
                     if(ci.getIsActive()!=3){
-                        if(!Utils.isFileExist(entry.getKey())) {
-                            downloadFile(entry.getValue(), entry.getKey(), ci);
-                        }else{
-                            //文件已存在  刷新界面
-                            ci.setDone_num(ci.getDone_num() + 1);
-                            if(ci.getAll_num()==ci.getDone_num()) {
-                                ci.setIsActive(4);
-                            }
-                            context.refreashAdapter();
-                            setHeadButton();
-                        }
+                        //!Utils.isFileExist(entry.getKey())
+                        downloadFile(entry.getValue(), entry.getKey(), ci);
                     }
                 }
     }
