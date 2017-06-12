@@ -27,6 +27,7 @@ import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.course_download.infobean.NewCourseInfo;
 import com.angelmusic.student.course_download.infobean.PathBean;
 import com.angelmusic.student.utils.GsonUtil;
+import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
 
@@ -287,7 +288,8 @@ public class DownloadActivity extends BaseActivity {
                                             int done_num = 0;
 
                                             for(PathBean pb : lb){
-                                                cii.getResUrl().put(pb.getVideoName(), getResources().getString(R.string.apk_download) + pb.getVideoPath());
+                                                String vName = pb.getVideoPath().substring(pb.getVideoPath().lastIndexOf("/")+1);
+                                                cii.getResUrl().put(vName, getResources().getString(R.string.apk_download) + pb.getVideoPath());
                                             }
 
                                             //检测已下载文件数量
