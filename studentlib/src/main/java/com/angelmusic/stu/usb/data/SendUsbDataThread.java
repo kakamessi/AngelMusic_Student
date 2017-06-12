@@ -90,8 +90,9 @@ public class SendUsbDataThread extends Thread {
 			}
 		}
 
-		SendDataUtil.sendDataToUnity("Main Camera", "receiveData",
-				isSuccess ? "发送成功" : "发送失败");
+		//学生端需要注释
+		//SendDataUtil.sendDataToUnity("Main Camera", "receiveData", isSuccess ? "发送成功" : "发送失败");
+
 		if (callbackInterface != null) {
 			callbackInterface.onSendCallback(isSuccess);
 		}
