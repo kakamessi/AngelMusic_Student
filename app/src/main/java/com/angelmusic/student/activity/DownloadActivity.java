@@ -18,17 +18,15 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.student.R;
+import com.angelmusic.student.base.App;
 import com.angelmusic.student.base.BaseActivity;
 import com.angelmusic.student.constant.Constant;
 import com.angelmusic.student.course_download.adapter.DownloadNewAdapter;
 import com.angelmusic.student.course_download.infobean.CourseBean;
-import com.angelmusic.student.course_download.infobean.CourseInfo;
 import com.angelmusic.student.course_download.infobean.CourseItemInfo;
-import com.angelmusic.student.course_download.infobean.FileInfo;
 import com.angelmusic.student.course_download.infobean.NewCourseInfo;
 import com.angelmusic.student.course_download.infobean.PathBean;
 import com.angelmusic.student.utils.GsonUtil;
-import com.angelmusic.student.utils.SDCardUtil;
 import com.angelmusic.student.utils.SharedPreferencesUtil;
 import com.angelmusic.student.utils.Utils;
 
@@ -247,7 +245,8 @@ public class DownloadActivity extends BaseActivity {
      */
     private void initCourse() {
 
-        String schoolId = SharedPreferencesUtil.getString(Constant.CACHE_SCHOOL_ID, "2");
+        String schoolId = SharedPreferencesUtil.getString(Constant.CACHE_SCHOOL_ID, "-1");
+        Toast.makeText(this,schoolId,0).show();
         if(schoolId.equals("-1")){
             return;
         }
