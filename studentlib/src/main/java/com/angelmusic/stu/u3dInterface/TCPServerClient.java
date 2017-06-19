@@ -13,6 +13,7 @@ import com.angelmusic.stu.server.socket.tcp.AcpRuner;
 import com.angelmusic.stu.server.socket.tcp.SendHandler;
 import com.angelmusic.stu.server.socket.tcp.Ssocket;
 import com.angelmusic.stu.server.socket.udp.UDPServerRecThread;
+import com.angelmusic.stu.utils.Log;
 
 import java.net.ServerSocket;
 
@@ -45,7 +46,7 @@ public class TCPServerClient{
      * 初始化开启服务端
      */
     public void initServer(){
-
+        Log.e("kaka","initServer" );
         mSendHander = new SendHandler();
 
         ar = new AcpRuner(new DefaultReceiver(),serverSocket);
@@ -103,9 +104,10 @@ public class TCPServerClient{
     public void sendPersonalMsg(String ip, String str){
 
         for (Ssocket s : ar.getSocketList()) {
-
+            Log.e("kaka","sendMsg");
             if(ip.equals(s.mSocket.getInetAddress().getHostAddress())) {
                 mSendHander.sendMsg(s, (str+Constant.CONSTANT_HEARTBEAT).getBytes());
+                Log.e("kaka","sendMsg IP:" + ip);
                 break;
             }
         }
@@ -118,9 +120,10 @@ public class TCPServerClient{
     public void sendPersonalMsg(String ip, byte[] bytes){
 
         for (Ssocket s : ar.getSocketList()) {
-
+            Log.e("kaka","sendMsg");
             if(ip.equals(s.mSocket.getInetAddress().getHostAddress())) {
                 mSendHander.sendMsg(s, bytes);
+                Log.e("kaka","sendMsg IP:" + ip);
                 break;
             }
         }

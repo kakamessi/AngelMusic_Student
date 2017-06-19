@@ -132,14 +132,14 @@ public class AndroidDispatcher implements IDispatcher{
 
         try {
             socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
-
+            Log.e("kaka","--teacher ip--write"+host);
         } catch (Exception e) {
 
             init(host,port,mRever);
-            Log.e("kaka","--teacher ip--"+host);
             try {
                 Thread.sleep(1500);
                 socket.write((str + ActionType.CONSTANT_HEARTBEAT).getBytes());
+                Log.e("kaka","--teacher ip--init and write"+host);
             } catch (Exception e1) {
 
             }

@@ -23,7 +23,7 @@ public class UDPServerRecThread extends Thread{
 
     @Override
     public void run() {
-
+        Log.e("kaka","Teacher Step 2 :  init udp loop");
         DatagramSocket socket = null;
         try {
             // 1、创建套接字
@@ -42,11 +42,13 @@ public class UDPServerRecThread extends Thread{
                 String quest_ip = packet.getAddress().toString().substring(1);
 
                 ucc.sendSycMsg();
+                Log.e("kaka","Teacher Step 2 :  receive upd ip ==" + quest_ip);
 
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("kaka","Teacher Step 2 :  init udp loop break --------------error-------------");
         }
 
     }

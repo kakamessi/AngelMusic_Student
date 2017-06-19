@@ -51,6 +51,7 @@ public class AcpRuner implements Runnable {
 
         try {
 
+            Log.e("kaka","Teacher Step 2 :  init tcp loop");
             serverSocket = new ServerSocket(NetParams.PORT);
 
             while(true){
@@ -69,6 +70,8 @@ public class AcpRuner implements Runnable {
                     }
                 }
                 socketList.add(socket);
+                Log.e("kaka","Teacher Step 1 :  receive tcp ip ==" + socket.mSocket.getInetAddress().getHostAddress());
+
                 Thread th = new Thread(new RecRunner(handler,socket));
                 th.setName("RecThread___________kaka" + socket.mSocket.getInetAddress().getHostAddress() + " : "+socket.mSocket.getPort());
                 th.start();
@@ -76,6 +79,7 @@ public class AcpRuner implements Runnable {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("kaka","Teacher Step 2 :  init tcp loop break --------------error-------------");
         }finally{
 
             try {
