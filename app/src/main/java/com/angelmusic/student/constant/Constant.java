@@ -8,7 +8,7 @@ public class Constant {
 
     public static String FILE_PATH = "/anglefile/";
 
-    public static String HOST = "192.168.2.155";
+    public static String HOST = "192.168.0.112";
     public static final int PORT = 20000;
 
     public static final int UDP_PORT = 8000;
