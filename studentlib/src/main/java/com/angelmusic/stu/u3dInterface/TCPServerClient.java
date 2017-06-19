@@ -46,7 +46,7 @@ public class TCPServerClient{
      * 初始化开启服务端
      */
     public void initServer(){
-        Log.e("kaka","initServer" );
+        Log.e("kaka","initServer 6.19" );
         mSendHander = new SendHandler();
 
         ar = new AcpRuner(new DefaultReceiver(),serverSocket);
