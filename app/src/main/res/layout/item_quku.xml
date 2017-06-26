@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    tools:context="com.angelmusic.student.activity.MainActivity">
+    <!--初始进入时的界面-->
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="70dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/kaka_qlx"
+        android:id="@+id/imageView2" />
+
+    <TextView
+        android:layout_marginLeft="40dp"
+        android:id="@+id/id_num"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView2"
+        android:textSize="30dp"
+        android:text="夜的第七章"
+/>
+</RelativeLayout>
