@@ -69,8 +69,8 @@ public class QuKuFragment extends Fragment{
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 QKDetailFragment qkF = new QKDetailFragment();
+                qkF.setmId(position + "haha");
                 fm.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).add(R.id.layout_main_01,qkF).addToBackStack(null).commit();
-                Toast.makeText(getActivity(),"-------",0).show();
 
             }
 

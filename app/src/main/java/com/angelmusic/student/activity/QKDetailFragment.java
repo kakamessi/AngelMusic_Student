@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.angelmusic.student.R;
 
@@ -27,6 +28,7 @@ public class QKDetailFragment extends Fragment{
     private GalleryAdapter mAdapter;
     private List<Integer> mDatas;
 
+    private String mId;
 
     public QKDetailFragment() {
         // Required empty public constructor
@@ -54,6 +56,8 @@ public class QKDetailFragment extends Fragment{
         //设置适配器
         mAdapter = new GalleryAdapter(getActivity(), mDatas);
         mRecyclerView.setAdapter(mAdapter);
+
+        Toast.makeText(getActivity(),getmId()+"-------",0).show();
 
         return v;
     }
@@ -134,5 +138,11 @@ public class QKDetailFragment extends Fragment{
 
     }
 
+    public String getmId() {
+        return mId;
+    }
 
+    public void setmId(String mId) {
+        this.mId = mId;
+    }
 }
