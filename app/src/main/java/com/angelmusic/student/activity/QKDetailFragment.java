@@ -42,6 +42,13 @@ public class QKDetailFragment extends Fragment{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        //Toast.makeText(getActivity(),"-------  "+((ViewGroup)getActivity().getWindow().getDecorView().findViewById(R.id.layout_main_01)).getChildCount(),0).show();
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
