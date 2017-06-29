@@ -26,6 +26,13 @@
     <!--提交学生成绩接口-->
     <string name="account_submit">/client/score/addStuScore.json</string>
 
+
+    <!--请求曲库列表接口-->
+    <string name="get_list_quku">/client/amReper/findAllReper.json</string>
+    <!--请求曲库图片接口-->
+    <string name="get_pic_quku">/client/pic/findAllPic.json</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

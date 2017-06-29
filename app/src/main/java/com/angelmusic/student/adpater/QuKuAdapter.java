@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.angelmusic.student.R;
+import com.angelmusic.student.course_download.infobean.QuBean;
+import com.angelmusic.student.course_download.infobean.QukuListInfo;
 
 import java.util.List;
 
@@ -18,7 +20,8 @@ import java.util.List;
 public class QuKuAdapter extends RecyclerView.Adapter<QuKuAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<String> mDatas;
+    private List<QuBean> mList;
+    private QukuListInfo info;
 
     private OnItemClickLitener mOnItemClickLitener;
 
@@ -33,9 +36,10 @@ public class QuKuAdapter extends RecyclerView.Adapter<QuKuAdapter.MyViewHolder> 
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public QuKuAdapter(Context mtx, List<String> data) {
+    public QuKuAdapter(Context mtx, QukuListInfo data) {
         mContext = mtx;
-        mDatas = data;
+        info = data;
+        mList = info.getDetail();
     }
 
     @Override
@@ -50,7 +54,7 @@ public class QuKuAdapter extends RecyclerView.Adapter<QuKuAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        holder.tv.setText("七里香");
+        holder.tv.setText(mList.get(position).getName());
 
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null)
@@ -72,7 +76,7 @@ public class QuKuAdapter extends RecyclerView.Adapter<QuKuAdapter.MyViewHolder> 
     @Override
     public int getItemCount()
     {
-        return mDatas.size();
+        return mList.size();
     }
 
 
