@@ -236,6 +236,6 @@ public class QKDetailFragment extends Fragment{
     public void setmId(String mId) {
         this.mId = mId;
     }
-    
+
 
 }
