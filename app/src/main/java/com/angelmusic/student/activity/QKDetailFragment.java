@@ -19,22 +19,19 @@ import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtil;
 import com.angelmusic.stu.u3ddownload.okhttp.OkHttpUtilInterface;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.CallbackOk;
 import com.angelmusic.stu.u3ddownload.okhttp.callback.ProgressCallback;
+import com.angelmusic.stu.utils.Log;
 import com.angelmusic.student.R;
-import com.angelmusic.student.course_download.infobean.CourseItemInfo;
 import com.angelmusic.student.course_download.infobean.DetailBean;
-import com.angelmusic.student.course_download.infobean.QuBean;
 import com.angelmusic.student.course_download.infobean.QukuDetail;
-import com.angelmusic.student.course_download.infobean.QukuListInfo;
 import com.angelmusic.student.utils.GsonUtil;
-import com.angelmusic.student.utils.LogUtil;
 import com.angelmusic.student.utils.Utils;
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.angelmusic.stu.u3ddownload.okhttp.annotation.CacheLevel.FIRST_LEVEL;
+import static com.angelmusic.student.R.id.imageView;
 
 /**
  *
@@ -221,14 +218,12 @@ public class QKDetailFragment extends Fragment{
         public void onBindViewHolder(final ViewHolder viewHolder, final int i)
         {
 
-            //viewHolder.mImg.setImageBitmap(BitmapFactory.decodeFile(""));
-            if(!Utils.isFileExist(mDatas.get(i).getName())) {
-                downloadFile(getResources().getString(R.string.apk_download) + mDatas.get(i).getPath(),
-                        mDatas.get(i).getName(), viewHolder);
-            }else{
+            Log.e("GalleryAdapter","onBindViewHolder  " + i);
 
-                viewHolder.mImg.setImageBitmap(BitmapFactory.decodeFile(Utils.getVideoPath() + mDatas.get(i).getName()));
-            }
+            Glide
+                    .with(QKDetailFragment.this.getActivity())
+                    .load(getResources().getString(R.string.apk_download) + mDatas.get(i).getPath())
+                    .into(viewHolder.mImg);
 
         }
 
@@ -241,32 +236,6 @@ public class QKDetailFragment extends Fragment{
     public void setmId(String mId) {
         this.mId = mId;
     }
-
-
-    /**
-     * 图片下载
-     */
-    private void downloadFile(String url, final String fileName, final GalleryAdapter.ViewHolder viewHolder) {
-
-        final String fileNameCutSuffix = fileName.substring(0, fileName.lastIndexOf("."));//文件名，不带后缀（因为使用的网络框架下载完文件后会自动添加后缀名）
-        final HttpInfo info = HttpInfo.Builder()
-                .addDownloadFile(url, fileNameCutSuffix, new ProgressCallback() {
-                    @Override
-                    public void onProgressMain(int percent, long bytesWritten, long contentLength, boolean done) {
-                    }
-
-                    @Override
-                    public void onResponseMain(String fileUrl, HttpInfo info) {
-
-                        viewHolder.mImg.setImageBitmap(BitmapFactory.decodeFile(Utils.getVideoPath() + fileName));
-
-                    }
-                })
-                .build();
-        OkHttpUtil.Builder()
-                .setReadTimeout(120)
-                .build(fileName)//绑定请求标识
-                .doDownloadFileAsync(info);
-    }
+    
 
 }
