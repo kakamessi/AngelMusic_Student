@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_text"
+    android:background="#fffffb"
     tools:context="com.angelmusic.student.activity.QuKuFragment">
 
     <!-- TODO: Update blank fragment layout -->

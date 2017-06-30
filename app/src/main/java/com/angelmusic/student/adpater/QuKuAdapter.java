@@ -54,7 +54,7 @@ public class QuKuAdapter extends RecyclerView.Adapter<QuKuAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        holder.tv.setText(mList.get(position).getName());
+        holder.tv.setText("曲目 "+(position+1)+ " :    "+ mList.get(position).getName());
 
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null)
