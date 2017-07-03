@@ -18,6 +18,15 @@
             android:layout_height="match_parent"
             android:background="@mipmap/main_page_bg"/>
 
+        <ImageView
+            android:layout_marginTop="32dp"
+            android:id="@+id/iv_quku"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/ib_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/quku_logo"/>
+
         <ImageButton
             android:id="@+id/ib_download"
             android:layout_width="wrap_content"
@@ -27,7 +36,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/down_btn_selector"
+            android:background="@mipmap/main_download"
             android:onClick="onClick"/>
 
         <TextView

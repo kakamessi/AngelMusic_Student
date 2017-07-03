@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
@@ -34,7 +35,6 @@ import com.angelmusic.stu.u3ddownload.utils.GsonUtil;
 import com.angelmusic.stu.usb.UsbDeviceConnect;
 import com.angelmusic.stu.usb.UsbDeviceInfo;
 import com.angelmusic.stu.usb.callback.CallbackInterface;
-import com.angelmusic.stu.utils.Log;
 import com.angelmusic.stu.utils.SendDataUtil;
 import com.angelmusic.student.R;
 import com.angelmusic.student.adpater.SeatAdapter;
@@ -71,6 +71,9 @@ public class MainActivity extends BaseActivity {
     TextView tvBlackboard;
     @BindView(R.id.layout_main_01)
     RelativeLayout layoutMain01;
+    @BindView(R.id.iv_quku)
+    ImageView iv_quku;
+
     private String wifiName;
     private String schoolName;
     private String roomName;
@@ -82,6 +85,8 @@ public class MainActivity extends BaseActivity {
     private static String[] PERMISSION = {Manifest.permission.READ_PHONE_STATE};
     protected static final String ACTION_USB_PERMISSION = "com.Aries.usbhosttest.USB_PERMISSION";
 
+    private QuKuFragment qukuFragment  ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +94,7 @@ public class MainActivity extends BaseActivity {
         initData();
         initView();
         initPiano();
+
     }
 
     @Override
@@ -99,6 +105,7 @@ public class MainActivity extends BaseActivity {
         } else {
 
         }
+
     }
 
     @Override
@@ -159,13 +166,14 @@ public class MainActivity extends BaseActivity {
         UsbDeviceInfo.getUsbDeviceInfo(MainActivity.this).connect();
     }
 
-    @OnClick({R.id.ib_download, R.id.tv_wifi_name, R.id.tv_classroom_name, R.id.seatId_ll, R.id.tv_connection_status})
+    @OnClick({R.id.ib_download, R.id.tv_wifi_name, R.id.tv_classroom_name, R.id.seatId_ll, R.id.tv_connection_status, R.id.iv_quku})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ib_download:
                 //跳转到下载页
                 startActivity(new Intent(MainActivity.this, DownloadActivity.class));
                 overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
+
                 break;
             case R.id.tv_wifi_name:
                 wifiName = NetworkUtil.getWifiName(this);//获取当前pad连接的wifi名称
@@ -185,6 +193,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_connection_status:
                 //预留
+                break;
+            case R.id.iv_quku:
+                addFragment();
+
                 break;
             default:
 
@@ -429,5 +441,30 @@ public class MainActivity extends BaseActivity {
         }
         return false;
     }
+
+
+    /*
+    *
+    * Fragment相关-------------------------------------------------------------------------
+    *
+    * */
+    public void addFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        qukuFragment = (QuKuFragment) fm.findFragmentById(R.id.layout_main_01);
+        if(qukuFragment == null )
+        {
+            qukuFragment = new QuKuFragment();
+            fm.beginTransaction().add(R.id.layout_main_01,qukuFragment).addToBackStack(null).commit();
+        }
+    }
+
+    public void popFragment() {
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+
+    }
+
+
 
 }
