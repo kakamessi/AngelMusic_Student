@@ -39,6 +39,7 @@ import static com.angelmusic.student.R.id.imageView;
  */
 public class QKDetailFragment extends Fragment{
 
+    private ImageView iv_back;
     private RecyclerView mRecyclerView;
     private GalleryAdapter mAdapter;
     private QukuDetail mDatas;
@@ -91,6 +92,14 @@ public class QKDetailFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_qk_detail, container, false);
+        iv_back = (ImageView) v.findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).popFragment();
+            }
+        });
+
 
         getPic();
         //得到控件

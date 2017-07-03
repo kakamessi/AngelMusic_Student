@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.angelmusic.stu.u3ddownload.okhttp.HttpInfo;
@@ -38,6 +39,7 @@ public class QuKuFragment extends Fragment{
 
     private QuKuAdapter qkAdapter;
 
+    private ImageView iv_back;
     private RecyclerView mRecyclerView;
     private QukuListInfo qList;
 
@@ -82,6 +84,13 @@ public class QuKuFragment extends Fragment{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_qu_ku, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recy_list);
+        iv_back = (ImageView) v.findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).popFragment();
+            }
+        });
         initQuku();
 
         return v;
